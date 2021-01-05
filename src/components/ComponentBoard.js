@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Pedina from './Pedina';
+import ComponentController from './ComponentController';
 
 import hat from '../img/hat.png';
 import iron from '../img/iron.png';
@@ -10,6 +11,8 @@ import shoe from '../img/shoe.png';
 import thimble from '../img/thimble.png';
 import wheelbarrow from '../img/wheelbarrow.png';
 
+
+
 class ComponentBoard extends React.Component {
 
 	constructor(props) {
@@ -17,7 +20,7 @@ class ComponentBoard extends React.Component {
         this.state = {
           segnalini: [
                         ["hat", 940, 600, "visible",0],
-                        ["iron", 700, 300, "visible",1],
+                        ["iron", 700, 600, "visible",1],
                         ["car", 810, 600, "visible",2],
                         ["boat", 870, 600, "visible",3],
                         ["doggo", 400, 7, "visible",4],
@@ -69,6 +72,7 @@ class ComponentBoard extends React.Component {
                 <Pedina figura={shoe} stile={mystyleShoe} />
                 <Pedina figura={thimble} stile={mystyleThimble} />
                 <Pedina figura={wheelbarrow} stile={mystyleWheelbarrow} />
+                <ComponentController />
             </div>
         )
     }

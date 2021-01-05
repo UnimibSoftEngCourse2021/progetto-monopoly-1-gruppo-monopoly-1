@@ -42,3 +42,30 @@ code {
   position:absolute;
 }
 
+.tableController {
+  border: 1px solid black;
+  position:relative;
+  visibility: visible;
+  height: 300px;
+  width: 450px;
+  left: 100px;
+  top: 250px
+}
+
+.thController, .tdController {
+  border: 1px solid black;
+}
+
+.trControllerTA {
+  height: 200px;
+}
+
+.ControllerTA {
+  resize: none;
+  height: 99%;
+  width: 98%;
+  border: 3px outset red;
+  background-color: lightblue;    
+  text-align: left;
+}
+
