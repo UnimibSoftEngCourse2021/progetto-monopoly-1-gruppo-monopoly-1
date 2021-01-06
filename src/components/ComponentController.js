@@ -10,6 +10,16 @@ function     funz2() {
     //this.messaggioUno = str1
 }
 
+let dado1 = getRandomIntInclusive();
+let dado2 = getRandomIntInclusive();
+let sommaDadi = dado1 + dado2;
+
+function getRandomIntInclusive() {
+    let min = Math.ceil(1);
+    let max = Math.floor(7);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //Il max è incluso e il min è incluso
+  }
+
 
 class ComponentController extends React.Component {
 
@@ -24,7 +34,7 @@ class ComponentController extends React.Component {
 
     funzprova = () => {
         this.setState({
-          primoMsgTA: 'ddddddddddd',
+            primoMsgTA: `${sommaDadi}`,
         })
     }
 
