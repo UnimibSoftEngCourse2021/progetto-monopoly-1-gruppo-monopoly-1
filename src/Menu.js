@@ -1,5 +1,6 @@
 import ComponentMenuDx from './components/ComponentMenuDx';
 import MonopolyLogoMenu from '../src/img/monopoly_logo_menu.png';
+import SceltaNumeroGiocatori from './components/SceltaNumeroGiocatori';
 
 function Menu() {
     return (
@@ -10,7 +11,7 @@ function Menu() {
             <td className="logoMonopoly">
                 <img className="logo" src={MonopolyLogoMenu} class="Profile-image" alt="Profile image" width="500"/>
             </td>
-            <td className="colonna1" ></td>
+            <td className="colonna1" ><SceltaNumeroGiocatori /></td>
           </tr>
           <tr>
             
