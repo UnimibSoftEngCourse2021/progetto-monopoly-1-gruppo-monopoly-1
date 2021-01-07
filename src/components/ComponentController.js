@@ -10,8 +10,8 @@ function     funz2() {
     //this.messaggioUno = str1
 }
 
-let dado1 = getRandomIntInclusive();
-let dado2 = getRandomIntInclusive();
+let dado1 = Math.floor(Math.random()*6) + 1;
+let dado2 = Math.floor(Math.random()*6) + 1;
 let sommaDadi = dado1 + dado2;
 let punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
 
@@ -22,13 +22,6 @@ function verificaPunteggioDoppio(dado1, dado2){
         return false;
     }
 }
-
-function getRandomIntInclusive() {
-    let min = Math.ceil(1);
-    let max = Math.floor(7);
-    return Math.floor(Math.random() * (max - min + 1)) + min; //Il max è incluso e il min è incluso
-}
-
 
 class ComponentController extends React.Component {
 
@@ -41,14 +34,14 @@ class ComponentController extends React.Component {
         };
       }
 
-    funzprova = () => {
+    tiraDadi = () => {
         this.setState({
             primoMsgTA: `${sommaDadi}`,
             secondoMsgTA: 'Il punteggio dei dadi è doppio: '+dado1+' + '+dado2 +' ' + `${punteggioDoppio}`,
             terzoMsgTA: `${sommaDadi}`
         })
-        dado1=getRandomIntInclusive();
-        dado2=getRandomIntInclusive();
+        dado1 = Math.floor(Math.random()*6) + 1;
+        dado2 = Math.floor(Math.random()*6) + 1;
         sommaDadi = dado1 + dado2;
         punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
     }
@@ -59,7 +52,7 @@ class ComponentController extends React.Component {
             <table className="tableController">
             <tr className="trController">
                 <td className="tdController">
-                    <button type="button" onClick={() => this.funzprova()}>Tira dadi</button></td>
+                    <button type="button" onClick={() => this.tiraDadi()}>Tira dadi</button></td>
                 <td className="tdController">
                     <button type="button" onClick={() => alert('costruisci')}>Costruisci</button></td>
                 <td className="tdController">
@@ -81,8 +74,6 @@ class ComponentController extends React.Component {
             </table>            
         )
     }
-
-
 }
 
 // {this.state.messaggioTA1+"\n"+this.state.messaggioTA2+"\n"+this.state.messaggioTA3}
