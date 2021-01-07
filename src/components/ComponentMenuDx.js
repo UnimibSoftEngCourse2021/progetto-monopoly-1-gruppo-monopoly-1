@@ -5,13 +5,29 @@ class ComponentMenuDx extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: 'Click Me',
+            text: 'Facile',
+            text1: 'Medio',
+            text2: 'Difficile',
         };
     }
 
     render(){
-        return (<button onClick={() => iniziaPartita()}>{this.state.text}</button>);
+        return (
+                <div>
+                    <div>
+                        <button onClick={() => iniziaPartita('facile')}>{this.state.text}</button>
+                    </div>
+                    <div>
+                        <button onClick={() => iniziaPartita('medio')}>{this.state.text1}</button>  
+                    </div>
+                    <div>
+                        <button onClick={() => iniziaPartita('difficile')}>{this.state.text2}</button>  
+                    </div>
+                </div>
+            );
 
     }
 }
 export default ComponentMenuDx;
+
+       

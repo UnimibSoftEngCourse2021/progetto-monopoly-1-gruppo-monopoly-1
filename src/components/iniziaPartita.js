@@ -5,7 +5,7 @@ import App from '../App';
 import Menu from '../Menu';
 import reportWebVitals from '../reportWebVitals';
 
-export function iniziaPartita() {
+export function iniziaPartita(modalita) {
     ReactDOM.render(
         <React.StrictMode>
             <App />
