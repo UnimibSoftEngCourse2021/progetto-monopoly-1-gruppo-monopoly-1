@@ -14,6 +14,7 @@ let dado1 = Math.floor(Math.random()*6) + 1;
 let dado2 = Math.floor(Math.random()*6) + 1;
 let sommaDadi = dado1 + dado2;
 let punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
+var ascissa;
 
 function verificaPunteggioDoppio(dado1, dado2){
     if(dado1 == dado2){
@@ -34,6 +35,8 @@ class ComponentController extends React.Component {
         };
       }
 
+    ascissa = this.props.segnalini[0][1];
+
     tiraDadi = () => {
         this.setState({
             primoMsgTA: `${sommaDadi}`,
@@ -44,6 +47,9 @@ class ComponentController extends React.Component {
         dado2 = Math.floor(Math.random()*6) + 1;
         sommaDadi = dado1 + dado2;
         punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
+        ascissa = 400;
+        this.props.segnalini[0]=["hat", ascissa, 600, "visible",0];
+        this.props.muoviPedine();
     }
 
     render () {
