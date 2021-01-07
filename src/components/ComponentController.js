@@ -1,20 +1,11 @@
 import React, { Component } from 'react';
 
-// var primoMsgTA= 'ultimo messaggio';
-// var secondoMsgTA= 'penultimo messaggio';
-// var terzoMsgTA= 'terzultimo messaggio';
 
-function     funz2() {
-    this.setState({messaggioUno: 'dddsj'})
-
-    //this.messaggioUno = str1
-}
-
-let dado1 = Math.floor(Math.random()*6) + 1;
-let dado2 = Math.floor(Math.random()*6) + 1;
-let sommaDadi = dado1 + dado2;
-let punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
-var ascissa;
+let dado1;
+let dado2;
+let sommaDadi;
+let punteggioDoppio;
+let ascissa;
 
 function verificaPunteggioDoppio(dado1, dado2){
     if(dado1 == dado2){
@@ -35,21 +26,24 @@ class ComponentController extends React.Component {
         };
       }
 
-    ascissa = this.props.segnalini[0][1];
 
-    tiraDadi = () => {
+    tiraDadi = () => {        
+        dado1 = Math.floor(Math.random()*6) + 1;
+        dado2 = Math.floor(Math.random()*6) + 1;
+        sommaDadi = dado1 + dado2;
+        punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);   
+
+        ascissa = this.props.segnalini[0][1];
+        ascissa = ascissa-10;
+        this.props.segnalini[0]=["hat", ascissa, 600, "visible",0];
+        this.props.muoviPedine();      
+               
         this.setState({
             primoMsgTA: `${sommaDadi}`,
             secondoMsgTA: 'Il punteggio dei dadi è doppio: '+dado1+' + '+dado2 +' ' + `${punteggioDoppio}`,
             terzoMsgTA: `${sommaDadi}`
         })
-        dado1 = Math.floor(Math.random()*6) + 1;
-        dado2 = Math.floor(Math.random()*6) + 1;
-        sommaDadi = dado1 + dado2;
-        punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
-        ascissa = 400;
-        this.props.segnalini[0]=["hat", ascissa, 600, "visible",0];
-        this.props.muoviPedine();
+
     }
 
     render () {
@@ -82,8 +76,6 @@ class ComponentController extends React.Component {
     }
 }
 
-// {this.state.messaggioTA1+"\n"+this.state.messaggioTA2+"\n"+this.state.messaggioTA3}
-// https://it.reactjs.org/docs/lifting-state-up.html
 
 class AreaTesto extends React.Component {
     constructor(props) {
@@ -104,12 +96,6 @@ class AreaTesto extends React.Component {
             {/* {this.props.primoMsgTA+"\n"+this.props.secondoMsgTA+"\n"+this.props.terzoMsgTA}  */}
         </div>
       );
-    }
-
-    funz1() {
-        this.setState({messaggioUno: 'dddsj'})
-
-        //this.messaggioUno = str1
     }
 
 }
