@@ -33,6 +33,14 @@ class ComponentBoard extends React.Component {
         };
       }
 
+      
+      muoviPedine = changeEvent => {
+        this.setState({
+            
+        })
+      }
+  
+
     render () {
 
         for (let i = 0; i < this.state.segnalini.length; i++) {
@@ -72,7 +80,7 @@ class ComponentBoard extends React.Component {
                 <Pedina figura={shoe} stile={mystyleShoe} />
                 <Pedina figura={thimble} stile={mystyleThimble} />
                 <Pedina figura={wheelbarrow} stile={mystyleWheelbarrow} />
-                <ComponentController />
+                <ComponentController segnalini={this.state.segnalini} muoviPedine={this.muoviPedine}/>
             </div>
         )
     }
