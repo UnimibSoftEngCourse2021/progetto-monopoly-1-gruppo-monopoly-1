@@ -110,7 +110,7 @@ class AreaTesto extends React.Component {
         //this.messaggioUno = str1
     }
 
-  }
+}
 
 
 export default ComponentController;
