@@ -44,8 +44,13 @@ class ComponentController extends React.Component {
     funzprova = () => {
         this.setState({
             primoMsgTA: `${sommaDadi}`,
-            secondoMsgTA: 'Il punteggio dei dadi è doppio: ' + `${punteggioDoppio}`,
+            secondoMsgTA: 'Il punteggio dei dadi è doppio: '+dado1+' + '+dado2 +' ' + `${punteggioDoppio}`,
+            terzoMsgTA: `${sommaDadi}`
         })
+        dado1=getRandomIntInclusive();
+        dado2=getRandomIntInclusive();
+        sommaDadi = dado1 + dado2;
+        punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
     }
 
     render () {
