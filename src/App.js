@@ -1,9 +1,7 @@
-import logo from './logo.svg';
 //import logo from './img/monopoly_logo.jpg'
-import './App.css';
 import ComponentPlayerLeft from './components/ComponentPlayerLeft';
 import ComponentPlayerRight from './components/ComponentPlayerRight';
-import ComponentProprietaLeft from'./components/ComponentProprietaLeft';
+import ComponentProprietaLeft from './components/ComponentProprietaLeft';
 import ComponentProprietaRight from './components/ComponentProprietaRight';
 import ComponentBoard from './components/ComponentBoard';
 

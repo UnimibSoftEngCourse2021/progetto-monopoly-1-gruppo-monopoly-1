@@ -13,12 +13,21 @@ function     funz2() {
 let dado1 = getRandomIntInclusive();
 let dado2 = getRandomIntInclusive();
 let sommaDadi = dado1 + dado2;
+let punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
+
+function verificaPunteggioDoppio(dado1, dado2){
+    if(dado1 == dado2){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 function getRandomIntInclusive() {
     let min = Math.ceil(1);
     let max = Math.floor(7);
     return Math.floor(Math.random() * (max - min + 1)) + min; //Il max è incluso e il min è incluso
-  }
+}
 
 
 class ComponentController extends React.Component {
@@ -35,6 +44,7 @@ class ComponentController extends React.Component {
     funzprova = () => {
         this.setState({
             primoMsgTA: `${sommaDadi}`,
+            secondoMsgTA: 'Il punteggio dei dadi è doppio: ' + `${punteggioDoppio}`,
         })
     }
 
@@ -44,7 +54,7 @@ class ComponentController extends React.Component {
             <table className="tableController">
             <tr className="trController">
                 <td className="tdController">
-                    <button onClick={() => this.funzprova()}>Tira dadi</button></td>
+                    <button type="button" onClick={() => this.funzprova()}>Tira dadi</button></td>
                 <td className="tdController">
                     <button type="button" onClick={() => alert('costruisci')}>Costruisci</button></td>
                 <td className="tdController">
