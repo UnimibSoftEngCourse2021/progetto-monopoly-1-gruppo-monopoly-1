@@ -5,7 +5,6 @@ let dado1;
 let dado2;
 let sommaDadi;
 let punteggioDoppio;
-let ascissa;
 
 function verificaPunteggioDoppio(dado1, dado2){
     if(dado1 == dado2){
@@ -14,6 +13,8 @@ function verificaPunteggioDoppio(dado1, dado2){
         return false;
     }
 }
+
+
 
 class ComponentController extends React.Component {
 
@@ -26,6 +27,14 @@ class ComponentController extends React.Component {
         };
       }
 
+    spostaSegnalino () {
+        // da implementare con mappa delle 40 caselle 
+        let ascissa = this.props.segnalini[0][1];
+        ascissa = ascissa-10;
+        this.props.segnalini[0]=["hat", ascissa, 600, "visible",0];
+        this.props.muoviPedine();   
+    }      
+
 
     tiraDadi = () => {        
         dado1 = Math.floor(Math.random()*6) + 1;
@@ -33,10 +42,7 @@ class ComponentController extends React.Component {
         sommaDadi = dado1 + dado2;
         punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);   
 
-        ascissa = this.props.segnalini[0][1];
-        ascissa = ascissa-10;
-        this.props.segnalini[0]=["hat", ascissa, 600, "visible",0];
-        this.props.muoviPedine();      
+        this.spostaSegnalino();
                
         this.setState({
             primoMsgTA: `${sommaDadi}`,
