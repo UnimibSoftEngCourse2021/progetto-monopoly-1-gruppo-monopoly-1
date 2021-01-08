@@ -61,6 +61,17 @@ class Tavola extends Component {
         return caselle;
     }
 
+    lanciaDadi = () => {
+        const dado1 = Math.floor(Math.random()*6) + 1;
+        const dado2 = Math.floor(Math.random()*6) + 1;
+        const risultato = dado1 + dado2;
+        this.setState({
+            dado1,
+            dado2,
+            risultato
+        });
+    }
+
     render() {
         return(
             <div className="contenitore-tavola">
@@ -86,7 +97,10 @@ class Tavola extends Component {
                         ))
                     }
                     <div className="tavola-centrale">
-                        <h1>Prova</h1>
+                        <button onClick={this.lanciaDadi} className="bottone">Lancia i dadi</button>
+                        <h5 className="dadi-info">Primo dado: {this.state.dado1}</h5>
+                        <h5 className="dadi-info">Secondo dado: {this.state.dado2}</h5>
+                        <h5 className="dadi-info">Risultato: {this.state.risultato}</h5>
                     </div>
                 </div> 
             </div>
