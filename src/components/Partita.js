@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-import App from '../App'
-import SceltaDifficolta from './ScegliDifficolta'
+import Tavola from './Tavola'
 
 class Partita extends Component {
     constructor(props) {
         super(props);
         this.state={
-            difficolta: "",
-            partitaIniziata: false,
+            difficolta: this.props.difficolta,
             numeroGiocatori: this.props.numeroGiocatori,
             giocatori: [],
         }
@@ -15,16 +13,8 @@ class Partita extends Component {
 
     render() {
         return(
-            <div>
-                {
-                    this.props.partitaIniziata ?
-                    <App difficolta={this.state.difficolta}/> :
-                    <SceltaDifficolta 
-                        difficolta={this.state.difficolta} 
-                        selezionaDifficolta={this.selezionaDifficolta} 
-                        partitaIniziata={this.state.partitaIniziata}
-                        />
-                }
+            <div className="interfaccia-gioco">
+                <Tavola />
             </div>
         );
     }
