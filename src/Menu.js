@@ -7,6 +7,9 @@ class Menu extends Component {
     constructor(props) {
       super(props);
       this.state={
+        giocatori: [],
+        partitaIniziata: false,
+        giocatoreCorrente: 1,
         numeroGiocatori: "2"
       }
     }
