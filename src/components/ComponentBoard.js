@@ -11,8 +11,9 @@ import shoe from '../img/shoe.png';
 import thimble from '../img/thimble.png';
 import wheelbarrow from '../img/wheelbarrow.png';
 
-// Struttura dati che mappa la tavola da gioco
+// Struttura dati che mappa la tavola da gioco.
 // Partendo da GO come elemento 0 e proseguendo nel verso di gioco
+// Tracciato record: indice, ascissa, ordinata, nome casella
 const tavolaGioco = [
     [0, 940, 600, "GO"],
     [1, 870, 600, "GO"],
@@ -61,10 +62,11 @@ class ComponentBoard extends React.Component {
 	constructor(props) {
         super(props);
         this.state = {
+          // Tracciato record: nome, ascissa, ordinata, visibilita, strato, attualeCasella  
           segnalini: [
                         ["hat", 940, 600, "visible",0,0],
                         ["iron", 700, 600, "visible",1,0],
-                        ["car", 370, 100, "visible",2,0],
+                        ["car", 940, 600, "visible",2,0],
                         ["boat", 870, 600, "visible",3,0],
                         ["doggo", 400, 7, "visible",4,0],
                         ["shoe", 400, 8, "visible",5,0],

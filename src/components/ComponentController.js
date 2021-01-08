@@ -27,12 +27,28 @@ class ComponentController extends React.Component {
         };
       }
 
-    spostaSegnalino () {
-        // da implementare con mappa delle 40 caselle 
+    spostaSegnalino (sommaDadi) {
+        // sposta cappello
         let ascissa = this.props.segnalini[0][1];
-        ascissa = ascissa-10;
-        this.props.segnalini[0]=["hat", ascissa, 600, "visible",0];
+        let ordinata = this.props.segnalini[0][2];
+
+        let [a, xposSegnalino, tposSegnalino, visSegnalino, strato, attualeCasella] = this.props.segnalini[0];
+        
+        var i;
+        for (i = 1; i < sommaDadi+1; i++) {
+            if (attualeCasella == 39) {
+                attualeCasella=0
+            } else {
+                attualeCasella = attualeCasella + 1
+            }        
+          }
+
+        ascissa = this.props.tavolaGioco[attualeCasella][1];
+        ordinata = this.props.tavolaGioco[attualeCasella][2];
+  
+        this.props.segnalini[0]=["hat", ascissa, ordinata, "visible",0,attualeCasella];
         this.props.muoviPedine();   
+
     }      
 
     spostaAuto () {
@@ -63,7 +79,7 @@ class ComponentController extends React.Component {
         sommaDadi = dado1 + dado2;
         punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);   
 
-        this.spostaSegnalino();
+        this.spostaSegnalino(sommaDadi);
                
         this.setState({
             primoMsgTA: `${sommaDadi}`,
