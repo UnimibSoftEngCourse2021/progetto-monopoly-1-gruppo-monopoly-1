@@ -11,7 +11,50 @@ import shoe from '../img/shoe.png';
 import thimble from '../img/thimble.png';
 import wheelbarrow from '../img/wheelbarrow.png';
 
-
+// Struttura dati che mappa la tavola da gioco
+// Partendo da GO come elemento 0 e proseguendo nel verso di gioco
+const tavolaGioco = [
+    [0, 940, 600, "GO"],
+    [1, 870, 600, "GO"],
+    [2, 820, 600, "GO"],
+    [3, 770, 600, "GO"],
+    [4, 720, 600, "GO"],
+    [5, 660, 600, "GO"],
+    [6, 610, 600, "GO"],
+    [7, 560, 600, "GO"],
+    [8, 500, 600, "GO"],
+    [9, 450, 600, "GO"],
+    [10, 370, 600, "JAIL"],
+    [11, 370, 530, "GO"],
+    [12, 370, 480, "GO"],
+    [13, 370, 420, "GO"],
+    [14, 370, 360, "GO"],
+    [15, 370, 310, "GO"],
+    [16, 370, 250, "GO"],
+    [17, 370, 200, "GO"],
+    [18, 370, 150, "GO"],
+    [19, 370, 100, "GO"],
+    [20, 370, 20, "FREE PARKING"],
+    [21, 450, 20, "GO"],
+    [22, 500, 20, "GO"],
+    [23, 560, 20, "GO"],
+    [24, 610, 20, "GO"],
+    [25, 660, 20, "GO"],
+    [26, 720, 20, "GO"],
+    [27, 770, 20, "GO"],
+    [28, 820, 20, "GO"],
+    [29, 880, 20, "GO"],
+    [30, 940, 20, "GO TO JAIL"],
+    [31, 940, 100, "GO"],
+    [32, 940, 150, "GO"],
+    [33, 940, 200, "GO"],
+    [34, 940, 250, "GO"],
+    [35, 940, 310, "GO"],
+    [36, 940, 360, "GO"],
+    [37, 940, 420, "GO"],
+    [38, 940, 480, "GO"],
+    [39, 940, 530, "GO"]
+];
 
 class ComponentBoard extends React.Component {
 
@@ -19,14 +62,14 @@ class ComponentBoard extends React.Component {
         super(props);
         this.state = {
           segnalini: [
-                        ["hat", 940, 600, "visible",0],
-                        ["iron", 700, 600, "visible",1],
-                        ["car", 810, 600, "visible",2],
-                        ["boat", 870, 600, "visible",3],
-                        ["doggo", 400, 7, "visible",4],
-                        ["shoe", 400, 8, "visible",5],
-                        ["thimble", 400, 8, "visible",6],
-                        ["wheelbarrow", 400, 8, "visible",7],
+                        ["hat", 940, 600, "visible",0,0],
+                        ["iron", 700, 600, "visible",1,0],
+                        ["car", 370, 100, "visible",2,0],
+                        ["boat", 870, 600, "visible",3,0],
+                        ["doggo", 400, 7, "visible",4,0],
+                        ["shoe", 400, 8, "visible",5,0],
+                        ["thimble", 400, 8, "visible",6,0],
+                        ["wheelbarrow", 400, 8, "visible",7,0],
                     ],
           turnoGiocatore: 0,
           numeroGiocatori: 4
@@ -80,7 +123,8 @@ class ComponentBoard extends React.Component {
                 <Pedina figura={shoe} stile={mystyleShoe} />
                 <Pedina figura={thimble} stile={mystyleThimble} />
                 <Pedina figura={wheelbarrow} stile={mystyleWheelbarrow} />
-                <ComponentController segnalini={this.state.segnalini} muoviPedine={this.muoviPedine}/>
+                <ComponentController segnalini={this.state.segnalini} muoviPedine={this.muoviPedine} 
+                                     tavolaGioco={tavolaGioco} />
             </div>
         )
     }

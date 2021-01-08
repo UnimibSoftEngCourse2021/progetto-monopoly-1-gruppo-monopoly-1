@@ -35,6 +35,27 @@ class ComponentController extends React.Component {
         this.props.muoviPedine();   
     }      
 
+    spostaAuto () {
+        // funzione di messa a punto mappa caselle 
+        // sposta il segnalino car in tutte le caselle una alla volta
+        let ascissa = this.props.segnalini[2][1];
+        let ordinata = this.props.segnalini[2][2];
+
+        let [a, xposSegnalino, tposSegnalino, visSegnalino, strato, attualeCasella] = this.props.segnalini[2];
+
+        if (attualeCasella == 39) {
+            attualeCasella=0
+        } else {
+            attualeCasella = attualeCasella + 1
+        }
+
+        ascissa = this.props.tavolaGioco[attualeCasella][1];
+        ordinata = this.props.tavolaGioco[attualeCasella][2];
+
+        this.props.segnalini[2]=["car", ascissa, ordinata, "visible",2,attualeCasella];
+        this.props.muoviPedine();   
+    }        
+
 
     tiraDadi = () => {        
         dado1 = Math.floor(Math.random()*6) + 1;
@@ -56,6 +77,8 @@ class ComponentController extends React.Component {
 
         return (
             <table className="tableController">
+            <tr><td className="tdController" colspan="5">
+                    <button type="button" onClick={() => this.spostaAuto()}>Sposta auto di 1</button></td></tr>
             <tr className="trController">
                 <td className="tdController">
                     <button type="button" onClick={() => this.tiraDadi()}>Tira dadi</button></td>
