@@ -10,13 +10,13 @@ function App() {
     <div className="App">
       <table className="tabella1">
         <tr>
-          <td className="colonna1" ><ComponentPlayerLeft /></td>
+          <td className="colonna-menu" ><ComponentPlayerLeft /></td>
           <td className="colonnaBoard" rowspan="2"><ComponentBoard /></td>
-          <td className="colonna1" ><ComponentPlayerRight /></td>
+          <td className="colonna-menu" ><ComponentPlayerRight /></td>
         </tr>
         <tr>
-          <td className="colonna1"><ComponentProprietaLeft /></td>
-          <td className="colonna1"><ComponentProprietaRight /></td>
+          <td className="colonna-menu"><ComponentProprietaLeft /></td>
+          <td className="colonna-menu"><ComponentProprietaRight /></td>
         </tr>
       </table>
     </div>

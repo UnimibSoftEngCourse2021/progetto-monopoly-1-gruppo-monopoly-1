@@ -5,13 +5,17 @@ import App from '../App';
 import Menu from '../Menu';
 import reportWebVitals from '../reportWebVitals';
 
-function iniziaPartita(modalita) {
-    ReactDOM.render(
+export function iniziaPartita(numero, diff) {
+
+    let numeroGiocatori = numero;
+    let difficolta = diff;
+
+    React.render(
         <React.StrictMode>
-            <App />
+            <App numeroGiocatori={numeroGiocatori} difficolta={difficolta} />
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
 
-export default iniziaPartita
+export default iniziaPartita()
