@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class Tavola extends Component {
     state = {
         caselle: [],
-        pedine: ['boat', 'car', 'doggo', 'hat', 'iron', 'shoe', 'thimble', 'wheelbarrow']
+        pedine: ['boat', 'car', 'doggo', 'hat', 'iron', 'shoe', 'thimble', 'wheelbarrow'],
     }
 
     // Questa funzione viene chiamata quando un'istanza di Tavola viene inserita nell'albero DOM.
@@ -61,6 +61,8 @@ class Tavola extends Component {
         return caselle;
     }
 
+    // Questa funzione si occupa di calcolare il risultato del lancio di due dadi 
+    // e di spostare la pedina del giocatore in base a tale risultato.
     lanciaDadi = () => {
         const dado1 = Math.floor(Math.random()*6) + 1;
         const dado2 = Math.floor(Math.random()*6) + 1;
@@ -70,21 +72,35 @@ class Tavola extends Component {
             dado2,
             risultato
         });
+        this.props.spostaGiocatore(risultato, this.props.giocatoreAttuale);
     }
 
     render() {
+        // Prepara una lista di locazioni dei giocatori.
+        // Se la lista è vuota, i giocatori verranno posizionati tutti nella locazione 0, come stabilito nello stato iniziale di Partita.
+        // Se la lista non è vuota, i giocatori verranno posizionati nella specifica locazione del giocatore.
+        let locazioniGiocatori = [];
+        if (this.state.caselle.length > 0) {
+            locazioniGiocatori = this.props.giocatori.map(giocatore => this.state.caselle[giocatore.locazione % this.state.caselle.length]);
+        }
+        
         return(
             <div className="contenitore-tavola">
+                <td className="colonna-gioco">Giocatori</td>
+                {/*Crea una griglia di 11 righe e 11 colonne */}
                 <div className="tavola"
                     style={{
                         gridTemplate: `repeat(11, 1fr) /repeat(11, 1fr)`
                     }}>
+                    {/* Per ogni casella della lista di caselle mostra la relativa immagine.
+                        L'indivuazione dell'immagine corretta per la casella avviene in base agli attributi di riga e colonna della casella.
+                     */}
                     {
                         this.state.caselle.map((casella, i) => (
                             <div 
                             style={{
                                 gridRow: casella.riga,
-                                gridColumn: casella.col
+                                gridColumn: casella.col 
                             }}
                             key={i} 
                             className="casella-gioco">
@@ -96,13 +112,42 @@ class Tavola extends Component {
                             </div>
                         ))
                     }
+
+                    {
+                        // Viene utilizzata la lista locazioniGiocatori per mostrare l'attuale locazione della pedina di ciascun giocatore.
+                        // In particolare la lista locazioniGiocatori contiene le locazioni attuali dei giocatori rappresentate come caselle.
+                        // Pertanto è ancora possibile utilizzare gli attributi di riga e colonna di ciascuna casella per individuare la casella
+                        // sulla quale mostrare ciascuna pedina.
+                        // La pedina di ciascun giocatore viene poi mostrata tramite la relativa immagine che viene renderizzata nuovamente.
+                        locazioniGiocatori.map((locazione, i) => {
+                            const giocatore = this.props.giocatori[i];
+                            return (
+                                <div
+                                    key={giocatore.numero}
+                                    style={{
+                                        gridRow: locazione.riga,
+                                        gridColumn: locazione.col
+                                    }}
+                                    className="avatar-giocatore">
+                                    <img
+                                        alt={giocatore.numero}
+                                        className="pedina"
+                                        src={`./pedine/${giocatore.pedina}.png`} />
+                                </div>
+                            )
+                        })
+                    }
+
                     <div className="tavola-centrale">
                         <button onClick={this.lanciaDadi} className="bottone">Lancia i dadi</button>
                         <h5 className="dadi-info">Primo dado: {this.state.dado1}</h5>
                         <h5 className="dadi-info">Secondo dado: {this.state.dado2}</h5>
                         <h5 className="dadi-info">Risultato: {this.state.risultato}</h5>
                     </div>
-                </div> 
+                </div>
+                <td className="colonna-gioco-proprietà">
+                    Proprietà
+                </td>
             </div>
         );
     }
