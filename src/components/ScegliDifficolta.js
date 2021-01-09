@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import iniziaPartita from './iniziaPartita'
 
 class SceltaDifficolta extends Component {
     constructor(props) {
