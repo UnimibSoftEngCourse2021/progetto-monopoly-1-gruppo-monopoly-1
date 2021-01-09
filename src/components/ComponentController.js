@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Costruisci from './AzioniConBottone/Costruisci';
+import Vendi from './AzioniConBottone/Vendi';
+
 
 
 let dado1;
@@ -99,9 +102,11 @@ class ComponentController extends React.Component {
                 <td className="tdController">
                     <button type="button" onClick={() => this.tiraDadi()}>Tira dadi</button></td>
                 <td className="tdController">
-                    <button type="button" onClick={() => alert('costruisci')}>Costruisci</button></td>
+                    <Costruisci />
+                </td>
                 <td className="tdController">
-                    <button type="button" onClick={() => alert('vendi')}>Vendi</button></td>    
+                    <Vendi />
+                </td>    
                 <td className="tdController">
                     <button type="button" onClick={() => alert('fine turno')}>Fine turno</button></td>   
                 <td className="tdController">
