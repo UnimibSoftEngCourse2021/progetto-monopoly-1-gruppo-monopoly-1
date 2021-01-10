@@ -15,13 +15,13 @@ class ComponentMenuDx extends React.Component {
         return (
                 <div>
                     <div>
-                        <button onClick={() => iniziaPartita('facile')}>{this.state.text}</button>
+                        <button onClick={() => iniziaPartita('facile', this.state.numeroGiocatori)}>{this.state.text}</button>
                     </div>
                     <div>
-                        <button onClick={() => iniziaPartita('medio')}>{this.state.text1}</button>  
+                        <button onClick={() => iniziaPartita('medio', this.state.numeroGiocatori)}>{this.state.text1}</button>  
                     </div>
                     <div>
-                        <button onClick={() => iniziaPartita('difficile')}>{this.state.text2}</button>  
+                        <button onClick={() => iniziaPartita('difficile', this.state.numeroGiocatori)}>{this.state.text2}</button>  
                     </div>
                 </div>
             );

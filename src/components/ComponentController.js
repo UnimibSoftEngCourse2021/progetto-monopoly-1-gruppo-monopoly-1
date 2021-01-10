@@ -108,9 +108,6 @@ class ComponentController extends React.Component {
 
         alert('Ora tocca ad un altro giocatore');
         //<Alert severity="info">This is an info alert — check it out!</Alert>
-
-        
-
     }
 
     render () {
