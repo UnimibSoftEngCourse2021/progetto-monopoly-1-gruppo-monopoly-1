@@ -65,13 +65,13 @@ class ComponentBoard extends React.Component {
           // Tracciato record: nome, ascissa, ordinata, visibilita, strato, attualeCasella  
           segnalini: [
                         ["hat", 940, 600, "visible",0,0],
-                        ["iron", 700, 600, "visible",1,0],
+                        ["iron", 940, 600, "visible",1,0],
                         ["car", 940, 600, "visible",2,0],
-                        ["boat", 870, 600, "visible",3,0],
-                        ["doggo", 400, 7, "visible",4,0],
-                        ["shoe", 400, 8, "visible",5,0],
-                        ["thimble", 400, 8, "visible",6,0],
-                        ["wheelbarrow", 400, 8, "visible",7,0],
+                        ["boat", 940, 600, "visible",3,0],
+                        ["doggo", 940, 600, "visible",4,0],
+                        ["shoe", 940, 600, "visible",5,0],
+                        ["thimble", 940, 600, "hidden",6,0],
+                        ["wheelbarrow", 940, 600, "hidden",7,0],
                     ],
          // turnoGiocatore: 0,
          // numeroGiocatori: 4
@@ -89,10 +89,14 @@ class ComponentBoard extends React.Component {
     render () {
 
         for (let i = 0; i < this.state.segnalini.length; i++) {
+            let visSegn;
             const [a, xposSegnalino, tposSegnalino, visSegnalino, strato] = this.state.segnalini[i];
+            /// if visibiità segnalini
+            if (i<=this.props.numeroGiocatori-1) {visSegn='visible'} else {visSegn='hidden'}
+
             const segnalinoSet = {  left: xposSegnalino+"px",
                                     top: tposSegnalino+"px",
-                                    visibility: visSegnalino,
+                                    visibility: visSegn,
                                     zIndex: strato
                                  }
             switch (a) {

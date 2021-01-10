@@ -32,11 +32,14 @@ class ComponentController extends React.Component {
       }
 
     spostaSegnalino (sommaDadi) {
-        // sposta cappello
-        let ascissa = this.props.segnalini[0][1];
-        let ordinata = this.props.segnalini[0][2];
+        // i giocatori vanno da 1 a 6 , per ora assegno i segnalini in ordine numerico
+        // uso this.props.turnoGiocatore-1 perchè i segnalini partono da ZERO
+        let numSegnalino = this.props.turnoGiocatore-1;
+        let ascissa = this.props.segnalini[numSegnalino][1];
+        let ordinata = this.props.segnalini[numSegnalino][2];
 
-        let [a, xposSegnalino, tposSegnalino, visSegnalino, strato, attualeCasella] = this.props.segnalini[0];
+        //let [a, xposSegnalino, tposSegnalino, visSegnalino, strato, attualeCasella] = this.props.segnalini[numSegnalino];
+        let attualeCasella = this.props.segnalini[numSegnalino][5];
         
         var i;
         for (i = 1; i < sommaDadi+1; i++) {
@@ -50,7 +53,10 @@ class ComponentController extends React.Component {
         ascissa = this.props.tavolaGioco[attualeCasella][1];
         ordinata = this.props.tavolaGioco[attualeCasella][2];
   
-        this.props.segnalini[0]=["hat", ascissa, ordinata, "visible",0,attualeCasella];
+        //this.props.segnalini[0]=["hat", ascissa, ordinata, "visible",0,attualeCasella];
+        this.props.segnalini[numSegnalino][1]=ascissa;
+        this.props.segnalini[numSegnalino][2]=ordinata;
+        this.props.segnalini[numSegnalino][5]=attualeCasella;
         this.props.muoviPedine();   
 
     }      
@@ -98,7 +104,7 @@ class ComponentController extends React.Component {
     finisciTurno = () => {
         const giocatore = this.props.turnoGiocatore;
         var giocatore2;
-        if(giocatore === 6){
+        if(giocatore == this.props.numeroGiocatori){
             giocatore2 = 1;
         }
         else{
