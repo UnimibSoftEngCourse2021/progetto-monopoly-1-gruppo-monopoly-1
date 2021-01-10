@@ -8,7 +8,7 @@ import TabellaTerreni from './components/Tabelle/TabellaTerreni';
 
 
 
-function App() {
+function App(props) {
 
   
   const [terreni, setTerreni] = React.useState(
@@ -274,7 +274,8 @@ function App() {
       <table className="tabella1">
         <tr>
           <td className="colonna1" ><ComponentProprietaRight  /></td>
-          <td className="colonnaBoard" rowspan="2"><ComponentBoard turnoGiocatore={turnoGiocatore} setTurnoGiocatore={setTurnoGiocatore}/></td>
+          <td className="colonnaBoard" rowspan="2"><ComponentBoard turnoGiocatore={turnoGiocatore} setTurnoGiocatore={setTurnoGiocatore}
+                                                    numeroGiocatori={props.numeroGiocatori}    /></td>
           <td className="colonna1" ><TabellaGiocatori giocatori={giocatori}/></td>
         </tr>
         <tr>

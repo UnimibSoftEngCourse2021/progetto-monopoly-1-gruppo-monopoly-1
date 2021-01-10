@@ -7,11 +7,12 @@ import Banca from './Banca'
 export function iniziaPartita(modalita, numeroGiocatori) {
     ReactDOM.render(
         <React.StrictMode>
-            <App />
+            <App numeroGiocatori={numeroGiocatori}/>
         </React.StrictMode>,
         document.getElementById('root')
     );
 
+    //alert('prova '+numeroGiocatori);
     if(numeroGiocatori==2){
         <Banca saldoContoPedine={[8750,8750,0,0,0,0]} contrattiGiocatori={[7,7,0,0,0,0]} />
     };

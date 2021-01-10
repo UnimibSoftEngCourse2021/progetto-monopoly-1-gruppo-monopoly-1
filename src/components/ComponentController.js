@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Costruisci from './AzioniConBottone/Costruisci';
 import Vendi from './AzioniConBottone/Vendi';
+import SceltaNumeroGiocatori from './SceltaNumeroGiocatori';
 //import Alert from '@material-ui/lab/Alert';
 
 
@@ -113,10 +114,12 @@ class ComponentController extends React.Component {
     render () {
 
         return (
-            <div>
+            <div>              
             <table className="tableController">
-            <tr><td className="tdController" colspan="5">
-                    <button type="button" onClick={() => this.spostaAuto()}>Sposta auto di 1</button></td></tr>
+            <tr><td className="tdController" colspan="4">
+                    <button type="button" onClick={() => this.spostaAuto()}>Sposta auto di 1</button></td>
+                <td className="tdController">numGiocatori={this.props.numeroGiocatori}</td>
+            </tr>
             <tr className="trController">
                 <td className="tdController">
                     <button type="button" onClick={() => this.tiraDadi()}>Tira dadi</button></td>

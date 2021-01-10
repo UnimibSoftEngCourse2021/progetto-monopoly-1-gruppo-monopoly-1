@@ -73,8 +73,8 @@ class ComponentBoard extends React.Component {
                         ["thimble", 400, 8, "visible",6,0],
                         ["wheelbarrow", 400, 8, "visible",7,0],
                     ],
-          turnoGiocatore: 0,
-          numeroGiocatori: 4
+         // turnoGiocatore: 0,
+         // numeroGiocatori: 4
         };
       }
 
@@ -128,7 +128,8 @@ class ComponentBoard extends React.Component {
                 <Pedina figura={thimble} stile={mystyleThimble} />
                 <Pedina figura={wheelbarrow} stile={mystyleWheelbarrow} />
                 <ComponentController segnalini={this.state.segnalini} muoviPedine={this.muoviPedine} 
-                                     tavolaGioco={tavolaGioco}  turnoGiocatore={this.props.turnoGiocatore} setTurnoGiocatore={this.props.setTurnoGiocatore}/>
+                                     tavolaGioco={tavolaGioco}  turnoGiocatore={this.props.turnoGiocatore} setTurnoGiocatore={this.props.setTurnoGiocatore}
+                                     numeroGiocatori={this.props.numeroGiocatori}/>
             </div>
             
             
