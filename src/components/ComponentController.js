@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Costruisci from './AzioniConBottone/Costruisci';
 import Vendi from './AzioniConBottone/Vendi';
-
+//import Alert from '@material-ui/lab/Alert';
 
 
 let dado1;
@@ -92,9 +92,31 @@ class ComponentController extends React.Component {
 
     }
 
+    // Funzione che permette di concludere il turno e che passa il comando al giocatore successivo.
+    // Per comunicare ai giocatori questo cambiamento viene utilizzato un allert.
+    finisciTurno = () => {
+        const giocatore = this.props.turnoGiocatore;
+        var giocatore2;
+        if(giocatore === 6){
+            giocatore2 = 1;
+        }
+        else{
+            giocatore2 = giocatore + 1;
+        }
+        
+        this.props.setTurnoGiocatore(giocatore2);   
+
+        alert('Ora tocca ad un altro giocatore');
+        //<Alert severity="info">This is an info alert — check it out!</Alert>
+
+        
+
+    }
+
     render () {
 
         return (
+            <div>
             <table className="tableController">
             <tr><td className="tdController" colspan="5">
                     <button type="button" onClick={() => this.spostaAuto()}>Sposta auto di 1</button></td></tr>
@@ -108,7 +130,11 @@ class ComponentController extends React.Component {
                     <Vendi />
                 </td>    
                 <td className="tdController">
-                    <button type="button" onClick={() => alert('fine turno')}>Fine turno</button></td>   
+                    <button type="button" onClick={() => this.finisciTurno()}>
+                        finisci turno
+                    </button>
+                    <p>{this.props.turnoGiocatore}</p>
+                </td>   
                 <td className="tdController">
                     <button type="button" onClick={() => alert('esci')}>Esci</button></td>   
             </tr>
@@ -121,7 +147,9 @@ class ComponentController extends React.Component {
                     />  
                 </td>  
             </tr>
-            </table>            
+            </table> 
+             
+            </div>         
         )
     }
 }

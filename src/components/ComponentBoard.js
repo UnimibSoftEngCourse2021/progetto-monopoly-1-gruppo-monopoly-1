@@ -114,6 +114,8 @@ class ComponentBoard extends React.Component {
                     break;                    
             }                   
         }
+
+        
              
         return (
             <div className="imgTavola" >
@@ -126,8 +128,10 @@ class ComponentBoard extends React.Component {
                 <Pedina figura={thimble} stile={mystyleThimble} />
                 <Pedina figura={wheelbarrow} stile={mystyleWheelbarrow} />
                 <ComponentController segnalini={this.state.segnalini} muoviPedine={this.muoviPedine} 
-                                     tavolaGioco={tavolaGioco} />
+                                     tavolaGioco={tavolaGioco}  turnoGiocatore={this.props.turnoGiocatore} setTurnoGiocatore={this.props.setTurnoGiocatore}/>
             </div>
+            
+            
         )
     }
 }

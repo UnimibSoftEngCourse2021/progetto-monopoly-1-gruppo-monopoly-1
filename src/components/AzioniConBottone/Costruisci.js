@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Paper, Modal, Button, Radio, RadioGroup, FormControlLabel} from '@material-ui/core';
+import {Paper, Modal, Button, Radio, RadioGroup, FormControlLabel, TextField, Grid} from '@material-ui/core';
 
 
 function Costruisci(){
@@ -31,14 +31,13 @@ const body = (
     </RadioGroup>
 
     <h2 style={{margin:'16px'}}>Dove vuoi costruire?</h2>
-    <RadioGroup value={terreno} onChange={handleChangeTerreno} style={{margin:'16px'}}>
-        <FormControlLabel value="Via Roma" control={<Radio />} label="Via Roma" />
-        <FormControlLabel value="Parco della Vittoria" control={<Radio />} label="Parco della Vittoria" />
-    </RadioGroup>
+    <Grid container direction="column">
+    <TextField variant="outlined" style={{margin:'16px', width:'350px'}}/>
     
-    <Button variant="contained" style={{margin:'16px'}}  >
+    <Button variant="contained" style={{margin:'16px', width:'350px'}}  >
       Costruisci questo edificio
     </Button>
+    </Grid>
     
     
   </Paper>

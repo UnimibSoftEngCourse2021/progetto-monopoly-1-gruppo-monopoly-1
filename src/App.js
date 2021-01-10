@@ -19,20 +19,23 @@ function App() {
         case: 0,
         alberghi: 0,
         valore: 60,
+        colore: 'marrone',
       },
       {
         nome: 'Vicolo Stretto',
         proprietario: '',
         case: 0,
         alberghi: 0,
-        valore: 60,   
+        valore: 60,
+        colore: 'marrone', 
       },
       {
         nome: 'Bastioni Gran Sasso',
         proprietario: '',
         case: 0,
         alberghi: 0,
-        valore: 100,   
+        valore: 100,
+        colore: 'azzurro',  
       },
       {
         nome: 'Viale Monte Rosa',
@@ -40,20 +43,23 @@ function App() {
         case: 0,
         alberghi: 0,
         valore: 100,
+        colore: 'azzurro',
       },
       {
         nome: 'Viale Vesuvio',
         proprietario: '',
         case: 0,
         alberghi: 0,
-        valore: 120,   
+        valore: 120,
+        colore: 'azzurro',
       },
       {
         nome: 'Via Accademia',
         proprietario: '',
         case: 0,
         alberghi: 0,
-        valore: 140,   
+        valore: 140,
+        colore: 'rosa',
       },
       {
         nome: 'Corso Ateneo',
@@ -61,6 +67,7 @@ function App() {
         case: 0,
         alberghi: 0,
         valore: 140,
+        colore: 'rosa',
       },
       {
         nome: 'Piazza Università',
@@ -68,13 +75,15 @@ function App() {
         case: 0,
         alberghi: 0,
         valore: 160,
+        colore: 'rosa',
       },
       {
         nome: 'Via Verdi',
         proprietario: '',
         case: 0,
         alberghi: 0,
-        valore: 180,   
+        valore: 180,
+        colore: 'arancione', 
       },
       {
         nome: 'Corso Raffaello',
@@ -82,20 +91,23 @@ function App() {
         case: 0,
         alberghi: 0,
         valore: 180,
+        colore: 'arancione', 
       },
       {
         nome: 'Piazza Dante',
         proprietario: '',
         case: 0,
         alberghi: 0,
-        valore: 200,   
+        valore: 200,
+        colore: 'arancione',  
       },
       {
         nome: 'Via Marco Polo',
         proprietario: '',
         case: 0,
         alberghi: 0,
-        valore: 220,   
+        valore: 220,
+        colore: 'rosso',  
       },
       {
         nome: 'Corso Magellano',
@@ -103,20 +115,23 @@ function App() {
         case: 0,
         alberghi: 0,
         valore: 240,
+        colore: 'rosso',
       },
       {
         nome: 'Largo Colombo',
         proprietario: '',
         case: 0,
         alberghi: 0,
-        valore: 240,   
+        valore: 240,
+        colore: 'rosso',
       },
       {
         nome: 'Viale Costantino',
         proprietario: '',
         case: 0,
         alberghi: 0,
-        valore: 260,   
+        valore: 260,
+        colore: 'giallo',
       },
       {
         nome: 'Viale Traiano',
@@ -124,20 +139,23 @@ function App() {
         case: 0,
         alberghi: 0,
         valore: 260,
+        colore: 'giallo',
       },
       {
         nome: 'Piazza Giulio Cesare',
         proprietario: '',
         case: 0,
         alberghi: 0,
-        valore: 280,   
+        valore: 280,
+        colore: 'giallo',  
       },
       {
         nome: 'Via Roma',
         proprietario: '',
         case: 0,
         alberghi: 0,
-        valore: 300,   
+        valore: 300,
+        colore: 'verde', 
       },
       {
         nome: 'Corso Impero',
@@ -145,20 +163,23 @@ function App() {
         case: 0,
         alberghi: 0,
         valore: 300,
+        colore: 'verde',
       },
       {
         nome: 'Largo Augusto',
         proprietario: '',
         case: 0,
         alberghi: 0,
-        valore: 320,   
+        valore: 320,
+        colore: 'verde',  
       },
       {
         nome: 'Viale dei Giardini',
         proprietario: '',
         case: 0,
         alberghi: 0,
-        valore: 350,   
+        valore: 350,
+        colore: 'blu', 
       },
       {
         nome: 'Parco della Vittoria',
@@ -166,6 +187,7 @@ function App() {
         case: 0,
         alberghi: 0,
         valore: 400,
+        colore: 'blu', 
       },
     ]
   ); 
@@ -215,36 +237,44 @@ function App() {
       {
         nome: '',
         capitale: 0,
+        pedina: '',
       },
       {
         nome: '',
         capitale: 0,
+        pedina: '',
       },
       {
         nome: '',
         capitale: 0,
+        pedina: '',
       },
       {
         nome: '',
         capitale: 0,
-      },
-      {
-        nome: 'Luigi',
-        capitale: 0,
+        pedina: '',
       },
       {
         nome: '',
         capitale: 0,
+        pedina: '',
+      },
+      {
+        nome: '',
+        capitale: 0,
+        pedina: '',
       },
     ]
   );
+
+  const [turnoGiocatore, setTurnoGiocatore] = React.useState(1);
 
   return (
     <div className="App">
       <table className="tabella1">
         <tr>
           <td className="colonna1" ><ComponentProprietaRight  /></td>
-          <td className="colonnaBoard" rowspan="2"><ComponentBoard /></td>
+          <td className="colonnaBoard" rowspan="2"><ComponentBoard turnoGiocatore={turnoGiocatore} setTurnoGiocatore={setTurnoGiocatore}/></td>
           <td className="colonna1" ><TabellaGiocatori giocatori={giocatori}/></td>
         </tr>
         <tr>
