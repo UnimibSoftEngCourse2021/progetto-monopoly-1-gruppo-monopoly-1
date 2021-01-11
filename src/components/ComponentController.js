@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Acquista from './AzioniConBottone/Acquista';
 import Costruisci from './AzioniConBottone/Costruisci';
 import Vendi from './AzioniConBottone/Vendi';
 import SceltaNumeroGiocatori from './SceltaNumeroGiocatori';
@@ -142,7 +143,8 @@ class ComponentController extends React.Component {
                     <p>{this.props.turnoGiocatore}</p>
                 </td>   
                 <td className="tdController">
-                    <button type="button" onClick={() => alert('esci')}>Esci</button></td>   
+                    <Acquista attualeCasella={this.props.segnalini[this.props.turnoGiocatore-1][5]}/>
+                </td>   
             </tr>
             <tr className="trControllerTA">
                 <td className="tdController" colspan="5">
