@@ -133,7 +133,8 @@ class ComponentBoard extends React.Component {
                 <Pedina figura={wheelbarrow} stile={mystyleWheelbarrow} />
                 <ComponentController segnalini={this.state.segnalini} muoviPedine={this.muoviPedine} 
                                      tavolaGioco={tavolaGioco}  turnoGiocatore={this.props.turnoGiocatore} setTurnoGiocatore={this.props.setTurnoGiocatore}
-                                     numeroGiocatori={this.props.numeroGiocatori}/>
+                                     numeroGiocatori={this.props.numeroGiocatori}
+                                     caselle={this.props.caselle} setCaselle={this.props.setCaselle}/>
             </div>
             
             

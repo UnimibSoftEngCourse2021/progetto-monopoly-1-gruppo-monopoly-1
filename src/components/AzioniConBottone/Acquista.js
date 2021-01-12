@@ -8,19 +8,32 @@ const [openModal, setOpenModal] = React.useState(false);
 const handleOpen = () => { setOpenModal(true) };
 const handleClose = () => { setOpenModal(false) };
 
+const acquistaTerreno = () => { 
+  props.caselle[props.attualeCasella].proprietario=props.turnoGiocatore;
+  alert('acquisito'); 
+};
+
 const body = (
     <Paper style={{marginTop:'16px', marginLeft:'200px', marginRight:'200px'}}>
         
-      <h3 style={{margin:'16px'}}>Attualmente sei sulla casella {props.attualeCasella}</h3>
+      <h4 style={{margin:'16px'}}>Giocatore {props.turnoGiocatore} sei sulla casella {props.attualeCasella}</h4>
+      <h4 style={{margin:'16px'}}>Di tipo: {props.caselle[props.attualeCasella].tipo}</h4> 
+      <h4 style={{margin:'16px'}}>Di nome: {props.caselle[props.attualeCasella].nome}</h4> 
+      <h4 style={{margin:'16px'}}>Proprietario: {props.caselle[props.attualeCasella].proprietario}</h4>
+      
+      if ({props.caselle[props.attualeCasella].proprietario}=='' and {props.caselle[props.attualeCasella].tipo}=='terreno') {
+          <h4 style={{margin:'16px'}}>SI lo puoi acquistare</h4> 
+         // <Button variant="contained" style={{margin:'16px'}} onClick={() => acquistaTerreno()}>
+         // Acquista
+         // </Button>
 
-      <h4 style={{margin:'16px'}}>SI lo puoi acquistare</h4>  
-      <h4 style={{margin:'16px'}}>non lo puoi acquistare, già acquisito</h4>  
-      
-      
-      <Button variant="contained" style={{margin:'16px'}}  >
-        Acquista
-      </Button>
-      
+      } else {       
+        <h4 style={{margin:'16px'}}>non lo puoi acquistare</h4>  
+      }
+                      
+        <Button variant="contained" style={{margin:'16px'}} onClick={() => acquistaTerreno()}>
+          Acquista
+          </Button>
       
     </Paper>
   );

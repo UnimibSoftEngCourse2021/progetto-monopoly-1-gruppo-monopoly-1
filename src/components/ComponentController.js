@@ -143,7 +143,9 @@ class ComponentController extends React.Component {
                     <p>{this.props.turnoGiocatore}</p>
                 </td>   
                 <td className="tdController">
-                    <Acquista attualeCasella={this.props.segnalini[this.props.turnoGiocatore-1][5]}/>
+                    <Acquista attualeCasella={this.props.segnalini[this.props.turnoGiocatore-1][5]}
+                              caselle={this.props.caselle} setCaselle={this.props.setCaselle}
+                              turnoGiocatore={this.props.turnoGiocatore}/>
                 </td>   
             </tr>
             <tr className="trControllerTA">
