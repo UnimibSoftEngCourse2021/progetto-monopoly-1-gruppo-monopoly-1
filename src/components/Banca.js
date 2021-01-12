@@ -21,10 +21,10 @@ class Banca extends Component {
 
     //Modifica il saldo al giocatore (giocatore identificato tramite un numero int)
     modificaSaldo = (sommaDiDenaro, giocatore) => {
-        if(this.state.saldoContoPedine[giocatore] + sommaDiDenaro >= 0){
-            this.state.saldoContoPedine[giocatore] += sommaDiDenaro;
+        if(this.state.saldoContoPedine[giocatore - 1] + sommaDiDenaro >= 0){
+            this.state.saldoContoPedine[giocatore - 1] += sommaDiDenaro;
         }else{
-            console.log("Errore");
+            console.log("Errore"); //TODO
         }
     }
 }

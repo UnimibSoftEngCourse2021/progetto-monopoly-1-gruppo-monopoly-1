@@ -12,6 +12,7 @@ let dado2;
 let sommaDadi;
 let punteggioDoppio;
 let carta1 = new Carte();
+let dadiTirati; // Questo booleano permette di tirare i dadi solo ina volta per turno
 
 function verificaPunteggioDoppio(dado1, dado2){
     if(dado1 == dado2){
@@ -94,21 +95,25 @@ class ComponentController extends React.Component {
         this.props.muoviPedine();   
     }        
 
+    dadiTirati = false;
 
-    tiraDadi = () => {        
-        dado1 = Math.floor(Math.random()*6) + 1;
-        dado2 = Math.floor(Math.random()*6) + 1;
-        sommaDadi = dado1 + dado2;
-        punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);   
+    tiraDadi = () => {
+        
+        if (!dadiTirati){
+            dado1 = Math.floor(Math.random()*6) + 1;
+            dado2 = Math.floor(Math.random()*6) + 1;
+            sommaDadi = dado1 + dado2;
+            punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);   
 
-        this.spostaSegnalino(sommaDadi);
-               
-        this.setState({
-            primoMsgTA: `${sommaDadi}`,
-            secondoMsgTA: 'Il punteggio dei dadi è doppio: '+dado1+' + '+dado2 +' ' + `${punteggioDoppio}`,
-            terzoMsgTA: `${sommaDadi}`
-        })
-
+            this.spostaSegnalino(sommaDadi);
+                
+            this.setState({
+                primoMsgTA: `${sommaDadi}`,
+                secondoMsgTA: 'Il punteggio dei dadi è doppio: '+dado1+' + '+dado2 +' ' + `${punteggioDoppio}`,
+                terzoMsgTA: `${sommaDadi}`
+            })
+            dadiTirati = true;
+        }
     }
 
     // Funzione che permette di concludere il turno e che passa il comando al giocatore successivo.
@@ -123,6 +128,7 @@ class ComponentController extends React.Component {
             giocatore2 = giocatore + 1;
         }
         
+        dadiTirati = false;
         this.props.setTurnoGiocatore(giocatore2);   
 
         alert('Ora tocca ad un altro giocatore');
