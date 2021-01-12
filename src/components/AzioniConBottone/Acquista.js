@@ -21,19 +21,11 @@ const body = (
       <h4 style={{margin:'16px'}}>Di nome: {props.caselle[props.attualeCasella].nome}</h4> 
       <h4 style={{margin:'16px'}}>Proprietario: {props.caselle[props.attualeCasella].proprietario}</h4>
       
-      if ({props.caselle[props.attualeCasella].proprietario}=='' and {props.caselle[props.attualeCasella].tipo}=='terreno') {
-          <h4 style={{margin:'16px'}}>SI lo puoi acquistare</h4> 
-         // <Button variant="contained" style={{margin:'16px'}} onClick={() => acquistaTerreno()}>
-         // Acquista
-         // </Button>
-
-      } else {       
-        <h4 style={{margin:'16px'}}>non lo puoi acquistare</h4>  
-      }
-                      
-        <Button variant="contained" style={{margin:'16px'}} onClick={() => acquistaTerreno()}>
+      {(props.caselle[props.attualeCasella].proprietario=='' && props.caselle[props.attualeCasella].tipo=='terreno')?     
+          <Button variant="contained" style={{margin:'16px'}} onClick={() => acquistaTerreno()}>
           Acquista
-          </Button>
+          </Button> : 
+          <h4 style={{margin:'16px'}}>non lo puoi acquistare</h4>  }
       
     </Paper>
   );
