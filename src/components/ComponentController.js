@@ -4,6 +4,7 @@ import Costruisci from './AzioniConBottone/Costruisci';
 import Vendi from './AzioniConBottone/Vendi';
 import SceltaNumeroGiocatori from './SceltaNumeroGiocatori';
 //import Alert from '@material-ui/lab/Alert';
+import PescaCarta from './AzioniConBottone/PescaCarta';
 
 
 let dado1;
@@ -123,15 +124,32 @@ class ComponentController extends React.Component {
         return (
             <div>              
             <table className="tableController">
-            <tr><td className="tdController" colspan="4">
-                    <button type="button" onClick={() => this.spostaAuto()}>Sposta auto di 1</button></td>
-                <td className="tdController">numGiocatori={this.props.numeroGiocatori}</td>
+            <tr>
+                <td className="tdController" colspan="4">
+                   <PescaCarta />
+                </td>
+                
+            </tr>
+            <tr>
+                <td className="tdController" colspan="4">
+                    <button type="button" onClick={() => this.spostaAuto()}>
+                        Sposta auto di 1
+                    </button>
+                </td>
+                <td className="tdController">
+                    numGiocatori={this.props.numeroGiocatori}
+                </td>
             </tr>
             <tr className="trController">
                 <td className="tdController">
                     <button type="button" onClick={() => this.tiraDadi()}>Tira dadi</button></td>
                 <td className="tdController">
-                    <Costruisci />
+                    <Costruisci 
+                        terreni={this.props.terreni}
+                        giocatori={this.props.giocatori}
+                        CostruisciCasa={this.props.CostruisciCasa}
+                        CostruisciAlbergo={this.props.CostruisciAlbergo}
+                    />
                 </td>
                 <td className="tdController">
                     <Vendi />

@@ -131,9 +131,17 @@ class ComponentBoard extends React.Component {
                 <Pedina figura={shoe} stile={mystyleShoe} />
                 <Pedina figura={thimble} stile={mystyleThimble} />
                 <Pedina figura={wheelbarrow} stile={mystyleWheelbarrow} />
-                <ComponentController segnalini={this.state.segnalini} muoviPedine={this.muoviPedine} 
-                                     tavolaGioco={tavolaGioco}  turnoGiocatore={this.props.turnoGiocatore} setTurnoGiocatore={this.props.setTurnoGiocatore}
-                                     numeroGiocatori={this.props.numeroGiocatori}/>
+                <ComponentController 
+                    segnalini={this.state.segnalini} 
+                    muoviPedine={this.muoviPedine} 
+                    tavolaGioco={tavolaGioco}
+                    turnoGiocatore={this.props.turnoGiocatore}
+                    setTurnoGiocatore={this.props.setTurnoGiocatore}
+                    numeroGiocatori={this.props.numeroGiocatori}
+                    terreni={this.props.terreni}
+                    giocatori={this.props.giocatori}
+                    CostruisciCasa={this.props.CostruisciCasa}
+                    CostruisciAlbergo={this.props.CostruisciAlbergo}/>
             </div>
             
             

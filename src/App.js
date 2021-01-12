@@ -20,6 +20,7 @@ function App(props) {
         alberghi: 0,
         valore: 60,
         colore: 'marrone',
+        ipotecato: true,
       },
       {
         nome: 'Vicolo Stretto',
@@ -27,7 +28,8 @@ function App(props) {
         case: 0,
         alberghi: 0,
         valore: 60,
-        colore: 'marrone', 
+        colore: 'marrone',
+        ipotecato: false,
       },
       {
         nome: 'Bastioni Gran Sasso',
@@ -36,6 +38,7 @@ function App(props) {
         alberghi: 0,
         valore: 100,
         colore: 'azzurro',  
+        ipotecato: false,
       },
       {
         nome: 'Viale Monte Rosa',
@@ -44,6 +47,7 @@ function App(props) {
         alberghi: 0,
         valore: 100,
         colore: 'azzurro',
+        ipotecato: false,
       },
       {
         nome: 'Viale Vesuvio',
@@ -52,6 +56,7 @@ function App(props) {
         alberghi: 0,
         valore: 120,
         colore: 'azzurro',
+        ipotecato: false,
       },
       {
         nome: 'Via Accademia',
@@ -60,6 +65,7 @@ function App(props) {
         alberghi: 0,
         valore: 140,
         colore: 'rosa',
+        ipotecato: false,
       },
       {
         nome: 'Corso Ateneo',
@@ -68,6 +74,7 @@ function App(props) {
         alberghi: 0,
         valore: 140,
         colore: 'rosa',
+        ipotecato: false,
       },
       {
         nome: 'Piazza Università',
@@ -76,6 +83,7 @@ function App(props) {
         alberghi: 0,
         valore: 160,
         colore: 'rosa',
+        ipotecato: false,
       },
       {
         nome: 'Via Verdi',
@@ -84,6 +92,7 @@ function App(props) {
         alberghi: 0,
         valore: 180,
         colore: 'arancione', 
+        ipotecato: false,
       },
       {
         nome: 'Corso Raffaello',
@@ -92,6 +101,7 @@ function App(props) {
         alberghi: 0,
         valore: 180,
         colore: 'arancione', 
+        ipotecato: false,
       },
       {
         nome: 'Piazza Dante',
@@ -99,7 +109,8 @@ function App(props) {
         case: 0,
         alberghi: 0,
         valore: 200,
-        colore: 'arancione',  
+        colore: 'arancione',
+        ipotecato: false,
       },
       {
         nome: 'Via Marco Polo',
@@ -107,7 +118,8 @@ function App(props) {
         case: 0,
         alberghi: 0,
         valore: 220,
-        colore: 'rosso',  
+        colore: 'rosso',
+        ipotecato: false,
       },
       {
         nome: 'Corso Magellano',
@@ -116,6 +128,7 @@ function App(props) {
         alberghi: 0,
         valore: 240,
         colore: 'rosso',
+        ipotecato: false,
       },
       {
         nome: 'Largo Colombo',
@@ -124,6 +137,7 @@ function App(props) {
         alberghi: 0,
         valore: 240,
         colore: 'rosso',
+        ipotecato: false,
       },
       {
         nome: 'Viale Costantino',
@@ -132,6 +146,7 @@ function App(props) {
         alberghi: 0,
         valore: 260,
         colore: 'giallo',
+        ipotecato: false,
       },
       {
         nome: 'Viale Traiano',
@@ -140,6 +155,7 @@ function App(props) {
         alberghi: 0,
         valore: 260,
         colore: 'giallo',
+        ipotecato: false,
       },
       {
         nome: 'Piazza Giulio Cesare',
@@ -148,6 +164,7 @@ function App(props) {
         alberghi: 0,
         valore: 280,
         colore: 'giallo',  
+        ipotecato: false,
       },
       {
         nome: 'Via Roma',
@@ -156,6 +173,7 @@ function App(props) {
         alberghi: 0,
         valore: 300,
         colore: 'verde', 
+        ipotecato: false,
       },
       {
         nome: 'Corso Impero',
@@ -164,6 +182,7 @@ function App(props) {
         alberghi: 0,
         valore: 300,
         colore: 'verde',
+        ipotecato: false,
       },
       {
         nome: 'Largo Augusto',
@@ -172,6 +191,7 @@ function App(props) {
         alberghi: 0,
         valore: 320,
         colore: 'verde',  
+        ipotecato: false,
       },
       {
         nome: 'Viale dei Giardini',
@@ -180,6 +200,7 @@ function App(props) {
         alberghi: 0,
         valore: 350,
         colore: 'blu', 
+        ipotecato: false,
       },
       {
         nome: 'Parco della Vittoria',
@@ -188,6 +209,7 @@ function App(props) {
         alberghi: 0,
         valore: 400,
         colore: 'blu', 
+        ipotecato: false,
       },
     ]
   ); 
@@ -236,32 +258,32 @@ function App(props) {
     [
       {
         nome: '',
-        capitale: 0,
+        capitale: 1500,
         pedina: '',
       },
       {
         nome: '',
-        capitale: 0,
+        capitale: 1500,
         pedina: '',
       },
       {
         nome: '',
-        capitale: 0,
+        capitale: 1500,
         pedina: '',
       },
       {
         nome: '',
-        capitale: 0,
+        capitale: 1500,
         pedina: '',
       },
       {
         nome: '',
-        capitale: 0,
+        capitale: 1500,
         pedina: '',
       },
       {
         nome: '',
-        capitale: 0,
+        capitale: 1500,
         pedina: '',
       },
     ]
@@ -269,13 +291,47 @@ function App(props) {
 
   const [turnoGiocatore, setTurnoGiocatore] = React.useState(1);
 
+  //Questa funzione permette di spostare una quantità di denaro (quanto) da un giocatore (da) a un giocatore (a).
+  //I giocatori sono identificati attraverso la loro posizione nell'array giocatori.
+  function SpostaSoldi(quanto, da, a){
+    giocatori[da].capitale = giocatori[da].capitale - quanto;
+    giocatori[a].capitale = giocatori[a].capitale + quanto;
+  }
+
+  function CambiaProprietario(terreno, proprietario){
+    terreni[terreno].proprietario = proprietario;
+  }
+
+  function CostruisciCasa(terreno, giocatore){
+    terreni[terreno].case ++;
+    giocatori[giocatore].capitale = giocatori[giocatore].capitale - 50;
+  }
+
+  function CostruisciAlbergo(terreno, giocatore){
+    terreni[terreno].alberghi ++;
+    giocatori[giocatore].capitale = giocatori[giocatore].capitale - 40;
+  }
+
+  //CostruisciCasa(0, 0);
+
+  
+
   return (
     <div className="App">
       <table className="tabella1">
         <tr>
           <td className="colonna1" ><ComponentProprietaRight  /></td>
-          <td className="colonnaBoard" rowspan="2"><ComponentBoard turnoGiocatore={turnoGiocatore} setTurnoGiocatore={setTurnoGiocatore}
-                                                    numeroGiocatori={props.numeroGiocatori}    /></td>
+          <td className="colonnaBoard" rowspan="2">
+            <ComponentBoard 
+              turnoGiocatore={turnoGiocatore} 
+              setTurnoGiocatore={setTurnoGiocatore}
+              numeroGiocatori={props.numeroGiocatori}
+              terreni={terreni}
+              giocatori={giocatori}
+              CostruisciCasa={CostruisciCasa}
+              CostruisciAlbergo={CostruisciAlbergo}
+            />
+          </td>
           <td className="colonna1" ><TabellaGiocatori giocatori={giocatori}/></td>
         </tr>
         <tr>
@@ -284,7 +340,7 @@ function App(props) {
         </tr>
       </table>
       <TabellaTerreni terreni={terreni} />
-      <h1>{giocatori[3].nome}</h1>
+      
     </div>
   );
 }
