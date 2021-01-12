@@ -50,17 +50,19 @@ class Carte extends Component {
 
     
     estraiCarta = (probabilitaOImprevisto, giocatore) => { //probabilità==true imprevisto==false
+        let idCarta;
         if (probabilitaOImprevisto){
             idCarta = Math.floor(Math.random()*(15));
         }else{
             idCarta = Math.floor(Math.random()*(31-16)+16);
         };
-        this.props.attivaCarta(idCarta, giocatore);
+        this.attivaCarta(idCarta, giocatore);
     }
 
     
     attivaCarta = (idCarta, giocatore) => {
         //  TODO
+        alert('Giocatore:'+giocatore+' \n La carta è:'+this.state.carte[idCarta][1]);
     }
 }
 export default Carte;

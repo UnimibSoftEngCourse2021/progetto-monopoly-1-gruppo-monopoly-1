@@ -4,12 +4,14 @@ import Costruisci from './AzioniConBottone/Costruisci';
 import Vendi from './AzioniConBottone/Vendi';
 import SceltaNumeroGiocatori from './SceltaNumeroGiocatori';
 //import Alert from '@material-ui/lab/Alert';
+import Carte from './CarteProbabilitaImprevisto/Carte';
 
 
 let dado1;
 let dado2;
 let sommaDadi;
 let punteggioDoppio;
+let carta1 = new Carte();
 
 function verificaPunteggioDoppio(dado1, dado2){
     if(dado1 == dado2){
@@ -58,6 +60,15 @@ class ComponentController extends React.Component {
         this.props.segnalini[numSegnalino][1]=ascissa;
         this.props.segnalini[numSegnalino][2]=ordinata;
         this.props.segnalini[numSegnalino][5]=attualeCasella;
+
+        if (this.props.caselle[attualeCasella].tipo=='imprevisti') {
+           // alert('imprevisti');
+           carta1.estraiCarta(false,this.props.turnoGiocatore);
+        };
+        if (this.props.caselle[attualeCasella].tipo=='probabilita') {
+            //alert('probabilita');
+            carta1.estraiCarta(true,this.props.turnoGiocatore);
+        };        
         this.props.muoviPedine();   
 
     }      
