@@ -37,19 +37,10 @@ function TabellaTerreni (props) {
         createData(props.terreni[21].nome, props.terreni[21].proprietario, props.terreni[21].case, props.terreni[21].alberghi, props.terreni[21].valore, props.terreni[21].ipotecato),
        ];
     
-       console.log('tabella terreni');
-       console.log(props.terreni);
+       
         return (
             <div>
-               {/* {props.terreni.map((terreno)=>(
-                <div>
-                    <p>{terreno.nome}</p>
-                    <p>{terreno.proprietario}</p>
-                    <p>{terreno.case}</p>
-                    <p>{terreno.alberghi}</p>
-                </div>
-           ))}
-               <p>{props.terreni[0].proprietario}</p>*/}
+               
                 <h3 align='center'>
                     Tabella dei terreni
                 </h3>

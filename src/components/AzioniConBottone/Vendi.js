@@ -38,7 +38,7 @@ const handleChangePrezzo = (event) => {
   setPrezzo(event.target.value);
 };
 
-console.log(props.societàStazioni);
+
 
 function EsisteTerreno(){
   var i = 0;

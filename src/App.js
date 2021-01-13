@@ -5,6 +5,7 @@ import ComponentProprietaLeft from './components/ComponentProprietaLeft';
 import ComponentProprietaRight from './components/ComponentProprietaRight';
 import ComponentBoard from './components/ComponentBoard';
 import TabellaTerreni from './components/Tabelle/TabellaTerreni';
+import TabellaSocietàStazioni from './components/Tabelle/TabellaSocietàStazioni';
 
 //rff
 
@@ -219,7 +220,7 @@ function App(props) {
     [
       {
         nome: 'Vicolo Corto',
-        proprietario: 2,
+        proprietario: 0,
         case: 0,
         alberghi: 0,
         valore: 60,
@@ -228,7 +229,7 @@ function App(props) {
       },
       {
         nome: 'Vicolo Stretto',
-        proprietario: '',
+        proprietario: 0,
         case: 0,
         alberghi: 0,
         valore: 60,
@@ -237,7 +238,7 @@ function App(props) {
       },
       {
         nome: 'Bastioni Gran Sasso',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 100,
@@ -246,7 +247,7 @@ function App(props) {
       },
       {
         nome: 'Viale Monte Rosa',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 100,
@@ -255,7 +256,7 @@ function App(props) {
       },
       {
         nome: 'Viale Vesuvio',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 120,
@@ -264,7 +265,7 @@ function App(props) {
       },
       {
         nome: 'Via Accademia',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 140,
@@ -273,7 +274,7 @@ function App(props) {
       },
       {
         nome: 'Corso Ateneo',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 140,
@@ -282,7 +283,7 @@ function App(props) {
       },
       {
         nome: 'Piazza Università',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 160,
@@ -291,7 +292,7 @@ function App(props) {
       },
       {
         nome: 'Via Verdi',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 180,
@@ -300,7 +301,7 @@ function App(props) {
       },
       {
         nome: 'Corso Raffaello',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 180,
@@ -309,7 +310,7 @@ function App(props) {
       },
       {
         nome: 'Piazza Dante',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 200,
@@ -318,7 +319,7 @@ function App(props) {
       },
       {
         nome: 'Via Marco Polo',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 220,
@@ -327,7 +328,7 @@ function App(props) {
       },
       {
         nome: 'Corso Magellano',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 240,
@@ -336,7 +337,7 @@ function App(props) {
       },
       {
         nome: 'Largo Colombo',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 240,
@@ -345,7 +346,7 @@ function App(props) {
       },
       {
         nome: 'Viale Costantino',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 260,
@@ -354,7 +355,7 @@ function App(props) {
       },
       {
         nome: 'Viale Traiano',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 260,
@@ -363,7 +364,7 @@ function App(props) {
       },
       {
         nome: 'Piazza Giulio Cesare',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 280,
@@ -372,7 +373,7 @@ function App(props) {
       },
       {
         nome: 'Via Roma',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 300,
@@ -381,7 +382,7 @@ function App(props) {
       },
       {
         nome: 'Corso Impero',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 300,
@@ -390,7 +391,7 @@ function App(props) {
       },
       {
         nome: 'Largo Augusto',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 320,
@@ -399,7 +400,7 @@ function App(props) {
       },
       {
         nome: 'Viale dei Giardini',
-        proprietario: '',
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 350,
@@ -408,7 +409,7 @@ function App(props) {
       },
       {
         nome: 'Parco della Vittoria',
-        proprietario: '',
+        proprietario: 0,
         case: 0,
         alberghi: 0,
         valore: 400,
@@ -503,7 +504,7 @@ function App(props) {
     <div className="App">
       <table className="tabella1">
         <tr>
-          <td className="colonna1" ><ComponentProprietaRight  /></td>
+          <td className="colonna1" ><TabellaSocietàStazioni societàStazioni={societàStazioni}  /></td>
 
           <td className="colonnaBoard" rowspan="2">
             <ComponentBoard 

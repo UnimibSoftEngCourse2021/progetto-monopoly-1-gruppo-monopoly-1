@@ -161,6 +161,7 @@ class ComponentController extends React.Component {
                         giocatori={this.props.giocatori}
                         setTerreni={this.props.setTerreni}
                         setGiocatori={this.props.setGiocatori} 
+                        turnoGiocatore={this.props.turnoGiocatore}
                     />
                 </td>
                 <td className="tdController">
@@ -185,7 +186,7 @@ class ComponentController extends React.Component {
 
                   
 
-                    <Acquista attualeCasella={this.props.segnalini[0][5]}
+                    <Acquista attualeCasella={this.props.segnalini[this.props.turnoGiocatore][5]}
                               caselle={this.props.caselle} setCaselle={this.props.setCaselle}
                               turnoGiocatore={this.props.turnoGiocatore}/>
 
