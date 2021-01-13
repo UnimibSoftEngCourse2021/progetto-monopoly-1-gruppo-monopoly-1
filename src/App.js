@@ -1,12 +1,12 @@
 //import logo from './img/monopoly_logo.jpg'
-import React, { Component } from 'react'
+import React from 'react'
 import TabellaGiocatori from './components/Tabelle/TabellaGiocatori';
 import ComponentProprietaLeft from './components/ComponentProprietaLeft';
 import ComponentProprietaRight from './components/ComponentProprietaRight';
 import ComponentBoard from './components/ComponentBoard';
 import TabellaTerreni from './components/Tabelle/TabellaTerreni';
 
-
+//rff
 
 function App(props) {
 
@@ -420,7 +420,7 @@ function App(props) {
 
   
 
-  const [stazioni, setStazioni] = React.useState(
+  const [societàStazioni, setSocietàStazioni] = React.useState(
     [
       {
         nome: 'Stazione ovest',
@@ -429,7 +429,7 @@ function App(props) {
       },
       {
         nome: 'Stazione nord',
-        proprietario: '',
+        proprietario: '2',
         valore: 200
       },
       {
@@ -442,11 +442,6 @@ function App(props) {
         proprietario: '',
         valore: 200
       },
-    ]
-  );
-
-  const [società, setSocietà] = React.useState(
-    [
       {
         nome: 'Società acqua potabile',
         proprietario: '',
@@ -459,6 +454,8 @@ function App(props) {
       },
     ]
   );
+
+  
 
   const [giocatori, setGiocatori] = React.useState(
     [
@@ -497,27 +494,10 @@ function App(props) {
 
   const [turnoGiocatore, setTurnoGiocatore] = React.useState(0);
 
-  //Questa funzione permette di spostare una quantità di denaro (quanto) da un giocatore (da) a un giocatore (a).
-  //I giocatori sono identificati attraverso la loro posizione nell'array giocatori.
-  function SpostaSoldi(quanto, da, a){
-    giocatori[da].capitale = giocatori[da].capitale - quanto;
-    giocatori[a].capitale = giocatori[a].capitale + quanto;
-  }
+  
 
-  function CambiaProprietario(terreno, proprietario){
-    terreni[terreno].proprietario = proprietario;
-  }
-
-  function CostruisciCasa(terreno, giocatore){
-    terreni[terreno].case ++;
-    giocatori[giocatore].capitale = giocatori[giocatore].capitale - 50;
-  }
-
-  function CostruisciAlbergo(terreno, giocatore){
-    terreni[terreno].alberghi ++;
-    giocatori[giocatore].capitale = giocatori[giocatore].capitale - 40;
-  }
- 
+  
+  console.log(terreni);
 
   return (
     <div className="App">
@@ -534,8 +514,8 @@ function App(props) {
               setTerreni={setTerreni}
               giocatori={giocatori}
               setGiocatori={setGiocatori}
-              CostruisciCasa={CostruisciCasa}
-              CostruisciAlbergo={CostruisciAlbergo}
+              societàStazioni={societàStazioni}
+              setSocietàStazioni={setSocietàStazioni}
               caselle={caselle} setCaselle={setCaselle}
             />
           </td>
@@ -549,6 +529,8 @@ function App(props) {
           <td className="colonna1"><ComponentProprietaRight /></td>
         </tr>
       </table>
+      
+      
       <TabellaTerreni terreni={terreni} />
       
     </div>

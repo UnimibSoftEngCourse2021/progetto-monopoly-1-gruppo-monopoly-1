@@ -6,7 +6,7 @@ import { Box, TableCell, TableRow, TableBody, TableContainer, Table, TableHead} 
 
 function TabellaTerreni (props) {
 
-    
+    //
     
     function createData(nome, proprietario, casa, alberghi, valore, ipotecato) {
         return { nome, proprietario, casa, alberghi, valore, ipotecato };
@@ -41,6 +41,15 @@ function TabellaTerreni (props) {
        console.log(props.terreni);
         return (
             <div>
+               {/* {props.terreni.map((terreno)=>(
+                <div>
+                    <p>{terreno.nome}</p>
+                    <p>{terreno.proprietario}</p>
+                    <p>{terreno.case}</p>
+                    <p>{terreno.alberghi}</p>
+                </div>
+           ))}
+               <p>{props.terreni[0].proprietario}</p>*/}
                 <h3 align='center'>
                     Tabella dei terreni
                 </h3>

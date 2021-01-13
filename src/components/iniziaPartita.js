@@ -13,19 +13,19 @@ export function iniziaPartita(modalita, numeroGiocatori) {
     );
 
     //alert('prova '+numeroGiocatori);
-    if(numeroGiocatori==2){
+    if(numeroGiocatori===2){
         <Banca saldoContoPedine={[8750,8750,0,0,0,0]} contrattiGiocatori={[7,7,0,0,0,0]} />
     };
-    if(numeroGiocatori==3){
+    if(numeroGiocatori===3){
         <Banca saldoContoPedine={[7500,7500,7500,0,0,0]} contrattiGiocatori={[6,6,6,0,0,0]} />
     };
-    if(numeroGiocatori==4){
+    if(numeroGiocatori===4){
         <Banca saldoContoPedine={[6250,6250,6250,6250,0,0]} contrattiGiocatori={[5,5,5,5,0,0]} />
     };
-    if(numeroGiocatori==5){
+    if(numeroGiocatori===5){
         <Banca saldoContoPedine={[5000,5000,5000,5000,5000,0]} contrattiGiocatori={[4,4,4,4,4,0]} />
     };
-    if(numeroGiocatori==6){
+    if(numeroGiocatori===6){
         <Banca saldoContoPedine={[3750,3750,3750,3750,3750,3750]} contrattiGiocatori={[3,3,3,3,3,3]} />
     };
 }

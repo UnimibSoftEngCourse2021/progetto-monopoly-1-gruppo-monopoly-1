@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import { Button } from '@material-ui/core';
+import React from 'react';
 import Acquista from './AzioniConBottone/Acquista';
 import Costruisci from './AzioniConBottone/Costruisci';
 import Vendi from './AzioniConBottone/Vendi';
-import SceltaNumeroGiocatori from './SceltaNumeroGiocatori';
+//import SceltaNumeroGiocatori from './SceltaNumeroGiocatori';
 //import Alert from '@material-ui/lab/Alert';
 import Carte from './CarteProbabilitaImprevisto/Carte';
 
@@ -15,7 +16,7 @@ let carta1 = new Carte();
 let dadiTirati; // Questo booleano permette di tirare i dadi solo ina volta per turno
 
 function verificaPunteggioDoppio(dado1, dado2){
-    if(dado1 == dado2){
+    if(dado1 === dado2){
         return true;
     }else{
         return false;
@@ -38,7 +39,7 @@ class ComponentController extends React.Component {
     spostaSegnalino (sommaDadi) {
         // i giocatori vanno da 1 a 6 , per ora assegno i segnalini in ordine numerico
         // uso this.props.turnoGiocatore-1 perchè i segnalini partono da ZERO
-        let numSegnalino = this.props.turnoGiocatore-1;
+        let numSegnalino = this.props.turnoGiocatore;
         let ascissa = this.props.segnalini[numSegnalino][1];
         let ordinata = this.props.segnalini[numSegnalino][2];
 
@@ -47,7 +48,7 @@ class ComponentController extends React.Component {
         
         var i;
         for (i = 1; i < sommaDadi+1; i++) {
-            if (attualeCasella == 39) {
+            if (attualeCasella === 39) {
                 attualeCasella=0
             } else {
                 attualeCasella = attualeCasella + 1
@@ -62,11 +63,11 @@ class ComponentController extends React.Component {
         this.props.segnalini[numSegnalino][2]=ordinata;
         this.props.segnalini[numSegnalino][5]=attualeCasella;
 
-        if (this.props.caselle[attualeCasella].tipo=='imprevisti') {
+        if (this.props.caselle[attualeCasella].tipo ==='imprevisti') {
            // alert('imprevisti');
            carta1.estraiCarta(false,this.props.turnoGiocatore);
         };
-        if (this.props.caselle[attualeCasella].tipo=='probabilita') {
+        if (this.props.caselle[attualeCasella].tipo ==='probabilita') {
             //alert('probabilita');
             carta1.estraiCarta(true,this.props.turnoGiocatore);
         };        
@@ -82,7 +83,7 @@ class ComponentController extends React.Component {
 
         let [a, xposSegnalino, tposSegnalino, visSegnalino, strato, attualeCasella] = this.props.segnalini[2];
 
-        if (attualeCasella == 39) {
+        if (attualeCasella === 39) {
             attualeCasella=0
         } else {
             attualeCasella = attualeCasella + 1
@@ -121,7 +122,7 @@ class ComponentController extends React.Component {
     finisciTurno = () => {
         const giocatore = this.props.turnoGiocatore;
         var giocatore2;
-        if(giocatore == this.props.numeroGiocatori-1){
+        if(giocatore === this.props.numeroGiocatori-1){
             giocatore2 = 0;
         }
         else{
@@ -133,7 +134,6 @@ class ComponentController extends React.Component {
 
         alert('Ora tocca ad un altro giocatore');
         console.log(this.props.giocatori[this.props.turnoGiocatore])
-        //<Alert severity="info">This is an info alert — check it out!</Alert>
     }
 
     render () {
@@ -159,8 +159,8 @@ class ComponentController extends React.Component {
                     <Costruisci 
                         terreni={this.props.terreni}
                         giocatori={this.props.giocatori}
-                        CostruisciCasa={this.props.CostruisciCasa}
-                        CostruisciAlbergo={this.props.CostruisciAlbergo}
+                        setTerreni={this.props.setTerreni}
+                        setGiocatori={this.props.setGiocatori} 
                     />
                 </td>
                 <td className="tdController">
@@ -170,18 +170,20 @@ class ComponentController extends React.Component {
                         giocatori={this.props.giocatori}
                         setGiocatori={this.props.setGiocatori} 
                         turnoGiocatore={this.props.turnoGiocatore}
+                        societàStazioni={this.props.societàStazioni}
+                        setSocietàStazioni={this.props.setSocietàStazioni}
                     />
                     
                 </td>    
                 <td className="tdController">
-                    <button type="button" onClick={() => this.finisciTurno()}>
+                    <Button variant="outlined" size="small" onClick={() => this.finisciTurno()}>
                         finisci turno
-                    </button>
+                    </Button>
                     
                 </td>   
                 <td className="tdController">
 
-                  {/*  <Acquista attualeCasella={this.props.segnalini[0][5]}/>*/}
+                  
 
                     <Acquista attualeCasella={this.props.segnalini[0][5]}
                               caselle={this.props.caselle} setCaselle={this.props.setCaselle}

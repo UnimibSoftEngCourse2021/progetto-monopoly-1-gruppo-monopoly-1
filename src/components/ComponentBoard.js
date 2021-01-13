@@ -146,8 +146,10 @@ class ComponentBoard extends React.Component {
                     setTerreni={this.props.setTerreni}
                     giocatori={this.props.giocatori}
                     setGiocatori={this.props.setGiocatori}
+                    societàStazioni={this.props.societàStazioni}
+                    setSocietàStazioni={this.props.setSocietàStazioni}
                     caselle={this.props.caselle} setCaselle={this.props.setCaselle}
-                    />
+                />
 
             
                                      
