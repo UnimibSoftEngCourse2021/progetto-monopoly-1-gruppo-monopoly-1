@@ -524,7 +524,7 @@ function App(props) {
       <table className="tabella1">
         <tr>
           <td className="colonna1" ><ComponentProprietaRight  /></td>
-<<<<<<< HEAD
+
           <td className="colonnaBoard" rowspan="2">
             <ComponentBoard 
               turnoGiocatore={turnoGiocatore} 
@@ -536,18 +536,13 @@ function App(props) {
               setGiocatori={setGiocatori}
               CostruisciCasa={CostruisciCasa}
               CostruisciAlbergo={CostruisciAlbergo}
-              
+              caselle={caselle} setCaselle={setCaselle}
             />
           </td>
           <td className="colonna1" >
             <TabellaGiocatori giocatori={giocatori}/>
           </td>
-=======
-          <td className="colonnaBoard" rowspan="2"><ComponentBoard turnoGiocatore={turnoGiocatore} setTurnoGiocatore={setTurnoGiocatore}
-                                                    numeroGiocatori={props.numeroGiocatori} 
-                                                    caselle={caselle} setCaselle={setCaselle}   /></td>
-          <td className="colonna1" ><TabellaGiocatori giocatori={giocatori}/></td>
->>>>>>> 801e691014571e573a4757d1308db79c70745db4
+
         </tr>
         <tr>
           <td className="colonna1"><ComponentProprietaLeft /></td>

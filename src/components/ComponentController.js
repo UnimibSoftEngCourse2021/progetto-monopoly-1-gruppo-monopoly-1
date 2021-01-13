@@ -183,7 +183,7 @@ class ComponentController extends React.Component {
 
                   {/*  <Acquista attualeCasella={this.props.segnalini[0][5]}/>*/}
 
-                    <Acquista attualeCasella={this.props.segnalini[this.props.turnoGiocatore-1][5]}
+                    <Acquista attualeCasella={this.props.segnalini[0][5]}
                               caselle={this.props.caselle} setCaselle={this.props.setCaselle}
                               turnoGiocatore={this.props.turnoGiocatore}/>
 
