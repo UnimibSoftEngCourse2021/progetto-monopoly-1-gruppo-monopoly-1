@@ -119,6 +119,9 @@ class ComponentBoard extends React.Component {
             }                   
         }
 
+    
+  
+
         
              
         return (
@@ -139,9 +142,10 @@ class ComponentBoard extends React.Component {
                     setTurnoGiocatore={this.props.setTurnoGiocatore}
                     numeroGiocatori={this.props.numeroGiocatori}
                     terreni={this.props.terreni}
+                    setTerreni={this.props.setTerreni}
                     giocatori={this.props.giocatori}
-                    CostruisciCasa={this.props.CostruisciCasa}
-                    CostruisciAlbergo={this.props.CostruisciAlbergo}/>
+                    setGiocatori={this.props.setGiocatori}
+                    />
             </div>
             
             

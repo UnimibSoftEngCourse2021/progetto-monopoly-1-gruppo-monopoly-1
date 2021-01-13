@@ -106,8 +106,8 @@ class ComponentController extends React.Component {
     finisciTurno = () => {
         const giocatore = this.props.turnoGiocatore;
         var giocatore2;
-        if(giocatore == this.props.numeroGiocatori){
-            giocatore2 = 1;
+        if(giocatore == this.props.numeroGiocatori-1){
+            giocatore2 = 0;
         }
         else{
             giocatore2 = giocatore + 1;
@@ -116,20 +116,16 @@ class ComponentController extends React.Component {
         this.props.setTurnoGiocatore(giocatore2);   
 
         alert('Ora tocca ad un altro giocatore');
+        console.log(this.props.giocatori[this.props.turnoGiocatore])
         //<Alert severity="info">This is an info alert — check it out!</Alert>
     }
 
     render () {
-
+        
         return (
             <div>              
             <table className="tableController">
-            <tr>
-                <td className="tdController" colspan="4">
-                   <PescaCarta />
-                </td>
-                
-            </tr>
+            
             <tr>
                 <td className="tdController" colspan="4">
                     <button type="button" onClick={() => this.spostaAuto()}>
@@ -152,16 +148,23 @@ class ComponentController extends React.Component {
                     />
                 </td>
                 <td className="tdController">
-                    <Vendi />
+                    <Vendi 
+                        terreni={this.props.terreni}
+                        setTerreni={this.props.setTerreni}
+                        giocatori={this.props.giocatori}
+                        setGiocatori={this.props.setGiocatori} 
+                        turnoGiocatore={this.props.turnoGiocatore}
+                    />
+                    
                 </td>    
                 <td className="tdController">
                     <button type="button" onClick={() => this.finisciTurno()}>
                         finisci turno
                     </button>
-                    <p>{this.props.turnoGiocatore}</p>
+                    
                 </td>   
                 <td className="tdController">
-                    <Acquista attualeCasella={this.props.segnalini[this.props.turnoGiocatore-1][5]}/>
+                    <Acquista attualeCasella={this.props.segnalini[0][5]}/>
                 </td>   
             </tr>
             <tr className="trControllerTA">

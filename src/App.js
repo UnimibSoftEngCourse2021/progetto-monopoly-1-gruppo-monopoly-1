@@ -15,7 +15,7 @@ function App(props) {
     [
       {
         nome: 'Vicolo Corto',
-        proprietario: '',
+        proprietario: 2,
         case: 0,
         alberghi: 0,
         valore: 60,
@@ -214,6 +214,8 @@ function App(props) {
     ]
   ); 
 
+  
+
   const [stazioni, setStazioni] = React.useState(
     [
       {
@@ -257,39 +259,39 @@ function App(props) {
   const [giocatori, setGiocatori] = React.useState(
     [
       {
-        nome: '',
+        nome: '0',
         capitale: 1500,
         pedina: '',
       },
       {
-        nome: '',
+        nome: '1',
         capitale: 1500,
         pedina: '',
       },
       {
-        nome: '',
+        nome: '2',
         capitale: 1500,
         pedina: '',
       },
       {
-        nome: '',
+        nome: '3',
         capitale: 1500,
         pedina: '',
       },
       {
-        nome: '',
+        nome: '4',
         capitale: 1500,
         pedina: '',
       },
       {
-        nome: '',
+        nome: '5',
         capitale: 1500,
         pedina: '',
       },
     ]
   );
 
-  const [turnoGiocatore, setTurnoGiocatore] = React.useState(1);
+  const [turnoGiocatore, setTurnoGiocatore] = React.useState(0);
 
   //Questa funzione permette di spostare una quantità di denaro (quanto) da un giocatore (da) a un giocatore (a).
   //I giocatori sono identificati attraverso la loro posizione nell'array giocatori.
@@ -311,10 +313,7 @@ function App(props) {
     terreni[terreno].alberghi ++;
     giocatori[giocatore].capitale = giocatori[giocatore].capitale - 40;
   }
-
-  //CostruisciCasa(0, 0);
-
-  
+ 
 
   return (
     <div className="App">
@@ -327,12 +326,17 @@ function App(props) {
               setTurnoGiocatore={setTurnoGiocatore}
               numeroGiocatori={props.numeroGiocatori}
               terreni={terreni}
+              setTerreni={setTerreni}
               giocatori={giocatori}
+              setGiocatori={setGiocatori}
               CostruisciCasa={CostruisciCasa}
               CostruisciAlbergo={CostruisciAlbergo}
+              
             />
           </td>
-          <td className="colonna1" ><TabellaGiocatori giocatori={giocatori}/></td>
+          <td className="colonna1" >
+            <TabellaGiocatori giocatori={giocatori}/>
+          </td>
         </tr>
         <tr>
           <td className="colonna1"><ComponentProprietaLeft /></td>
@@ -342,6 +346,7 @@ function App(props) {
       <TabellaTerreni terreni={terreni} />
       
     </div>
+
   );
 }
 

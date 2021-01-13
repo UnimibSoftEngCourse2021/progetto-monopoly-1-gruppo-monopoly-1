@@ -6,7 +6,7 @@ import { Box, TableCell, TableRow, TableBody, TableContainer, Table, TableHead} 
 
 function TabellaTerreni (props) {
 
-    console.log(props);
+    
     
     function createData(nome, proprietario, casa, alberghi, valore, ipotecato) {
         return { nome, proprietario, casa, alberghi, valore, ipotecato };
@@ -35,9 +35,10 @@ function TabellaTerreni (props) {
         createData(props.terreni[19].nome, props.terreni[19].proprietario, props.terreni[19].case, props.terreni[19].alberghi, props.terreni[19].valore, props.terreni[19].ipotecato),
         createData(props.terreni[20].nome, props.terreni[20].proprietario, props.terreni[20].case, props.terreni[20].alberghi, props.terreni[20].valore, props.terreni[20].ipotecato),
         createData(props.terreni[21].nome, props.terreni[21].proprietario, props.terreni[21].case, props.terreni[21].alberghi, props.terreni[21].valore, props.terreni[21].ipotecato),
-      ];
+       ];
     
-    
+       console.log('tabella terreni');
+       console.log(props.terreni);
         return (
             <div>
                 <h3 align='center'>
