@@ -134,10 +134,11 @@ class ComponentBoard extends React.Component {
                 <Pedina figura={shoe} stile={mystyleShoe} />
                 <Pedina figura={thimble} stile={mystyleThimble} />
                 <Pedina figura={wheelbarrow} stile={mystyleWheelbarrow} />
+
                 <ComponentController 
-                    segnalini={this.state.segnalini} 
+                    segnalini={this.state.segnalini} muoviPedine={this.muoviPedine} 
                     muoviPedine={this.muoviPedine} 
-                    tavolaGioco={tavolaGioco}
+                    tavolaGioco={tavolaGioco}  turnoGiocatore={this.props.turnoGiocatore} setTurnoGiocatore={this.props.setTurnoGiocatore}
                     turnoGiocatore={this.props.turnoGiocatore}
                     setTurnoGiocatore={this.props.setTurnoGiocatore}
                     numeroGiocatori={this.props.numeroGiocatori}
@@ -145,7 +146,14 @@ class ComponentBoard extends React.Component {
                     setTerreni={this.props.setTerreni}
                     giocatori={this.props.giocatori}
                     setGiocatori={this.props.setGiocatori}
+                    caselle={this.props.caselle} setCaselle={this.props.setCaselle}
                     />
+
+            
+                                     
+                                    
+                                    
+
             </div>
             
             

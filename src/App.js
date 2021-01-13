@@ -10,6 +10,210 @@ import TabellaTerreni from './components/Tabelle/TabellaTerreni';
 
 function App(props) {
 
+  const [caselle, setCaselle] = React.useState(
+    [
+      {
+        tipo: 'servizio',
+        nome: 'GO',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'mediterranean avenue',
+        proprietario: ''
+      },
+      {
+        tipo: 'probabilita',
+        nome: 'probabilita',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'baltic avenue',
+        proprietario: ''
+      },
+      {
+        tipo: 'servizio',
+        nome: 'income tax',
+        proprietario: ''
+      },
+      {
+        tipo: 'stazione',
+        nome: 'reading railroad',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'oriental avenue',
+        proprietario: ''
+      },
+      {
+        tipo: 'imprevisti',
+        nome: 'imprevisti',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'vermont avenue',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'connecticut avenue',
+        proprietario: ''
+      },
+      {
+        tipo: 'prigione',
+        nome: 'prigione',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'st. charles place',
+        proprietario: ''
+      },
+      {
+        tipo: 'societa',
+        nome: 'electric company',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'states avenue',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'virginia avenue',
+        proprietario: ''
+      },
+      {
+        tipo: 'stazione',
+        nome: 'pennsylvania road',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'st. james place',
+        proprietario: ''
+      },
+      {
+        tipo: 'probabilita',
+        nome: 'probabilita',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'tennessee avenue',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'new york avenue',
+        proprietario: ''
+      },
+      {
+        tipo: 'free parking',
+        nome: 'free parking',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'kentucky avenue',
+        proprietario: ''
+      },
+      {
+        tipo: 'imprevisti',
+        nome: 'imprevisti',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'indiana avenue',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'illinois avenue',
+        proprietario: ''
+      },
+      {
+        tipo: 'stazione',
+        nome: 'b&o stazione',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'atlantic avenue',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'ventnor avenue',
+        proprietario: ''
+      },
+      {
+        tipo: 'societa',
+        nome: 'societa acqua',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'marvin gardens',
+        proprietario: ''
+      },
+      {
+        tipo: 'go to jail',
+        nome: 'go to jail',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'pacific avenue',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'north carolina avenue',
+        proprietario: ''
+      },
+      {
+        tipo: 'probabilita',
+        nome: 'probabilita',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'pennsylvania avenue',
+        proprietario: ''
+      },
+      {
+        tipo: 'stazione',
+        nome: 'short line',
+        proprietario: ''
+      },
+      {
+        tipo: 'imprevisti',
+        nome: 'imprevisti',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'park place',
+        proprietario: ''
+      },
+      {
+        tipo: 'tasse',
+        nome: 'luxury tax',
+        proprietario: ''
+      },
+      {
+        tipo: 'terreno',
+        nome: 'boardwalk',
+        proprietario: ''
+      },
+    ]
+  );
   
   const [terreni, setTerreni] = React.useState(
     [
@@ -320,6 +524,7 @@ function App(props) {
       <table className="tabella1">
         <tr>
           <td className="colonna1" ><ComponentProprietaRight  /></td>
+<<<<<<< HEAD
           <td className="colonnaBoard" rowspan="2">
             <ComponentBoard 
               turnoGiocatore={turnoGiocatore} 
@@ -337,6 +542,12 @@ function App(props) {
           <td className="colonna1" >
             <TabellaGiocatori giocatori={giocatori}/>
           </td>
+=======
+          <td className="colonnaBoard" rowspan="2"><ComponentBoard turnoGiocatore={turnoGiocatore} setTurnoGiocatore={setTurnoGiocatore}
+                                                    numeroGiocatori={props.numeroGiocatori} 
+                                                    caselle={caselle} setCaselle={setCaselle}   /></td>
+          <td className="colonna1" ><TabellaGiocatori giocatori={giocatori}/></td>
+>>>>>>> 801e691014571e573a4757d1308db79c70745db4
         </tr>
         <tr>
           <td className="colonna1"><ComponentProprietaLeft /></td>

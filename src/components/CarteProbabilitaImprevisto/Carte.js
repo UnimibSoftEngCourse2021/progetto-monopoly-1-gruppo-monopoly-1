@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Banca from '../Banca';
+import { modificaSaldo } from '../Banca';
 
 class Carte extends Component {
     constructor(props) {
@@ -34,7 +34,7 @@ class Carte extends Component {
                 [21, 'Vai indietro di 3 caselle', 0, 0, 0, 0],
                 [22, 'Vai in Prigione senza passare dal Via', 0, 0, 0, 0],
                 [23, 'Riparazioni generali a tutte le tue proprietà: paga $25 per casa e $100 per hotel', 0, -25, -100, 0],
-                [24, 'Paga tasse scadute', -10, 0, 0, 0],
+                [24, 'Paga tasse scadute: paga $10', -10, 0, 0, 0],
                 [25, 'Vai a Reading Railroad', 0, 0, 0, 0],
                 [26, 'Vai a Boardwalk', 0, 0, 0, 0],
                 [27, 'Sei eletto chairman della tavola da gioco: paga $50 da ogni giocaotore', 0, 0, 0, -50],
@@ -50,17 +50,22 @@ class Carte extends Component {
 
     
     estraiCarta = (probabilitaOImprevisto, giocatore) => { //probabilità==true imprevisto==false
+        let idCarta;
         if (probabilitaOImprevisto){
             idCarta = Math.floor(Math.random()*(15));
         }else{
             idCarta = Math.floor(Math.random()*(31-16)+16);
         };
-        this.props.attivaCarta(idCarta, giocatore);
+        this.attivaCarta(idCarta, giocatore);
     }
 
     
     attivaCarta = (idCarta, giocatore) => {
         //  TODO
+        alert('Giocatore: ' + giocatore + ' \n La carta è: ' + this.state.carte[idCarta][1]);
+        //if (this.state.carte[idCarta][2] != 0){
+        //     this.props.modificaSaldo(this.state.carte[idCarta][2], giocatore);
+        //}
     }
 }
 export default Carte;
