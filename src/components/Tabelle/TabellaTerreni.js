@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, TableCell, TableRow, TableBody, TableContainer, Table, TableHead} from '@material-ui/core';
-
-
+import CheckIcon from '@material-ui/icons/Check';
+import ClearIcon from '@material-ui/icons/Clear';
 
 
 function TabellaTerreni (props) {
@@ -61,11 +61,11 @@ function TabellaTerreni (props) {
                             {rows.map((row) => (
                                 <TableRow key={row.name}>
                                     <TableCell component="th" scope="row">{row.nome}</TableCell>
-                                    <TableCell align="right">{row.proprietario}</TableCell>
+                                    <TableCell align="right">{row.proprietario===-1? null : row.proprietario}</TableCell>
                                     <TableCell align="right">{row.casa}</TableCell>
                                     <TableCell align="right">{row.alberghi}</TableCell>
                                     <TableCell align="right">{row.valore}</TableCell>
-                                    <TableCell align="right">{row.ipotecato}</TableCell>
+                                    <TableCell align="right">{ row.ipotecato? <CheckIcon style={{color:'#f44336'}}/> : <ClearIcon style={{color:'#4caf50'}}/>}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

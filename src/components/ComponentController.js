@@ -3,8 +3,9 @@ import React from 'react';
 import Acquista from './AzioniConBottone/Acquista';
 import Costruisci from './AzioniConBottone/Costruisci';
 import Vendi from './AzioniConBottone/Vendi';
+import VendiEdificio from './AzioniConBottone/VendiEdificio';
+import Ipoteca from './AzioniConBottone/Ipoteca';
 //import SceltaNumeroGiocatori from './SceltaNumeroGiocatori';
-//import Alert from '@material-ui/lab/Alert';
 import Carte from './CarteProbabilitaImprevisto/Carte';
 
 
@@ -139,70 +140,88 @@ class ComponentController extends React.Component {
     render () {
         
         return (
-            <div>              
-            <table className="tableController">
-            
-            <tr>
-                <td className="tdController" colspan="4">
-                    <button type="button" onClick={() => this.spostaAuto()}>
-                        Sposta auto di 1
-                    </button>
-                </td>
-                <td className="tdController">
-                    numGiocatori={this.props.numeroGiocatori}
-                </td>
-            </tr>
-            <tr className="trController">
-                <td className="tdController">
-                    <button type="button" onClick={() => this.tiraDadi()}>Tira dadi</button></td>
-                <td className="tdController">
-                    <Costruisci 
-                        terreni={this.props.terreni}
-                        giocatori={this.props.giocatori}
-                        setTerreni={this.props.setTerreni}
-                        setGiocatori={this.props.setGiocatori} 
-                        turnoGiocatore={this.props.turnoGiocatore}
-                    />
-                </td>
-                <td className="tdController">
-                    <Vendi 
-                        terreni={this.props.terreni}
-                        setTerreni={this.props.setTerreni}
-                        giocatori={this.props.giocatori}
-                        setGiocatori={this.props.setGiocatori} 
-                        turnoGiocatore={this.props.turnoGiocatore}
-                        societàStazioni={this.props.societàStazioni}
-                        setSocietàStazioni={this.props.setSocietàStazioni}
-                    />
+            <div>
+                <table className="tableController">
                     
-                </td>    
-                <td className="tdController">
-                    <Button variant="outlined" size="small" onClick={() => this.finisciTurno()}>
-                        finisci turno
-                    </Button>
+                    <tr>
+                        <td className="tdController" >
+                            <button type="button" onClick={() => this.spostaAuto()}>
+                                Sposta auto di 1
+                            </button>
+                        </td>
+                        <td className="tdController" colspan="2" >
+                            <VendiEdificio 
+                                terreni={this.props.terreni}
+                                giocatori={this.props.giocatori}
+                                setTerreni={this.props.setTerreni}
+                                setGiocatori={this.props.setGiocatori} 
+                                turnoGiocatore={this.props.turnoGiocatore}
+                            />
+                        </td>
+                        <td className="tdController">
+                            <Ipoteca
+                                terreni={this.props.terreni}
+                                setTerreni={this.props.setTerreni}
+                                giocatori={this.props.giocatori}
+                                setGiocatori={this.props.setGiocatori} 
+                                turnoGiocatore={this.props.turnoGiocatore}
+                                societàStazioni={this.props.societàStazioni}
+                                setSocietàStazioni={this.props.setSocietàStazioni}
+                            />
+                        </td>   
+                        <td className="tdController">
+                            numGiocatori={this.props.numeroGiocatori}
+                        </td>
+                    </tr>
                     
-                </td>   
-                <td className="tdController">
-
-                  
-
-                    <Acquista attualeCasella={this.props.segnalini[this.props.turnoGiocatore][5]}
-                              caselle={this.props.caselle} setCaselle={this.props.setCaselle}
-                              turnoGiocatore={this.props.turnoGiocatore}/>
-
-                </td>   
-            </tr>
-            <tr className="trControllerTA">
-                <td className="tdController" colspan="5">
-                    <AreaTesto 
-                    messaggioUno={this.state.primoMsgTA}
-                    messaggioDue={this.state.secondoMsgTA}
-                    messaggioTre={this.state.terzoMsgTA}
-                    />  
-                </td>  
-            </tr>
-            </table> 
-             
+                    <tr className="trController">
+                        <td className="tdController">
+                            <button type="button" onClick={() => this.tiraDadi()}>Tira dadi</button>
+                        </td>
+                        <td className="tdController">
+                            <Costruisci 
+                                terreni={this.props.terreni}
+                                giocatori={this.props.giocatori}
+                                setTerreni={this.props.setTerreni}
+                                setGiocatori={this.props.setGiocatori} 
+                                turnoGiocatore={this.props.turnoGiocatore}
+                            />
+                        </td>
+                        <td className="tdController">
+                            <Vendi 
+                                terreni={this.props.terreni}
+                                setTerreni={this.props.setTerreni}
+                                giocatori={this.props.giocatori}
+                                setGiocatori={this.props.setGiocatori} 
+                                turnoGiocatore={this.props.turnoGiocatore}
+                                societàStazioni={this.props.societàStazioni}
+                                setSocietàStazioni={this.props.setSocietàStazioni}
+                            />
+                        </td>    
+                        <td className="tdController">
+                            <Button variant="outlined" size="small" onClick={() => this.finisciTurno()}>
+                                finisci turno
+                            </Button>
+                        </td>   
+                        <td className="tdController">
+                            <Acquista 
+                              attualeCasella={this.props.segnalini[this.props.turnoGiocatore][5]}
+                              caselle={this.props.caselle} 
+                              setCaselle={this.props.setCaselle}
+                              turnoGiocatore={this.props.turnoGiocatore}
+                            />
+                        </td>   
+                    </tr>
+                    <tr className="trControllerTA">
+                        <td className="tdController" colspan="5">
+                            <AreaTesto
+                                messaggioUno={this.state.primoMsgTA}
+                                messaggioDue={this.state.secondoMsgTA}
+                                messaggioTre={this.state.terzoMsgTA}
+                            />  
+                        </td>  
+                    </tr>
+                </table> 
             </div>         
         )
     }

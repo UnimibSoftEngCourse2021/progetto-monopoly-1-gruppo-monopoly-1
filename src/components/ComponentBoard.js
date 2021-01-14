@@ -138,8 +138,8 @@ class ComponentBoard extends React.Component {
                 <ComponentController 
                     segnalini={this.state.segnalini} muoviPedine={this.muoviPedine} 
                     muoviPedine={this.muoviPedine} 
-                    tavolaGioco={tavolaGioco}  turnoGiocatore={this.props.turnoGiocatore} setTurnoGiocatore={this.props.setTurnoGiocatore}
-                    turnoGiocatore={this.props.turnoGiocatore}
+                    tavolaGioco={tavolaGioco} 
+                    turnoGiocatore={this.props.turnoGiocatore} 
                     setTurnoGiocatore={this.props.setTurnoGiocatore}
                     numeroGiocatori={this.props.numeroGiocatori}
                     terreni={this.props.terreni}
@@ -148,7 +148,8 @@ class ComponentBoard extends React.Component {
                     setGiocatori={this.props.setGiocatori}
                     societàStazioni={this.props.societàStazioni}
                     setSocietàStazioni={this.props.setSocietàStazioni}
-                    caselle={this.props.caselle} setCaselle={this.props.setCaselle}
+                    caselle={this.props.caselle} 
+                    setCaselle={this.props.setCaselle}
                 />
 
             

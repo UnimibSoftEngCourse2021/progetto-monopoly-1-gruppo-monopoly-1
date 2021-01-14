@@ -230,7 +230,7 @@ function App(props) {
       {
         nome: 'Vicolo Stretto',
         proprietario: 0,
-        case: 0,
+        case: 4,
         alberghi: 0,
         valore: 60,
         colore: 'marrone',
@@ -425,33 +425,39 @@ function App(props) {
     [
       {
         nome: 'Stazione ovest',
-        proprietario: '',
-        valore: 200
+        proprietario: 0,
+        valore: 200,
+        ipotecato: false,
       },
       {
         nome: 'Stazione nord',
-        proprietario: '2',
-        valore: 200
+        proprietario: 0,
+        valore: 200,
+        ipotecato: false,
       },
       {
         nome: 'Stazione sud',
-        proprietario: '',
-        valore: 200
+        proprietario: -1,
+        valore: 200,
+        ipotecato: false,
       },
       {
         nome: 'Stazione est',
-        proprietario: '',
-        valore: 200
+        proprietario: 0,
+        valore: 200,
+        ipotecato: false,
       },
       {
         nome: 'Società acqua potabile',
-        proprietario: '',
-        valore: 150
+        proprietario: 0,
+        valore: 150,
+        ipotecato: false,
       },
       {
         nome: 'Società elettrica',
-        proprietario: '',
-        valore: 150
+        proprietario: -1,
+        valore: 150,
+        ipotecato: false,
       },
     ]
   );
@@ -498,13 +504,15 @@ function App(props) {
   
 
   
-  console.log(terreni);
+  
 
   return (
     <div className="App">
       <table className="tabella1">
         <tr>
-          <td className="colonna1" ><TabellaSocietàStazioni societàStazioni={societàStazioni}  /></td>
+          <td className="colonna1">
+            <TabellaSocietàStazioni societàStazioni={societàStazioni}  />
+          </td>
 
           <td className="colonnaBoard" rowspan="2">
             <ComponentBoard 
