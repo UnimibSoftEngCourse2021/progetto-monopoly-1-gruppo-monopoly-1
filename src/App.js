@@ -470,37 +470,47 @@ function App(props) {
         nome: '0',
         capitale: 1500,
         pedina: '',
+        inGioco: true,
       },
       {
         nome: '1',
         capitale: 1500,
         pedina: '',
+        inGioco: false,
       },
       {
         nome: '2',
         capitale: 1500,
         pedina: '',
+        inGioco: false,
       },
       {
         nome: '3',
         capitale: 1500,
         pedina: '',
+        inGioco: false,
       },
       {
         nome: '4',
         capitale: 1500,
         pedina: '',
+        inGioco: true,
       },
       {
         nome: '5',
         capitale: 1500,
         pedina: '',
+        inGioco: true,
       },
     ]
   );
 
   const [turnoGiocatore, setTurnoGiocatore] = React.useState(0);
 
+  //Variabile di stato utilizzata per gestire le partite a tempo
+  //se la partita non è a tempo sarà uguale a null
+  //se è a tempo avrà il valore del numero di turni che mancano alla fine della partita 
+  const [tempo, setTempo] = React.useState(null);
   
 
   
@@ -526,10 +536,12 @@ function App(props) {
               societàStazioni={societàStazioni}
               setSocietàStazioni={setSocietàStazioni}
               caselle={caselle} setCaselle={setCaselle}
+              tempo={tempo}
+              setTempo={setTempo}
             />
           </td>
           <td className="colonna1" >
-            <TabellaGiocatori giocatori={giocatori}/>
+            <TabellaGiocatori giocatori={giocatori} turnoGiocatore={turnoGiocatore}/>
           </td>
 
         </tr>

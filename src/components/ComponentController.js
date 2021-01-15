@@ -131,10 +131,101 @@ class ComponentController extends React.Component {
         }
         
         dadiTirati = false;
-        this.props.setTurnoGiocatore(giocatore2);   
+        this.props.setTurnoGiocatore(giocatore2);  
+        
+        this.fallimentoVittoria();
+
+        if(!(this.props.tempo === null)){
+            this.partitaATempo();
+        }
 
         alert('Ora tocca ad un altro giocatore');
-        console.log(this.props.giocatori[this.props.turnoGiocatore])
+        
+    }
+
+    //Questa funzione verifica se il giocatore che ha concluso il turno non ha più soldi
+    //verifica anche che ci siano almeno 2 giocatori in gioco se ne è rimasto solo uno ha vinto
+    fallimentoVittoria = ()=>{
+        var i;
+        var n = 0;
+        for(i=0; i<this.props.giocatori.length; i++){
+            if(this.props.giocatori[i].inGioco === true){ 
+                n++;
+            }
+        }
+        
+        if(n === 1){
+            var vincitore;
+            for(i=0; i<this.props.giocatori.length; i++){
+                if(this.props.giocatori[i].inGioco === true){ 
+                    vincitore = this.props.giocatori[i].nome;
+                }
+            }
+            alert('Giocatore: '+ vincitore +' hai vinto');
+            //concludere la partita
+            return;
+        }
+
+        if(this.props.giocatori[this.props.turnoGiocatore].capitale <= 0){
+           alert('Giocatore: ' + this.props.giocatori[this.props.turnoGiocatore].nome  + ' \n Non hai più soldi hai perso ');
+           var nuoviGiocatori = this.props.giocatori;
+           nuoviGiocatori[this.props.turnoGiocatore].inGioco = false;
+           this.props.setGiocatori(nuoviGiocatori);
+           console.log(this.props.giocatori);
+           return;
+           
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    //Questa funzione decrementa il numero di turni che mancano allo scadere del tempo
+    //se il tempo è finito stabilisce un vincitore confrontando i capitali dei giocatori rimasti
+    partitaATempo = ()=>{
+        var nuovoTempo = this.props.tempo;
+        nuovoTempo = nuovoTempo - 1;
+        this.props.setTempo(nuovoTempo);
+        if(this.props.tempo === 0){
+            var vincitore = this.props.giocatori[0];
+            var i;
+                        
+            for(i=1; i<this.props.giocatori.length; i++){
+                if(vincitore.capitale < this.props.giocatori[i].capitale){
+                    vincitore = this.props.giocatori[i];
+                }
+            }
+            console.log(vincitore);
+            //verifico che ci sia un pareggio
+            var pareggio = 0;
+            var n = 0;
+            while(n<this.props.giocatori.length){
+                if(vincitore.capitale === this.props.giocatori[n].capitale){
+                    pareggio++
+                }
+                n++;
+            }
+            
+           console.log(pareggio);
+            
+            
+            if(pareggio<2){
+                alert('Giocatore: '+ vincitore.nome +' hai vinto');
+                //concludere la partita
+                return;
+            }
+            else{
+                alert("C'é stato un pareggio");
+                //concludere la partita
+                return;
+            }
+
+
+        }
+        else{
+            //continua la partita
+        }
     }
 
     render () {

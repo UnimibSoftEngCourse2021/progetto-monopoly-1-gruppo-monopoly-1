@@ -66,6 +66,11 @@ function CostruisciCasa(){
     return;
   }
   var proprietà = props.terreni[n];
+  //verifico che la proprietà non sia ipotecata
+  if(proprietà.ipotecato === true){
+    alert('Non puoi costruire su un terreno ipotecato');
+    return;
+  }
   //verifico che il turnoGiocatore sia proprietario di proprietà
   if(!(proprietà.proprietario == props.turnoGiocatore)){
     alert('Non puoi costruire su un terreno che non è tuo');
@@ -113,6 +118,11 @@ function CostruisciAlbergo(){
     return;
   }
   var proprietà = props.terreni[n];
+  //verifico che la proprietà non sia ipotecata
+  if(proprietà.ipotecato === true){
+    alert('Non puoi costruire su un terreno ipotecato');
+    return;
+  }
   //verifico che il turnoGiocatore sia proprietario di proprietà
   if(!(proprietà.proprietario == props.turnoGiocatore)){
     alert('Non puoi costruire su un terreno che non è tuo');

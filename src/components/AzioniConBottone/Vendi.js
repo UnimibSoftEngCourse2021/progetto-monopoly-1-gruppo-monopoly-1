@@ -121,21 +121,23 @@ function VendiTerreno(){
     return;
   }
   var venditore2 = props.giocatori[y];
-  
+  if(venditore2.inGioco === false){
+    alert('Hai inserito un venditore che non è più in gioco');
+    return;
+  }
  
   
-  //verifico che l'aquirente esista, può essere anche la banca
+  //verifico che l'aquirente esista
   var x = EsisteGiocatore(aquirente);
   var aquirente2;
   if(x === -1){
     alert("Controlla che il nome dell'aquirente sia scritto in modo corretto");
     return;
   }
-  if(aquirente === 'Banca'){
-    aquirente2 = aquirente;
-  }
-  else{
-    aquirente2 = props.giocatori[x];
+  aquirente2 = props.giocatori[x];
+  if(aquirente2.inGioco === false){
+    alert('Hai inserito un aquirente che non è più in gioco');
+    return;
   }
   //verifico che sul terreno non ci siano ne case ne alberghi
   if(proprietà.case > 0 || proprietà.alberghi > 0){
@@ -199,7 +201,10 @@ function VendiStazioneSocietà(){
     return;
   }
   var venditore2 = props.giocatori[y];
-  
+  if(venditore2.inGioco === false){
+    alert('Hai inserito un venditore che non è più in gioco');
+    return;
+  }
  
   
   //verifico che l'aquirente esista
@@ -210,7 +215,10 @@ function VendiStazioneSocietà(){
     return;
   }
   aquirente2 = props.giocatori[x];
-  
+  if(aquirente2.inGioco === false){
+    alert('Hai inserito un aquirente che non è più in gioco');
+    return;
+  }
   
   //Verifico che venditore e aquirente non siano lo stesso giocatore
   if(venditore2 === aquirente2){

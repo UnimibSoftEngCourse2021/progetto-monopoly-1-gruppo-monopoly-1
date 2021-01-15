@@ -150,6 +150,8 @@ class ComponentBoard extends React.Component {
                     setSocietàStazioni={this.props.setSocietàStazioni}
                     caselle={this.props.caselle} 
                     setCaselle={this.props.setCaselle}
+                    tempo={this.props.tempo}
+                    setTempo={this.props.setTempo}
                 />
 
             
