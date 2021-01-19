@@ -8,6 +8,31 @@ body {
   height: 100%;
 }
 
+.bottone-inizia-partita {
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin: auto;
+  text-align: center;
+  position: relative;
+  display: block;
+  height: 100px;
+  width: 300px;
+  background-color: red;
+  color: white;
+  padding: 20px;
+  border: 8px solid black;
+  font-family: 'BioRhyme', serif;
+  font-size: 2vh;
+  line-height: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.bottone-inizia-partita:hover {
+  opacity: 0.8;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
