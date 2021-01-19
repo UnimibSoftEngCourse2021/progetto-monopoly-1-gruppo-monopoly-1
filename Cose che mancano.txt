@@ -1,0 +1,11 @@
+Elenco delle cose che bisogna ancora implementare per il completamento del Monopoly
+
+- Collegare la scelta del numero dei giocatori con l'array giocatori 
+- Impostare il livello di difficoltà e decidere cosa cambia da un livello all'altro
+- Implementare il pagamento dell'affitto
+- Collegare l'estrazione di una carta probabilità / imprevisti con la sua azione
+- Gestire l'ingresso e l'uscita dalla prigione
+- Gestire il passaggio di un giocatore dal Via
+- Creare l'asta nel caso in cui un giocatore decida di non aquistare
+- Permettere ad un giocatore di lasciare la partita prima che sia finita
+- Permettere ad ogni giocatore di scegliere una pedina
