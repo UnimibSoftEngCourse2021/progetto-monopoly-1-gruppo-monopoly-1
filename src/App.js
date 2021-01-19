@@ -40,7 +40,7 @@ function App(props) {
       },
       {
         tipo: 'stazione',
-        nome: 'reading railroad',
+        nome: 'Reading railroad',
         proprietario: -1
       },
       {
@@ -75,7 +75,7 @@ function App(props) {
       },
       {
         tipo: 'societa',
-        nome: 'electric company',
+        nome: 'Electric company',
         proprietario: -1
       },
       {
@@ -90,7 +90,7 @@ function App(props) {
       },
       {
         tipo: 'stazione',
-        nome: 'pennsylvania road',
+        nome: 'Pennsylvania railroad',
         proprietario: -1
       },
       {
@@ -140,7 +140,7 @@ function App(props) {
       },
       {
         tipo: 'stazione',
-        nome: 'b&o stazione',
+        nome: 'B&O railroad',
         proprietario: -1
       },
       {
@@ -155,7 +155,7 @@ function App(props) {
       },
       {
         tipo: 'societa',
-        nome: 'societa acqua',
+        nome: 'Water works',
         proprietario: -1
       },
       {
@@ -190,7 +190,7 @@ function App(props) {
       },
       {
         tipo: 'stazione',
-        nome: 'short line',
+        nome: 'Short line',
         proprietario: -1
       },
       {
@@ -446,37 +446,37 @@ function App(props) {
   const [societàStazioni, setSocietàStazioni] = React.useState(
     [
       {
-        nome: 'Stazione ovest',
-        proprietario: 0,
-        valore: 200,
-        ipotecato: false,
-      },
-      {
-        nome: 'Stazione nord',
-        proprietario: 0,
-        valore: 200,
-        ipotecato: false,
-      },
-      {
-        nome: 'Stazione sud',
+        nome: 'Reading railroad',
         proprietario: -1,
         valore: 200,
         ipotecato: false,
       },
       {
-        nome: 'Stazione est',
-        proprietario: 0,
+        nome: 'Pennsylvania railroad',
+        proprietario: -1,
         valore: 200,
         ipotecato: false,
       },
       {
-        nome: 'Società acqua potabile',
-        proprietario: 0,
+        nome: 'B&O railroad',
+        proprietario: -1,
+        valore: 200,
+        ipotecato: false,
+      },
+      {
+        nome: 'Short line',
+        proprietario: -1,
+        valore: 200,
+        ipotecato: false,
+      },
+      {
+        nome: 'Electric company',
+        proprietario: -1,
         valore: 150,
         ipotecato: false,
       },
       {
-        nome: 'Società elettrica',
+        nome: 'Water works',
         proprietario: -1,
         valore: 150,
         ipotecato: false,
