@@ -300,6 +300,10 @@ class ComponentController extends React.Component {
                               caselle={this.props.caselle} 
                               setCaselle={this.props.setCaselle}
                               turnoGiocatore={this.props.turnoGiocatore}
+                              terreni={this.props.terreni}
+                              setTerreni={this.props.setTerreni}
+                              giocatori={this.props.giocatori}
+                              setGiocatori={this.props.setGiocatori}
                             />
                         </td>   
                     </tr>

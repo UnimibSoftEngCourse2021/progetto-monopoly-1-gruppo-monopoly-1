@@ -221,7 +221,7 @@ function App(props) {
       {
         nome: 'Mediterranean avenue',
         coloreSfondo: '#7E3C09',
-        proprietario: 0,
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 60,
@@ -231,7 +231,7 @@ function App(props) {
       {
         nome: 'Baltic avenue',
         coloreSfondo: '#7E3C09',
-        proprietario: 0,
+        proprietario: -1,
         case: 4,
         alberghi: 0,
         valore: 60,
@@ -431,7 +431,7 @@ function App(props) {
       {
         nome: 'Boardwalk',
         coloreSfondo: '#080883',
-        proprietario: 0,
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 400,
