@@ -7,6 +7,7 @@ import VendiEdificio from './AzioniConBottone/VendiEdificio';
 import Ipoteca from './AzioniConBottone/Ipoteca';
 //import SceltaNumeroGiocatori from './SceltaNumeroGiocatori';
 import Carte from './CarteProbabilitaImprevisto/Carte';
+import Banca from './Banca';
 
 
 let dado1;
@@ -50,7 +51,9 @@ class ComponentController extends React.Component {
         var i;
         for (i = 1; i < sommaDadi+1; i++) {
             if (attualeCasella === 39) {
-                attualeCasella=0
+                attualeCasella=0;
+                let banca1 = new Banca();
+                banca1.giocatorePassaDalVia(this.props.giocatori,this.props.turnoGiocatore,this.props.setGiocatori);
             } else {
                 attualeCasella = attualeCasella + 1
             }        
