@@ -220,6 +220,7 @@ function App(props) {
     [
       {
         nome: 'Vicolo Corto',
+        coloreSfondo: '#7E3C09',
         proprietario: 0,
         case: 0,
         alberghi: 0,
@@ -229,6 +230,7 @@ function App(props) {
       },
       {
         nome: 'Vicolo Stretto',
+        coloreSfondo: '#7E3C09',
         proprietario: 0,
         case: 4,
         alberghi: 0,
@@ -238,6 +240,7 @@ function App(props) {
       },
       {
         nome: 'Bastioni Gran Sasso',
+        coloreSfondo: '#14E3ED',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -247,6 +250,7 @@ function App(props) {
       },
       {
         nome: 'Viale Monte Rosa',
+        coloreSfondo: '#14E3ED',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -256,6 +260,7 @@ function App(props) {
       },
       {
         nome: 'Viale Vesuvio',
+        coloreSfondo: '#14E3ED',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -265,6 +270,7 @@ function App(props) {
       },
       {
         nome: 'Via Accademia',
+        coloreSfondo: '#C00FA9',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -274,6 +280,7 @@ function App(props) {
       },
       {
         nome: 'Corso Ateneo',
+        coloreSfondo: '#C00FA9',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -283,6 +290,7 @@ function App(props) {
       },
       {
         nome: 'Piazza Università',
+        coloreSfondo: '#C00FA9',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -292,6 +300,7 @@ function App(props) {
       },
       {
         nome: 'Via Verdi',
+        coloreSfondo: '#FF8C00',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -301,6 +310,7 @@ function App(props) {
       },
       {
         nome: 'Corso Raffaello',
+        coloreSfondo: '#FF8C00',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -310,6 +320,7 @@ function App(props) {
       },
       {
         nome: 'Piazza Dante',
+        coloreSfondo: '#FF8C00',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -319,6 +330,7 @@ function App(props) {
       },
       {
         nome: 'Via Marco Polo',
+        coloreSfondo: '#E01630',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -328,6 +340,7 @@ function App(props) {
       },
       {
         nome: 'Corso Magellano',
+        coloreSfondo: '#E01630',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -337,6 +350,7 @@ function App(props) {
       },
       {
         nome: 'Largo Colombo',
+        coloreSfondo: '#E01630',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -346,6 +360,7 @@ function App(props) {
       },
       {
         nome: 'Viale Costantino',
+        coloreSfondo: '#F0F00D',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -355,6 +370,7 @@ function App(props) {
       },
       {
         nome: 'Viale Traiano',
+        coloreSfondo: '#F0F00D',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -364,6 +380,7 @@ function App(props) {
       },
       {
         nome: 'Piazza Giulio Cesare',
+        coloreSfondo: '#F0F00D',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -373,6 +390,7 @@ function App(props) {
       },
       {
         nome: 'Via Roma',
+        coloreSfondo: '#265E08',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -382,6 +400,7 @@ function App(props) {
       },
       {
         nome: 'Corso Impero',
+        coloreSfondo: '#265E08',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -391,6 +410,7 @@ function App(props) {
       },
       {
         nome: 'Largo Augusto',
+        coloreSfondo: '#265E08',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -400,6 +420,7 @@ function App(props) {
       },
       {
         nome: 'Viale dei Giardini',
+        coloreSfondo: '#080883',
         proprietario: -1,
         case: 0,
         alberghi: 0,
@@ -409,6 +430,7 @@ function App(props) {
       },
       {
         nome: 'Parco della Vittoria',
+        coloreSfondo: '#080883',
         proprietario: 0,
         case: 0,
         alberghi: 0,
