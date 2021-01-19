@@ -4,10 +4,14 @@ import '../index.css';
 import App from '../App';
 import Banca from './Banca'
 
-export function iniziaPartita(modalita, numeroGiocatori) {
+export function iniziaPartita(numero, diff) {
+
+    let numeroGiocatori = numero;
+    let difficolta = diff;
+
     ReactDOM.render(
         <React.StrictMode>
-            <App numeroGiocatori={numeroGiocatori}/>
+            <App numeroGiocatori={numeroGiocatori} difficolta={difficolta}/>
         </React.StrictMode>,
         document.getElementById('root')
     );
@@ -29,3 +33,5 @@ export function iniziaPartita(modalita, numeroGiocatori) {
         <Banca saldoContoPedine={[3750,3750,3750,3750,3750,3750]} contrattiGiocatori={[3,3,3,3,3,3]} />
     };
 }
+
+export default iniziaPartita()
