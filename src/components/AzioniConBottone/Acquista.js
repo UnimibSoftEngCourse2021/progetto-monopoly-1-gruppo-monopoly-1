@@ -61,7 +61,7 @@ const body = (
       <h4 style={{margin:'16px'}}>Di nome: {props.caselle[props.attualeCasella].nome}</h4> 
       <h4 style={{margin:'16px'}}>Proprietario: {props.caselle[props.attualeCasella].proprietario}</h4>
       
-      {(props.caselle[props.attualeCasella].proprietario=='' && 
+      {(props.caselle[props.attualeCasella].proprietario==-1 && 
          (props.caselle[props.attualeCasella].tipo=='terreno'
           ||
           props.caselle[props.attualeCasella].tipo=='societa'

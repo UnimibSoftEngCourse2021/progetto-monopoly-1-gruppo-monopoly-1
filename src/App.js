@@ -16,202 +16,202 @@ function App(props) {
       {
         tipo: 'servizio',
         nome: 'GO',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'Mediterranean avenue',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'probabilita',
         nome: 'probabilita',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'Baltic avenue',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'servizio',
         nome: 'income tax',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'stazione',
         nome: 'reading railroad',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'Oriental avenue',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'imprevisti',
         nome: 'imprevisti',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'Vermont avenue',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'Connecticut avenue',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'prigione',
         nome: 'prigione',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'St. charles place',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'societa',
         nome: 'electric company',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'States avenue',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'Virginia avenue',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'stazione',
         nome: 'pennsylvania road',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'St. james place',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'probabilita',
         nome: 'probabilita',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'Tennessee avenue',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'New york avenue',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'free parking',
         nome: 'free parking',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'Kentucky avenue',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'imprevisti',
         nome: 'imprevisti',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'Indiana avenue',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'Illinois avenue',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'stazione',
         nome: 'b&o stazione',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'Atlantic avenue',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'Ventnor avenue',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'societa',
         nome: 'societa acqua',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'Marvin gardens',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'go to jail',
         nome: 'go to jail',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'Pacific avenue',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'North carolina avenue',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'probabilita',
         nome: 'probabilita',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'Pennsylvania avenue',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'stazione',
         nome: 'short line',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'imprevisti',
         nome: 'imprevisti',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'Park place',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'tasse',
         nome: 'luxury tax',
-        proprietario: ''
+        proprietario: -1
       },
       {
         tipo: 'terreno',
         nome: 'Boardwalk',
-        proprietario: ''
+        proprietario: -1
       },
     ]
   );
