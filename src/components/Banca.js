@@ -14,18 +14,20 @@ class Banca extends Component {
     // Passa i parametri a TabellaGiocatori (attualmente non funziona)
     creaTabellaGiocatori = () => {
         for(let i=1; i<=6; i++){
-            //this.state.createData(i, this.state.saldoContoGiocatori[i-1]);
-            <TabellaGiocatori props={i, this.state.saldoContoGiocatori[i-1]} />
+            //this.state.createData(i, this.state.saldoContoGiocatori[i]);
+            <TabellaGiocatori props={i, this.state.saldoContoGiocatori[i]} />
         }
     }
 
     //Modifica il saldo al giocatore (giocatore identificato tramite un numero int)
     modificaSaldo = (sommaDiDenaro, giocatore) => {
-        if(this.state.saldoContoPedine[giocatore - 1] + sommaDiDenaro >= 0){
-            this.state.saldoContoPedine[giocatore - 1] += sommaDiDenaro;
+        if(this.state.saldoContoPedine[giocatore] + sommaDiDenaro >= 0){
+            this.state.saldoContoPedine[giocatore] += sommaDiDenaro;
         }else{
             console.log("Errore"); //TODO
         }
     }
+
+    getSaldoGiocatore
 }
 export default Banca;
