@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { modificaSaldo } from '../Banca';
+import Banca from '../Banca';
 
 class Carte extends Component {
     constructor(props) {
@@ -63,9 +63,9 @@ class Carte extends Component {
     attivaCarta = (idCarta, giocatore) => {
         //  TODO
         alert('Giocatore: ' + giocatore + ' \n La carta è: ' + this.state.carte[idCarta][1]);
-        //if (this.state.carte[idCarta][2] != 0){
-        //     this.props.modificaSaldo(this.state.carte[idCarta][2], giocatore);
-        //}
+        if (this.state.carte[idCarta][2] != 0){
+             <Banca saldoContoGiocatori={() => this.props.modificaSaldo(this.state.carte[idCarta][2], giocatore)}/>
+        }
     }
 }
 export default Carte;
