@@ -26,9 +26,11 @@ const acquistaTerreno = () => {
   for (i = 0; i < props.terreni.length; i++) {
     // Se la casella è un terreno trovo il nome nel array terreni
     // Join tra gli array per NOME
+    // Se il giocatore ha abbastanza soldi procede con l'acquisto
     // Se il nome della casella di tipo terreno corrisponde al nome nell'array terreni
-    // allora aggiorno il proprietario Sia in array Terreni sia in array Caselle
+    // allora aggiorno il proprietario Sia in array Terreni sia in array Caselle    
     if (props.terreni[i].nome==props.caselle[props.attualeCasella].nome) {
+      if (props.terreni[i].valore<=vecchioCapitale) {
       // Aggiorno array terreni
       nuoviTerreni[i].proprietario=props.turnoGiocatore;
       props.setTerreni(nuoviTerreni);  
@@ -39,10 +41,13 @@ const acquistaTerreno = () => {
       // Aggiorno array caselle
       nuoveCaselle[props.attualeCasella].proprietario=props.turnoGiocatore;
       props.setCaselle(nuoveCaselle);
+      alert('Terreno acquisito casella:'+props.attualeCasella); 
+     } else {
+      alert('Non hai abbastanza soldi'); 
      }
+    }
   }
-
-  alert('Terreno acquisito'+props.attualeCasella); 
+  
 };
 
 const acquistaSocieta = () => { 
