@@ -20,7 +20,7 @@ function App(props) {
       },
       {
         tipo: 'terreno',
-        nome: 'mediterranean avenue',
+        nome: 'Mediterranean avenue',
         proprietario: ''
       },
       {
@@ -30,7 +30,7 @@ function App(props) {
       },
       {
         tipo: 'terreno',
-        nome: 'baltic avenue',
+        nome: 'Baltic avenue',
         proprietario: ''
       },
       {
@@ -45,7 +45,7 @@ function App(props) {
       },
       {
         tipo: 'terreno',
-        nome: 'oriental avenue',
+        nome: 'Oriental avenue',
         proprietario: ''
       },
       {
@@ -55,12 +55,12 @@ function App(props) {
       },
       {
         tipo: 'terreno',
-        nome: 'vermont avenue',
+        nome: 'Vermont avenue',
         proprietario: ''
       },
       {
         tipo: 'terreno',
-        nome: 'connecticut avenue',
+        nome: 'Connecticut avenue',
         proprietario: ''
       },
       {
@@ -70,7 +70,7 @@ function App(props) {
       },
       {
         tipo: 'terreno',
-        nome: 'st. charles place',
+        nome: 'St. charles place',
         proprietario: ''
       },
       {
@@ -80,12 +80,12 @@ function App(props) {
       },
       {
         tipo: 'terreno',
-        nome: 'states avenue',
+        nome: 'States avenue',
         proprietario: ''
       },
       {
         tipo: 'terreno',
-        nome: 'virginia avenue',
+        nome: 'Virginia avenue',
         proprietario: ''
       },
       {
@@ -95,7 +95,7 @@ function App(props) {
       },
       {
         tipo: 'terreno',
-        nome: 'st. james place',
+        nome: 'St. james place',
         proprietario: ''
       },
       {
@@ -105,12 +105,12 @@ function App(props) {
       },
       {
         tipo: 'terreno',
-        nome: 'tennessee avenue',
+        nome: 'Tennessee avenue',
         proprietario: ''
       },
       {
         tipo: 'terreno',
-        nome: 'new york avenue',
+        nome: 'New york avenue',
         proprietario: ''
       },
       {
@@ -120,7 +120,7 @@ function App(props) {
       },
       {
         tipo: 'terreno',
-        nome: 'kentucky avenue',
+        nome: 'Kentucky avenue',
         proprietario: ''
       },
       {
@@ -130,12 +130,12 @@ function App(props) {
       },
       {
         tipo: 'terreno',
-        nome: 'indiana avenue',
+        nome: 'Indiana avenue',
         proprietario: ''
       },
       {
         tipo: 'terreno',
-        nome: 'illinois avenue',
+        nome: 'Illinois avenue',
         proprietario: ''
       },
       {
@@ -145,12 +145,12 @@ function App(props) {
       },
       {
         tipo: 'terreno',
-        nome: 'atlantic avenue',
+        nome: 'Atlantic avenue',
         proprietario: ''
       },
       {
         tipo: 'terreno',
-        nome: 'ventnor avenue',
+        nome: 'Ventnor avenue',
         proprietario: ''
       },
       {
@@ -160,7 +160,7 @@ function App(props) {
       },
       {
         tipo: 'terreno',
-        nome: 'marvin gardens',
+        nome: 'Marvin gardens',
         proprietario: ''
       },
       {
@@ -170,12 +170,12 @@ function App(props) {
       },
       {
         tipo: 'terreno',
-        nome: 'pacific avenue',
+        nome: 'Pacific avenue',
         proprietario: ''
       },
       {
         tipo: 'terreno',
-        nome: 'north carolina avenue',
+        nome: 'North carolina avenue',
         proprietario: ''
       },
       {
@@ -185,7 +185,7 @@ function App(props) {
       },
       {
         tipo: 'terreno',
-        nome: 'pennsylvania avenue',
+        nome: 'Pennsylvania avenue',
         proprietario: ''
       },
       {
@@ -200,7 +200,7 @@ function App(props) {
       },
       {
         tipo: 'terreno',
-        nome: 'park place',
+        nome: 'Park place',
         proprietario: ''
       },
       {
@@ -210,7 +210,7 @@ function App(props) {
       },
       {
         tipo: 'terreno',
-        nome: 'boardwalk',
+        nome: 'Boardwalk',
         proprietario: ''
       },
     ]
@@ -219,7 +219,7 @@ function App(props) {
   const [terreni, setTerreni] = React.useState(
     [
       {
-        nome: 'Vicolo Corto',
+        nome: 'Mediterranean avenue',
         coloreSfondo: '#7E3C09',
         proprietario: 0,
         case: 0,
@@ -229,7 +229,7 @@ function App(props) {
         ipotecato: true,
       },
       {
-        nome: 'Vicolo Stretto',
+        nome: 'Baltic avenue',
         coloreSfondo: '#7E3C09',
         proprietario: 0,
         case: 4,
@@ -239,7 +239,7 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Bastioni Gran Sasso',
+        nome: 'Oriental avenue',
         coloreSfondo: '#14E3ED',
         proprietario: -1,
         case: 0,
@@ -249,7 +249,7 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Viale Monte Rosa',
+        nome: 'Vermont avenue',
         coloreSfondo: '#14E3ED',
         proprietario: -1,
         case: 0,
@@ -259,7 +259,7 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Viale Vesuvio',
+        nome: 'Connecticut avenue',
         coloreSfondo: '#14E3ED',
         proprietario: -1,
         case: 0,
@@ -269,7 +269,7 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Via Accademia',
+        nome: 'St. charles place',
         coloreSfondo: '#C00FA9',
         proprietario: -1,
         case: 0,
@@ -279,7 +279,7 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Corso Ateneo',
+        nome: 'States avenue',
         coloreSfondo: '#C00FA9',
         proprietario: -1,
         case: 0,
@@ -289,7 +289,7 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Piazza Università',
+        nome: 'Virginia avenue',
         coloreSfondo: '#C00FA9',
         proprietario: -1,
         case: 0,
@@ -299,7 +299,7 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Via Verdi',
+        nome: 'St. james place',
         coloreSfondo: '#FF8C00',
         proprietario: -1,
         case: 0,
@@ -309,7 +309,7 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Corso Raffaello',
+        nome: 'Tennessee avenue',
         coloreSfondo: '#FF8C00',
         proprietario: -1,
         case: 0,
@@ -319,7 +319,7 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Piazza Dante',
+        nome: 'New york avenue',
         coloreSfondo: '#FF8C00',
         proprietario: -1,
         case: 0,
@@ -329,7 +329,7 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Via Marco Polo',
+        nome: 'Kentucky avenue',
         coloreSfondo: '#E01630',
         proprietario: -1,
         case: 0,
@@ -339,7 +339,17 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Corso Magellano',
+        nome: 'Indiana avenue',
+        coloreSfondo: '#E01630',
+        proprietario: -1,
+        case: 0,
+        alberghi: 0,
+        valore: 220,
+        colore: 'rosso',
+        ipotecato: false,
+      },
+      {
+        nome: 'Illinois avenue',
         coloreSfondo: '#E01630',
         proprietario: -1,
         case: 0,
@@ -349,17 +359,7 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Largo Colombo',
-        coloreSfondo: '#E01630',
-        proprietario: -1,
-        case: 0,
-        alberghi: 0,
-        valore: 240,
-        colore: 'rosso',
-        ipotecato: false,
-      },
-      {
-        nome: 'Viale Costantino',
+        nome: 'Atlantic avenue',
         coloreSfondo: '#F0F00D',
         proprietario: -1,
         case: 0,
@@ -369,7 +369,7 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Viale Traiano',
+        nome: 'Ventnor avenue',
         coloreSfondo: '#F0F00D',
         proprietario: -1,
         case: 0,
@@ -379,7 +379,7 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Piazza Giulio Cesare',
+        nome: 'Marvin gardens',
         coloreSfondo: '#F0F00D',
         proprietario: -1,
         case: 0,
@@ -389,7 +389,7 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Via Roma',
+        nome: 'Pacific avenue',
         coloreSfondo: '#265E08',
         proprietario: -1,
         case: 0,
@@ -399,7 +399,7 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Corso Impero',
+        nome: 'North carolina avenue',
         coloreSfondo: '#265E08',
         proprietario: -1,
         case: 0,
@@ -409,7 +409,7 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Largo Augusto',
+        nome: 'Pennsylvania avenue',
         coloreSfondo: '#265E08',
         proprietario: -1,
         case: 0,
@@ -419,7 +419,7 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Viale dei Giardini',
+        nome: 'Park place',
         coloreSfondo: '#080883',
         proprietario: -1,
         case: 0,
@@ -429,7 +429,7 @@ function App(props) {
         ipotecato: false,
       },
       {
-        nome: 'Parco della Vittoria',
+        nome: 'Boardwalk',
         coloreSfondo: '#080883',
         proprietario: 0,
         case: 0,
