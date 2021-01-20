@@ -33,7 +33,7 @@ function TabellaGiocatori (props) {
         rows[i] = createData(props.giocatori[i].numero, props.giocatori[i].pedina, props.giocatori[i].capitale)
       }
      
-      var turno = props.turnoGiocatore+1;
+      
       
         return (
             <div>

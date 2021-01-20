@@ -6,7 +6,6 @@ import Vendi from './AzioniConBottone/Vendi';
 import VendiEdificio from './AzioniConBottone/VendiEdificio';
 import Ipoteca from './AzioniConBottone/Ipoteca';
 import Abbandona from './AzioniConBottone/Abbandona';
-//import SceltaNumeroGiocatori from './SceltaNumeroGiocatori';
 import Carte from './CarteProbabilitaImprevisto/Carte';
 import Banca from './Banca';
 
@@ -81,7 +80,7 @@ class ComponentController extends React.Component {
 
     }      
 
-    spostaAuto () {
+  /*  spostaAuto () {
         // funzione di messa a punto mappa caselle 
         // sposta il segnalino car in tutte le caselle una alla volta
         let ascissa = this.props.segnalini[2][1];
@@ -100,7 +99,7 @@ class ComponentController extends React.Component {
 
         this.props.segnalini[2]=["car", ascissa, ordinata, "visible",2,attualeCasella];
         this.props.muoviPedine();   
-    }        
+    }  */ 
 
     dadiTirati = false;
 
@@ -140,15 +139,23 @@ class ComponentController extends React.Component {
         
         if(this.props.giocatori[giocatore2].inGioco===false){
             //cerco il primo giocatore in gioco
-            var i = giocatore2+1;
+            var i = giocatore2;
             var x = true;
             
             while(x){
+                
                 if(this.props.giocatori[i].inGioco === true){
                     giocatore2 = i;
                     x = false;
                 }
-                i++;
+                else{
+                    if(i===this.props.numeroGiocatori-1){
+                        i = 0;
+                    }
+                    else{
+                        i++;
+                    }
+                }
             }
             
         }
@@ -261,9 +268,7 @@ class ComponentController extends React.Component {
                     
                     <tr>
                         <td className="tdController" >
-                            <button type="button" onClick={() => this.spostaAuto()}>
-                                Sposta auto di 1
-                            </button>
+                            
                         </td>
                         <td className="tdController" colspan="2" >
                             <VendiEdificio 
@@ -300,7 +305,9 @@ class ComponentController extends React.Component {
                     
                     <tr className="trController">
                         <td className="tdController">
-                            <button type="button" onClick={() => this.tiraDadi()}>Tira dadi</button>
+                            <Button type="button" size="small" onClick={() => this.tiraDadi()}>
+                                Tira dadi
+                            </Button>
                         </td>
                         <td className="tdController">
                             <Costruisci 

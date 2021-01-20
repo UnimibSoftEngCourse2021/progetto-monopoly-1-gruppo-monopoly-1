@@ -136,7 +136,7 @@ class ComponentBoard extends React.Component {
                 <Pedina figura={wheelbarrow} stile={mystyleWheelbarrow} />
 
                 <ComponentController 
-                    segnalini={this.state.segnalini} muoviPedine={this.muoviPedine} 
+                    segnalini={this.state.segnalini} 
                     muoviPedine={this.muoviPedine} 
                     tavolaGioco={tavolaGioco} 
                     turnoGiocatore={this.props.turnoGiocatore} 
