@@ -2,34 +2,39 @@ import React from 'react'
 import { Box, TableCell, TableRow, TableBody, TableContainer, Table, TableHead, Typography} from '@material-ui/core';
 
 
-
-
 function TabellaGiocatori (props) {
 
-    function InGioco(nome){
+   
+    
+
+    function StampaNumero(numero){
+        var t = props.turnoGiocatore +1;
+        
+        if(numero === t){
+            return(<Typography align='center' style={{background:'#cddc39'}}>{numero}</Typography>);
+        }
         var i;
         for(i=0; i<props.giocatori.length; i++){
-            if(props.giocatori[i].nome===nome && props.giocatori[i].inGioco===true){
-                return (<Typography align='center'>{nome}</Typography>);
+            if(props.giocatori[i].numero===numero && props.giocatori[i].inGioco===true){
+                return (<Typography align='center'>{numero}</Typography>);
             }
         }
-        return (<Typography align='center' style={{background:'#d50000'}}>{nome}</Typography>);
+        return (<Typography align='center' style={{background:'#d50000'}}>{numero}</Typography>);
     }
     
-    function createData(nome, pedina, capitale, inGioco) {
-        return { nome, pedina, capitale, inGioco };
+    function createData(numero, pedina, capitale) {
+        return { numero, pedina, capitale };
     }
       
       const rows = [props.giocatori.length];
 
       var i;
       for(i=0; i < props.giocatori.length; i++){
-        rows[i] = createData(props.giocatori[i].nome, props.giocatori[i].pedina, props.giocatori[i].capitale, props.giocatori[i].inGioco)
+        rows[i] = createData(props.giocatori[i].numero, props.giocatori[i].pedina, props.giocatori[i].capitale)
       }
      
-      var turno = props.turnoGiocatore.toString();
+      var turno = props.turnoGiocatore+1;
       
-    
         return (
             <div>
                 <h3 align='center'>
@@ -48,14 +53,9 @@ function TabellaGiocatori (props) {
                         </TableHead>
                         <TableBody>
                             {rows.map((row) => (
-                                <TableRow key={row.name}>
+                                <TableRow key={row.numero}>
                                     <TableCell component="th" scope="row">
-                                    {row.nome===turno?
-                                        <Typography align='center' style={{background:'#cddc39'}}>{row.nome}</Typography>
-                                        :
-                                        InGioco(row.nome)
-                                            
-                                    }
+                                    { StampaNumero(row.numero) }
                                             
                                         
                                     </TableCell>

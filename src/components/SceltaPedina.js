@@ -14,47 +14,50 @@ function SceltaPedina(props){
 
     const pedine = [boat, car, doggo, hat, iron, shoe, thimble, wheelbarrow];
     const [giocatoreAttuale, setGiocatoreAttuale] = React.useState(1);
-    
     const [iniziaPartita, setIniziaPatita] = React.useState(false);
     const numeroGiocatori = parseInt(props.numeroGiocatori);
-   
-    
     const [giocatori, setGiocatori] = React.useState(
         [
           {
-            nome: '0',
-            capitale: 1500,
+            numero: 1,
+            capitale: 0,
             pedina: '',
+            numeroContrattiIniziali: 0,
             inGioco: false,
           },
           {
-            nome: '1',
-            capitale: 1500,
+            numero: 2,
+            capitale: 0,
             pedina: '',
+            numeroContrattiIniziali: 0,
             inGioco: false,
           },
           {
-            nome: '2',
-            capitale: 1500,
+            numero: 3,
+            capitale: 0,
             pedina: '',
+            numeroContrattiIniziali: 0,
             inGioco: false,
           },
           {
-            nome: '3',
-            capitale: 1500,
+            numero: 4,
+            capitale: 0,
             pedina: '',
+            numeroContrattiIniziali: 0,
             inGioco: false,
           },
           {
-            nome: '4',
-            capitale: 1500,
+            numero: 5,
+            capitale: 0,
             pedina: '',
+            numeroContrattiIniziali: 0,
             inGioco: false,
           },
           {
-            nome: '5',
-            capitale: 1500,
+            numero: 6,
+            capitale: 0,
             pedina: '',
+            numeroContrattiIniziali: 0,
             inGioco: false,
           },
         ]
@@ -70,62 +73,74 @@ function SceltaPedina(props){
         // Se la pedina è disponibile, aggiunge alla lista dei giocatori un oggetto avente per giocatore
         // il numero del giocatore attuale e per pedina la pedina selezionata.
         else {
+            var nuovaListaGiocatori = giocatori;
+            var n = giocatoreAttuale;
+            if (numeroGiocatori === 2) {
+                nuovaListaGiocatori[n-1] = {numero: n, capitale: 8750, pedina, numeroContrattiIniziali: 7, inGioco: true };
+            }
+            else if (numeroGiocatori === 3) {
+                nuovaListaGiocatori[n-1] = {numero: n, capitale: 7500, pedina, numeroContrattiIniziali: 6, inGioco: true };
+            }
+            else if (numeroGiocatori === 4) {
+                nuovaListaGiocatori[n-1] = {numero: n, capitale: 6250, pedina, numeroContrattiIniziali: 5, inGioco: true };
+            }
+            else if (numeroGiocatori === 5) {
+                nuovaListaGiocatori[n-1] = {numero: n, capitale: 5000, pedina, numeroContrattiIniziali: 4, inGioco: true };
+            }
+            else {
+                nuovaListaGiocatori[n-1] = {numero: n, capitale: 3750, pedina, numeroContrattiIniziali: 3, inGioco: true };
+            }
+            setGiocatori(nuovaListaGiocatori);
             setGiocatoreAttuale(giocatoreAttuale + 1);
-            var giocatori0 = giocatori;
-            var n = giocatoreAttuale-1;
-            giocatori0[n] = {nome: n.toString(), capitale: 1500, pedina, inGioco: true };
-            setGiocatori(giocatori0);
-            
+
             // Se tutti i giocatori hanno scelto la loro pedina, imposta iniziaPartita a true. 
             //In questo modo viene avviata la partita. 
             if(giocatoreAttuale === numeroGiocatori){
                 //Tolgo dall'array giocatori i giocatori in più
-                var nuoviGiocatori = giocatori.slice(0, n+1);
+                var nuoviGiocatori = giocatori.slice(0, n);
                 setGiocatori(nuoviGiocatori);
                 setIniziaPatita(true);
             }
         }
     }
 
-    
-
     return(
         <div>
-                {
-                    // Se iniziaPartita è true avvia la partita. Altrimenti si consente ai giocatori di scegliere la pedina.
-                    iniziaPartita ?
-                    ReactDOM.render(
-                        <React.StrictMode>
-                            <App 
-                                numeroGiocatori={numeroGiocatori} 
-                                difficolta={props.difficolta} 
-                                giocatori={giocatori}
-                                setGiocatori={setGiocatori}
-                            />
-                        </React.StrictMode>,
-                        document.getElementById('root')
-                    )
-                    :
-                    <div className="scelta-pedina">
-                        <h1>Giocatore {giocatoreAttuale} scegli la tua pedina:</h1>
-                        <div className="contenitore-pedine">
-                            {
-                                pedine.map(pedina => (
-                                    <div className="contenitore-pedine-interno" onClick={() => associaGiocatorePedina(pedina)}>
-                                        <img 
-                                        alt=""
-                                        className="scelta-pedina-immagine"
-                                        src={pedina}/>
-                                    </div>
-                                ))
-                            }
-                        </div>
+            {
+                // Se iniziaPartita è true avvia la partita. Altrimenti si consente ai giocatori di scegliere la pedina.
+                iniziaPartita ?
+                ReactDOM.render(
+                    <React.StrictMode>
+                        <App 
+                            numeroGiocatori={numeroGiocatori} 
+                            difficolta={props.difficolta} 
+                            giocatori={giocatori}
+                            setGiocatori={setGiocatori}
+                        />
+                    </React.StrictMode>,
+                    document.getElementById('root')
+                )
+                :
+                <div className="scelta-pedina">
+                    <h1>Giocatore {giocatoreAttuale} scegli la tua pedina:</h1>
+                    <div className="contenitore-pedine">
+                        {
+                            pedine.map(pedina => (
+                                <div className="contenitore-pedine-interno" onClick={() => associaGiocatorePedina(pedina)}>
+                                    <img 
+                                    alt=""
+                                    className="scelta-pedina-immagine"
+                                    src={pedina}/>
+                                </div>
+                            ))
+                        }
                     </div>
-                }
-                
-            </div>
-        );
+                </div>
+            }    
+        </div>
+    );
 }
+
 export default SceltaPedina;
 
 

@@ -22,10 +22,10 @@ class SceltaDifficolta extends Component {
                     <div>
                         <input 
                             type="radio" 
-                            value="medio" 
-                            checked={this.props.difficolta === "medio"}
+                            value="normale" 
+                            checked={this.props.difficolta === "normale"}
                             onChange={this.props.gestisciDifficolta}
-                        /> Medio
+                        /> Normale
                     </div>
                     <div>
                         <input 
