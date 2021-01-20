@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import '../index.css';
 import App from '../App';
 import Banca from './Banca'
+import SceltaPedina from './SceltaPedina'
 
 export function iniziaPartita(numero, diff) {
 
@@ -11,7 +12,7 @@ export function iniziaPartita(numero, diff) {
 
     ReactDOM.render(
         <React.StrictMode>
-            <App numeroGiocatori={numeroGiocatori} difficolta={difficolta}/>
+            <SceltaPedina numeroGiocatori={numeroGiocatori} difficolta={difficolta}/>
         </React.StrictMode>,
         document.getElementById('root')
     );
