@@ -16,6 +16,7 @@ let sommaDadi;
 let punteggioDoppio;
 let carta1 = new Carte();
 let dadiTirati; // Questo booleano permette di tirare i dadi solo ina volta per turno
+let numeroTiriDadi = 0;
 
 function verificaPunteggioDoppio(dado1, dado2){
     if(dado1 === dado2){
@@ -24,8 +25,6 @@ function verificaPunteggioDoppio(dado1, dado2){
         return false;
     }
 }
-
-
 
 class ComponentController extends React.Component {
 
@@ -66,6 +65,17 @@ class ComponentController extends React.Component {
         this.props.segnalini[numSegnalino][1]=ascissa;
         this.props.segnalini[numSegnalino][2]=ordinata;
         this.props.segnalini[numSegnalino][5]=attualeCasella;
+        console.log("attuale casella " + attualeCasella);
+        console.log("turnoGiocatore " + this.props.turnoGiocatore);
+
+        // Se il giocatore finisce sulla casella "Vai in Prigione", allora la sua pedina
+        // viene spostata in Prigione
+        if (this.props.segnalini[numSegnalino][5] === 30) {
+            alert("Vai in Prigione.");
+            this.props.segnalini[numSegnalino][1] = this.props.tavolaGioco[10][1];
+            this.props.segnalini[numSegnalino][2] = this.props.tavolaGioco[10][2];
+            this.props.segnalini[numSegnalino][5] = 10;
+        }
 
         if (this.props.caselle[attualeCasella].tipo ==='imprevisti') {
            // alert('imprevisti');
@@ -108,16 +118,18 @@ class ComponentController extends React.Component {
             dado1 = Math.floor(Math.random()*6) + 1;
             dado2 = Math.floor(Math.random()*6) + 1;
             sommaDadi = dado1 + dado2;
-            punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);   
-
-            this.spostaSegnalino(sommaDadi);
-                
+            numeroTiriDadi = numeroTiriDadi + 1;
+            punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
+            if ((dado1 !== dado2) || (dado1 === dado2) && (numeroTiriDadi === 3)) {
+                dadiTirati = true;
+                numeroTiriDadi = 0;
+            }
+            this.spostaSegnalino(sommaDadi);  
             this.setState({
                 primoMsgTA: `${sommaDadi}`,
                 secondoMsgTA: 'Il punteggio dei dadi è doppio: '+dado1+' + '+dado2 +' ' + `${punteggioDoppio}`,
                 terzoMsgTA: `${sommaDadi}`
-            })
-            dadiTirati = true;
+            })  
         }
         else {
             alert('Non puoi tirare nuovamente i dadi.');
@@ -164,7 +176,7 @@ class ComponentController extends React.Component {
             var vincitore;
             for(i=0; i<this.props.giocatori.length; i++){
                 if(this.props.giocatori[i].inGioco === true){ 
-                    vincitore = this.props.giocatori[i].nome;
+                    vincitore = this.props.giocatori[i].numero;
                 }
             }
             alert('Giocatore: '+ vincitore +' hai vinto');
@@ -173,7 +185,7 @@ class ComponentController extends React.Component {
         }
 
         if(this.props.giocatori[this.props.turnoGiocatore].capitale <= 0){
-           alert('Giocatore: ' + this.props.giocatori[this.props.turnoGiocatore].nome  + ' \n Non hai più soldi hai perso ');
+           alert('Giocatore: ' + this.props.giocatori[this.props.turnoGiocatore].numero  + ' \n Non hai più soldi hai perso ');
            var nuoviGiocatori = this.props.giocatori;
            nuoviGiocatori[this.props.turnoGiocatore].inGioco = false;
            this.props.setGiocatori(nuoviGiocatori);
@@ -217,7 +229,7 @@ class ComponentController extends React.Component {
             
             
             if(pareggio<2){
-                alert('Giocatore: '+ vincitore.nome +' hai vinto');
+                alert('Giocatore: '+ vincitore.numero +' hai vinto');
                 //concludere la partita
                 return;
             }

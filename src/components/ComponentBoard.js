@@ -62,7 +62,7 @@ class ComponentBoard extends React.Component {
 	constructor(props) {
         super(props);
         this.state = {
-          // Tracciato record: nome, ascissa, ordinata, visibilita, strato, attualeCasella  
+          // Tracciato record: nome, ascissa, ordinata, visibilita, strato, attualeCasella, giocatore  
           segnalini: [
                         ["hat", 940, 600, "visible",0,0],
                         ["iron", 940, 600, "visible",1,0],
