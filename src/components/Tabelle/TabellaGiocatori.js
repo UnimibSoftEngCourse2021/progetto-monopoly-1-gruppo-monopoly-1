@@ -1,6 +1,13 @@
 import React from 'react'
 import { Box, TableCell, TableRow, TableBody, TableContainer, Table, TableHead, Typography} from '@material-ui/core';
-
+import hat from '../../img/hat.png';
+import iron from '../../img/iron.png';
+import car from '../../img/car.png';
+import boat from '../../img/boat.png';
+import doggo from '../../img/doggo.png';
+import shoe from '../../img/shoe.png';
+import thimble from '../../img/thimble.png';
+import wheelbarrow from '../../img/wheelbarrow.png';
 
 
 
@@ -18,13 +25,7 @@ function TabellaGiocatori (props) {
       for(i=0; i < props.giocatori.length; i++){
         rows[i] = createData(props.giocatori[i].nome, props.giocatori[i].pedina, props.giocatori[i].capitale)
       }
-     /* createData(props.giocatori[0].nome, props.giocatori[0].pedina, props.giocatori[0].capitale),
-        createData(props.giocatori[1].nome, props.giocatori[1].pedina, props.giocatori[1].capitale),
-        createData(props.giocatori[2].nome, props.giocatori[2].pedina, props.giocatori[2].capitale),
-        createData(props.giocatori[3].nome, props.giocatori[3].pedina, props.giocatori[3].capitale),
-        createData(props.giocatori[4].nome, props.giocatori[4].pedina, props.giocatori[4].capitale),
-        createData(props.giocatori[5].nome, props.giocatori[5].pedina, props.giocatori[5].capitale),
-    */
+     
       var turno = props.turnoGiocatore.toString();
       
     
@@ -54,7 +55,7 @@ function TabellaGiocatori (props) {
                                         <Typography >{row.nome}</Typography>
                                         }
                                     </TableCell>
-                                    <TableCell align="right">{row.pedina}</TableCell>
+                                    <TableCell align="right"><img alt="" src={row.pedina} style={{width:'35px'}}/></TableCell>
                                     <TableCell align="right">{row.capitale}</TableCell>
                                 </TableRow>
                             ))}

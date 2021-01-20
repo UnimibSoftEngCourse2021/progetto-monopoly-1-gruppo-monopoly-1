@@ -221,17 +221,17 @@ function App(props) {
       {
         nome: 'Mediterranean avenue',
         coloreSfondo: '#7E3C09',
-        proprietario: -1,
+        proprietario: 0,
         case: 0,
         alberghi: 0,
         valore: 60,
         colore: 'marrone',
-        ipotecato: true,
+        ipotecato: false,
       },
       {
         nome: 'Baltic avenue',
         coloreSfondo: '#7E3C09',
-        proprietario: -1,
+        proprietario: 0,
         case: 4,
         alberghi: 0,
         valore: 60,
@@ -483,50 +483,8 @@ function App(props) {
       },
     ]
   );
-
+ 
   
-
-  const [giocatori, setGiocatori] = React.useState(
-    [
-      {
-        nome: '0',
-        capitale: 1500,
-        pedina: '',
-        inGioco: true,
-      },
-      {
-        nome: '1',
-        capitale: 1500,
-        pedina: '',
-        inGioco: false,
-      },
-      {
-        nome: '2',
-        capitale: 1500,
-        pedina: '',
-        inGioco: false,
-      },
-      {
-        nome: '3',
-        capitale: 1500,
-        pedina: '',
-        inGioco: false,
-      },
-      {
-        nome: '4',
-        capitale: 1500,
-        pedina: '',
-        inGioco: true,
-      },
-      {
-        nome: '5',
-        capitale: 1500,
-        pedina: '',
-        inGioco: true,
-      },
-    ]
-  );
-
   const [turnoGiocatore, setTurnoGiocatore] = React.useState(0);
 
   //Variabile di stato utilizzata per gestire le partite a tempo
@@ -534,8 +492,10 @@ function App(props) {
   //se è a tempo avrà il valore del numero di turni che mancano alla fine della partita 
   const [tempo, setTempo] = React.useState(null);
   
-
+ 
   
+  
+
   
 
   return (
@@ -553,8 +513,8 @@ function App(props) {
               numeroGiocatori={props.numeroGiocatori}
               terreni={terreni}
               setTerreni={setTerreni}
-              giocatori={giocatori}
-              setGiocatori={setGiocatori}
+              giocatori={props.giocatori}
+              setGiocatori={props.setGiocatori}
               societàStazioni={societàStazioni}
               setSocietàStazioni={setSocietàStazioni}
               caselle={caselle} setCaselle={setCaselle}
@@ -563,7 +523,7 @@ function App(props) {
             />
           </td>
           <td className="colonna1" >
-            <TabellaGiocatori giocatori={giocatori} turnoGiocatore={turnoGiocatore}/>
+            <TabellaGiocatori giocatori={props.giocatori} turnoGiocatore={turnoGiocatore}/>
           </td>
 
         </tr>
