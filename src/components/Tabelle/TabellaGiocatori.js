@@ -1,29 +1,30 @@
 import React from 'react'
 import { Box, TableCell, TableRow, TableBody, TableContainer, Table, TableHead, Typography} from '@material-ui/core';
-import hat from '../../img/hat.png';
-import iron from '../../img/iron.png';
-import car from '../../img/car.png';
-import boat from '../../img/boat.png';
-import doggo from '../../img/doggo.png';
-import shoe from '../../img/shoe.png';
-import thimble from '../../img/thimble.png';
-import wheelbarrow from '../../img/wheelbarrow.png';
+
 
 
 
 function TabellaGiocatori (props) {
 
+    function InGioco(nome){
+        var i;
+        for(i=0; i<props.giocatori.length; i++){
+            if(props.giocatori[i].nome===nome && props.giocatori[i].inGioco===true){
+                return (<Typography align='center'>{nome}</Typography>);
+            }
+        }
+        return (<Typography align='center' style={{background:'#d50000'}}>{nome}</Typography>);
+    }
     
-    
-    function createData(nome, pedina, capitale) {
-        return { nome, pedina, capitale };
+    function createData(nome, pedina, capitale, inGioco) {
+        return { nome, pedina, capitale, inGioco };
     }
       
       const rows = [props.giocatori.length];
 
       var i;
       for(i=0; i < props.giocatori.length; i++){
-        rows[i] = createData(props.giocatori[i].nome, props.giocatori[i].pedina, props.giocatori[i].capitale)
+        rows[i] = createData(props.giocatori[i].nome, props.giocatori[i].pedina, props.giocatori[i].capitale, props.giocatori[i].inGioco)
       }
      
       var turno = props.turnoGiocatore.toString();
@@ -49,11 +50,14 @@ function TabellaGiocatori (props) {
                             {rows.map((row) => (
                                 <TableRow key={row.name}>
                                     <TableCell component="th" scope="row">
-                                        {row.nome===turno?
+                                    {row.nome===turno?
                                         <Typography align='center' style={{background:'#cddc39'}}>{row.nome}</Typography>
                                         :
-                                        <Typography >{row.nome}</Typography>
-                                        }
+                                        InGioco(row.nome)
+                                            
+                                    }
+                                            
+                                        
                                     </TableCell>
                                     <TableCell align="right"><img alt="" src={row.pedina} style={{width:'35px'}}/></TableCell>
                                     <TableCell align="right">{row.capitale}</TableCell>

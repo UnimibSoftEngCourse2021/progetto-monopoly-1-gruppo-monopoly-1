@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import App from '../App'
 import hat from '../img/hat.png'
@@ -80,9 +80,8 @@ function SceltaPedina(props){
             //In questo modo viene avviata la partita. 
             if(giocatoreAttuale === numeroGiocatori){
                 //Tolgo dall'array giocatori i giocatori in più
-                //var nuoviGiocatori = giocatori[0, n];
-               // setGiocatori(nuoviGiocatori);
-                console.log(giocatori);
+                var nuoviGiocatori = giocatori.slice(0, n+1);
+                setGiocatori(nuoviGiocatori);
                 setIniziaPatita(true);
             }
         }

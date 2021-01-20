@@ -5,9 +5,11 @@ import Costruisci from './AzioniConBottone/Costruisci';
 import Vendi from './AzioniConBottone/Vendi';
 import VendiEdificio from './AzioniConBottone/VendiEdificio';
 import Ipoteca from './AzioniConBottone/Ipoteca';
+import Abbandona from './AzioniConBottone/Abbandona';
 //import SceltaNumeroGiocatori from './SceltaNumeroGiocatori';
 import Carte from './CarteProbabilitaImprevisto/Carte';
 import Banca from './Banca';
+
 
 
 let dado1;
@@ -133,9 +135,26 @@ class ComponentController extends React.Component {
             giocatore2 = giocatore + 1;
         }
         
+        if(this.props.giocatori[giocatore2].inGioco===false){
+            //cerco il primo giocatore in gioco
+            var i = giocatore2+1;
+            var x = true;
+            
+            while(x){
+                if(this.props.giocatori[i].inGioco === true){
+                    giocatore2 = i;
+                    x = false;
+                }
+                i++;
+            }
+            
+        }
+
         dadiTirati = false;
         this.props.setTurnoGiocatore(giocatore2);  
+
         
+
         this.fallimentoVittoria();
 
         if(!(this.props.tempo === null)){
@@ -264,7 +283,15 @@ class ComponentController extends React.Component {
                             />
                         </td>   
                         <td className="tdController">
-                            numGiocatori={this.props.numeroGiocatori}
+                            <Abbandona 
+                                turnoGiocatore={this.props.turnoGiocatore}
+                                giocatori={this.props.giocatori}
+                                setGiocatori={this.props.setGiocatori}
+                                terreni={this.props.terreni}
+                                setTerreni={this.props.setTerreni}
+                                societàStazioni={this.props.societàStazioni}
+                                setSocietàStazioni={this.props.setSocietàStazioni}
+                            />
                         </td>
                     </tr>
                     
