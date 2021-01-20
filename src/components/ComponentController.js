@@ -119,6 +119,9 @@ class ComponentController extends React.Component {
             })
             dadiTirati = true;
         }
+        else {
+            alert('Non puoi tirare nuovamente i dadi.');
+        }
     }
 
     // Funzione che permette di concludere il turno e che passa il comando al giocatore successivo.
