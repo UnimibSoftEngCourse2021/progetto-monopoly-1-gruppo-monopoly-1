@@ -9,26 +9,21 @@ import shoe from '../../img/shoe.png';
 import thimble from '../../img/thimble.png';
 import wheelbarrow from '../../img/wheelbarrow.png';
 
-
-
 function TabellaGiocatori (props) {
 
-    
-    
-    function createData(nome, pedina, capitale) {
-        return { nome, pedina, capitale };
+    function createData(numero, pedina, capitale) {
+        return { numero, pedina, capitale };
     }
       
       const rows = [props.giocatori.length];
 
       var i;
       for(i=0; i < props.giocatori.length; i++){
-        rows[i] = createData(props.giocatori[i].nome, props.giocatori[i].pedina, props.giocatori[i].capitale)
+        rows[i] = createData(props.giocatori[i].numero, props.giocatori[i].pedina, props.giocatori[i].capitale)
       }
      
       var turno = props.turnoGiocatore.toString();
       
-    
         return (
             <div>
                 <h3 align='center'>
@@ -47,12 +42,12 @@ function TabellaGiocatori (props) {
                         </TableHead>
                         <TableBody>
                             {rows.map((row) => (
-                                <TableRow key={row.name}>
+                                <TableRow key={row.numero}>
                                     <TableCell component="th" scope="row">
-                                        {row.nome===turno?
-                                        <Typography align='center' style={{background:'#cddc39'}}>{row.nome}</Typography>
+                                        {row.numero===turno?
+                                        <Typography align='center' style={{background:'#cddc39'}}>{row.numero}</Typography>
                                         :
-                                        <Typography >{row.nome}</Typography>
+                                        <Typography >{row.numero}</Typography>
                                         }
                                     </TableCell>
                                     <TableCell align="right"><img alt="" src={row.pedina} style={{width:'35px'}}/></TableCell>
