@@ -10,13 +10,13 @@ import Carte from './CarteProbabilitaImprevisto/Carte';
 import Banca from './Banca';
 
 
-
 let dado1;
 let dado2;
 let sommaDadi;
 let punteggioDoppio;
 let carta1 = new Carte();
 let dadiTirati; // Questo booleano permette di tirare i dadi solo ina volta per turno
+let numeroTiriDadi = 0;
 
 function verificaPunteggioDoppio(dado1, dado2){
     if(dado1 === dado2){
@@ -25,8 +25,6 @@ function verificaPunteggioDoppio(dado1, dado2){
         return false;
     }
 }
-
-
 
 class ComponentController extends React.Component {
 
@@ -40,21 +38,17 @@ class ComponentController extends React.Component {
       }
 
     spostaSegnalino (sommaDadi) {
-        // i giocatori vanno da 1 a 6 , per ora assegno i segnalini in ordine numerico
-        // uso this.props.turnoGiocatore-1 perchè i segnalini partono da ZERO
         let numSegnalino = this.props.turnoGiocatore;
-        let ascissa = this.props.segnalini[numSegnalino][1];
-        let ordinata = this.props.segnalini[numSegnalino][2];
-
-        //let [a, xposSegnalino, tposSegnalino, visSegnalino, strato, attualeCasella] = this.props.segnalini[numSegnalino];
-        let attualeCasella = this.props.segnalini[numSegnalino][5];
+        let ascissa = this.props.segnalini[numSegnalino].ascissa;
+        let ordinata = this.props.segnalini[numSegnalino].ordinata;
+        let attualeCasella = this.props.segnalini[numSegnalino].attualeCasella;
         
         var i;
         for (i = 1; i < sommaDadi+1; i++) {
             if (attualeCasella === 39) {
                 attualeCasella=0;
-                let banca1 = new Banca();
-                banca1.giocatorePassaDalVia(this.props.giocatori,this.props.turnoGiocatore,this.props.setGiocatori);
+                let banca = new Banca();
+                banca.giocatorePassaDalVia(this.props.giocatori,this.props.turnoGiocatore,this.props.setGiocatori);
             } else {
                 attualeCasella = attualeCasella + 1
             }        
@@ -63,24 +57,38 @@ class ComponentController extends React.Component {
         ascissa = this.props.tavolaGioco[attualeCasella][1];
         ordinata = this.props.tavolaGioco[attualeCasella][2];
   
-        //this.props.segnalini[0]=["hat", ascissa, ordinata, "visible",0,attualeCasella];
-        this.props.segnalini[numSegnalino][1]=ascissa;
-        this.props.segnalini[numSegnalino][2]=ordinata;
-        this.props.segnalini[numSegnalino][5]=attualeCasella;
+        // Imposta l'ascissa e l'ordinata della pedina in modo che coincidano con
+        // l'ascissa e l'ordinata della casella su cui è finito il giocatore.
+        this.props.segnalini[numSegnalino].ascissa=ascissa;
+        this.props.segnalini[numSegnalino].ordinata=ordinata;
+        this.props.segnalini[numSegnalino].attualeCasella=attualeCasella;
+
+        // Se il giocatore finisce sulla casella "Vai in Prigione", allora la sua pedina
+        // viene spostata in Prigione.
+        if (this.props.segnalini[numSegnalino].attualeCasella === 30) {
+            alert("Vai in Prigione.");
+            this.props.segnalini[numSegnalino].ascissa = this.props.tavolaGioco[10][1];
+            this.props.segnalini[numSegnalino].ordinata = this.props.tavolaGioco[10][2];
+            this.props.segnalini[numSegnalino].attualeCasella = 10;
+        }
 
         if (this.props.caselle[attualeCasella].tipo ==='imprevisti') {
            // alert('imprevisti');
-           carta1.estraiCarta(false,this.props.turnoGiocatore);
+           carta1.estraiCarta(false, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori);
         };
         if (this.props.caselle[attualeCasella].tipo ==='probabilita') {
             //alert('probabilita');
-            carta1.estraiCarta(true,this.props.turnoGiocatore);
+            carta1.estraiCarta(true, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori);
         };        
+
         this.props.muoviPedine();
         this.pagaAffitto();
         this.pagaTasse(); 
 
     }       
+      
+
+  
 
     dadiTirati = false;
 
@@ -90,16 +98,18 @@ class ComponentController extends React.Component {
             dado1 = Math.floor(Math.random()*6) + 1;
             dado2 = Math.floor(Math.random()*6) + 1;
             sommaDadi = dado1 + dado2;
-            punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);   
-
-            this.spostaSegnalino(sommaDadi);
-                
+            numeroTiriDadi = numeroTiriDadi + 1;
+            punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
+            if ((dado1 !== dado2) || (dado1 === dado2) && (numeroTiriDadi === 3)) {
+                dadiTirati = true;
+                numeroTiriDadi = 0;
+            }
+            this.spostaSegnalino(sommaDadi);  
             this.setState({
                 primoMsgTA: `${sommaDadi}`,
                 secondoMsgTA: 'Il punteggio dei dadi è doppio: '+dado1+' + '+dado2 +' ' + `${punteggioDoppio}`,
                 terzoMsgTA: `${sommaDadi}`
-            })
-            dadiTirati = true;
+            })  
         }
         else {
             alert('Non puoi tirare nuovamente i dadi.');
@@ -107,7 +117,7 @@ class ComponentController extends React.Component {
     }
 
     // Funzione che permette di concludere il turno e che passa il comando al giocatore successivo.
-    // Per comunicare ai giocatori questo cambiamento viene utilizzato un allert.
+    // Per comunicare ai giocatori questo cambiamento viene utilizzato un alert.
     finisciTurno = () => {
         const giocatore = this.props.turnoGiocatore;
         var giocatore2;
@@ -171,7 +181,7 @@ class ComponentController extends React.Component {
             var vincitore;
             for(i=0; i<this.props.giocatori.length; i++){
                 if(this.props.giocatori[i].inGioco === true){ 
-                    vincitore = this.props.giocatori[i].nome;
+                    vincitore = this.props.giocatori[i].numero;
                 }
             }
             alert('Giocatore: '+ vincitore +' hai vinto');
@@ -180,7 +190,7 @@ class ComponentController extends React.Component {
         }
 
         if(this.props.giocatori[this.props.turnoGiocatore].capitale <= 0){
-           alert('Giocatore: ' + this.props.giocatori[this.props.turnoGiocatore].nome  + ' \n Non hai più soldi hai perso ');
+           alert('Giocatore: ' + this.props.giocatori[this.props.turnoGiocatore].numero  + ' \n Non hai più soldi hai perso ');
            var nuoviGiocatori = this.props.giocatori;
            nuoviGiocatori[this.props.turnoGiocatore].inGioco = false;
            this.props.setGiocatori(nuoviGiocatori);
@@ -224,7 +234,7 @@ class ComponentController extends React.Component {
             
             
             if(pareggio<2){
-                alert('Giocatore: '+ vincitore.nome +' hai vinto');
+                alert('Giocatore: '+ vincitore.numero +' hai vinto');
                 //concludere la partita
                 return;
             }
@@ -426,7 +436,7 @@ class ComponentController extends React.Component {
                         </td>   
                         <td className="tdController">
                             <Acquista 
-                              attualeCasella={this.props.segnalini[this.props.turnoGiocatore][5]}
+                              attualeCasella={this.props.segnalini[this.props.turnoGiocatore].attualeCasella}
                               caselle={this.props.caselle} 
                               setCaselle={this.props.setCaselle}
                               turnoGiocatore={this.props.turnoGiocatore}

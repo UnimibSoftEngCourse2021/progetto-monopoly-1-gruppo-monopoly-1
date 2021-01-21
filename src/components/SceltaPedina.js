@@ -23,6 +23,7 @@ function SceltaPedina(props){
             capitale: 0,
             pedina: '',
             numeroContrattiIniziali: 0,
+            inPrigione: false,
             inGioco: false,
           },
           {
@@ -30,6 +31,7 @@ function SceltaPedina(props){
             capitale: 0,
             pedina: '',
             numeroContrattiIniziali: 0,
+            inPrigione: false,
             inGioco: false,
           },
           {
@@ -37,6 +39,7 @@ function SceltaPedina(props){
             capitale: 0,
             pedina: '',
             numeroContrattiIniziali: 0,
+            inPrigione: false,
             inGioco: false,
           },
           {
@@ -44,6 +47,7 @@ function SceltaPedina(props){
             capitale: 0,
             pedina: '',
             numeroContrattiIniziali: 0,
+            inPrigione: false,
             inGioco: false,
           },
           {
@@ -51,6 +55,7 @@ function SceltaPedina(props){
             capitale: 0,
             pedina: '',
             numeroContrattiIniziali: 0,
+            inPrigione: false,
             inGioco: false,
           },
           {
@@ -58,47 +63,118 @@ function SceltaPedina(props){
             capitale: 0,
             pedina: '',
             numeroContrattiIniziali: 0,
+            inPrigione: false,
             inGioco: false,
           },
         ]
-      );
+    );
+    const [segnalini, setSegnalini] = React.useState (
+        [
+            {
+                nome: "",
+                ascissa: 940,
+                ordinata: 600,
+                visibilita: "hidden",
+                strato: 0,
+                attualeCasella: 0,
+                giocatore: 1
+            },
+            {
+                nome: "",
+                ascissa: 940,
+                ordinata: 600,
+                visibilita: "hidden",
+                strato: 1,
+                attualeCasella: 0,
+                giocatore: 2
+            },
+            {
+                nome: "",
+                ascissa: 940,
+                ordinata: 600,
+                visibilita: "hidden",
+                strato: 2,
+                attualeCasella: 0,
+                giocatore: 3
+            },
+            {
+                nome: "",
+                ascissa: 940,
+                ordinata: 600,
+                visibilita: "hidden",
+                strato: 3,
+                attualeCasella: 0,
+                giocatore: 4
+            },
+            {
+                nome: "",
+                ascissa: 940,
+                ordinata: 600,
+                visibilita: "hidden",
+                strato: 4,
+                attualeCasella: 0,
+                giocatore: 5
+            },
+            {
+                nome: "",
+                ascissa: 940,
+                ordinata: 600,
+                visibilita: "hidden",
+                strato: 5,
+                attualeCasella: 0,
+                giocatore: 6
+            }
+        ]
+    );
 
-    // Questa funzione crea una lista di oggetti. Ogni oggetto rappresenta un giocatore.
-    // Ogni giocatore è caratterizzato da un numero e da una pedina.
+    // Questa funzione associa ad ogni giocatore una pedina.
     function associaGiocatorePedina(pedina){
         // Se una pedina è già stata scelta da un giocatore, non può più essere scelta dagli altri.
         if (giocatori.find(giocatore => giocatore.pedina === pedina)) {
             alert('Non puoi scegliere una pedina già selezionata!');
         }
-        // Se la pedina è disponibile, aggiunge alla lista dei giocatori un oggetto avente per giocatore
-        // il numero del giocatore attuale e per pedina la pedina selezionata.
+        // Se la pedina è disponibile, associa la pedina al giocatore e imposta i valori iniziali degli altri attributi
+        // del giocatore.
         else {
             var nuovaListaGiocatori = giocatori;
             var n = giocatoreAttuale;
             if (numeroGiocatori === 2) {
-                nuovaListaGiocatori[n-1] = {numero: n, capitale: 8750, pedina, numeroContrattiIniziali: 7, inGioco: true };
+                nuovaListaGiocatori[n-1] = {numero: n, capitale: 8750, pedina, numeroContrattiIniziali: 7, inPrigione: false, inGioco: true };
             }
             else if (numeroGiocatori === 3) {
-                nuovaListaGiocatori[n-1] = {numero: n, capitale: 7500, pedina, numeroContrattiIniziali: 6, inGioco: true };
+                nuovaListaGiocatori[n-1] = {numero: n, capitale: 7500, pedina, numeroContrattiIniziali: 6, inPrigione: false, inGioco: true };
             }
             else if (numeroGiocatori === 4) {
-                nuovaListaGiocatori[n-1] = {numero: n, capitale: 6250, pedina, numeroContrattiIniziali: 5, inGioco: true };
+                nuovaListaGiocatori[n-1] = {numero: n, capitale: 6250, pedina, numeroContrattiIniziali: 5, inPrigione: false, inGioco: true };
             }
             else if (numeroGiocatori === 5) {
-                nuovaListaGiocatori[n-1] = {numero: n, capitale: 5000, pedina, numeroContrattiIniziali: 4, inGioco: true };
+                nuovaListaGiocatori[n-1] = {numero: n, capitale: 5000, pedina, numeroContrattiIniziali: 4, inPrigione: false, inGioco: true };
             }
             else {
-                nuovaListaGiocatori[n-1] = {numero: n, capitale: 3750, pedina, numeroContrattiIniziali: 3, inGioco: true };
+                nuovaListaGiocatori[n-1] = {numero: n, capitale: 3750, pedina, numeroContrattiIniziali: 3, inPrigione: false, inGioco: true };
             }
             setGiocatori(nuovaListaGiocatori);
+
+            // Qui viene creata una lista di segnalini.
+            // Ogni volta che un giocatore sceglie una pedina, la lista viene aggiornata in modo
+            // da associare ogni segnalino (pedina) al corrispondente giocatore.
+            var nuovaListaSegnalini = segnalini;
+            nuovaListaSegnalini[n-1] =  {
+                                            nome: pedina,
+                                            ascissa: 940,
+                                            ordinata: 600,
+                                            visibilita: "visible",
+                                            strato: n-1,
+                                            attualeCasella: 0,
+                                            giocatore: n
+                                        };
+            setSegnalini(nuovaListaSegnalini);
+
             setGiocatoreAttuale(giocatoreAttuale + 1);
 
             // Se tutti i giocatori hanno scelto la loro pedina, imposta iniziaPartita a true. 
-            //In questo modo viene avviata la partita. 
+            // In questo modo viene avviata la partita. 
             if(giocatoreAttuale === numeroGiocatori){
-                //Tolgo dall'array giocatori i giocatori in più
-                var nuoviGiocatori = giocatori.slice(0, n);
-                setGiocatori(nuoviGiocatori);
                 setIniziaPatita(true);
             }
         }
@@ -116,6 +192,8 @@ function SceltaPedina(props){
                             difficolta={props.difficolta} 
                             giocatori={giocatori}
                             setGiocatori={setGiocatori}
+                            segnalini={segnalini}
+                            setSegnalini={setSegnalini}
                         />
                     </React.StrictMode>,
                     document.getElementById('root')

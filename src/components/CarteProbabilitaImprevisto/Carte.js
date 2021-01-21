@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import Banca from '../Banca';
 
 class Carte extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            messaggioCarte: 'Messaggio Carte',
+
             //carta = [Numero carta, Descrizione, Somma di denaro, Somma per ogni casa, Somma per ogni albergo, Somma per ogni giocatore]
             carte: [
                 //Probabilità
@@ -47,25 +48,39 @@ class Carte extends Component {
         }
     }
 
-
-    
-    estraiCarta = (probabilitaOImprevisto, giocatore) => { //probabilità==true imprevisto==false
+    estraiCarta = (probabilitaOImprevisto, turnoGiocatore, giocatori, setGiocatori) => { //probabilità==true imprevisto==false
         let idCarta;
         if (probabilitaOImprevisto){
             idCarta = Math.floor(Math.random()*(15));
         }else{
             idCarta = Math.floor(Math.random()*(31-16)+16);
         };
-        this.attivaCarta(idCarta, giocatore);
+        alert('Giocatore: ' + turnoGiocatore + ' \n La carta è: ' + this.state.carte[idCarta][1]);
+        this.attivaCarta(idCarta, turnoGiocatore, giocatori, setGiocatori);
     }
 
-    
-    attivaCarta = (idCarta, giocatore) => {
+    attivaCarta = (idCarta, turnoGiocatore, giocatori, setGiocatori) => {
         //  TODO
-        alert('Giocatore: ' + giocatore + ' \n La carta è: ' + this.state.carte[idCarta][1]);
         if (this.state.carte[idCarta][2] != 0){
-             <Banca saldoContoGiocatori={() => this.props.modificaSaldo(this.state.carte[idCarta][2], giocatore)}/>
+            //<Banca saldoContoGiocatori={() => this.props.modificaSaldo(this.state.carte[idCarta][2], giocatore)}/>
+            var nuoviGiocatori = giocatori;
+            nuoviGiocatori[turnoGiocatore].capitale += this.state.carte[idCarta][2];
+            setGiocatori(nuoviGiocatori);
+
         }
+        if (this.state.carte[idCarta][3] != 0){
+            let sommaDiDenaro = 0;
+            sommaDiDenaro = this.state.carte[idCarta][3];
+            
+        }
+    }
+
+    render () {
+        
+        return (
+            <div>  
+            </div>
+        )
     }
 }
 export default Carte;

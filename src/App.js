@@ -437,10 +437,8 @@ function App(props) {
         ipotecato: false,
       },
     ]
-  ); 
-
-  
-
+  );
+   
   const [societàStazioni, setSocietàStazioni] = React.useState(
     [
       {
@@ -516,6 +514,8 @@ function App(props) {
               setTerreni={setTerreni}
               giocatori={props.giocatori}
               setGiocatori={props.setGiocatori}
+              segnalini={props.segnalini}
+              setSegnalini={props.setSegnalini}
               societàStazioni={societàStazioni}
               setSocietàStazioni={setSocietàStazioni}
               caselle={caselle} setCaselle={setCaselle}
