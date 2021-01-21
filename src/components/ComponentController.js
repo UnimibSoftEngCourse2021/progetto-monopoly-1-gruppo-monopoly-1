@@ -38,6 +38,7 @@ class ComponentController extends React.Component {
             quintoMsgTA: '',
             sestoMsgTA: '',
             settimoMsgTA: '',
+            tiroDoppio: 0
         };
       }
 
@@ -78,11 +79,45 @@ class ComponentController extends React.Component {
 
         if (this.props.caselle[attualeCasella].tipo ==='imprevisti') {
            // alert('imprevisti');
-           carta1.estraiCarta(false, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori);
+           carta1.estraiCarta(false, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori, this.props.segnalini[this.props.turnoGiocatore].attualeCasella, this.props.terreni);
+
+           /*
+            for (i = 0; i < props.terreni.length; i++) {
+    // Se la casella è un terreno trovo il nome nel array terreni
+    // Join tra gli array per NOME
+    // Se il giocatore ha abbastanza soldi procede con l'acquisto
+    // Se il nome della casella di tipo terreno corrisponde al nome nell'array terreni
+    // allora aggiorno il proprietario Sia in array Terreni sia in array Caselle    
+    if (props.terreni[i].nome==props.caselle[props.attualeCasella].nome) {
+      if (props.terreni[i].valore<=vecchioCapitale) {
+      // Aggiorno array terreni
+      nuoviTerreni[i].proprietario=props.turnoGiocatore;
+      props.setTerreni(nuoviTerreni);  
+      // Aggiorno array giocatori
+      nuovoCapitale = vecchioCapitale-props.terreni[i].valore;
+      nuoviGiocatori[props.turnoGiocatore].capitale=nuovoCapitale;
+      props.setGiocatori(nuoviGiocatori);
+      
+      alert('Il terreno è stato acquistato con successo'); 
+     }
+
+
+
+
+                caselle={this.props.caselle} 
+                setCaselle={this.props.setCaselle}
+                turnoGiocatore={this.props.turnoGiocatore}
+                terreni={this.props.terreni}
+                setTerreni={this.props.setTerreni}
+                giocatori={this.props.giocatori}
+                setGiocatori={this.props.setGiocatori}
+                societàStazioni={this.props.societàStazioni}
+                setSocietàStazioni={this.props.setSocietàStazioni}
+           */
         };
         if (this.props.caselle[attualeCasella].tipo ==='probabilita') {
             //alert('probabilita');
-            carta1.estraiCarta(true, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori);
+            carta1.estraiCarta(true, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori, this.props.segnalini[this.props.turnoGiocatore].attualeCasella, this.props.terreni);
         };        
 
         this.props.muoviPedine();
@@ -90,15 +125,12 @@ class ComponentController extends React.Component {
         this.pagaTasse(); 
 
     }       
-      
-
-  
 
     dadiTirati = false;
 
     tiraDadi = () => {
         
-        if (!dadiTirati){
+        if (!dadiTirati && this.state.tiroDoppio <= 2){
             dado1 = Math.floor(Math.random()*6) + 1;
             dado2 = Math.floor(Math.random()*6) + 1;
             sommaDadi = dado1 + dado2;
@@ -110,6 +142,7 @@ class ComponentController extends React.Component {
             }
             this.spostaSegnalino(sommaDadi);  
 
+            var lanciDoppi = this.state.tiroDoppio;
             var msg1;
             var msg2=this.state.primoMsgTA;
             var msg3=this.state.secondoMsgTA;
@@ -117,8 +150,18 @@ class ComponentController extends React.Component {
             var msg5=this.state.quartoMsgTA;
             var msg6=this.state.quintoMsgTA;
             var msg7=this.state.sestoMsgTA;
-            if (punteggioDoppio) {msg1='Giocatore:'+(this.props.turnoGiocatore+1)+' il punteggio dei dadi è doppio: '+dado1+' + '+dado2}
-                        else {msg1='Giocatore:'+(this.props.turnoGiocatore+1)+' il punteggio dei dadi è: '+dado1+' + '+dado2}
+
+            if (punteggioDoppio) {                
+                lanciDoppi +=1;
+                msg1='Giocatore:'+(this.props.turnoGiocatore+1)+' il punteggio dei dadi è doppio: '+dado1+' + '+dado2+' Ripetuto:'+lanciDoppi
+                if (lanciDoppi==3) {
+                    // Vai in prigione
+                }
+            }
+            else {
+                lanciDoppi=0;
+                msg1='Giocatore:'+(this.props.turnoGiocatore+1)+' il punteggio dei dadi è: '+dado1+' + '+dado2
+            }
 
             this.setState({
                 primoMsgTA: msg1,
@@ -127,7 +170,8 @@ class ComponentController extends React.Component {
                 quartoMsgTA: msg4,
                 quintoMsgTA: msg5,
                 sestoMsgTA: msg6,
-                settimoMsgTA: msg7
+                settimoMsgTA: msg7,
+                tiroDoppio: lanciDoppi,
             })  
             
             /*

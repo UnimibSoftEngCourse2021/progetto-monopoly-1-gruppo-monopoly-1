@@ -9,7 +9,7 @@ class Carte extends Component {
             //carta = [Numero carta, Descrizione, Somma di denaro, Somma per ogni casa, Somma per ogni albergo, Somma per ogni giocatore]
             carte: [
                 //Probabilità
-                [0, 'Serata della Grande Opera: incassa $50 da ogni giocaotore', 0, 0, 0, 50],
+                [0, 'Serata della Grande Opera: incassa $50 da ogni giocatore', 0, 0, 0, 50],
                 [1, 'Errore della banca: incassa $200', 200, 0, 0, 0],
                 [2, 'Parcella del medico: paga $50', -50, 0, 0, 0],
                 [3, 'Rimborso della imposta sul reddito: incassa $20', 20, 0, 0, 0],
@@ -48,7 +48,7 @@ class Carte extends Component {
         }
     }
 
-    estraiCarta = (probabilitaOImprevisto, turnoGiocatore, giocatori, setGiocatori) => { //probabilità==true imprevisto==false
+    estraiCarta = (probabilitaOImprevisto, turnoGiocatore, giocatori, setGiocatori, attualeCasella, terreni) => { //probabilità==true imprevisto==false
         let idCarta;
         if (probabilitaOImprevisto){
             idCarta = Math.floor(Math.random()*(15));
@@ -56,23 +56,33 @@ class Carte extends Component {
             idCarta = Math.floor(Math.random()*(31-16)+16);
         };
         alert('Giocatore: ' + turnoGiocatore + ' \n La carta è: ' + this.state.carte[idCarta][1]);
-        this.attivaCarta(idCarta, turnoGiocatore, giocatori, setGiocatori);
+        this.attivaCarta(idCarta, turnoGiocatore, giocatori, setGiocatori, attualeCasella, terreni);
     }
 
-    attivaCarta = (idCarta, turnoGiocatore, giocatori, setGiocatori) => {
+    attivaCarta = (idCarta, turnoGiocatore, giocatori, setGiocatori, attualeCasella, terreni) => {
         //  TODO
+        var nuoviGiocatori = giocatori;
         if (this.state.carte[idCarta][2] != 0){
             //<Banca saldoContoGiocatori={() => this.props.modificaSaldo(this.state.carte[idCarta][2], giocatore)}/>
-            var nuoviGiocatori = giocatori;
+            //var nuoviGiocatori = giocatori;
             nuoviGiocatori[turnoGiocatore].capitale += this.state.carte[idCarta][2];
-            setGiocatori(nuoviGiocatori);
+            //setGiocatori(nuoviGiocatori);
 
         }
+        let numeroCase = 0;
+        let numeroAlberghi = 0;
         if (this.state.carte[idCarta][3] != 0){
-            let sommaDiDenaro = 0;
-            sommaDiDenaro = this.state.carte[idCarta][3];
+            for (let i = 0; i < terreni.length; i++) {   
+                if(terreni[i].proprietario==turnoGiocatore){
+                    numeroCase += terreni[i].case;
+                    numeroAlberghi += terreni[i].alberghi;
+                }
+            }
+            
+            nuoviGiocatori[turnoGiocatore].capitale += (this.state.carte[idCarta][3]*numeroCase)+(this.state.carte[idCarta][4]*numeroAlberghi);
             
         }
+        setGiocatori(nuoviGiocatori);
     }
 
     render () {
