@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core';
+import { Button, Link } from '@material-ui/core';
 import React from 'react';
 import Acquista from './AzioniConBottone/Acquista';
 import Costruisci from './AzioniConBottone/Costruisci';
@@ -31,9 +31,13 @@ class ComponentController extends React.Component {
 	constructor(props) {
         super(props);
         this.state = {
-            primoMsgTA: 'ultimo messaggio',
-            secondoMsgTA: 'penultimo messaggio',
-            terzoMsgTA: 'terzultimo messaggio',
+            primoMsgTA: '',
+            secondoMsgTA: '',
+            terzoMsgTA: '',
+            quartoMsgTA: '',
+            quintoMsgTA: '',
+            sestoMsgTA: '',
+            settimoMsgTA: '',
         };
       }
 
@@ -114,29 +118,15 @@ class ComponentController extends React.Component {
             //alert('probabilita');
             carta1.estraiCarta(true, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori, this.props.segnalini[this.props.turnoGiocatore].attualeCasella, this.props.terreni);
         };        
-        this.props.muoviPedine();   
-    }      
 
-  /*  spostaAuto () {
-        // funzione di messa a punto mappa caselle 
-        // sposta il segnalino car in tutte le caselle una alla volta
-        let ascissa = this.props.segnalini[2][1];
-        let ordinata = this.props.segnalini[2][2];
+        this.props.muoviPedine();
+        this.pagaAffitto();
+        this.pagaTasse(); 
 
-        let [a, xposSegnalino, tposSegnalino, visSegnalino, strato, attualeCasella] = this.props.segnalini[2];
+    }       
+      
 
-        if (attualeCasella === 39) {
-            attualeCasella=0
-        } else {
-            attualeCasella = attualeCasella + 1
-        }
-
-        ascissa = this.props.tavolaGioco[attualeCasella][1];
-        ordinata = this.props.tavolaGioco[attualeCasella][2];
-
-        this.props.segnalini[2]=["car", ascissa, ordinata, "visible",2,attualeCasella];
-        this.props.muoviPedine();   
-    }  */ 
+  
 
     dadiTirati = false;
 
@@ -153,11 +143,34 @@ class ComponentController extends React.Component {
                 numeroTiriDadi = 0;
             }
             this.spostaSegnalino(sommaDadi);  
+
+            var msg1;
+            var msg2=this.state.primoMsgTA;
+            var msg3=this.state.secondoMsgTA;
+            var msg4=this.state.terzoMsgTA;
+            var msg5=this.state.quartoMsgTA;
+            var msg6=this.state.quintoMsgTA;
+            var msg7=this.state.sestoMsgTA;
+            if (punteggioDoppio) {msg1='Giocatore:'+(this.props.turnoGiocatore+1)+' il punteggio dei dadi è doppio: '+dado1+' + '+dado2}
+                        else {msg1='Giocatore:'+(this.props.turnoGiocatore+1)+' il punteggio dei dadi è: '+dado1+' + '+dado2}
+
+            this.setState({
+                primoMsgTA: msg1,
+                secondoMsgTA: msg2,
+                terzoMsgTA: msg3,
+                quartoMsgTA: msg4,
+                quintoMsgTA: msg5,
+                sestoMsgTA: msg6,
+                settimoMsgTA: msg7
+            })  
+            
+            /*
             this.setState({
                 primoMsgTA: `${sommaDadi}`,
                 secondoMsgTA: 'Il punteggio dei dadi è doppio: '+dado1+' + '+dado2 +' ' + `${punteggioDoppio}`,
                 terzoMsgTA: `${sommaDadi}`
             })  
+            */
         }
         else {
             alert('Non puoi tirare nuovamente i dadi.');
@@ -299,6 +312,115 @@ class ComponentController extends React.Component {
         }
     }
 
+    //Questa funzione si occupa di verificare se la casella su cui mi trovo richiede il pagamento di un affitto
+    //e modifica l'array giocatori di conseguenza
+    pagaAffitto = ()=>{
+        var attualeCasella = this.props.segnalini[this.props.turnoGiocatore].attualeCasella;
+        var casella = this.props.caselle[attualeCasella];
+        var affitto;
+        var nuoviGiocatori;
+        
+        if(casella.tipo === 'terreno'){
+            var terreno = this.props.terreni[casella.riferimento];
+            //Non si paga l'affitto se il terreno è ipotecato
+            if(terreno.ipotecato === true){
+                return;
+            }
+            //Non si paga l'affitto se il terreno non ha un proprietario
+            if(terreno.proprietario === -1){
+                return;
+            }
+            //Non pago l'affitto a me stesso
+            if(terreno.proprietario === this.props.turnoGiocatore){
+                return;
+            }
+            affitto = terreno.valore*5/100;
+            if(terreno.case > 0){
+                affitto = affitto + ((terreno.valore*5/100)*terreno.case);
+            }
+            if(terreno.alberghi > 0){
+                affitto = affitto*4;
+            }
+
+            nuoviGiocatori = this.props.giocatori;
+            nuoviGiocatori[this.props.turnoGiocatore].capitale =  nuoviGiocatori[this.props.turnoGiocatore].capitale - affitto;
+            nuoviGiocatori[terreno.proprietario].capitale = nuoviGiocatori[terreno.proprietario].capitale + affitto;
+            this.props.setGiocatori(nuoviGiocatori);
+            console.log(this.props.giocatori);
+        }
+
+        if(casella.tipo === 'stazione'){
+            var stazione = this.props.societàStazioni[casella.riferimento];
+            //Non si paga l'affitto se la stazione è ipotecata
+            if(stazione.ipotecato === true){
+                return;
+            }
+            //Non si paga l'affitto se la stazione non ha un proprietario
+            if(stazione.proprietario === -1){
+                return;
+            }
+            //Non pago l'affitto a me stesso
+            if(stazione.proprietario === this.props.turnoGiocatore){
+                return;
+            }
+            affitto = 50;
+            
+            nuoviGiocatori = this.props.giocatori;
+            nuoviGiocatori[this.props.turnoGiocatore].capitale =  nuoviGiocatori[this.props.turnoGiocatore].capitale - affitto;
+            nuoviGiocatori[stazione.proprietario].capitale = nuoviGiocatori[stazione.proprietario].capitale + affitto;
+            this.props.setGiocatori(nuoviGiocatori);
+        }
+
+        if(casella.tipo === 'societa'){
+            var società = this.props.societàStazioni[casella.riferimento];
+            //Non si paga l'affitto se la società è ipotecata
+            if(società.ipotecato === true){
+                return;
+            }
+            //Non si paga l'affitto se la società non ha un proprietario
+            if(società.proprietario === -1){
+                return;
+            }
+            //Non pago l'affitto a me stesso
+            if(società.proprietario === this.props.turnoGiocatore){
+                return;
+            }
+            affitto = 50;            
+
+            nuoviGiocatori = this.props.giocatori;
+            nuoviGiocatori[this.props.turnoGiocatore].capitale =  nuoviGiocatori[this.props.turnoGiocatore].capitale - affitto;
+            nuoviGiocatori[società.proprietario].capitale = nuoviGiocatori[società.proprietario].capitale + affitto;
+            this.props.setGiocatori(nuoviGiocatori);
+            console.log(this.props.giocatori);
+        }
+        return;
+    }
+
+    //Questa funzione fa pagare le tasse al giocatore che finisce su una casella imposte
+    pagaTasse =()=>{
+        var attualeCasella = this.props.segnalini[this.props.turnoGiocatore].attualeCasella;
+        var casella = this.props.caselle[attualeCasella];
+        var tassa;
+
+        if(casella.tipo === 'tasse'){
+            if(casella.nome === 'luxury tax'){
+                tassa = 100;
+            }
+            else{
+                tassa = 200;
+            }
+
+            var nuoviGiocatori = this.props.giocatori;
+            nuoviGiocatori[this.props.turnoGiocatore].capitale =  nuoviGiocatori[this.props.turnoGiocatore].capitale - tassa;
+            this.props.setGiocatori(nuoviGiocatori);
+
+        }
+        else{
+            return;
+        }
+
+    }
+
     render () {
         
         return (
@@ -307,7 +429,7 @@ class ComponentController extends React.Component {
                     
                     <tr>
                         <td className="tdController" >
-                            
+                        
                         </td>
                         <td className="tdController" colspan="2" >
                             <VendiEdificio 
@@ -394,6 +516,10 @@ class ComponentController extends React.Component {
                                 messaggioUno={this.state.primoMsgTA}
                                 messaggioDue={this.state.secondoMsgTA}
                                 messaggioTre={this.state.terzoMsgTA}
+                                messaggioQuattro={this.state.quartoMsgTA}
+                                messaggioCinque={this.state.quintoMsgTA}
+                                messaggioSei={this.state.sestoMsgTA}
+                                messaggioSette={this.state.settimoMsgTA}
                             />  
                         </td>  
                     </tr>
@@ -420,6 +546,10 @@ class AreaTesto extends React.Component {
                 <div>{this.props.messaggioUno}</div>
                 <div>{this.props.messaggioDue}</div>
                 <div>{this.props.messaggioTre}</div>
+                <div>{this.props.messaggioQuattro}</div>
+                <div>{this.props.messaggioCinque}</div>
+                <div>{this.props.messaggioSei}</div>
+                <div>{this.props.messaggioSette}</div>
             {/* {this.props.primoMsgTA+"\n"+this.props.secondoMsgTA+"\n"+this.props.terzoMsgTA}  */}
         </div>
       );

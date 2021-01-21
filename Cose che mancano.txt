@@ -1,10 +1,8 @@
 Elenco delle cose che bisogna ancora implementare per il completamento del Monopoly
 
-
 - Impostare il livello di difficoltà e decidere cosa cambia da un livello all'altro
 - Implementare il pagamento dell'affitto
-- Collegare l'estrazione di una carta probabilità / imprevisti con la sua azione
 - Gestire l'ingresso e l'uscita dalla prigione
-- Gestire il passaggio di un giocatore dal Via
+
 
 
