@@ -1,0 +1,13 @@
+Livello di difficoltà facile (ciò che è stato implementato fin’ora)
+Di base i giocatori sono da 2 a 6
+consentire a nuovi giocatori di unirsi al gioco come imprenditori 
+Direi di arrivare ad 8
+
+Livello di difficoltà medio (abilitare dei random)
+Far saltare casualmente le pedine da un punto ad un altro della board. un solo salto per pedina, per tutte le pedine?
+Cambio periodico e casuale dei prezzi, degli affitti, degli interessi e delle tasse delle proprietà (sia nei terreni che nelle carte)
+
+Livello di difficoltà difficile
+consentire un programma fedeltà per consentire l'uso della valuta virtuale con regole casuali basate sui programmi di alleanze internazionali esistenti
+
+
