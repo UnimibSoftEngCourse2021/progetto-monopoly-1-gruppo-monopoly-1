@@ -441,8 +441,6 @@ function App(props) {
     ]
   ); 
 
-  
-
   const [societàStazioni, setSocietàStazioni] = React.useState(
     [
       {
@@ -492,12 +490,6 @@ function App(props) {
   //se è a tempo avrà il valore del numero di turni che mancano alla fine della partita 
   const [tempo, setTempo] = React.useState(null);
   
- 
-  
-  
-
-  
-
   return (
     <div className="App">
       <table className="tabella1">
@@ -515,6 +507,8 @@ function App(props) {
               setTerreni={setTerreni}
               giocatori={props.giocatori}
               setGiocatori={props.setGiocatori}
+              segnalini2={props.segnalini2}
+              setSegnalini2={props.setSegnalini2}
               societàStazioni={societàStazioni}
               setSocietàStazioni={setSocietàStazioni}
               caselle={caselle} setCaselle={setCaselle}

@@ -41,11 +41,11 @@ class ComponentController extends React.Component {
         // i giocatori vanno da 1 a 6 , per ora assegno i segnalini in ordine numerico
         // uso this.props.turnoGiocatore-1 perchè i segnalini partono da ZERO
         let numSegnalino = this.props.turnoGiocatore;
-        let ascissa = this.props.segnalini[numSegnalino][1];
-        let ordinata = this.props.segnalini[numSegnalino][2];
+        let ascissa = this.props.segnalini2[numSegnalino].ascissa;
+        let ordinata = this.props.segnalini2[numSegnalino].ordinata;
 
         //let [a, xposSegnalino, tposSegnalino, visSegnalino, strato, attualeCasella] = this.props.segnalini[numSegnalino];
-        let attualeCasella = this.props.segnalini[numSegnalino][5];
+        let attualeCasella = this.props.segnalini2[numSegnalino].attualeCasella;
         
         var i;
         for (i = 1; i < sommaDadi+1; i++) {
@@ -62,19 +62,19 @@ class ComponentController extends React.Component {
         ordinata = this.props.tavolaGioco[attualeCasella][2];
   
         //this.props.segnalini[0]=["hat", ascissa, ordinata, "visible",0,attualeCasella];
-        this.props.segnalini[numSegnalino][1]=ascissa;
-        this.props.segnalini[numSegnalino][2]=ordinata;
-        this.props.segnalini[numSegnalino][5]=attualeCasella;
+        this.props.segnalini2[numSegnalino].ascissa=ascissa;
+        this.props.segnalini2[numSegnalino].ordinata=ordinata;
+        this.props.segnalini2[numSegnalino].attualeCasella=attualeCasella;
         console.log("attuale casella " + attualeCasella);
         console.log("turnoGiocatore " + this.props.turnoGiocatore);
 
         // Se il giocatore finisce sulla casella "Vai in Prigione", allora la sua pedina
         // viene spostata in Prigione
-        if (this.props.segnalini[numSegnalino][5] === 30) {
+        if (this.props.segnalini[numSegnalino].attualeCasella === 30) {
             alert("Vai in Prigione.");
-            this.props.segnalini[numSegnalino][1] = this.props.tavolaGioco[10][1];
-            this.props.segnalini[numSegnalino][2] = this.props.tavolaGioco[10][2];
-            this.props.segnalini[numSegnalino][5] = 10;
+            this.props.segnalini[numSegnalino].ascissa = this.props.tavolaGioco[10][1];
+            this.props.segnalini[numSegnalino].ordinata = this.props.tavolaGioco[10][2];
+            this.props.segnalini[numSegnalino].attualeCasella = 10;
         }
 
         if (this.props.caselle[attualeCasella].tipo ==='imprevisti') {

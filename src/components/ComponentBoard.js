@@ -57,12 +57,13 @@ const tavolaGioco = [
     [39, 940, 530, "GO"]
 ];
 
+
 class ComponentBoard extends React.Component {
 
 	constructor(props) {
         super(props);
         this.state = {
-          // Tracciato record: nome, ascissa, ordinata, visibilita, strato, attualeCasella, giocatore  
+          // Tracciato record: nome, ascissa, ordinata, visibilita, strato, attualeCasella 
           segnalini: [
                         ["hat", 940, 600, "visible",0,0],
                         ["iron", 940, 600, "visible",1,0],
@@ -78,7 +79,7 @@ class ComponentBoard extends React.Component {
         };
       }
 
-      
+
       muoviPedine = changeEvent => {
         this.setState({
             
@@ -119,21 +120,82 @@ class ComponentBoard extends React.Component {
             }                   
         }
 
-    
-  
+        for (let i = 0; i < this.props.segnalini2.length; i++) {
+            const segnalinoSet2 =   {
+                                        left: this.props.segnalini2[i].ascissa + "px",
+                                        top: this.props.segnalini2[i].ordinata + "px",
+                                        visibility: this.props.segnalini2[i].visibilita,
+                                        strato: this.props.segnalini2[i].strato
+                                    }
+            switch (this.props.segnalini2[i].nome) {
+                case car: var mystyleCar2 = segnalinoSet2;
+                    break;
+                case boat: var mystyleBoat2 = segnalinoSet2;
+                    break;
+                case hat: var mystyleHat2 = segnalinoSet2;
+                    break;
+                case iron: var mystyleIron2 = segnalinoSet2;
+                    break;
+                case doggo: var mystyleDoggo2 = segnalinoSet2;
+                    break;
+                case shoe: var mystyleShoe2 = segnalinoSet2;
+                    break;
+                case thimble: var mystyleThimble2 = segnalinoSet2;
+                    break;
+                case wheelbarrow: var mystyleWheelbarrow2 = segnalinoSet2;
+                    break;
+                // default: var mystyleDefault =   {
+                //                                     left: "940px",
+                //                                     top: "600px",
+                //                                     visibility: "hidden",
+                //                                     strato: this.props.segnalini2[i].strato
+                //                                 }
+            }
+        }
 
-        
              
         return (
             <div className="imgTavola" >
-                <Pedina figura={car} stile={mystyleCar} />
-                <Pedina figura={boat} stile={mystyleBoat} />  
-                <Pedina figura={hat} stile={mystyleHat} />
-                <Pedina figura={iron} stile={mystyleIron} />
-                <Pedina figura={doggo} stile={mystyleDoggo} />
-                <Pedina figura={shoe} stile={mystyleShoe} />
-                <Pedina figura={thimble} stile={mystyleThimble} />
-                <Pedina figura={wheelbarrow} stile={mystyleWheelbarrow} />
+                {
+                    (this.props.giocatori.find(giocatore => giocatore.pedina === car)) ?
+                    <Pedina figura={car} stile={mystyleCar2} /> :
+                    <div></div>
+                }
+                {
+                    (this.props.giocatori.find(giocatore => giocatore.pedina === boat)) ?
+                    <Pedina figura={boat} stile={mystyleBoat2} /> :
+                    <div></div>
+                }
+                {
+                    (this.props.giocatori.find(giocatore => giocatore.pedina === hat)) ?
+                    <Pedina figura={hat} stile={mystyleHat2} /> :
+                    <div></div>
+                }
+                {
+                    (this.props.giocatori.find(giocatore => giocatore.pedina === iron)) ?
+                    <Pedina figura={iron} stile={mystyleIron2} /> :
+                    <div></div>
+                }
+                {
+                    (this.props.giocatori.find(giocatore => giocatore.pedina === doggo)) ?
+                    <Pedina figura={doggo} stile={mystyleDoggo2} /> :
+                    <div></div>
+                }
+                {
+                    (this.props.giocatori.find(giocatore => giocatore.pedina === shoe)) ?
+                    <Pedina figura={shoe} stile={mystyleShoe2} /> :
+                    <div></div>
+                }
+                {
+                    (this.props.giocatori.find(giocatore => giocatore.pedina === thimble)) ?
+                    <Pedina figura={thimble} stile={mystyleThimble2} /> :
+                    <div></div>
+                }
+                {
+                    (this.props.giocatori.find(giocatore => giocatore.pedina === wheelbarrow)) ?
+                    <Pedina figura={wheelbarrow} stile={mystyleWheelbarrow2} /> :
+                    <div></div>
+                }
 
                 <ComponentController 
                     segnalini={this.state.segnalini} muoviPedine={this.muoviPedine} 
@@ -146,6 +208,8 @@ class ComponentBoard extends React.Component {
                     setTerreni={this.props.setTerreni}
                     giocatori={this.props.giocatori}
                     setGiocatori={this.props.setGiocatori}
+                    segnalini2={this.props.segnalini2}
+                    setSegnalini2={this.props.setSegnalini2}
                     societàStazioni={this.props.societàStazioni}
                     setSocietàStazioni={this.props.setSocietàStazioni}
                     caselle={this.props.caselle} 
@@ -154,14 +218,8 @@ class ComponentBoard extends React.Component {
                     setTempo={this.props.setTempo}
                 />
 
-            
-                                     
-                                    
-                                    
-
             </div>
-            
-            
+      
         )
     }
 }

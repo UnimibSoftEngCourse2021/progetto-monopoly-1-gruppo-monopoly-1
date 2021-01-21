@@ -67,7 +67,65 @@ function SceltaPedina(props){
             inGioco: false,
           },
         ]
-      );
+    );
+    const [segnalini2, setSegnalini2] = React.useState (
+        [
+            {
+                nome: "",
+                ascissa: 940,
+                ordinata: 600,
+                visibilita: "hidden",
+                strato: 0,
+                attualeCasella: 0,
+                giocatore: 1
+            },
+            {
+                nome: "",
+                ascissa: 940,
+                ordinata: 600,
+                visibilita: "hidden",
+                strato: 1,
+                attualeCasella: 0,
+                giocatore: 2
+            },
+            {
+                nome: "",
+                ascissa: 940,
+                ordinata: 600,
+                visibilita: "hidden",
+                strato: 2,
+                attualeCasella: 0,
+                giocatore: 3
+            },
+            {
+                nome: "",
+                ascissa: 940,
+                ordinata: 600,
+                visibilita: "hidden",
+                strato: 3,
+                attualeCasella: 0,
+                giocatore: 4
+            },
+            {
+                nome: "",
+                ascissa: 940,
+                ordinata: 600,
+                visibilita: "hidden",
+                strato: 4,
+                attualeCasella: 0,
+                giocatore: 5
+            },
+            {
+                nome: "",
+                ascissa: 940,
+                ordinata: 600,
+                visibilita: "hidden",
+                strato: 5,
+                attualeCasella: 0,
+                giocatore: 6
+            }
+        ]
+    );
 
     // Questa funzione associa ad ogni giocatore una pedina.
     function associaGiocatorePedina(pedina){
@@ -96,6 +154,19 @@ function SceltaPedina(props){
                 nuovaListaGiocatori[n-1] = {numero: n, capitale: 3750, pedina, numeroContrattiIniziali: 3, inPrigione: false, inGioco: true };
             }
             setGiocatori(nuovaListaGiocatori);
+
+            var nuovaListaSegnalini = segnalini2;
+            nuovaListaSegnalini[n-1] =  {
+                                            nome: pedina,
+                                            ascissa: 940,
+                                            ordinata: 600,
+                                            visibilita: "visible",
+                                            strato: n-1,
+                                            attualeCasella: 0,
+                                            giocatore: n
+                                        };
+            setSegnalini2(nuovaListaSegnalini);
+
             setGiocatoreAttuale(giocatoreAttuale + 1);
 
             // Se tutti i giocatori hanno scelto la loro pedina, imposta iniziaPartita a true. 
@@ -119,6 +190,8 @@ function SceltaPedina(props){
                             difficolta={props.difficolta} 
                             giocatori={giocatori}
                             setGiocatori={setGiocatori}
+                            segnalini2={segnalini2}
+                            setSegnalini2={setSegnalini2}
                         />
                     </React.StrictMode>,
                     document.getElementById('root')
