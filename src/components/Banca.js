@@ -36,6 +36,42 @@ class Banca extends Component {
         alert('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');  
     }
 
+    
+    partitaCountdown = (giocatori)=> {
+        
+            var vincitore = giocatori[0];
+            var i;
+                        
+            for(i=1; i<giocatori.length; i++){
+                if(vincitore.capitale < giocatori[i].capitale){
+                    vincitore = giocatori[i];
+                }
+            }
+            console.log(vincitore);
+            //verifico che ci sia un pareggio
+            var pareggio = 0;
+            var n = 0;
+            while(n<giocatori.length){
+                if(vincitore.capitale === giocatori[n].capitale){
+                    pareggio++
+                }
+                n++;
+            }
+                        
+            if(pareggio<2){
+                alert('Il tempo è finito: Giocatore: '+ vincitore.numero +' hai vinto');
+                //concludere la partita
+                return;
+            }
+            else{
+                alert("Il tempo è finito: C'é stato un pareggio");
+                //concludere la partita
+                return;
+            }
+
+    }
+
+
     getSaldoGiocatore
 }
 export default Banca;

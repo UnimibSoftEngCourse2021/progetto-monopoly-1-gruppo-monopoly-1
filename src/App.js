@@ -3,6 +3,7 @@ import TabellaGiocatori from './components/Tabelle/TabellaGiocatori';
 import ComponentBoard from './components/ComponentBoard';
 import TabellaTerreni from './components/Tabelle/TabellaTerreni';
 import TabellaSocietàStazioni from './components/Tabelle/TabellaSocietàStazioni';
+import Banca from './components/Banca';
 
 
 
@@ -11,9 +12,14 @@ function App(props) {
   // Countdown
   const [counter, setCounter] = React.useState(20);
 
+  var banca1 = new Banca;
+
   React.useEffect(() => {
     counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
-    if (counter==0) {alert('tempo finito');}
+    if (counter==0) {
+      alert('tempo finito');  
+      banca1.partitaCountdown(props.giocatori);
+    }
   }, [counter]);
 
   const [caselle, setCaselle] = React.useState(
