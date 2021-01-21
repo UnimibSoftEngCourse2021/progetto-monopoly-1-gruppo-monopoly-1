@@ -1,13 +1,10 @@
-//import logo from './img/monopoly_logo.jpg'
 import React from 'react'
 import TabellaGiocatori from './components/Tabelle/TabellaGiocatori';
-import ComponentProprietaLeft from './components/ComponentProprietaLeft';
-import ComponentProprietaRight from './components/ComponentProprietaRight';
 import ComponentBoard from './components/ComponentBoard';
 import TabellaTerreni from './components/Tabelle/TabellaTerreni';
 import TabellaSocietàStazioni from './components/Tabelle/TabellaSocietàStazioni';
 
-//rff
+
 
 function App(props) {
 
@@ -16,202 +13,242 @@ function App(props) {
       {
         tipo: 'servizio',
         nome: 'GO',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: -1,
       },
       {
         tipo: 'terreno',
         nome: 'Mediterranean avenue',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 0,
       },
       {
         tipo: 'probabilita',
         nome: 'probabilita',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: -1,
       },
       {
         tipo: 'terreno',
         nome: 'Baltic avenue',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 1,
       },
       {
         tipo: 'servizio',
         nome: 'income tax',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: -1,
       },
       {
         tipo: 'stazione',
         nome: 'Reading railroad',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 0,
       },
       {
         tipo: 'terreno',
         nome: 'Oriental avenue',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 2,
       },
       {
         tipo: 'imprevisti',
         nome: 'imprevisti',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: -1,
       },
       {
         tipo: 'terreno',
         nome: 'Vermont avenue',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 15,
       },
       {
         tipo: 'terreno',
         nome: 'Connecticut avenue',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 4,
       },
       {
         tipo: 'prigione',
         nome: 'prigione',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: -1,
       },
       {
         tipo: 'terreno',
         nome: 'St. charles place',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 5,
       },
       {
         tipo: 'societa',
         nome: 'Electric company',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 4,
       },
       {
         tipo: 'terreno',
         nome: 'States avenue',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 6,
       },
       {
         tipo: 'terreno',
         nome: 'Virginia avenue',
-        proprietario: -1
+       // proprietario: -1,
+        riferimento: 7,
       },
       {
         tipo: 'stazione',
         nome: 'Pennsylvania railroad',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 1,
       },
       {
         tipo: 'terreno',
         nome: 'St. james place',
-        proprietario: -1
+       // proprietario: -1,
+        riferimento: 8,
       },
       {
         tipo: 'probabilita',
         nome: 'probabilita',
-        proprietario: -1
+       // proprietario: -1,
+        riferimento: -1,
       },
       {
         tipo: 'terreno',
         nome: 'Tennessee avenue',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 9,
       },
       {
         tipo: 'terreno',
         nome: 'New york avenue',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 10,
       },
       {
         tipo: 'free parking',
         nome: 'free parking',
-        proprietario: -1
+       // proprietario: -1,
+        riferimento: -1,
       },
       {
         tipo: 'terreno',
         nome: 'Kentucky avenue',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 11,
       },
       {
         tipo: 'imprevisti',
         nome: 'imprevisti',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: -1,
       },
       {
         tipo: 'terreno',
         nome: 'Indiana avenue',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 12,
       },
       {
         tipo: 'terreno',
         nome: 'Illinois avenue',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 13,
       },
       {
         tipo: 'stazione',
         nome: 'B&O railroad',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 2,
       },
       {
         tipo: 'terreno',
         nome: 'Atlantic avenue',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 14,
       },
       {
         tipo: 'terreno',
         nome: 'Ventnor avenue',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 3,
       },
       {
         tipo: 'societa',
         nome: 'Water works',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 5,
       },
       {
         tipo: 'terreno',
         nome: 'Marvin gardens',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 16,
       },
       {
         tipo: 'go to jail',
         nome: 'go to jail',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: -1,
       },
       {
         tipo: 'terreno',
         nome: 'Pacific avenue',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 17,
       },
       {
         tipo: 'terreno',
         nome: 'North carolina avenue',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 18,
       },
       {
         tipo: 'probabilita',
         nome: 'probabilita',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: -1,
       },
       {
         tipo: 'terreno',
         nome: 'Pennsylvania avenue',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 19,
       },
       {
         tipo: 'stazione',
         nome: 'Short line',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 3,
       },
       {
         tipo: 'imprevisti',
         nome: 'imprevisti',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: -1,
       },
       {
         tipo: 'terreno',
         nome: 'Park place',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 20,
       },
       {
         tipo: 'tasse',
         nome: 'luxury tax',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: -1,
       },
       {
         tipo: 'terreno',
         nome: 'Boardwalk',
-        proprietario: -1
+        //proprietario: -1,
+        riferimento: 21,
       },
     ]
   );
@@ -291,7 +328,7 @@ function App(props) {
       {
         nome: 'Virginia avenue',
         coloreSfondo: '#C00FA9',
-        proprietario: -1,
+        proprietario: 5,
         case: 0,
         alberghi: 0,
         valore: 160,
@@ -492,10 +529,13 @@ function App(props) {
   //se è a tempo avrà il valore del numero di turni che mancano alla fine della partita 
   const [tempo, setTempo] = React.useState(null);
   
- 
+ /*
+  <tr>
+          <td className="colonna1"><ComponentProprietaLeft /></td>
+          <td className="colonna1"><ComponentProprietaRight /></td>
+        </tr>
   
-  
-
+*/
   
 
   return (
@@ -527,10 +567,7 @@ function App(props) {
           </td>
 
         </tr>
-        <tr>
-          <td className="colonna1"><ComponentProprietaLeft /></td>
-          <td className="colonna1"><ComponentProprietaRight /></td>
-        </tr>
+        
       </table>
       
       

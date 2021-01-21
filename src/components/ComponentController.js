@@ -171,7 +171,7 @@ class ComponentController extends React.Component {
             this.partitaATempo();
         }
 
-        alert('Ora tocca ad un altro giocatore');
+        //alert('Ora tocca ad un altro giocatore');
         
     }
 
@@ -344,6 +344,8 @@ class ComponentController extends React.Component {
                               setTerreni={this.props.setTerreni}
                               giocatori={this.props.giocatori}
                               setGiocatori={this.props.setGiocatori}
+                              societàStazioni={this.props.societàStazioni}
+                              setSocietàStazioni={this.props.setSocietàStazioni}
                             />
                         </td>   
                     </tr>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Paper, Modal, Button, Radio, RadioGroup, FormControlLabel} from '@material-ui/core';
+import {Paper, Modal, Button} from '@material-ui/core';
 
 
 function Acquista(props){
@@ -8,16 +8,17 @@ const [openModal, setOpenModal] = React.useState(false);
 const handleOpen = () => { setOpenModal(true) };
 const handleClose = () => { setOpenModal(false) };
 
+var c = props.caselle[props.attualeCasella];
+
 const acquistaProprieta = () => {
-  if (props.caselle[props.attualeCasella].tipo=='terreno') { acquistaTerreno(); }
-  if (props.caselle[props.attualeCasella].tipo=='societa') { acquistaSocieta(); }
-  if (props.caselle[props.attualeCasella].tipo=='stazione') { acquistaStazioni(); }
+  if (c.tipo=='terreno') { acquistaTerreno(); }
+  if (c.tipo=='societa' || c.tipo=='stazione') { acquistaSocietaStazione(); }
 }
 
 const acquistaTerreno = () => { 
   var nuoviTerreni = props.terreni;
   var nuoviGiocatori = props.giocatori;
-  var nuoveCaselle = props.caselle;
+  
 
   var vecchioCapitale = nuoviGiocatori[props.turnoGiocatore].capitale;
   var nuovoCapitale;
@@ -38,10 +39,8 @@ const acquistaTerreno = () => {
       nuovoCapitale = vecchioCapitale-props.terreni[i].valore;
       nuoviGiocatori[props.turnoGiocatore].capitale=nuovoCapitale;
       props.setGiocatori(nuoviGiocatori);
-      // Aggiorno array caselle
-      nuoveCaselle[props.attualeCasella].proprietario=props.turnoGiocatore;
-      props.setCaselle(nuoveCaselle);
-      alert('Terreno acquisito casella:'+props.attualeCasella); 
+      
+      alert('Il terreno è stato acquistato con successo'); 
      } else {
       alert('Non hai abbastanza soldi'); 
      }
@@ -50,33 +49,83 @@ const acquistaTerreno = () => {
   
 };
 
-const acquistaSocieta = () => { 
-  alert('da fare'); 
+const acquistaSocietaStazione = () => { 
+  var nuoveSocietaStazioni = props.societàStazioni;
+  var nuoviGiocatori = props.giocatori;
+
+  nuoveSocietaStazioni[c.riferimento].proprietario = props.turnoGiocatore;
+
+  nuoviGiocatori[props.turnoGiocatore].capitale = nuoviGiocatori[props.turnoGiocatore].capitale - nuoveSocietaStazioni[c.riferimento].valore;
+
+  props.setSocietàStazioni(nuoveSocietaStazioni);
+  props.setGiocatori(nuoviGiocatori);
+
+  alert('La società o la stazione è stata acquistata con successo');
 }
 
-const acquistaStazioni = () => { 
-  alert('da fare'); 
+
+
+
+
+
+
+function MostraProprietario(){
+  if(c.tipo==='terreno'){
+    if(props.terreni[c.riferimento].proprietario === -1){
+      return(<h4 style={{margin:'16px'}}>Proprietario: nessuno</h4>);
+    }
+    else{
+      return(<h4 style={{margin:'16px'}}>Proprietario: {props.terreni[c.riferimento].proprietario}</h4>);
+    }
+  }
+  else{
+    if(c.riferimento===-1){
+      return(<h4 style={{margin:'16px'}}>Proprietario: questo tipo di caselle non può avere un proprietario</h4>);
+    }
+    else{
+      if(props.societàStazioni[c.riferimento].proprietario === -1){
+        return(<h4 style={{margin:'16px'}}>Proprietario: nessuno</h4>);
+      }
+      else{
+        return(<h4 style={{margin:'16px'}}>Proprietario: {props.societàStazioni[c.riferimento].proprietario}</h4>);
+      }
+    }
+  }
+}
+
+function Messaggio(){
+  if(c.riferimento === -1){
+    return(<h4 style={{margin:'16px'}}>Mi dispiace ma questa casella non può essere aquistata</h4> );
+  }
+  else{
+    if((props.terreni[c.riferimento].proprietario!==-1) && (c.tipo==='terreno')){
+      return(<h4 style={{margin:'16px'}}>Mi dispiace ma questa casella non può essere aquistata</h4>);
+    }
+    else{
+      if((c.tipo==='societa' || c.tipo==='stazione') && (props.societàStazioni[c.riferimento].proprietario!==-1)){
+        return(<h4 style={{margin:'16px'}}>Mi dispiace ma questa casella non può essere aquistata</h4>);
+      }
+    }
+  }
+  
+  
+  
+  return(
+    <Button variant="contained" style={{margin:'16px'}} onClick={() => acquistaProprieta()}>
+      Acquista
+    </Button>
+  );
 }
 
 const body = (
     <Paper style={{marginTop:'16px', marginLeft:'200px', marginRight:'200px'}}>
         
-      <h4 style={{margin:'16px'}}>Giocatore {props.turnoGiocatore} sei sulla casella {props.attualeCasella}</h4>
-      <h4 style={{margin:'16px'}}>Di tipo: {props.caselle[props.attualeCasella].tipo}</h4> 
-      <h4 style={{margin:'16px'}}>Di nome: {props.caselle[props.attualeCasella].nome}</h4> 
-      <h4 style={{margin:'16px'}}>Proprietario: {props.caselle[props.attualeCasella].proprietario}</h4>
-      
-      {(props.caselle[props.attualeCasella].proprietario==-1 && 
-         (props.caselle[props.attualeCasella].tipo=='terreno'
-          ||
-          props.caselle[props.attualeCasella].tipo=='societa'
-          ||
-          props.caselle[props.attualeCasella].tipo=='stazione')
-        )?     
-          <Button variant="contained" style={{margin:'16px'}} onClick={() => acquistaProprieta()}>
-          Acquista
-          </Button> : 
-          <h4 style={{margin:'16px'}}>non lo puoi acquistare</h4>  }
+      <h4 style={{margin:'16px'}}>Giocatore {props.turnoGiocatore+1} sei sulla casella numero {props.attualeCasella}</h4>
+      <h4 style={{margin:'16px'}}>Di tipo: {c.tipo}</h4> 
+      <h4 style={{margin:'16px'}}>Di nome: {c.nome}</h4>
+      <MostraProprietario />
+     
+      <Messaggio />
       
     </Paper>
   );
