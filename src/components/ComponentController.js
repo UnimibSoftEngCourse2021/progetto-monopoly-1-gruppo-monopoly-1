@@ -38,6 +38,7 @@ class ComponentController extends React.Component {
             quintoMsgTA: '',
             sestoMsgTA: '',
             settimoMsgTA: '',
+            tiroDoppio: 0
         };
       }
 
@@ -124,15 +125,12 @@ class ComponentController extends React.Component {
         this.pagaTasse(); 
 
     }       
-      
-
-  
 
     dadiTirati = false;
 
     tiraDadi = () => {
         
-        if (!dadiTirati){
+        if (!dadiTirati && this.state.tiroDoppio <= 2){
             dado1 = Math.floor(Math.random()*6) + 1;
             dado2 = Math.floor(Math.random()*6) + 1;
             sommaDadi = dado1 + dado2;
@@ -144,6 +142,7 @@ class ComponentController extends React.Component {
             }
             this.spostaSegnalino(sommaDadi);  
 
+            var lanciDoppi = this.state.tiroDoppio;
             var msg1;
             var msg2=this.state.primoMsgTA;
             var msg3=this.state.secondoMsgTA;
@@ -151,8 +150,18 @@ class ComponentController extends React.Component {
             var msg5=this.state.quartoMsgTA;
             var msg6=this.state.quintoMsgTA;
             var msg7=this.state.sestoMsgTA;
-            if (punteggioDoppio) {msg1='Giocatore:'+(this.props.turnoGiocatore+1)+' il punteggio dei dadi è doppio: '+dado1+' + '+dado2}
-                        else {msg1='Giocatore:'+(this.props.turnoGiocatore+1)+' il punteggio dei dadi è: '+dado1+' + '+dado2}
+
+            if (punteggioDoppio) {                
+                lanciDoppi +=1;
+                msg1='Giocatore:'+(this.props.turnoGiocatore+1)+' il punteggio dei dadi è doppio: '+dado1+' + '+dado2+' Ripetuto:'+lanciDoppi
+                if (lanciDoppi==3) {
+                    // Vai in prigione
+                }
+            }
+            else {
+                lanciDoppi=0;
+                msg1='Giocatore:'+(this.props.turnoGiocatore+1)+' il punteggio dei dadi è: '+dado1+' + '+dado2
+            }
 
             this.setState({
                 primoMsgTA: msg1,
@@ -161,7 +170,8 @@ class ComponentController extends React.Component {
                 quartoMsgTA: msg4,
                 quintoMsgTA: msg5,
                 sestoMsgTA: msg6,
-                settimoMsgTA: msg7
+                settimoMsgTA: msg7,
+                tiroDoppio: lanciDoppi,
             })  
             
             /*
