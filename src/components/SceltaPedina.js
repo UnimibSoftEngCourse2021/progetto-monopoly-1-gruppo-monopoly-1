@@ -1,4 +1,5 @@
 import React from 'react'
+import { Grid, TextField } from '@material-ui/core';
 import ReactDOM from 'react-dom'
 import App from '../App'
 import hat from '../img/hat.png'
@@ -127,6 +128,23 @@ function SceltaPedina(props){
         ]
     );
 
+    //Variabile di stato utilizzata per gestire le partite a tempo
+    //se la partita non è a tempo sarà uguale a null
+    //se è a tempo avrà il valore del numero di turni che mancano alla fine della partita
+    const [tempo, setTempo] = React.useState(null);
+    const handleChangeTempo = (event) => {
+        if(event.target.value % 1 !== 0){
+            alert('Controlla di aver inserito un numero di turni corretto')
+        }
+        else{
+            setTempo(event.target.value);
+        }
+        
+    };
+
+    
+ 
+
     // Questa funzione associa ad ogni giocatore una pedina.
     function associaGiocatorePedina(pedina){
         // Se una pedina è già stata scelta da un giocatore, non può più essere scelta dagli altri.
@@ -194,6 +212,7 @@ function SceltaPedina(props){
                             setGiocatori={setGiocatori}
                             segnalini={segnalini}
                             setSegnalini={setSegnalini}
+                            tempo={tempo}
                         />
                     </React.StrictMode>,
                     document.getElementById('root')
@@ -214,7 +233,13 @@ function SceltaPedina(props){
                         }
                     </div>
                 </div>
-            }    
+            }
+
+            <Grid container  direction="column" alignItems="center" style={{marginTop:'100px'}}>
+                <h2>Se vuoi svolgere una partita a tempo inserisci qui il numero di turni</h2>
+                <TextField variant="outlined" style={{margin:'16px', marginLeft:'32px', width:'350px'}} onChange={handleChangeTempo} />
+            </Grid>
+              
         </div>
     );
 }

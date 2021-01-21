@@ -1,4 +1,4 @@
-import { Button, Link } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import React from 'react';
 import Acquista from './AzioniConBottone/Acquista';
 import Costruisci from './AzioniConBottone/Costruisci';
@@ -184,8 +184,8 @@ class ComponentController extends React.Component {
         
 
         this.fallimentoVittoria();
-
-        if(!(this.props.tempo === null)){
+        
+        if(this.props.tempo !== null){
             this.partitaATempo();
         }
 
@@ -234,9 +234,9 @@ class ComponentController extends React.Component {
     //Questa funzione decrementa il numero di turni che mancano allo scadere del tempo
     //se il tempo è finito stabilisce un vincitore confrontando i capitali dei giocatori rimasti
     partitaATempo = ()=>{
-        var nuovoTempo = this.props.tempo;
-        nuovoTempo = nuovoTempo - 1;
-        this.props.setTempo(nuovoTempo);
+        
+        this.props.decrementaTempo();
+        
         if(this.props.tempo === 0){
             var vincitore = this.props.giocatori[0];
             var i;
@@ -257,16 +257,16 @@ class ComponentController extends React.Component {
                 n++;
             }
             
-           console.log(pareggio);
+           
             
             
             if(pareggio<2){
-                alert('Giocatore: '+ vincitore.numero +' hai vinto');
+                alert('Il tempo è finito: Giocatore: '+ vincitore.numero +' hai vinto');
                 //concludere la partita
                 return;
             }
             else{
-                alert("C'é stato un pareggio");
+                alert("Il tempo è finito: C'é stato un pareggio");
                 //concludere la partita
                 return;
             }

@@ -16,6 +16,7 @@ const handleClose = () => { setOpenModal(false) };
 function AbbandonaPartita(){
     var nuoviGiocatori = props.giocatori;
     nuoviGiocatori[props.turnoGiocatore].inGioco = false;
+    nuoviGiocatori[props.turnoGiocatore].capitale = 0;
     props.setGiocatori(nuoviGiocatori);
 
     //cambio il proprietario a terreni, stazioni e società del giocatore che ha abbandonato
@@ -50,7 +51,7 @@ const body = (
   <Paper style={{marginTop:'16px', marginLeft:'200px', marginRight:'200px', height:'250px'}}>
 
     <h3 style={{marginLeft:'20px', marginTop:'20px'}}>
-        Giocatore {props.turnoGiocatore}
+        Giocatore {props.turnoGiocatore+1}
     </h3>
     <h3 style={{marginLeft:'20px', marginButtom:'20px'}}>
         Sei sicuro di voler abbandonare la partita?

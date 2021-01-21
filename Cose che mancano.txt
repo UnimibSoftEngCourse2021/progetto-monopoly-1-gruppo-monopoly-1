@@ -1,7 +1,7 @@
 Elenco delle cose che bisogna ancora implementare per il completamento del Monopoly
 
 - Impostare il livello di difficoltà e decidere cosa cambia da un livello all'altro
-- Implementare il pagamento dell'affitto
+
 - Gestire l'ingresso e l'uscita dalla prigione
 
 

@@ -168,7 +168,6 @@ function App(props) {
       {
         tipo: 'terreno',
         nome: 'Pacific avenue',
-        //proprietario: -1,
         riferimento: 17,
       },
       {
@@ -485,16 +484,11 @@ function App(props) {
 
   //Variabile di stato utilizzata per gestire le partite a tempo
   //se la partita non è a tempo sarà uguale a null
-  //se è a tempo avrà il valore del numero di turni che mancano alla fine della partita 
-  const [tempo, setTempo] = React.useState(null);
-  
- /*
-  <tr>
-          <td className="colonna1"><ComponentProprietaLeft /></td>
-          <td className="colonna1"><ComponentProprietaRight /></td>
-        </tr>
-  
-*/
+  //se è a tempo avrà il valore del numero di turni che mancano alla fine della partita
+  const [tempo, setTempo] = React.useState(props.tempo);
+  function decrementaTempo(){
+    setTempo(tempo-1);
+  }
   
 
   return (
@@ -521,6 +515,7 @@ function App(props) {
               caselle={caselle} setCaselle={setCaselle}
               tempo={tempo}
               setTempo={setTempo}
+              decrementaTempo={decrementaTempo}
             />
           </td>
           <td className="colonna1" >
