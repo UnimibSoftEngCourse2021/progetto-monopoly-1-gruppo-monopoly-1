@@ -254,7 +254,7 @@ class ComponentController extends React.Component {
     //Questa funzione si occupa di verificare se la casella su cui mi trovo richiede il pagamento di un affitto
     //e modifica l'array giocatori di conseguenza
     pagaAffitto = ()=>{
-        var attualeCasella = this.props.segnalini[this.props.turnoGiocatore][5];
+        var attualeCasella = this.props.segnalini[this.props.turnoGiocatore].attualeCasella;
         var casella = this.props.caselle[attualeCasella];
         var affitto;
         var nuoviGiocatori;
@@ -337,7 +337,7 @@ class ComponentController extends React.Component {
 
     //Questa funzione fa pagare le tasse al giocatore che finisce su una casella imposte
     pagaTasse =()=>{
-        var attualeCasella = this.props.segnalini[this.props.turnoGiocatore][5];
+        var attualeCasella = this.props.segnalini[this.props.turnoGiocatore].attualeCasella;
         var casella = this.props.caselle[attualeCasella];
         var tassa;
 
