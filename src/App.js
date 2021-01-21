@@ -1,4 +1,3 @@
-//import logo from './img/monopoly_logo.jpg'
 import React from 'react'
 import TabellaGiocatori from './components/Tabelle/TabellaGiocatori';
 import ComponentProprietaLeft from './components/ComponentProprietaLeft';
@@ -6,8 +5,6 @@ import ComponentProprietaRight from './components/ComponentProprietaRight';
 import ComponentBoard from './components/ComponentBoard';
 import TabellaTerreni from './components/Tabelle/TabellaTerreni';
 import TabellaSocietàStazioni from './components/Tabelle/TabellaSocietàStazioni';
-
-//rff
 
 function App(props) {
 
@@ -507,8 +504,8 @@ function App(props) {
               setTerreni={setTerreni}
               giocatori={props.giocatori}
               setGiocatori={props.setGiocatori}
-              segnalini2={props.segnalini2}
-              setSegnalini2={props.setSegnalini2}
+              segnalini={props.segnalini}
+              setSegnalini={props.setSegnalini}
               societàStazioni={societàStazioni}
               setSocietàStazioni={setSocietàStazioni}
               caselle={caselle} setCaselle={setCaselle}

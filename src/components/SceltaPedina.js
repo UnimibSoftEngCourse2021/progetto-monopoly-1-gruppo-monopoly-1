@@ -68,7 +68,7 @@ function SceltaPedina(props){
           },
         ]
     );
-    const [segnalini2, setSegnalini2] = React.useState (
+    const [segnalini, setSegnalini] = React.useState (
         [
             {
                 nome: "",
@@ -155,7 +155,10 @@ function SceltaPedina(props){
             }
             setGiocatori(nuovaListaGiocatori);
 
-            var nuovaListaSegnalini = segnalini2;
+            // Qui viene creata una lista di segnalini.
+            // Ogni volta che un giocatore sceglie una pedina, la lista viene aggiornata in modo
+            // da associare ogni segnalino (pedina) al corrispondente giocatore.
+            var nuovaListaSegnalini = segnalini;
             nuovaListaSegnalini[n-1] =  {
                                             nome: pedina,
                                             ascissa: 940,
@@ -165,7 +168,7 @@ function SceltaPedina(props){
                                             attualeCasella: 0,
                                             giocatore: n
                                         };
-            setSegnalini2(nuovaListaSegnalini);
+            setSegnalini(nuovaListaSegnalini);
 
             setGiocatoreAttuale(giocatoreAttuale + 1);
 
@@ -190,8 +193,8 @@ function SceltaPedina(props){
                             difficolta={props.difficolta} 
                             giocatori={giocatori}
                             setGiocatori={setGiocatori}
-                            segnalini2={segnalini2}
-                            setSegnalini2={setSegnalini2}
+                            segnalini={segnalini}
+                            setSegnalini={setSegnalini}
                         />
                     </React.StrictMode>,
                     document.getElementById('root')
@@ -218,97 +221,3 @@ function SceltaPedina(props){
 }
 
 export default SceltaPedina;
-
-
-
-
-/*class SceltaPedina extends Component {
-    constructor(props){
-        super(props);
-        this.handleChangeGiocatori = this.handleChangeGiocatori.bind(this);
-        this.state = {
-            pedine: [boat, car, doggo, hat, iron, shoe, thimble, wheelbarrow],
-            giocatoreAttuale: 1,
-            giocatori0: [],
-            iniziaPartita: false,
-            numeroGiocatori: parseInt(this.props.numeroGiocatori),
-            difficolta: this.props.difficolta,
-            giocatori: []
-        }
-    }
-
-    handleChangeGiocatori(nuoviGiocatori) {
-        this.setState({giocatori: nuoviGiocatori});
-    }
-
-    // Questa funzione crea una lista di oggetti. Ogni oggetto rappresenta un giocatore.
-    // Ogni giocatore è caratterizzato da un numero e da una pedina.
-    associaGiocatorePedina = (pedina) => {
-        // Se una pedina è già stata scelta da un giocatore, non può più essere scelta dagli altri.
-        if (this.state.giocatori0.find(giocatore => giocatore.pedina === pedina)) {
-            alert('Non puoi scegliere una pedina già selezionata!');
-        // Se la pedina è disponibile, aggiunge alla lista dei giocatori un oggetto avente per giocatore
-        // il numero del giocatore attuale e per pedina la pedina selezionata.
-        } else {
-            this.setState((statoPrecedente) => ({
-            giocatoreAttuale: statoPrecedente.giocatoreAttuale + 1,
-            giocatori0: [
-                ...statoPrecedente.giocatori, 
-                {
-                    giocatore: statoPrecedente.giocatoreAttuale,
-                    pedina,
-                    capitale: 1500,
-                    inGioco: true
-                } 
-            ],
-            // Se tutti i giocatori hanno scelto la loro pedina, imposta iniziaPartita a true. In questo modo viene avviata la partita. 
-            iniziaPartita: statoPrecedente.giocatoreAttuale === this.state.numeroGiocatori ? true : false
-            })) 
-        }
-    } 
-
-    
-    render() {
-
-        
-        return(
-            <div>
-                {
-                    // Se iniziaPartita è true avvia la partita. Altrimenti si consente ai giocatori di scegliere la pedina.
-                    this.state.iniziaPartita ?
-                    ReactDOM.render(
-                        <React.StrictMode>
-                            <App 
-                                numeroGiocatori={this.state.numeroGiocatori} 
-                                difficolta={this.state.difficolta} 
-                                giocatori={this.state.giocatori}
-                                giocatori0={this.state.giocatori0}
-                                setGiocatori={this.handleChangeGiocatori}
-                            />
-                        </React.StrictMode>,
-                        document.getElementById('root')
-                    )
-                    :
-                    <div className="scelta-pedina">
-                        <h1>Giocatore {this.state.giocatoreAttuale} scegli la tua pedina:</h1>
-                        <div className="contenitore-pedine">
-                            {
-                                this.state.pedine.map(pedina => (
-                                    <div className="contenitore-pedine-interno" onClick={() => this.associaGiocatorePedina(pedina)}>
-                                        <img 
-                                        alt=""
-                                        className="scelta-pedina-immagine"
-                                        src={pedina}/>
-                                    </div>
-                                ))
-                            }
-                        </div>
-                    </div>
-                }
-                
-            </div>
-        );
-    }
-}
-
-export default SceltaPedina*/

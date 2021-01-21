@@ -5,10 +5,8 @@ import Costruisci from './AzioniConBottone/Costruisci';
 import Vendi from './AzioniConBottone/Vendi';
 import VendiEdificio from './AzioniConBottone/VendiEdificio';
 import Ipoteca from './AzioniConBottone/Ipoteca';
-//import SceltaNumeroGiocatori from './SceltaNumeroGiocatori';
 import Carte from './CarteProbabilitaImprevisto/Carte';
 import Banca from './Banca';
-
 
 let dado1;
 let dado2;
@@ -38,21 +36,17 @@ class ComponentController extends React.Component {
       }
 
     spostaSegnalino (sommaDadi) {
-        // i giocatori vanno da 1 a 6 , per ora assegno i segnalini in ordine numerico
-        // uso this.props.turnoGiocatore-1 perchè i segnalini partono da ZERO
         let numSegnalino = this.props.turnoGiocatore;
-        let ascissa = this.props.segnalini2[numSegnalino].ascissa;
-        let ordinata = this.props.segnalini2[numSegnalino].ordinata;
-
-        //let [a, xposSegnalino, tposSegnalino, visSegnalino, strato, attualeCasella] = this.props.segnalini[numSegnalino];
-        let attualeCasella = this.props.segnalini2[numSegnalino].attualeCasella;
+        let ascissa = this.props.segnalini[numSegnalino].ascissa;
+        let ordinata = this.props.segnalini[numSegnalino].ordinata;
+        let attualeCasella = this.props.segnalini[numSegnalino].attualeCasella;
         
         var i;
         for (i = 1; i < sommaDadi+1; i++) {
             if (attualeCasella === 39) {
                 attualeCasella=0;
-                let banca1 = new Banca();
-                banca1.giocatorePassaDalVia(this.props.giocatori,this.props.turnoGiocatore,this.props.setGiocatori);
+                let banca = new Banca();
+                banca.giocatorePassaDalVia(this.props.giocatori,this.props.turnoGiocatore,this.props.setGiocatori);
             } else {
                 attualeCasella = attualeCasella + 1
             }        
@@ -61,15 +55,14 @@ class ComponentController extends React.Component {
         ascissa = this.props.tavolaGioco[attualeCasella][1];
         ordinata = this.props.tavolaGioco[attualeCasella][2];
   
-        //this.props.segnalini[0]=["hat", ascissa, ordinata, "visible",0,attualeCasella];
-        this.props.segnalini2[numSegnalino].ascissa=ascissa;
-        this.props.segnalini2[numSegnalino].ordinata=ordinata;
-        this.props.segnalini2[numSegnalino].attualeCasella=attualeCasella;
-        console.log("attuale casella " + attualeCasella);
-        console.log("turnoGiocatore " + this.props.turnoGiocatore);
+        // Imposta l'ascissa e l'ordinata della pedina in modo che coincidano con
+        // l'ascissa e l'ordinata della casella su cui è finito il giocatore.
+        this.props.segnalini[numSegnalino].ascissa=ascissa;
+        this.props.segnalini[numSegnalino].ordinata=ordinata;
+        this.props.segnalini[numSegnalino].attualeCasella=attualeCasella;
 
         // Se il giocatore finisce sulla casella "Vai in Prigione", allora la sua pedina
-        // viene spostata in Prigione
+        // viene spostata in Prigione.
         if (this.props.segnalini[numSegnalino].attualeCasella === 30) {
             alert("Vai in Prigione.");
             this.props.segnalini[numSegnalino].ascissa = this.props.tavolaGioco[10][1];
@@ -86,7 +79,6 @@ class ComponentController extends React.Component {
             carta1.estraiCarta(true,this.props.turnoGiocatore);
         };        
         this.props.muoviPedine();   
-
     }      
 
     spostaAuto () {
@@ -137,7 +129,7 @@ class ComponentController extends React.Component {
     }
 
     // Funzione che permette di concludere il turno e che passa il comando al giocatore successivo.
-    // Per comunicare ai giocatori questo cambiamento viene utilizzato un allert.
+    // Per comunicare ai giocatori questo cambiamento viene utilizzato un alert.
     finisciTurno = () => {
         const giocatore = this.props.turnoGiocatore;
         var giocatore2;
@@ -314,7 +306,7 @@ class ComponentController extends React.Component {
                         </td>   
                         <td className="tdController">
                             <Acquista 
-                              attualeCasella={this.props.segnalini[this.props.turnoGiocatore][5]}
+                              attualeCasella={this.props.segnalini[this.props.turnoGiocatore].attualeCasella}
                               caselle={this.props.caselle} 
                               setCaselle={this.props.setCaselle}
                               turnoGiocatore={this.props.turnoGiocatore}
