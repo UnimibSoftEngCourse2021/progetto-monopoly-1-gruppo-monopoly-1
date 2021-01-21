@@ -7,5 +7,5 @@ Elenco delle cose che bisogna ancora implementare per il completamento del Monop
 - Gestire l'ingresso e l'uscita dalla prigione
 - Gestire il passaggio di un giocatore dal Via                                      fatto
 - Creare l'asta nel caso in cui un giocatore decida di non aquistare
-- Acquisto stazioni e societa
+
 
