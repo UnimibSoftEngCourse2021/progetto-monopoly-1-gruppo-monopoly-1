@@ -33,7 +33,7 @@ class Banca extends Component {
         var nuoviGiocatori = giocatori;
         nuoviGiocatori[turnoGiocatore].capitale=giocatori[turnoGiocatore].capitale+500;
         setGiocatori(nuoviGiocatori);
-        alert('Giocatore:'+turnoGiocatore+ 'Passa Dal Via');  
+        alert('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');  
     }
 
     getSaldoGiocatore

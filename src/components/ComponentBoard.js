@@ -1,7 +1,6 @@
 import React from 'react';
 import Pedina from './Pedina';
 import ComponentController from './ComponentController';
-
 import hat from '../img/hat.png';
 import iron from '../img/iron.png';
 import car from '../img/car.png';
@@ -62,78 +61,90 @@ class ComponentBoard extends React.Component {
 	constructor(props) {
         super(props);
         this.state = {
-          // Tracciato record: nome, ascissa, ordinata, visibilita, strato, attualeCasella  
-          segnalini: [
-                        ["hat", 940, 600, "visible",0,0],
-                        ["iron", 940, 600, "visible",1,0],
-                        ["car", 940, 600, "visible",2,0],
-                        ["boat", 940, 600, "visible",3,0],
-                        ["doggo", 940, 600, "visible",4,0],
-                        ["shoe", 940, 600, "visible",5,0],
-                        ["thimble", 940, 600, "hidden",6,0],
-                        ["wheelbarrow", 940, 600, "hidden",7,0],
-                    ],
-         // turnoGiocatore: 0,
-         // numeroGiocatori: 4
         };
       }
 
-      
       muoviPedine = changeEvent => {
         this.setState({
             
         })
       }
   
-
     render () {
-
-        for (let i = 0; i < this.state.segnalini.length; i++) {
-            let visSegn;
-            const [a, xposSegnalino, tposSegnalino, visSegnalino, strato] = this.state.segnalini[i];
-            /// if visibiità segnalini
-            if (i<=this.props.numeroGiocatori-1) {visSegn='visible'} else {visSegn='hidden'}
-
-            const segnalinoSet = {  left: xposSegnalino+"px",
-                                    top: tposSegnalino+"px",
-                                    visibility: visSegn,
-                                    zIndex: strato
-                                 }
-            switch (a) {
-                case "car": var mystyleCar = segnalinoSet;
+        // Con questo ciclo for creo uno stile di visualizzazione per ogni pedina che sia
+        // stata scelta da almeno un giocatore. Questo stile verrà utilizzato nel
+        // componente Pedina per la visualizzazione della pedina stessa.
+        for (let i = 0; i < this.props.segnalini.length; i++) {
+            const segnalinoSet =   {
+                                        left: this.props.segnalini[i].ascissa + "px",
+                                        top: this.props.segnalini[i].ordinata + "px",
+                                        visibility: this.props.segnalini[i].visibilita,
+                                        strato: this.props.segnalini[i].strato
+                                    }
+            switch (this.props.segnalini[i].nome) {
+                case car: var mystyleCar = segnalinoSet;
                     break;
-                case "boat": var mystyleBoat = segnalinoSet;
+                case boat: var mystyleBoat = segnalinoSet;
                     break;
-                case "hat": var mystyleHat = segnalinoSet;
+                case hat: var mystyleHat = segnalinoSet;
                     break;
-                case "iron": var mystyleIron = segnalinoSet;
+                case iron: var mystyleIron = segnalinoSet;
                     break;
-                case "doggo": var mystyleDoggo = segnalinoSet;
+                case doggo: var mystyleDoggo = segnalinoSet;
                     break;
-                case "shoe": var mystyleShoe = segnalinoSet;
+                case shoe: var mystyleShoe = segnalinoSet;
                     break;
-                case "thimble": var mystyleThimble = segnalinoSet;
+                case thimble: var mystyleThimble = segnalinoSet;
                     break;
-                case "wheelbarrow": var mystyleWheelbarrow = segnalinoSet;
-                    break;                    
-            }                   
+                case wheelbarrow: var mystyleWheelbarrow = segnalinoSet;
+                    break;
+            }
         }
-
-    
-  
-
-        
-             
+   
         return (
             <div className="imgTavola" >
-                <Pedina figura={car} stile={mystyleCar} />
-                <Pedina figura={boat} stile={mystyleBoat} />  
-                <Pedina figura={hat} stile={mystyleHat} />
-                <Pedina figura={iron} stile={mystyleIron} />
-                <Pedina figura={doggo} stile={mystyleDoggo} />
-                <Pedina figura={shoe} stile={mystyleShoe} />
-                <Pedina figura={thimble} stile={mystyleThimble} />
-                <Pedina figura={wheelbarrow} stile={mystyleWheelbarrow} />
+                {/* Se una pedina è stata scelta da un giocatore, deve essere visualizzata con
+                    lo stile impostato precedentemente. Altrimenti la pedina non viene visualizzata */}
+                {
+                    (this.props.giocatori.find(giocatore => giocatore.pedina === car)) ?
+                    <Pedina figura={car} stile={mystyleCar} /> :
+                    <div></div>
+                }
+                {
+                    (this.props.giocatori.find(giocatore => giocatore.pedina === boat)) ?
+                    <Pedina figura={boat} stile={mystyleBoat} /> :
+                    <div></div>
+                }
+                {
+                    (this.props.giocatori.find(giocatore => giocatore.pedina === hat)) ?
+                    <Pedina figura={hat} stile={mystyleHat} /> :
+                    <div></div>
+                }
+                {
+                    (this.props.giocatori.find(giocatore => giocatore.pedina === iron)) ?
+                    <Pedina figura={iron} stile={mystyleIron} /> :
+                    <div></div>
+                }
+                {
+                    (this.props.giocatori.find(giocatore => giocatore.pedina === doggo)) ?
+                    <Pedina figura={doggo} stile={mystyleDoggo} /> :
+                    <div></div>
+                }
+                {
+                    (this.props.giocatori.find(giocatore => giocatore.pedina === shoe)) ?
+                    <Pedina figura={shoe} stile={mystyleShoe} /> :
+                    <div></div>
+                }
+                {
+                    (this.props.giocatori.find(giocatore => giocatore.pedina === thimble)) ?
+                    <Pedina figura={thimble} stile={mystyleThimble} /> :
+                    <div></div>
+                }
+                {
+                    (this.props.giocatori.find(giocatore => giocatore.pedina === wheelbarrow)) ?
+                    <Pedina figura={wheelbarrow} stile={mystyleWheelbarrow} /> :
+                    <div></div>
+                }
 
                 <ComponentController 
                     segnalini={this.state.segnalini} 
@@ -146,6 +157,8 @@ class ComponentBoard extends React.Component {
                     setTerreni={this.props.setTerreni}
                     giocatori={this.props.giocatori}
                     setGiocatori={this.props.setGiocatori}
+                    segnalini={this.props.segnalini}
+                    setSegnalini={this.props.setSegnalini}
                     societàStazioni={this.props.societàStazioni}
                     setSocietàStazioni={this.props.setSocietàStazioni}
                     caselle={this.props.caselle} 
@@ -153,15 +166,7 @@ class ComponentBoard extends React.Component {
                     tempo={this.props.tempo}
                     setTempo={this.props.setTempo}
                 />
-
-            
-                                     
-                                    
-                                    
-
             </div>
-            
-            
         )
     }
 }

@@ -2,9 +2,9 @@ import React from 'react'
 import { Box, TableCell, TableRow, TableBody, TableContainer, Table, TableHead, Typography} from '@material-ui/core';
 
 
+
 function TabellaGiocatori (props) {
 
-   
     
 
     function StampaNumero(numero){
