@@ -74,11 +74,11 @@ class ComponentController extends React.Component {
 
         if (this.props.caselle[attualeCasella].tipo ==='imprevisti') {
            // alert('imprevisti');
-           carta1.estraiCarta(false,this.props.turnoGiocatore);
+           carta1.estraiCarta(false, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori);
         };
         if (this.props.caselle[attualeCasella].tipo ==='probabilita') {
             //alert('probabilita');
-            carta1.estraiCarta(true,this.props.turnoGiocatore);
+            carta1.estraiCarta(true, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori);
         };        
         this.props.muoviPedine();   
     }      
