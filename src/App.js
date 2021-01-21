@@ -8,6 +8,14 @@ import TabellaSocietàStazioni from './components/Tabelle/TabellaSocietàStazion
 
 function App(props) {
 
+  // Countdown
+  const [counter, setCounter] = React.useState(20);
+
+  React.useEffect(() => {
+    counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+    if (counter==0) {alert('tempo finito');}
+  }, [counter]);
+
   const [caselle, setCaselle] = React.useState(
     [
       {
@@ -516,6 +524,8 @@ function App(props) {
               tempo={tempo}
               setTempo={setTempo}
               decrementaTempo={decrementaTempo}
+              counter={counter}
+              setCounter={setCounter}
             />
           </td>
           <td className="colonna1" >

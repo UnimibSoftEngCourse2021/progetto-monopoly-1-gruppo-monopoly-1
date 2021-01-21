@@ -115,3 +115,8 @@ code {
   transform: scale(2);
 }
 
+.contoRovescio{
+  left: 500px;
+  top: 100px;
+  position:absolute;  
+}

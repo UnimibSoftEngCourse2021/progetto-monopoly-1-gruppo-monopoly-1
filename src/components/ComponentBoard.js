@@ -69,6 +69,8 @@ class ComponentBoard extends React.Component {
             
         })
       }
+
+      
   
     render () {
         // Con questo ciclo for creo uno stile di visualizzazione per ogni pedina che sia
@@ -145,6 +147,10 @@ class ComponentBoard extends React.Component {
                     <Pedina figura={wheelbarrow} stile={mystyleWheelbarrow} /> :
                     <div></div>
                 }
+
+                    <div className="contoRovescio">
+                        <div>Countdown: {this.props.counter}</div>
+                    </div>
 
                 <ComponentController 
                     segnalini={this.state.segnalini} 
