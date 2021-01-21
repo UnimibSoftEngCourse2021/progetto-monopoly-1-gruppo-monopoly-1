@@ -31,9 +31,13 @@ class ComponentController extends React.Component {
 	constructor(props) {
         super(props);
         this.state = {
-            primoMsgTA: 'ultimo messaggio',
-            secondoMsgTA: 'penultimo messaggio',
-            terzoMsgTA: 'terzultimo messaggio',
+            primoMsgTA: '',
+            secondoMsgTA: '',
+            terzoMsgTA: '',
+            quartoMsgTA: '',
+            quintoMsgTA: '',
+            sestoMsgTA: '',
+            settimoMsgTA: '',
         };
       }
 
@@ -105,11 +109,34 @@ class ComponentController extends React.Component {
                 numeroTiriDadi = 0;
             }
             this.spostaSegnalino(sommaDadi);  
+
+            var msg1;
+            var msg2=this.state.primoMsgTA;
+            var msg3=this.state.secondoMsgTA;
+            var msg4=this.state.terzoMsgTA;
+            var msg5=this.state.quartoMsgTA;
+            var msg6=this.state.quintoMsgTA;
+            var msg7=this.state.sestoMsgTA;
+            if (punteggioDoppio) {msg1='Giocatore:'+(this.props.turnoGiocatore+1)+' il punteggio dei dadi è doppio: '+dado1+' + '+dado2}
+                        else {msg1='Giocatore:'+(this.props.turnoGiocatore+1)+' il punteggio dei dadi è: '+dado1+' + '+dado2}
+
+            this.setState({
+                primoMsgTA: msg1,
+                secondoMsgTA: msg2,
+                terzoMsgTA: msg3,
+                quartoMsgTA: msg4,
+                quintoMsgTA: msg5,
+                sestoMsgTA: msg6,
+                settimoMsgTA: msg7
+            })  
+            
+            /*
             this.setState({
                 primoMsgTA: `${sommaDadi}`,
                 secondoMsgTA: 'Il punteggio dei dadi è doppio: '+dado1+' + '+dado2 +' ' + `${punteggioDoppio}`,
                 terzoMsgTA: `${sommaDadi}`
             })  
+            */
         }
         else {
             alert('Non puoi tirare nuovamente i dadi.');
@@ -455,6 +482,10 @@ class ComponentController extends React.Component {
                                 messaggioUno={this.state.primoMsgTA}
                                 messaggioDue={this.state.secondoMsgTA}
                                 messaggioTre={this.state.terzoMsgTA}
+                                messaggioQuattro={this.state.quartoMsgTA}
+                                messaggioCinque={this.state.quintoMsgTA}
+                                messaggioSei={this.state.sestoMsgTA}
+                                messaggioSette={this.state.settimoMsgTA}
                             />  
                         </td>  
                     </tr>
@@ -481,6 +512,10 @@ class AreaTesto extends React.Component {
                 <div>{this.props.messaggioUno}</div>
                 <div>{this.props.messaggioDue}</div>
                 <div>{this.props.messaggioTre}</div>
+                <div>{this.props.messaggioQuattro}</div>
+                <div>{this.props.messaggioCinque}</div>
+                <div>{this.props.messaggioSei}</div>
+                <div>{this.props.messaggioSette}</div>
             {/* {this.props.primoMsgTA+"\n"+this.props.secondoMsgTA+"\n"+this.props.terzoMsgTA}  */}
         </div>
       );
