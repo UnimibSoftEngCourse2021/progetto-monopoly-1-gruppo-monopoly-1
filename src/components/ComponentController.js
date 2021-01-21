@@ -74,11 +74,45 @@ class ComponentController extends React.Component {
 
         if (this.props.caselle[attualeCasella].tipo ==='imprevisti') {
            // alert('imprevisti');
-           carta1.estraiCarta(false, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori);
+           carta1.estraiCarta(false, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori, this.props.segnalini[this.props.turnoGiocatore].attualeCasella, this.props.terreni);
+
+           /*
+            for (i = 0; i < props.terreni.length; i++) {
+    // Se la casella è un terreno trovo il nome nel array terreni
+    // Join tra gli array per NOME
+    // Se il giocatore ha abbastanza soldi procede con l'acquisto
+    // Se il nome della casella di tipo terreno corrisponde al nome nell'array terreni
+    // allora aggiorno il proprietario Sia in array Terreni sia in array Caselle    
+    if (props.terreni[i].nome==props.caselle[props.attualeCasella].nome) {
+      if (props.terreni[i].valore<=vecchioCapitale) {
+      // Aggiorno array terreni
+      nuoviTerreni[i].proprietario=props.turnoGiocatore;
+      props.setTerreni(nuoviTerreni);  
+      // Aggiorno array giocatori
+      nuovoCapitale = vecchioCapitale-props.terreni[i].valore;
+      nuoviGiocatori[props.turnoGiocatore].capitale=nuovoCapitale;
+      props.setGiocatori(nuoviGiocatori);
+      
+      alert('Il terreno è stato acquistato con successo'); 
+     }
+
+
+
+
+                caselle={this.props.caselle} 
+                setCaselle={this.props.setCaselle}
+                turnoGiocatore={this.props.turnoGiocatore}
+                terreni={this.props.terreni}
+                setTerreni={this.props.setTerreni}
+                giocatori={this.props.giocatori}
+                setGiocatori={this.props.setGiocatori}
+                societàStazioni={this.props.societàStazioni}
+                setSocietàStazioni={this.props.setSocietàStazioni}
+           */
         };
         if (this.props.caselle[attualeCasella].tipo ==='probabilita') {
             //alert('probabilita');
-            carta1.estraiCarta(true, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori);
+            carta1.estraiCarta(true, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori, this.props.segnalini[this.props.turnoGiocatore].attualeCasella, this.props.terreni);
         };        
         this.props.muoviPedine();   
     }      
