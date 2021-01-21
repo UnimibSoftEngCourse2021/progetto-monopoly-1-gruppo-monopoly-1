@@ -65,7 +65,7 @@ function TabellaTerreni (props) {
                                     <TableCell align="right">
                                         <Typography align='center' style={{background:row.coloreSfondo}}>Gruppo</Typography>
                                     </TableCell>
-                                    <TableCell align="right">{row.proprietario===-1? null : row.proprietario}</TableCell>
+                                    <TableCell align="right">{row.proprietario===-1? null : row.proprietario+1}</TableCell>
                                     <TableCell align="right">{row.casa}</TableCell>
                                     <TableCell align="right">{row.alberghi}</TableCell>
                                     <TableCell align="right">{row.valore}</TableCell>
