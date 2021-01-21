@@ -5,7 +5,6 @@ Elenco delle cose che bisogna ancora implementare per il completamento del Monop
 - Implementare il pagamento dell'affitto
 - Collegare l'estrazione di una carta probabilità / imprevisti con la sua azione
 - Gestire l'ingresso e l'uscita dalla prigione
-- Gestire il passaggio di un giocatore dal Via                                      fatto
-- Creare l'asta nel caso in cui un giocatore decida di non aquistare
+- Gestire il passaggio di un giocatore dal Via
 
 

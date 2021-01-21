@@ -1,5 +1,6 @@
 import React from 'react';
 import {Paper, Modal, Button} from '@material-ui/core';
+import Asta from './Asta';
 
 
 function Acquista(props){
@@ -93,7 +94,7 @@ function MostraProprietario(){
   }
 }
 
-function Messaggio(){
+function AcquistaCasella(){
   if(c.riferimento === -1){
     return(<h4 style={{margin:'16px'}}>Mi dispiace ma questa casella non può essere aquistata</h4> );
   }
@@ -117,6 +118,8 @@ function Messaggio(){
   );
 }
 
+
+
 const body = (
     <Paper style={{marginTop:'16px', marginLeft:'200px', marginRight:'200px'}}>
         
@@ -125,7 +128,20 @@ const body = (
       <h4 style={{margin:'16px'}}>Di nome: {c.nome}</h4>
       <MostraProprietario />
      
-      <Messaggio />
+      <AcquistaCasella />
+
+      <Asta 
+        attualeCasella={props.attualeCasella}
+        caselle={props.caselle} 
+        setCaselle={props.setCaselle}
+        turnoGiocatore={props.turnoGiocatore}
+        terreni={props.terreni}
+        setTerreni={props.setTerreni}
+        giocatori={props.giocatori}
+        setGiocatori={props.setGiocatori}
+        societàStazioni={props.societàStazioni}
+        setSocietàStazioni={props.setSocietàStazioni}
+      />
       
     </Paper>
   );
