@@ -15,7 +15,7 @@ let dado2;
 let sommaDadi;
 let punteggioDoppio;
 let carta1 = new Carte();
-let dadiTirati; // Questo booleano permette di tirare i dadi solo ina volta per turno
+let dadiTirati = false; // Questo booleano permette di tirare i dadi solo una volta per turno, salvo il caso di punteggio doppio
 let numeroTiriDadi = 0;
 
 function verificaPunteggioDoppio(dado1, dado2){
@@ -99,7 +99,7 @@ class ComponentController extends React.Component {
 
     tiraDadi = () => {
         
-        if (!dadiTirati && this.state.tiroDoppio <= 2){
+        if (!dadiTirati){
             dado1 = Math.floor(Math.random()*6) + 1;
             dado2 = Math.floor(Math.random()*6) + 1;
             sommaDadi = dado1 + dado2;
@@ -127,6 +127,7 @@ class ComponentController extends React.Component {
                 var nuoviGiocatori = this.props.giocatori;
                     nuoviGiocatori[this.props.turnoGiocatore].capitale -= 125;
                     nuoviGiocatori[this.props.turnoGiocatore].inPrigione = false;
+                    this.props.giocatori[this.props.turnoGiocatore].numeroTurniPrigione = 0;
                     this.props.setGiocatori(nuoviGiocatori);
                     alert("Il Giocatore " + (this.props.turnoGiocatore+1) + " paga la cauzione obbligatoria di € 125 per uscire di prigione essendo rimasto" +
                     " in prigione per 3 turni consecutivi.");
@@ -177,56 +178,59 @@ class ComponentController extends React.Component {
         else {
             alert('Non puoi tirare nuovamente i dadi.');
         }
+
     }
 
     // Funzione che permette di concludere il turno e che passa il comando al giocatore successivo.
     // Per comunicare ai giocatori questo cambiamento viene utilizzato un alert.
     finisciTurno = () => {
-        const giocatore = this.props.turnoGiocatore;
-        var giocatore2;
-        if(giocatore === this.props.numeroGiocatori-1){
-            giocatore2 = 0;
-        }
-        else{
-            giocatore2 = giocatore + 1;
-        }
-        
-        if(this.props.giocatori[giocatore2].inGioco===false){
-            //cerco il primo giocatore in gioco
-            var i = giocatore2;
-            var x = true;
-            
-            while(x){
-                
-                if(this.props.giocatori[i].inGioco === true){
-                    giocatore2 = i;
-                    x = false;
-                }
-                else{
-                    if(i===this.props.numeroGiocatori-1){
-                        i = 0;
-                    }
-                    else{
-                        i++;
-                    }
-                }
+        if (dadiTirati === false && punteggioDoppio) {
+            alert("Avendo ottenuto un punteggio doppio devi tirare nuovamente i dadi.")
+        } else if (dadiTirati === false) {
+            alert("Non puoi terminare il turno senza aver tirato i dadi.")
+        } else {
+            const giocatore = this.props.turnoGiocatore;
+            var giocatore2;
+            if(giocatore === this.props.numeroGiocatori-1){
+                giocatore2 = 0;
+            }
+            else{
+                giocatore2 = giocatore + 1;
             }
             
+            if(this.props.giocatori[giocatore2].inGioco===false){
+                //cerco il primo giocatore in gioco
+                var i = giocatore2;
+                var x = true;
+                
+                while(x){
+                    
+                    if(this.props.giocatori[i].inGioco === true){
+                        giocatore2 = i;
+                        x = false;
+                    }
+                    else{
+                        if(i===this.props.numeroGiocatori-1){
+                            i = 0;
+                        }
+                        else{
+                            i++;
+                        }
+                    }
+                }
+                
+            }
+
+            dadiTirati = false;
+            this.props.setTurnoGiocatore(giocatore2);  
+
+            this.fallimentoVittoria();
+            
+            if(this.props.tempo !== null){
+                this.partitaATempo();
+            }
         }
-
-        dadiTirati = false;
-        this.props.setTurnoGiocatore(giocatore2);  
-
-        
-
-        this.fallimentoVittoria();
-        
-        if(this.props.tempo !== null){
-            this.partitaATempo();
-        }
-
-        //alert('Ora tocca ad un altro giocatore');
-        
+        //alert('Ora tocca ad un altro giocatore'); 
     }
 
     //Questa funzione verifica se il giocatore che ha concluso il turno non ha più soldi
