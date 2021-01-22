@@ -456,11 +456,12 @@ class ComponentController extends React.Component {
                             />
                         </td>   
                         <td className="tdController">
+
                         </td>
                         <td className="tdController">
                         </td>
                     </tr>
-
+                        
                     <tr>
                         <td className="tdController" colspan="2" >
                             <VendiEdificio 

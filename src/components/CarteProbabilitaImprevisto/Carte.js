@@ -19,12 +19,12 @@ class Carte extends Component {
                 [9, 'Eredità: incassa $100', 100, 0, 0, 0], //fatto
                 [10, 'Vendita di azioni: incassa $100', 100, 0, 0, 0], //fatto
                 [11, 'Rendimento fondo vacanze: incassa $100', 100, 0, 0, 0], //fatto
-                [12, 'Esci di Prigione', 0, 0, 0, 0],
+                [12, 'Esci di Prigione', 0, 0, 0, 0], //fatto
                 [13, 'Vai in Prigione senza passare dal Via', 0, 0, 0, 0], //fatto
                 [14, 'Vai al Via', 0, 0, 0, 0], //fatto
 
                 //Imprevisti
-                [15, 'Esci di Prigione', 0, 0, 0, 0],
+                [15, 'Esci di Prigione', 0, 0, 0, 0], //fatto
                 [16, 'Vai al Via', 0, 0, 0, 0], //fatto
                 [17, 'Vai a Illinois Avenue', 0, 0, 0, 0], //ATTENZIONE LA CARTA DOVREBBE DARE 200$ IN CASO SI PASSI DAL VIA, DA FARE DOPO SVILUPPO DELLA CASELLA VIA
                 [18, 'Vai a St. Charles Place', 0, 0, 0, 0], //ATTENZIONE LA CARTA DOVREBBE DARE 200$ IN CASO SI PASSI DAL VIA, DA FARE DOPO SVILUPPO DELLA CASELLA VIA

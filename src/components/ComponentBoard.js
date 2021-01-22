@@ -60,17 +60,46 @@ class ComponentBoard extends React.Component {
 
 	constructor(props) {
         super(props);
-        this.state = {
-        };
+        this.state={
+        }
       }
 
       muoviPedine = changeEvent => {
         this.setState({
             
         })
-      }
+      } 
 
-      
+    assegnaContrattiIniziali(numeroGiocatori, giocatori, setGiocatori, terreni, setTerreni, turnoPartita, setTurnoPartita) {
+        let random = 0;
+        for (let i = 0; i < numeroGiocatori; i++) {
+            let j = 0;
+            while (j < giocatori[i].numeroContrattiIniziali) {
+                random = Math.floor(Math.random() * 22);
+                // console.log(i, j, random, JSON.stringify(giocatori), JSON.stringify(terreni));
+                if (terreni[random].proprietario === -1) {
+                    // console.log("Terreno " + terreni[random].nome)
+                    // console.log("Libero");
+                    // terreni[random].proprietario = giocatori[i].numero;
+                    // giocatori[i].capitale -= terreni[random].valore;
+                    var nuoviTerreni = terreni;
+                    var nuoviGiocatori = giocatori;
+                    nuoviTerreni[random].proprietario = giocatori[i].numero;
+                    nuoviGiocatori[i].capitale -= terreni[random].valore;
+                    setTerreni(nuoviTerreni);
+                    setGiocatori(nuoviGiocatori);
+                    // console.log("Nuovo proprietario " + terreni[random].proprietario);
+                    j += 1;
+                }
+                // console.log("J: " + j + ", I: " + i);
+                // j += 1;
+                console.log(JSON.stringify(terreni));
+            }
+        }
+        setTurnoPartita(1);
+        console.log("Inizia turno " + turnoPartita);
+        return;
+    }
   
     render () {
         // Con questo ciclo for creo uno stile di visualizzazione per ogni pedina che sia
@@ -102,7 +131,7 @@ class ComponentBoard extends React.Component {
                     break;
             }
         }
-   
+
         return (
             <div className="imgTavola" >
                 {/* Se una pedina è stata scelta da un giocatore, deve essere visualizzata con
@@ -148,8 +177,34 @@ class ComponentBoard extends React.Component {
                     <div></div>
                 }
 
+                {
+                    // this.props.turnoPartita === 0 ?
+                    // this.assegnaContrattiIniziali(   this.props.numeroGiocatori, 
+                    //                             this.props.giocatori, 
+                    //                             this.props.setGiocatori, 
+                    //                             this.props.terreni, 
+                    //                             this.props.setTerreni,
+                    //                             this.props.turnoPartita, 
+                    //                             this.props.setTurnoPartita,
+                    //                             ) 
+                    // :
+                    // <div></div>
+                }
+                
+
                     <div className="contoRovescio">
                         <div>Countdown: {this.props.counter}</div>
+                    </div>
+                    <div className="contrattiIniziali"> 
+                        {this.assegnaContrattiIniziali(
+                            this.props.numeroGiocatori, 
+                            this.props.giocatori, 
+                            this.props.setGiocatori, 
+                            this.props.terreni, 
+                            this.props.setTerreni,
+                            this.props.turnoPartita, 
+                            this.props.setTurnoPartita,                    
+                        )}
                     </div>
 
                 <ComponentController 
