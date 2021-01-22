@@ -54,7 +54,7 @@ class Carte extends Component {
         }else{
             idCarta =21;//Math.floor(Math.random()*(30-15)+15);
         };
-        alert('Giocatore: ' + turnoGiocatore + ' \n La carta è: ' + this.state.carte[idCarta][1]);
+        alert('Giocatore ' + (turnoGiocatore + 1) + ': \nLa carta è: ' + this.state.carte[idCarta][1]);
         this.attivaCarta(idCarta, turnoGiocatore, giocatori, setGiocatori, segnalini, setSegnalini, terreni, setTerreni, tavolaGioco, setTavolaGioco);
     }
 
@@ -105,6 +105,7 @@ class Carte extends Component {
             nuoviSegnalini[turnoGiocatore].attualeCasella=10;
             nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[10][1];
             nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[10][2];
+            nuoviGiocatori[turnoGiocatore].inPrigione = true;
         }
 
         //Modifica spostamentoPerCarta in modo che la pedina vada indietro di 3 caselle
@@ -119,6 +120,12 @@ class Carte extends Component {
         //Modifica spostamentoPerCarta in modo che la pedina vada al Via
         if(idCarta==14 || idCarta==16){
             //spostamentoPerCarta = 40 - attualeCasella;
+        }
+
+        // Se il giocatore pesca una carta di uscita dalla prigione, incrementa il contatore
+        // delle carte di uscita di prigione del giocatore di 1.
+        if (idCarta === 12 || idCarta === 15) {
+            nuoviGiocatori[turnoGiocatore].carteUscitaPrigione += 1;
         }
 
         setGiocatori(nuoviGiocatori);
