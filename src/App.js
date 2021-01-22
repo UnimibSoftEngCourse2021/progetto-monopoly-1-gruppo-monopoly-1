@@ -494,7 +494,13 @@ function App(props) {
   );
  
   
-  const [turnoGiocatore, setTurnoGiocatore] = React.useState(0);
+  const [turnoGiocatore, setTurnoGiocatore] = React.useState(IniziaPerPrimo());
+
+  function IniziaPerPrimo() {
+    var min = Math.ceil(0);
+    var max = Math.floor(props.numeroGiocatori);
+    return Math.floor(Math.random() * (max - min)) + min; //Il max è escluso e il min è incluso
+  }
 
   //Variabile di stato utilizzata per gestire le partite a tempo
   //se la partita non è a tempo sarà uguale a null

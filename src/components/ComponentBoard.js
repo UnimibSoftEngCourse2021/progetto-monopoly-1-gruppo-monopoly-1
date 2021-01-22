@@ -153,7 +153,6 @@ class ComponentBoard extends React.Component {
                     </div>
 
                 <ComponentController 
-                    segnalini={this.state.segnalini} 
                     muoviPedine={this.muoviPedine} 
                     tavolaGioco={tavolaGioco} 
                     turnoGiocatore={this.props.turnoGiocatore} 
