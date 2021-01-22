@@ -25,6 +25,7 @@ function SceltaPedina(props){
             pedina: '',
             numeroContrattiIniziali: 0,
             inPrigione: false,
+            numeroTurniPrigione: 0,
             carteUscitaPrigione: 0,
             inGioco: false,
           },
@@ -34,6 +35,7 @@ function SceltaPedina(props){
             pedina: '',
             numeroContrattiIniziali: 0,
             inPrigione: false,
+            numeroTurniPrigione: 0,
             carteUscitaPrigione: 0,
             inGioco: false,
           },
@@ -43,6 +45,7 @@ function SceltaPedina(props){
             pedina: '',
             numeroContrattiIniziali: 0,
             inPrigione: false,
+            numeroTurniPrigione: 0,
             carteUscitaPrigione: 0,
             inGioco: false,
           },
@@ -52,6 +55,7 @@ function SceltaPedina(props){
             pedina: '',
             numeroContrattiIniziali: 0,
             inPrigione: false,
+            numeroTurniPrigione: 0,
             carteUscitaPrigione: 0,
             inGioco: false,
           },
@@ -61,6 +65,7 @@ function SceltaPedina(props){
             pedina: '',
             numeroContrattiIniziali: 0,
             inPrigione: false,
+            numeroTurniPrigione: 0,
             carteUscitaPrigione: 0,
             inGioco: false,
           },
@@ -70,6 +75,7 @@ function SceltaPedina(props){
             pedina: '',
             numeroContrattiIniziali: 0,
             inPrigione: false,
+            numeroTurniPrigione: 0,
             carteUscitaPrigione: 0,
             inGioco: false,
           },
@@ -163,19 +169,64 @@ function SceltaPedina(props){
             var nuovaListaGiocatori = giocatori;
             var n = giocatoreAttuale;
             if (numeroGiocatori === 2) {
-                nuovaListaGiocatori[n-1] = {numero: n, capitale: 8750, pedina, numeroContrattiIniziali: 7, inPrigione: false, carteUscitaPrigione: 0, inGioco: true };
+                nuovaListaGiocatori[n-1] =  {
+                                                numero: n, 
+                                                capitale: 8750, 
+                                                pedina, 
+                                                numeroContrattiIniziali: 7, 
+                                                inPrigione: false,
+                                                numeroTurniPrigione: 0, 
+                                                carteUscitaPrigione: 0, 
+                                                inGioco: true 
+                                            };
             }
             else if (numeroGiocatori === 3) {
-                nuovaListaGiocatori[n-1] = {numero: n, capitale: 7500, pedina, numeroContrattiIniziali: 6, inPrigione: false, carteUscitaPrigione: 0, inGioco: true };
+                nuovaListaGiocatori[n-1] =  {
+                                                numero: n, 
+                                                capitale: 7500, 
+                                                pedina, 
+                                                numeroContrattiIniziali: 6, 
+                                                inPrigione: false, 
+                                                numeroTurniPrigione: 0,
+                                                carteUscitaPrigione: 0, 
+                                                inGioco: true 
+                                            };
             }
             else if (numeroGiocatori === 4) {
-                nuovaListaGiocatori[n-1] = {numero: n, capitale: 6250, pedina, numeroContrattiIniziali: 5, inPrigione: false, carteUscitaPrigione: 0, inGioco: true };
+                nuovaListaGiocatori[n-1] =  {   
+                                                numero: n, 
+                                                capitale: 6250, 
+                                                pedina, 
+                                                numeroContrattiIniziali: 5, 
+                                                inPrigione: false, 
+                                                numeroTurniPrigione: 0,
+                                                carteUscitaPrigione: 0, 
+                                                inGioco: true 
+                                            };
             }
             else if (numeroGiocatori === 5) {
-                nuovaListaGiocatori[n-1] = {numero: n, capitale: 5000, pedina, numeroContrattiIniziali: 4, inPrigione: false, carteUscitaPrigione: 0, inGioco: true };
+                nuovaListaGiocatori[n-1] =  {
+                                                numero: n, 
+                                                capitale: 5000, 
+                                                pedina, 
+                                                numeroContrattiIniziali: 4, 
+                                                inPrigione: false, 
+                                                numeroTurniPrigione: 0,
+                                                carteUscitaPrigione: 0, 
+                                                inGioco: true 
+                                            };
             }
             else {
-                nuovaListaGiocatori[n-1] = {numero: n, capitale: 3750, pedina, numeroContrattiIniziali: 3, inPrigione: false, carteUscitaPrigione: 0, inGioco: true };
+                nuovaListaGiocatori[n-1] =  {
+                                                numero: n, 
+                                                capitale: 3750, 
+                                                pedina, 
+                                                numeroContrattiIniziali: 3, 
+                                                inPrigione: false, 
+                                                numeroTurniPrigione: 0,
+                                                carteUscitaPrigione: 0, 
+                                                inGioco: true 
+                                            };
             }
             setGiocatori(nuovaListaGiocatori);
 

@@ -100,8 +100,8 @@ class ComponentController extends React.Component {
     tiraDadi = () => {
         
         if (!dadiTirati && this.state.tiroDoppio <= 2){
-            dado1 = Math.floor(Math.random()*6) + 1;
-            dado2 = Math.floor(Math.random()*6) + 1;
+            dado1 = 4//Math.floor(Math.random()*6) + 1;
+            dado2 = 6//Math.floor(Math.random()*6) + 1;
             sommaDadi = dado1 + dado2;
             numeroTiriDadi = numeroTiriDadi + 1;
             punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
@@ -115,8 +115,21 @@ class ComponentController extends React.Component {
                 numeroTiriDadi = 0;
             }
 
+            if (this.props.giocatori[this.props.turnoGiocatore].inPrigione && !punteggioDoppio) {
+                this.props.giocatori[this.props.turnoGiocatore].numeroTurniPrigione += 1; 
+            }
+
             if (!this.props.giocatori[this.props.turnoGiocatore].inPrigione || (this.props.giocatori[this.props.turnoGiocatore].inPrigione && dado1 === dado2)) {
                 this.spostaSegnalino(sommaDadi);
+            }
+
+            if (this.props.giocatori[this.props.turnoGiocatore].inPrigione && this.props.giocatori[this.props.turnoGiocatore].numeroTurniPrigione === 3) {
+                var nuoviGiocatori = this.props.giocatori;
+                    nuoviGiocatori[this.props.turnoGiocatore].capitale -= 125;
+                    nuoviGiocatori[this.props.turnoGiocatore].inPrigione = false;
+                    this.props.setGiocatori(nuoviGiocatori);
+                    alert("Il Giocatore " + (this.props.turnoGiocatore+1) + " paga la cauzione obbligatoria di € 125 per uscire di prigione essendo rimasto" +
+                    " in prigione per 3 turni consecutivi.");
             }
 
             var lanciDoppi = this.state.tiroDoppio;
