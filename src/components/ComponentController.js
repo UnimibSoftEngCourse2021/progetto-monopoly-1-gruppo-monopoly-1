@@ -81,13 +81,13 @@ class ComponentController extends React.Component {
 
         if (this.props.caselle[attualeCasella].tipo ==='imprevisti') {
            // alert('imprevisti');
-           carta1.estraiCarta(false, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori, this.props.segnalini[this.props.turnoGiocatore].attualeCasella, this.props.terreni);
+           carta1.estraiCarta(false, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori, this.props.segnalini, this.props.setSegnalini, this.props.terreni, this.props.setTerreni, this.props.tavolaGioco, this.props.setTavolaGioco);
 
         };
         if (this.props.caselle[attualeCasella].tipo ==='probabilita') {
             //alert('probabilita');
-            carta1.estraiCarta(true, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori, this.props.segnalini[this.props.turnoGiocatore].attualeCasella, this.props.terreni);
-        };        
+            carta1.estraiCarta(true, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori, this.props.segnalini, this.props.setSegnalini, this.props.terreni, this.props.setTerreni, this.props.tavolaGioco, this.props.setTavolaGioco);
+        };
 
         this.props.muoviPedine();
         this.pagaAffitto();
@@ -100,8 +100,8 @@ class ComponentController extends React.Component {
     tiraDadi = () => {
         
         if (!dadiTirati && this.state.tiroDoppio <= 2){
-            dado1 = 4//Math.floor(Math.random()*6) + 1;
-            dado2 = 6//Math.floor(Math.random()*6) + 1;
+            dado1 = Math.floor(Math.random()*6) + 1;
+            dado2 = Math.floor(Math.random()*6) + 1;
             sommaDadi = dado1 + dado2;
             numeroTiriDadi = numeroTiriDadi + 1;
             punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
