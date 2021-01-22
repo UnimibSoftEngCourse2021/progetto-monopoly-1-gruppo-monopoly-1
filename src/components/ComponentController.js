@@ -8,7 +8,7 @@ import Ipoteca from './AzioniConBottone/Ipoteca';
 import Abbandona from './AzioniConBottone/Abbandona';
 import Carte from './CarteProbabilitaImprevisto/Carte';
 import Banca from './Banca';
-
+import UscitaPrigione from './AzioniConBottone/UscitaPrigione';
 
 let dado1;
 let dado2;
@@ -75,45 +75,14 @@ class ComponentController extends React.Component {
             this.props.segnalini[numSegnalino].ascissa = this.props.tavolaGioco[10][1];
             this.props.segnalini[numSegnalino].ordinata = this.props.tavolaGioco[10][2];
             this.props.segnalini[numSegnalino].attualeCasella = 10;
+            this.props.giocatori[this.props.turnoGiocatore].inPrigione = true;
+            dadiTirati = true;
         }
 
         if (this.props.caselle[attualeCasella].tipo ==='imprevisti') {
            // alert('imprevisti');
            carta1.estraiCarta(false, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori, this.props.segnalini[this.props.turnoGiocatore].attualeCasella, this.props.terreni);
 
-           /*
-            for (i = 0; i < props.terreni.length; i++) {
-    // Se la casella è un terreno trovo il nome nel array terreni
-    // Join tra gli array per NOME
-    // Se il giocatore ha abbastanza soldi procede con l'acquisto
-    // Se il nome della casella di tipo terreno corrisponde al nome nell'array terreni
-    // allora aggiorno il proprietario Sia in array Terreni sia in array Caselle    
-    if (props.terreni[i].nome==props.caselle[props.attualeCasella].nome) {
-      if (props.terreni[i].valore<=vecchioCapitale) {
-      // Aggiorno array terreni
-      nuoviTerreni[i].proprietario=props.turnoGiocatore;
-      props.setTerreni(nuoviTerreni);  
-      // Aggiorno array giocatori
-      nuovoCapitale = vecchioCapitale-props.terreni[i].valore;
-      nuoviGiocatori[props.turnoGiocatore].capitale=nuovoCapitale;
-      props.setGiocatori(nuoviGiocatori);
-      
-      alert('Il terreno è stato acquistato con successo'); 
-     }
-
-
-
-
-                caselle={this.props.caselle} 
-                setCaselle={this.props.setCaselle}
-                turnoGiocatore={this.props.turnoGiocatore}
-                terreni={this.props.terreni}
-                setTerreni={this.props.setTerreni}
-                giocatori={this.props.giocatori}
-                setGiocatori={this.props.setGiocatori}
-                societàStazioni={this.props.societàStazioni}
-                setSocietàStazioni={this.props.setSocietàStazioni}
-           */
         };
         if (this.props.caselle[attualeCasella].tipo ==='probabilita') {
             //alert('probabilita');
@@ -136,11 +105,19 @@ class ComponentController extends React.Component {
             sommaDadi = dado1 + dado2;
             numeroTiriDadi = numeroTiriDadi + 1;
             punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
+            
+            if (this.props.giocatori[this.props.turnoGiocatore].inPrigione && punteggioDoppio) {
+                this.props.giocatori[this.props.turnoGiocatore].inPrigione = false;
+            }
+
             if ((dado1 !== dado2) || (dado1 === dado2) && (numeroTiriDadi === 3)) {
                 dadiTirati = true;
                 numeroTiriDadi = 0;
             }
-            this.spostaSegnalino(sommaDadi);  
+
+            if (!this.props.giocatori[this.props.turnoGiocatore].inPrigione || (this.props.giocatori[this.props.turnoGiocatore].inPrigione && dado1 === dado2)) {
+                this.spostaSegnalino(sommaDadi);
+            }
 
             var lanciDoppi = this.state.tiroDoppio;
             var msg1;
@@ -151,17 +128,26 @@ class ComponentController extends React.Component {
             var msg6=this.state.quintoMsgTA;
             var msg7=this.state.sestoMsgTA;
 
-            if (punteggioDoppio) {                
-                lanciDoppi +=1;
-                msg1='Giocatore:'+(this.props.turnoGiocatore+1)+' il punteggio dei dadi è doppio: '+dado1+' + '+dado2+' Ripetuto:'+lanciDoppi
-                if (lanciDoppi==3) {
-                    // Vai in prigione
-                }
+            if (punteggioDoppio && this.props.giocatori[this.props.turnoGiocatore].inPrigione) {
+                // msg1 = "Giocatore " + (this.props.turnoGiocatore + 1) + " uscito di prigione."
+                msg1='Giocatore ' + (this.props.turnoGiocatore + 1) + ': il punteggio dei dadi è doppio: '+dado1+' + '+dado2 
+            } else if (punteggioDoppio) {
+                msg1='Giocatore ' + (this.props.turnoGiocatore + 1) + ': il punteggio dei dadi è doppio: '+dado1+' + '+dado2
+            } else {
+                msg1='Giocatore ' + (this.props.turnoGiocatore + 1) + ': il punteggio dei dadi è: '+dado1+' + '+dado2
             }
-            else {
-                lanciDoppi=0;
-                msg1='Giocatore:'+(this.props.turnoGiocatore+1)+' il punteggio dei dadi è: '+dado1+' + '+dado2
-            }
+
+            // if (punteggioDoppio) {                
+            //     lanciDoppi +=1;
+            //     msg1='Giocatore:'+(this.props.turnoGiocatore+1)+' il punteggio dei dadi è doppio: '+dado1+' + '+dado2+' Ripetuto:'+lanciDoppi
+            //     if (lanciDoppi==3) {
+            //         // Vai in prigione
+            //     }
+            // }
+            // else {
+            //     lanciDoppi=0;
+            //     msg1='Giocatore:'+(this.props.turnoGiocatore+1)+' il punteggio dei dadi è: '+dado1+' + '+dado2
+            // }
 
             this.setState({
                 primoMsgTA: msg1,
@@ -174,13 +160,6 @@ class ComponentController extends React.Component {
                 tiroDoppio: lanciDoppi,
             })  
             
-            /*
-            this.setState({
-                primoMsgTA: `${sommaDadi}`,
-                secondoMsgTA: 'Il punteggio dei dadi è doppio: '+dado1+' + '+dado2 +' ' + `${punteggioDoppio}`,
-                terzoMsgTA: `${sommaDadi}`
-            })  
-            */
         }
         else {
             alert('Non puoi tirare nuovamente i dadi.');
@@ -436,11 +415,36 @@ class ComponentController extends React.Component {
         return (
             <div>
                 <table className="tableController">
-                    
                     <tr>
-                        <td className="tdController" >
-                        
+                        <td className="tdController">
+                            <UscitaPrigione 
+                                giocatori={this.props.giocatori}
+                                setGiocatori={this.props.setGiocatori} 
+                                turnoGiocatore={this.props.turnoGiocatore}
+                                dadiTirati={this.dadiTirati}
+                            />
                         </td>
+                        <td className="tdController">
+                            <Acquista 
+                              attualeCasella={this.props.segnalini[this.props.turnoGiocatore].attualeCasella}
+                              caselle={this.props.caselle} 
+                              setCaselle={this.props.setCaselle}
+                              turnoGiocatore={this.props.turnoGiocatore}
+                              terreni={this.props.terreni}
+                              setTerreni={this.props.setTerreni}
+                              giocatori={this.props.giocatori}
+                              setGiocatori={this.props.setGiocatori}
+                              societàStazioni={this.props.societàStazioni}
+                              setSocietàStazioni={this.props.setSocietàStazioni}
+                            />
+                        </td>   
+                        <td className="tdController">
+                        </td>
+                        <td className="tdController">
+                        </td>
+                    </tr>
+
+                    <tr>
                         <td className="tdController" colspan="2" >
                             <VendiEdificio 
                                 terreni={this.props.terreni}
@@ -504,20 +508,6 @@ class ComponentController extends React.Component {
                             <Button variant="outlined" size="small" onClick={() => this.finisciTurno()}>
                                 finisci turno
                             </Button>
-                        </td>   
-                        <td className="tdController">
-                            <Acquista 
-                              attualeCasella={this.props.segnalini[this.props.turnoGiocatore].attualeCasella}
-                              caselle={this.props.caselle} 
-                              setCaselle={this.props.setCaselle}
-                              turnoGiocatore={this.props.turnoGiocatore}
-                              terreni={this.props.terreni}
-                              setTerreni={this.props.setTerreni}
-                              giocatori={this.props.giocatori}
-                              setGiocatori={this.props.setGiocatori}
-                              societàStazioni={this.props.societàStazioni}
-                              setSocietàStazioni={this.props.setSocietàStazioni}
-                            />
                         </td>   
                     </tr>
                     <tr className="trControllerTA">
