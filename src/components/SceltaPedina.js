@@ -295,6 +295,7 @@ function SceltaPedina(props){
             <Grid container  direction="column" alignItems="center" style={{marginTop:'100px'}}>
                 <h2>Se vuoi svolgere una partita a tempo inserisci qui il numero di turni</h2>
                 <TextField variant="outlined" style={{margin:'16px', marginLeft:'32px', width:'350px'}} onChange={handleChangeTempo} />
+            <h1>{props.difficolta}</h1>
             </Grid>
               
         </div>

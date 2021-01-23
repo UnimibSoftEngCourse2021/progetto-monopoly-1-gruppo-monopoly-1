@@ -17,6 +17,7 @@ let punteggioDoppio;
 let carta1 = new Carte();
 let dadiTirati = false; // Questo booleano permette di tirare i dadi solo una volta per turno, salvo il caso di punteggio doppio
 let numeroTiriDadi = 0;
+let contratti = false;
 
 function verificaPunteggioDoppio(dado1, dado2){
     if(dado1 === dado2){
@@ -341,7 +342,7 @@ class ComponentController extends React.Component {
             if(terreno.proprietario === this.props.turnoGiocatore){
                 return;
             }
-            affitto = terreno.valore*5/100;
+            affitto = (terreno.valore*5/100) + this.props.numeroDifficoltà;
             if(terreno.case > 0){
                 affitto = affitto + ((terreno.valore*5/100)*terreno.case);
             }
@@ -370,7 +371,7 @@ class ComponentController extends React.Component {
             if(stazione.proprietario === this.props.turnoGiocatore){
                 return;
             }
-            affitto = 50;
+            affitto = 50 + this.props.numeroDifficoltà;
             
             nuoviGiocatori = this.props.giocatori;
             nuoviGiocatori[this.props.turnoGiocatore].capitale =  nuoviGiocatori[this.props.turnoGiocatore].capitale - affitto;
@@ -392,7 +393,7 @@ class ComponentController extends React.Component {
             if(società.proprietario === this.props.turnoGiocatore){
                 return;
             }
-            affitto = 50;            
+            affitto = 50 + this.props.numeroDifficoltà;            
 
             nuoviGiocatori = this.props.giocatori;
             nuoviGiocatori[this.props.turnoGiocatore].capitale =  nuoviGiocatori[this.props.turnoGiocatore].capitale - affitto;
@@ -411,10 +412,10 @@ class ComponentController extends React.Component {
 
         if(casella.tipo === 'tasse'){
             if(casella.nome === 'luxury tax'){
-                tassa = 100;
+                tassa = 100 + this.props.numeroDifficoltà;
             }
             else{
-                tassa = 200;
+                tassa = 200 + this.props.numeroDifficoltà;
             }
 
             var nuoviGiocatori = this.props.giocatori;
@@ -467,7 +468,22 @@ class ComponentController extends React.Component {
         
     }
 
+    
+
     render () {
+        if(!contratti){
+            this.assegnaContrattiIniziali(
+                this.props.numeroGiocatori, 
+                this.props.giocatori, 
+                this.props.setGiocatori, 
+                this.props.terreni, 
+                this.props.setTerreni,
+                this.props.societàStazioni,
+                this.props.setSocietàStazioni                   
+            );
+            contratti = true;
+
+        }
         
         return (
             <div>

@@ -510,6 +510,21 @@ function App(props) {
     setTempo(tempo-1);
   }
 
+  const [numeroDifficoltà, setNumeroDifficoltà] = React.useState(assegnaDifficoltà());
+  function assegnaDifficoltà(){
+    if(props.dificolta === 'facile'){
+      return(0);
+    }
+    else{
+      if(props.difficolta === 'normale'){
+        return(50);
+      }
+      else{
+        return(100);
+      }
+    }
+  }
+
   return (
     <div className="App">
       <table className="tabella1">
@@ -537,6 +552,7 @@ function App(props) {
               decrementaTempo={decrementaTempo}
               counter={counter}
               setCounter={setCounter}
+              numeroDifficoltà={numeroDifficoltà}
             />
           </td>
           <td className="colonna1" >

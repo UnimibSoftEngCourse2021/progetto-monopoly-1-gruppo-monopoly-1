@@ -226,6 +226,7 @@ class ComponentBoard extends React.Component {
                     tempo={this.props.tempo}
                     setTempo={this.props.setTempo}
                     decrementaTempo={this.props.decrementaTempo}
+                    numeroDifficoltà={this.props.numeroDifficoltà}
                 />
             </div>
         )
