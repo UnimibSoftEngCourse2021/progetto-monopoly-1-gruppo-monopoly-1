@@ -102,8 +102,8 @@ class ComponentController extends React.Component {
     tiraDadi = () => {
         
         if (!dadiTirati){
-            dado1 = 4//Math.floor(Math.random()*6) + 1;
-            dado2 = 3//Math.floor(Math.random()*6) + 1;
+            dado1 = Math.floor(Math.random()*6) + 1;
+            dado2 = Math.floor(Math.random()*6) + 1;
             sommaDadi = dado1 + dado2;
             numeroTiriDadi = numeroTiriDadi + 1;
             punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
@@ -524,11 +524,14 @@ class ComponentController extends React.Component {
                             </Button>
                         </td>
                         <td className="tdController">
+                            <Button type="button" size="small" >
+                                Ancora Libero
+                            </Button>                            
                         </td>
                     </tr>
 
                     <tr>
-                        <td className="tdController"  >
+                        <td className="tdController" colspan="1" >
                             <VendiEdificio 
                                 terreni={this.props.terreni}
                                 giocatori={this.props.giocatori}
@@ -537,7 +540,10 @@ class ComponentController extends React.Component {
                                 turnoGiocatore={this.props.turnoGiocatore}
                             />
                         </td>
-                        <td className="tdController" >
+                        <td className="tdController">
+                            <Button type="button" size="small" >
+                                Ancora Libero
+                            </Button>                            
                         </td>
                         <td className="tdController">
                             <Ipoteca
@@ -561,6 +567,7 @@ class ComponentController extends React.Component {
                                 setSocietàStazioni={this.props.setSocietàStazioni}
                             />
                         </td>
+                        
                     </tr>
                     
                     <tr className="trController">
