@@ -193,7 +193,8 @@ class ComponentBoard extends React.Component {
                 
 
                     <div className="contoRovescio">
-                        <div>Countdown: {this.props.counter}</div>
+                        {(this.props.counter!=null)?<div>Countdown: {this.props.counter}</div>
+                                : <div>Countdown: non attivo</div>}
                     </div>
                     {/* <div className="contrattiIniziali"> 
                         {this.assegnaContrattiIniziali(

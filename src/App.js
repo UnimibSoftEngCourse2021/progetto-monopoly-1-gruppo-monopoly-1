@@ -10,13 +10,15 @@ import Banca from './components/Banca';
 function App(props) {
 
   // Countdown
-  const [counter, setCounter] = React.useState(20);
+  var tempoSecondi;
+  if (props.tempoMinuti!=null) {tempoSecondi=props.tempoMinuti*60}
+  const [counter, setCounter] = React.useState(tempoSecondi);
 
   var banca1 = new Banca;
 
   React.useEffect(() => {
     counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
-    if (counter === 0) {
+    if (counter==0) {
       alert('tempo finito');  
       banca1.partitaCountdown(props.giocatori);
     }
@@ -510,9 +512,7 @@ function App(props) {
     setTempo(tempo-1);
   }
 
-  //Questa costante serve per stabilire di quanto deve aumnetare il costo degli affitti e delle tasse
-  //in base al livello di difficlotà che il giocatore ha scelto
-  const numeroDifficoltà = assegnaDifficoltà();
+  const [numeroDifficoltà, setNumeroDifficoltà] = React.useState(assegnaDifficoltà());
   function assegnaDifficoltà(){
     if(props.dificolta === 'facile'){
       return(0);
