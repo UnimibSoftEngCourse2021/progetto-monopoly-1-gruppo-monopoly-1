@@ -9,6 +9,7 @@ import Abbandona from './AzioniConBottone/Abbandona';
 import Carte from './CarteProbabilitaImprevisto/Carte';
 import Banca from './Banca';
 import UscitaPrigione from './AzioniConBottone/UscitaPrigione';
+import Autori from './AzioniConBottone/Autori';
 
 let dado1;
 let dado2;
@@ -524,9 +525,7 @@ class ComponentController extends React.Component {
                             </Button>
                         </td>
                         <td className="tdController">
-                            <Button type="button" size="small" >
-                                Ancora Libero
-                            </Button>                            
+                        <Autori />                         
                         </td>
                     </tr>
 
