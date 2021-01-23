@@ -232,7 +232,7 @@ function App(props) {
       {
         nome: 'Mediterranean avenue',
         coloreSfondo: '#7E3C09',
-        proprietario: 0,
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 60,
@@ -242,7 +242,7 @@ function App(props) {
       {
         nome: 'Baltic avenue',
         coloreSfondo: '#7E3C09',
-        proprietario: 0,
+        proprietario: -1,
         case: 4,
         alberghi: 0,
         valore: 60,
@@ -302,7 +302,7 @@ function App(props) {
       {
         nome: 'Virginia avenue',
         coloreSfondo: '#C00FA9',
-        proprietario: 5,
+        proprietario: -1,
         case: 0,
         alberghi: 0,
         valore: 160,
@@ -449,7 +449,7 @@ function App(props) {
         colore: 'blu', 
         ipotecato: false,
       },
-    ]
+    ],
   );
    
   const [societàStazioni, setSocietàStazioni] = React.useState(
@@ -509,7 +509,6 @@ function App(props) {
   function decrementaTempo(){
     setTempo(tempo-1);
   }
-  
 
   return (
     <div className="App">
@@ -520,7 +519,7 @@ function App(props) {
           </td>
 
           <td className="colonnaBoard" rowspan="2">
-            <ComponentBoard 
+            <ComponentBoard
               turnoGiocatore={turnoGiocatore} 
               setTurnoGiocatore={setTurnoGiocatore}
               numeroGiocatori={props.numeroGiocatori}

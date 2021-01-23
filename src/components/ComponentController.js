@@ -38,7 +38,8 @@ class ComponentController extends React.Component {
             quintoMsgTA: '',
             sestoMsgTA: '',
             settimoMsgTA: '',
-            tiroDoppio: 0
+            tiroDoppio: 0,
+            contrattiInizialiAssegnati: false
         };
       }
 
@@ -100,8 +101,8 @@ class ComponentController extends React.Component {
     tiraDadi = () => {
         
         if (!dadiTirati){
-            dado1 = Math.floor(Math.random()*6) + 1;
-            dado2 = Math.floor(Math.random()*6) + 1;
+            dado1 = 4//Math.floor(Math.random()*6) + 1;
+            dado2 = 3//Math.floor(Math.random()*6) + 1;
             sommaDadi = dado1 + dado2;
             numeroTiriDadi = numeroTiriDadi + 1;
             punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
@@ -427,6 +428,45 @@ class ComponentController extends React.Component {
 
     }
 
+    assegnaContrattiIniziali(numeroGiocatori, giocatori, setGiocatori, terreni, setTerreni, societàStazioni, setSocietàStazioni) {
+        if (!this.state.contrattiInizialiAssegnati) {
+            let random = 0;
+            for (let i = 0; i < numeroGiocatori; i++) {
+                let j = 0;
+                while (j < giocatori[i].numeroContrattiIniziali) {
+                    random = Math.floor(Math.random() * 2)
+                    if (random === 0) {
+                        random = Math.floor(Math.random() * 22);
+                        if (terreni[random].proprietario === -1) {
+                            var nuoviTerreni = terreni;
+                            var nuoviGiocatori = giocatori;
+                            nuoviTerreni[random].proprietario = giocatori[i].numero;
+                            nuoviGiocatori[i].capitale -= terreni[random].valore;
+                            setTerreni(nuoviTerreni);
+                            setGiocatori(nuoviGiocatori);
+                            j += 1;
+                        }
+                    } else {
+                        random = Math.floor(Math.random() * 6);
+                        if (societàStazioni[random].proprietario === -1) {
+                            var nuoveSocietàStazioni = societàStazioni;
+                            var nuoviGiocatori = giocatori;
+                            nuoveSocietàStazioni[random].proprietario = giocatori[i].numero;
+                            nuoviGiocatori[i].capitale -= societàStazioni[random].valore;
+                            setSocietàStazioni(nuoveSocietàStazioni);
+                            setGiocatori(nuoviGiocatori);
+                            j += 1;
+                        }  
+                    } 
+                }
+            }
+            this.state.contrattiInizialiAssegnati = true;
+        } else {    
+            alert("I contratti iniziali sono già stati assegnati.");
+        }
+        
+    }
+
     render () {
         
         return (
@@ -456,6 +496,17 @@ class ComponentController extends React.Component {
                             />
                         </td>   
                         <td className="tdController">
+                            <Button type="button" size="small" onClick={() => this.assegnaContrattiIniziali(
+                                                                                                            this.props.numeroGiocatori, 
+                                                                                                            this.props.giocatori, 
+                                                                                                            this.props.setGiocatori, 
+                                                                                                            this.props.terreni, 
+                                                                                                            this.props.setTerreni,
+                                                                                                            this.props.societàStazioni,
+                                                                                                            this.props.setSocietàStazioni                   
+                                                                                                            )}>
+                                Assegna contratti iniziali
+                            </Button>
                         </td>
                         <td className="tdController">
                         </td>

@@ -46,7 +46,7 @@ function TabellaSocietàStazioni(props) {
                             {rows.map((row) => (
                                 <TableRow key={row.name}>
                                     <TableCell component="th" scope="row">{row.nome}</TableCell>
-                                    <TableCell align="right">{row.proprietario===-1? null : row.proprietario+1}</TableCell>
+                                    <TableCell align="right">{row.proprietario===-1? null : row.proprietario}</TableCell>
                                     <TableCell align="right">{row.valore}</TableCell>
                                     <TableCell align="right">{ row.ipotecato? <CheckIcon style={{color:'#f44336'}}/> : <ClearIcon style={{color:'#4caf50'}}/>}</TableCell>
                                 </TableRow>
