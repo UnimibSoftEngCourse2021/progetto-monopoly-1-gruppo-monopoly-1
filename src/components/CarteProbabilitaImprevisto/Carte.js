@@ -172,7 +172,7 @@ class Carte extends Component {
             nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[11][2];
         }
 
-
+        // Sposta il giocatore alla stazione più vicina. Se la stazione appartiene a un avversario, il giocatore paga il doppio del noleggio.
         if (idCarta === 29) {
             if (segnalini[turnoGiocatore].attualeCasella >= 36 || segnalini[turnoGiocatore].attualeCasella <= 4) {
                 if (segnalini[turnoGiocatore].attualeCasella >= 36) {
@@ -204,7 +204,7 @@ class Carte extends Component {
                 nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[25][2];
                 setGiocatori(nuoviGiocatori);
                 setSegnalini(nuoviSegnalini);
-                if (societàStazioni[1].proprietario !== -1) {
+                if (societàStazioni[2].proprietario !== -1) {
                     pagaAffitto(2);
                 }
             }
@@ -214,7 +214,7 @@ class Carte extends Component {
                 nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[35][2];
                 setGiocatori(nuoviGiocatori);
                 setSegnalini(nuoviSegnalini);
-                if (societàStazioni[1].proprietario !== -1) {
+                if (societàStazioni[3].proprietario !== -1) {
                     pagaAffitto(2);
                 }
             }
