@@ -38,7 +38,7 @@ class Carte extends Component {
                 [26, 'Sei eletto chairman della tavola da gioco: paga $50 da ogni giocaotore', 0, 0, 0, -50], //fatto
                 [27, 'Rendimento prestito immobiliare: incassa $150', 150, 0, 0, 0], //fatto
                 [28, 'Muovi la pedina al prossimo Utility, se non ha proprietario puoi comprarlo, se lo ha tira i dadi e paga 10 volte il risultato del lancio', 0, 0, 0, 0],
-                [29, 'Muovi la pedina alla prossima Stazione, se non ha proprietario puoi comprarla, se lo ha paga il doppio del noleggio', 0, 0, 0, 0],
+                [29, 'Muovi la pedina alla prossima Stazione, se non ha proprietario puoi comprarla, se lo ha paga il doppio del noleggio', 0, 0, 0, 0], //fatto
                 [30, 'Hai vinto una competizione di cruciverba: incassa $100', 100, 0, 0, 0], //fatto
 
             ]
@@ -46,20 +46,20 @@ class Carte extends Component {
     }
 
     //Metodo che estrae casualmente una carta Probabilità o Imprevisto
-    estraiCarta = (probabilitaOImprevisto, turnoGiocatore, giocatori, setGiocatori, segnalini, setSegnalini, terreni, setTerreni, tavolaGioco, setTavolaGioco) => {
+    estraiCarta = (probabilitaOImprevisto, turnoGiocatore, giocatori, setGiocatori, segnalini, setSegnalini, terreni, setTerreni, tavolaGioco, setTavolaGioco, societàStazioni, setSocietàStazioni, pagaAffitto) => {
         //probabilità==true, imprevisto==false
         let idCarta;
         if (probabilitaOImprevisto){
             idCarta =13; //Math.floor(Math.random()*(14));
         }else{
-            idCarta =18;//Math.floor(Math.random()*(30-15)+15);
+            idCarta =29;//Math.floor(Math.random()*(30-15)+15);
         };
         alert('Giocatore ' + (turnoGiocatore + 1) + ': \nLa carta è: ' + this.state.carte[idCarta][1]);
-        this.attivaCarta(idCarta, turnoGiocatore, giocatori, setGiocatori, segnalini, setSegnalini, terreni, setTerreni, tavolaGioco, setTavolaGioco);
+        this.attivaCarta(idCarta, turnoGiocatore, giocatori, setGiocatori, segnalini, setSegnalini, terreni, setTerreni, tavolaGioco, setTavolaGioco, societàStazioni, setSocietàStazioni, pagaAffitto);
     }
 
     //Metodo che attiva l'effetto della carta estratta
-    attivaCarta = (idCarta, turnoGiocatore, giocatori, setGiocatori, segnalini, setSegnalini, terreni, setTerreni, tavolaGioco, setTavolaGioco) => {
+    attivaCarta = (idCarta, turnoGiocatore, giocatori, setGiocatori, segnalini, setSegnalini, terreni, setTerreni, tavolaGioco, setTavolaGioco, societàStazioni, setSocietàStazioni, pagaAffitto) => {
         let nuoviGiocatori = giocatori;
         let nuoviSegnalini = segnalini;
 
@@ -129,7 +129,7 @@ class Carte extends Component {
         }
 
         // Sposta la pedina a Reading Railroad. Se passa dal Via il giocatore riceve € 500.
-        if (idCarta == 24) {
+        if (idCarta === 24) {
             if(segnalini[turnoGiocatore].attualeCasella > 5){
                 nuoviGiocatori[turnoGiocatore].capitale += 500;
                 alert('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
@@ -140,7 +140,7 @@ class Carte extends Component {
         }
 
         // Sposta la pedina a Boardwalk. Se passa dal Via il giocatore riceve € 500.
-        if (idCarta == 25) {
+        if (idCarta === 25) {
             if(segnalini[turnoGiocatore].attualeCasella > 39){
                 nuoviGiocatori[turnoGiocatore].capitale += 500;
                 alert('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
@@ -151,7 +151,7 @@ class Carte extends Component {
         }
 
         // Sposta la pedina a Illinois Avenue. Se passa dal Via il giocatore riceve € 500.
-        if (idCarta == 17) {
+        if (idCarta === 17) {
             if(segnalini[turnoGiocatore].attualeCasella > 24){
                 nuoviGiocatori[turnoGiocatore].capitale += 500;
                 alert('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
@@ -162,7 +162,7 @@ class Carte extends Component {
         }
 
         // Sposta la pedina a St. Charles Place. Se passa dal Via il giocatore riceve € 500.
-        if (idCarta == 18) {
+        if (idCarta === 18) {
             if(segnalini[turnoGiocatore].attualeCasella > 11){
                 nuoviGiocatori[turnoGiocatore].capitale += 500;
                 alert('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
@@ -170,6 +170,54 @@ class Carte extends Component {
             nuoviSegnalini[turnoGiocatore].attualeCasella=11;
             nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[11][1];
             nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[11][2];
+        }
+
+
+        if (idCarta === 29) {
+            if (segnalini[turnoGiocatore].attualeCasella >= 36 || segnalini[turnoGiocatore].attualeCasella <= 4) {
+                if (segnalini[turnoGiocatore].attualeCasella >= 36) {
+                    nuoviGiocatori[turnoGiocatore].capitale += 500;
+                    alert('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
+                }
+                nuoviSegnalini[turnoGiocatore].attualeCasella=5;
+                nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[5][1];
+                nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[5][2];
+                setGiocatori(nuoviGiocatori);
+                setSegnalini(nuoviSegnalini);
+                if (societàStazioni[0].proprietario !== -1) {
+                    pagaAffitto(2);
+                } 
+            }
+            if (segnalini[turnoGiocatore].attualeCasella >= 6 && segnalini[turnoGiocatore].attualeCasella <= 14) {
+                nuoviSegnalini[turnoGiocatore].attualeCasella=15;
+                nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[15][1];
+                nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[15][2];
+                setGiocatori(nuoviGiocatori);
+                setSegnalini(nuoviSegnalini);
+                if (societàStazioni[1].proprietario !== -1) {
+                    pagaAffitto(2);
+                }
+            }
+            if (segnalini[turnoGiocatore].attualeCasella >= 16 && segnalini[turnoGiocatore].attualeCasella <= 24) {
+                nuoviSegnalini[turnoGiocatore].attualeCasella=25;
+                nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[25][1];
+                nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[25][2];
+                setGiocatori(nuoviGiocatori);
+                setSegnalini(nuoviSegnalini);
+                if (societàStazioni[1].proprietario !== -1) {
+                    pagaAffitto(2);
+                }
+            }
+            if (segnalini[turnoGiocatore].attualeCasella >= 26 && segnalini[turnoGiocatore].attualeCasella <= 34) {
+                nuoviSegnalini[turnoGiocatore].attualeCasella=35;
+                nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[35][1];
+                nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[35][2];
+                setGiocatori(nuoviGiocatori);
+                setSegnalini(nuoviSegnalini);
+                if (societàStazioni[1].proprietario !== -1) {
+                    pagaAffitto(2);
+                }
+            }
         }
 
 
