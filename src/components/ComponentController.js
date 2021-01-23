@@ -440,7 +440,7 @@ class ComponentController extends React.Component {
                         if (terreni[random].proprietario === -1) {
                             var nuoviTerreni = terreni;
                             var nuoviGiocatori = giocatori;
-                            nuoviTerreni[random].proprietario = giocatori[i].numero;
+                            nuoviTerreni[random].proprietario = giocatori[i].numero - 1;
                             nuoviGiocatori[i].capitale -= terreni[random].valore;
                             setTerreni(nuoviTerreni);
                             setGiocatori(nuoviGiocatori);
@@ -451,7 +451,7 @@ class ComponentController extends React.Component {
                         if (societàStazioni[random].proprietario === -1) {
                             var nuoveSocietàStazioni = societàStazioni;
                             var nuoviGiocatori = giocatori;
-                            nuoveSocietàStazioni[random].proprietario = giocatori[i].numero;
+                            nuoveSocietàStazioni[random].proprietario = giocatori[i].numero - 1;
                             nuoviGiocatori[i].capitale -= societàStazioni[random].valore;
                             setSocietàStazioni(nuoveSocietàStazioni);
                             setGiocatori(nuoviGiocatori);
@@ -518,7 +518,7 @@ class ComponentController extends React.Component {
                                                                                                             this.props.terreni, 
                                                                                                             this.props.setTerreni,
                                                                                                             this.props.societàStazioni,
-                                                                                                            this.props.setSocietàStazioni                   
+                                                                                                            this.props.setSocietàStazioni,                  
                                                                                                             )}>
                                 Assegna contratti iniziali
                             </Button>
