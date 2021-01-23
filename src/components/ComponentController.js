@@ -184,7 +184,6 @@ class ComponentController extends React.Component {
     }
 
     // Funzione che permette di concludere il turno e che passa il comando al giocatore successivo.
-    // Per comunicare ai giocatori questo cambiamento viene utilizzato un alert.
     finisciTurno = () => {
         if (dadiTirati === false && punteggioDoppio) {
             alert("Avendo ottenuto un punteggio doppio devi tirare nuovamente i dadi.")
@@ -482,8 +481,8 @@ class ComponentController extends React.Component {
                 this.props.setSocietàStazioni                   
             );
             contratti = true;
-
         }
+
         
         return (
             <div>
@@ -529,7 +528,7 @@ class ComponentController extends React.Component {
                     </tr>
 
                     <tr>
-                        <td className="tdController" colspan="2" >
+                        <td className="tdController"  >
                             <VendiEdificio 
                                 terreni={this.props.terreni}
                                 giocatori={this.props.giocatori}
@@ -537,6 +536,8 @@ class ComponentController extends React.Component {
                                 setGiocatori={this.props.setGiocatori} 
                                 turnoGiocatore={this.props.turnoGiocatore}
                             />
+                        </td>
+                        <td className="tdController" >
                         </td>
                         <td className="tdController">
                             <Ipoteca

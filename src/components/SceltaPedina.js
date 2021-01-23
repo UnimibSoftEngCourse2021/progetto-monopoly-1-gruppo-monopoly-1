@@ -233,16 +233,35 @@ function SceltaPedina(props){
             // Qui viene creata una lista di segnalini.
             // Ogni volta che un giocatore sceglie una pedina, la lista viene aggiornata in modo
             // da associare ogni segnalino (pedina) al corrispondente giocatore.
+            //Se la difficoltà e normale o difficile le posizioni dei segnalini saranno scelte in modo casuale.
             var nuovaListaSegnalini = segnalini;
-            nuovaListaSegnalini[n-1] =  {
-                                            nome: pedina,
-                                            ascissa: 940,
-                                            ordinata: 600,
-                                            visibilita: "visible",
-                                            strato: n-1,
-                                            attualeCasella: 0,
-                                            giocatore: n
-                                        };
+            if(props.difficolta === 'normale' || props.difficolta === 'difficile'){
+                var min = Math.ceil(0);
+                var max = Math.floor(40);
+                var num = Math.floor(Math.random() * (max - min)) + min; //Il max è escluso e il min è incluso
+                console.log(num);
+                nuovaListaSegnalini[n-1] =  {
+                    nome: pedina,
+                    ascissa: posizionaCasualmente('ascissa', num),
+                    ordinata: posizionaCasualmente('ordinata', num),
+                    visibilita: "visible",
+                    strato: n-1,
+                    attualeCasella: num,
+                    giocatore: n
+                };
+            }
+            else{
+                nuovaListaSegnalini[n-1] =  {
+                    nome: pedina,
+                    ascissa: 940,
+                    ordinata: 600,
+                    visibilita: "visible",
+                    strato: n-1,
+                    attualeCasella: 0,
+                    giocatore: n
+                };
+            }
+            
             setSegnalini(nuovaListaSegnalini);
 
             setGiocatoreAttuale(giocatoreAttuale + 1);
@@ -251,6 +270,69 @@ function SceltaPedina(props){
             // In questo modo viene avviata la partita. 
             if(giocatoreAttuale === numeroGiocatori){
                 setIniziaPatita(true);
+            }
+        }
+    }
+
+    function posizionaCasualmente(asse, n){
+        if(asse === 'ordinata'){
+            if( n>=0 && n<=10 ){
+                return(600);
+            }
+            if( n>=20 && n<=30 ){
+                return(20);
+            }
+            else{
+                switch(n){
+                    case 31: case 19: return(100);
+                    break;
+                    case 32: case 18: return(150);
+                    break;
+                    case 33: case 17: return(200);
+                    break;
+                    case 34: case 16: return(250);
+                    break;
+                    case 35: case 15: return(310);
+                    break;
+                    case 36: case 14: return(360);
+                    break;
+                    case 37: case 13: return(420);
+                    break;
+                    case 38: case 12: return(480);
+                    break;
+                    default: return(530);
+                }
+
+            }
+        }
+        else{
+            if( n>=10 && n<=20 ){
+                return(370);
+            }
+            if( n>=30 && n<=39 ){
+                return(940);
+            }
+            else{
+                switch(n){
+                    case 21: case 9: return(450);
+                    break;
+                    case 22: case 8: return(500);
+                    break;
+                    case 23: case 7: return(560);
+                    break;
+                    case 24: case 6: return(610);
+                    break;
+                    case 25: case 5: return(660);
+                    break;
+                    case 26: case 4: return(720);
+                    break;
+                    case 27: case 3: return(770);
+                    break;
+                    case 28: case 2: return(820);
+                    break;
+                    default: return(880);
+                }
+
             }
         }
     }
@@ -295,7 +377,6 @@ function SceltaPedina(props){
             <Grid container  direction="column" alignItems="center" style={{marginTop:'100px'}}>
                 <h2>Se vuoi svolgere una partita a tempo inserisci qui il numero di turni</h2>
                 <TextField variant="outlined" style={{margin:'16px', marginLeft:'32px', width:'350px'}} onChange={handleChangeTempo} />
-            <h1>{props.difficolta}</h1>
             </Grid>
               
         </div>

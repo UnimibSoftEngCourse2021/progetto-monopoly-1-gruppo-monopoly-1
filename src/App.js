@@ -16,7 +16,7 @@ function App(props) {
 
   React.useEffect(() => {
     counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
-    if (counter==0) {
+    if (counter === 0) {
       alert('tempo finito');  
       banca1.partitaCountdown(props.giocatori);
     }
@@ -510,7 +510,9 @@ function App(props) {
     setTempo(tempo-1);
   }
 
-  const [numeroDifficoltà, setNumeroDifficoltà] = React.useState(assegnaDifficoltà());
+  //Questa costante serve per stabilire di quanto deve aumnetare il costo degli affitti e delle tasse
+  //in base al livello di difficlotà che il giocatore ha scelto
+  const numeroDifficoltà = assegnaDifficoltà();
   function assegnaDifficoltà(){
     if(props.dificolta === 'facile'){
       return(0);
