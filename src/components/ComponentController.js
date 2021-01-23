@@ -83,17 +83,41 @@ class ComponentController extends React.Component {
         }
 
         if (this.props.caselle[attualeCasella].tipo ==='imprevisti') {
-           // alert('imprevisti');
-           carta1.estraiCarta(false, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori, this.props.segnalini, this.props.setSegnalini, this.props.terreni, this.props.setTerreni, this.props.tavolaGioco, this.props.setTavolaGioco);
-
+            // alert('imprevisti');
+            carta1.estraiCarta(  false, 
+                                 this.props.turnoGiocatore, 
+                                 this.props.giocatori, 
+                                 this.props.setGiocatori, 
+                                 this.props.segnalini, 
+                                 this.props.setSegnalini, 
+                                 this.props.terreni, 
+                                 this.props.setTerreni, 
+                                 this.props.tavolaGioco, 
+                                 this.props.setTavolaGioco,
+                                 this.props.societàStazioni,
+                                 this.props.setSocietàStazioni,
+                                 this.pagaAffitto);
+ 
         };
         if (this.props.caselle[attualeCasella].tipo ==='probabilita') {
             //alert('probabilita');
-            carta1.estraiCarta(true, this.props.turnoGiocatore, this.props.giocatori, this.props.setGiocatori, this.props.segnalini, this.props.setSegnalini, this.props.terreni, this.props.setTerreni, this.props.tavolaGioco, this.props.setTavolaGioco);
+            carta1.estraiCarta( true, 
+                                this.props.turnoGiocatore, 
+                                this.props.giocatori, 
+                                this.props.setGiocatori, 
+                                this.props.segnalini, 
+                                this.props.setSegnalini, 
+                                this.props.terreni, 
+                                this.props.setTerreni, 
+                                this.props.tavolaGioco, 
+                                this.props.setTavolaGioco,
+                                this.props.societàStazioni,
+                                this.props.setSocietàStazioni,
+                                this.pagaAffitto);
         };
 
         this.props.muoviPedine();
-        this.pagaAffitto();
+        this.pagaAffitto(1);
         this.pagaTasse(); 
 
     }       
@@ -322,7 +346,7 @@ class ComponentController extends React.Component {
 
     //Questa funzione si occupa di verificare se la casella su cui mi trovo richiede il pagamento di un affitto
     //e modifica l'array giocatori di conseguenza
-    pagaAffitto = ()=>{
+    pagaAffitto = (moltiplicatore)=>{
         var attualeCasella = this.props.segnalini[this.props.turnoGiocatore].attualeCasella;
         var casella = this.props.caselle[attualeCasella];
         var affitto;
@@ -371,7 +395,7 @@ class ComponentController extends React.Component {
             if(stazione.proprietario === this.props.turnoGiocatore){
                 return;
             }
-            affitto = 50 + this.props.numeroDifficoltà;
+            affitto = (50 + this.props.numeroDifficoltà) * moltiplicatore;
             
             nuoviGiocatori = this.props.giocatori;
             nuoviGiocatori[this.props.turnoGiocatore].capitale =  nuoviGiocatori[this.props.turnoGiocatore].capitale - affitto;
