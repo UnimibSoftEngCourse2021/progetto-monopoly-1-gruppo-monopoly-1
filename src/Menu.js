@@ -10,7 +10,7 @@ class Menu extends Component {
       super(props);
       this.state={
         numeroGiocatori: "2",
-        difficolta: "normale"
+        difficolta: "facile"
       }
     }
 

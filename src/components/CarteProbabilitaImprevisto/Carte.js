@@ -46,32 +46,77 @@ class Carte extends Component {
     }
 
     //Metodo che estrae casualmente una carta Probabilità o Imprevisto
-    estraiCarta = (probabilitaOImprevisto, turnoGiocatore, giocatori, setGiocatori, segnalini, setSegnalini, terreni, setTerreni, tavolaGioco, setTavolaGioco, societàStazioni, setSocietàStazioni, pagaAffitto) => {
+    estraiCarta = ( probabilitaOImprevisto, 
+                    turnoGiocatore, 
+                    giocatori, 
+                    setGiocatori, 
+                    segnalini, 
+                    setSegnalini, 
+                    terreni, 
+                    setTerreni, 
+                    tavolaGioco, 
+                    setTavolaGioco, 
+                    societàStazioni, 
+                    setSocietàStazioni,
+                    pagamentoImprevisto, 
+                    pagaAffitto,
+                    setPagamentoImprevisto,
+                    cambiaPagamentoImprevisto) => {
         //probabilità==true, imprevisto==false
         let idCarta;
         if (probabilitaOImprevisto){
             idCarta =13; //Math.floor(Math.random()*(14));
         }else{
-            idCarta =29;//Math.floor(Math.random()*(30-15)+15);
+            idCarta =28;//Math.floor(Math.random()*(30-15)+15);
         };
         alert('Giocatore ' + (turnoGiocatore + 1) + ': \nLa carta è: ' + this.state.carte[idCarta][1]);
-        this.attivaCarta(idCarta, turnoGiocatore, giocatori, setGiocatori, segnalini, setSegnalini, terreni, setTerreni, tavolaGioco, setTavolaGioco, societàStazioni, setSocietàStazioni, pagaAffitto);
+        this.attivaCarta(   idCarta, 
+                            turnoGiocatore, 
+                            giocatori, 
+                            setGiocatori, 
+                            segnalini, 
+                            setSegnalini, 
+                            terreni, 
+                            setTerreni, 
+                            tavolaGioco, 
+                            setTavolaGioco, 
+                            societàStazioni, 
+                            setSocietàStazioni,
+                            pagamentoImprevisto, 
+                            pagaAffitto,
+                            setPagamentoImprevisto,
+                            cambiaPagamentoImprevisto);
     }
 
     //Metodo che attiva l'effetto della carta estratta
-    attivaCarta = (idCarta, turnoGiocatore, giocatori, setGiocatori, segnalini, setSegnalini, terreni, setTerreni, tavolaGioco, setTavolaGioco, societàStazioni, setSocietàStazioni, pagaAffitto) => {
+    attivaCarta = ( idCarta, 
+                    turnoGiocatore, 
+                    giocatori, 
+                    setGiocatori, 
+                    segnalini, 
+                    setSegnalini, 
+                    terreni, 
+                    setTerreni, 
+                    tavolaGioco, 
+                    setTavolaGioco, 
+                    societàStazioni, 
+                    setSocietàStazioni,
+                    pagamentoImprevisto, 
+                    pagaAffitto,
+                    setPagamentoImprevisto,
+                    cambiaPagamentoImprevisto) => {
         let nuoviGiocatori = giocatori;
         let nuoviSegnalini = segnalini;
 
         //Modifica il saldo del giocatore di una somma prefissata
-        if (this.state.carte[idCarta][2] != 0){
+        if (this.state.carte[idCarta][2] !== 0){
             nuoviGiocatori[turnoGiocatore].capitale += this.state.carte[idCarta][2];
         }
 
         //Modifica il saldo in base alle case e alberghi posseduti dal giocatore
         let numeroCase = 0;
         let numeroAlberghi = 0;
-        if (idCarta == 23){
+        if (idCarta === 23){
             for (let i = 0; i < terreni.length; i++) {   
                 if(terreni[i].proprietario==turnoGiocatore){
                     numeroCase += terreni[i].case;
@@ -83,7 +128,7 @@ class Carte extends Component {
         }
 
         //Modifica il saldo ricevendo o distribuendo agli altri giocatori una somma di denaro 
-        if(this.state.carte[idCarta][5] != 0){
+        if(this.state.carte[idCarta][5] !== 0){
             nuoviGiocatori[turnoGiocatore].capitale += (nuoviGiocatori.length * this.state.carte[idCarta][5]);
             if(this.state.carte[idCarta][5] > 0){
                 for (let i = 0; i < nuoviGiocatori.length; i++) {   
@@ -97,7 +142,7 @@ class Carte extends Component {
         }
 
         //Modifica spostamentoPerCarta in modo che la pedina vada in prigione senza passare dal Via
-        if(idCarta==13 || idCarta==21){
+        if(idCarta===13 || idCarta===21){
             if(segnalini[turnoGiocatore].attualeCasella > 10){
                 //segnalini[numSegnalino].attualeCasella
                 nuoviGiocatori[turnoGiocatore].capitale -= 200;
@@ -109,7 +154,7 @@ class Carte extends Component {
         }
 
         //Modifica spostamentoPerCarta in modo che la pedina vada indietro di 3 caselle
-        if(idCarta==20){
+        if(idCarta===20){
             
             //spostamentoPerCarta = 37;
             if(nuoviSegnalini[turnoGiocatore].attualeCasella>3){
@@ -118,7 +163,7 @@ class Carte extends Component {
         }
 
         //Modifica spostamentoPerCarta in modo che la pedina vada al Via
-        if(idCarta==14 || idCarta==16){
+        if(idCarta===14 || idCarta===16){
             //spostamentoPerCarta = 40 - attualeCasella;
         }
 
@@ -185,7 +230,7 @@ class Carte extends Component {
                 setGiocatori(nuoviGiocatori);
                 setSegnalini(nuoviSegnalini);
                 if (societàStazioni[0].proprietario !== -1) {
-                    pagaAffitto(2);
+                    pagaAffitto();
                 } 
             }
             if (segnalini[turnoGiocatore].attualeCasella >= 6 && segnalini[turnoGiocatore].attualeCasella <= 14) {
@@ -195,7 +240,9 @@ class Carte extends Component {
                 setGiocatori(nuoviGiocatori);
                 setSegnalini(nuoviSegnalini);
                 if (societàStazioni[1].proprietario !== -1) {
-                    pagaAffitto(2);
+                    console.log("Entrato");
+                    pagaAffitto();
+                    console.log("Uscito");
                 }
             }
             if (segnalini[turnoGiocatore].attualeCasella >= 16 && segnalini[turnoGiocatore].attualeCasella <= 24) {
@@ -205,7 +252,7 @@ class Carte extends Component {
                 setGiocatori(nuoviGiocatori);
                 setSegnalini(nuoviSegnalini);
                 if (societàStazioni[2].proprietario !== -1) {
-                    pagaAffitto(2);
+                    pagaAffitto();
                 }
             }
             if (segnalini[turnoGiocatore].attualeCasella >= 26 && segnalini[turnoGiocatore].attualeCasella <= 34) {
@@ -215,11 +262,66 @@ class Carte extends Component {
                 setGiocatori(nuoviGiocatori);
                 setSegnalini(nuoviSegnalini);
                 if (societàStazioni[3].proprietario !== -1) {
-                    pagaAffitto(2);
+                    pagaAffitto();
                 }
             }
         }
 
+        // Se il giocatore pesca la carta con ID 28, la sua pedina viene spostata alla società più vicina.
+        // Se la società appartiene a un avversario, il giocatore paga 10 volte il risultato del lancio dei dadi.
+        if (idCarta === 28) {
+            if (segnalini[turnoGiocatore].attualeCasella >= 29 || segnalini[turnoGiocatore].attualeCasella <= 11) {
+                if (segnalini[turnoGiocatore].attualeCasella >= 29) {
+                    nuoviGiocatori[turnoGiocatore].capitale += 500;
+                    alert('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
+                }
+                nuoviSegnalini[turnoGiocatore].attualeCasella=12;
+                nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[12][1];
+                nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[12][2];
+                setGiocatori(nuoviGiocatori);
+                setSegnalini(nuoviSegnalini);
+                if (societàStazioni[4].proprietario !== -1 && societàStazioni[4].proprietario !== turnoGiocatore) {
+                    console.log("Pagamento imprevisto1: " + pagamentoImprevisto);
+                    var nuovoPagamento = true;
+                    cambiaPagamentoImprevisto();
+                    setPagamentoImprevisto(nuovoPagamento);
+                    setPagamentoImprevisto(pagamentoImprevisto => pagamentoImprevisto || true);
+                    console.log("Pagamento imprevisto2: " + pagamentoImprevisto);
+                    let dado1 = Math.floor(Math.random()*6) + 1;
+                    let dado2 = Math.floor(Math.random()*6) + 1;
+                    let affitto = (dado1 + dado2) * 10;
+                    nuoviGiocatori[turnoGiocatore].capitale -= affitto;
+                    // Devo aggiungere l'affitto pagato sulla casella per evitare che questa somma
+                    // venga sottratta al giocatore visto che si trova sulla casella dell'avversario
+                    // alla fine del turno.
+                    nuoviGiocatori[turnoGiocatore].capitale += 150;
+                    nuoviGiocatori[societàStazioni[4].proprietario].capitale += affitto;
+                    // Per lo stesso motivo devo sottrarre l'affitto dall'avversario.
+                    nuoviGiocatori[societàStazioni[4].proprietario].capitale -= 150;
+                    alert('Giocatore ' + (turnoGiocatore + 1) + ': paga ' + affitto);
+                } 
+            }
+            if (segnalini[turnoGiocatore].attualeCasella >= 13 && segnalini[turnoGiocatore].attualeCasella <= 27) {
+                nuoviSegnalini[turnoGiocatore].attualeCasella=28;
+                nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[28][1];
+                nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[28][2];
+                setGiocatori(nuoviGiocatori);
+                setSegnalini(nuoviSegnalini);
+                if (societàStazioni[5].proprietario !== -1 && societàStazioni[5].proprietario !== turnoGiocatore) {
+                    console.log("Pagamento imprevisto1: " + pagamentoImprevisto);
+                    cambiaPagamentoImprevisto();
+                    setPagamentoImprevisto(true);
+                    setPagamentoImprevisto(pagamentoImprevisto => pagamentoImprevisto || true);
+                    console.log("Pagamento imprevisto2: " + pagamentoImprevisto);
+                    let dado1 = Math.floor(Math.random()*6) + 1;
+                    let dado2 = Math.floor(Math.random()*6) + 1;
+                    let affitto = (dado1 + dado2) * 10;
+                    nuoviGiocatori[turnoGiocatore].capitale -= affitto;
+                    nuoviGiocatori[societàStazioni[5].proprietario].capitale += affitto;
+                    alert('Giocatore ' + (turnoGiocatore + 1) + ': paga ' + affitto);
+                }
+            }
+        }
 
         setGiocatori(nuoviGiocatori);
         setSegnalini(nuoviSegnalini);

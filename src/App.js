@@ -514,7 +514,7 @@ function App(props) {
 
   const [numeroDifficoltà, setNumeroDifficoltà] = React.useState(assegnaDifficoltà());
   function assegnaDifficoltà(){
-    if(props.dificolta === 'facile'){
+    if(props.difficolta === 'facile'){
       return(0);
     }
     else{
@@ -526,6 +526,12 @@ function App(props) {
       }
     }
   }
+
+  const [pagamentoImprevisto, setPagamentoImprevisto] = React.useState(false);
+
+  // React.useEffect(() => {
+  //   setPagamentoImprevisto(false);
+  // })
 
   return (
     <div className="App">
@@ -555,6 +561,8 @@ function App(props) {
               counter={counter}
               setCounter={setCounter}
               numeroDifficoltà={numeroDifficoltà}
+              pagamentoImprevisto={pagamentoImprevisto}
+              setPagamentoImprevisto={setPagamentoImprevisto}
             />
           </td>
           <td className="colonna1" >

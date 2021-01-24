@@ -41,9 +41,18 @@ class ComponentController extends React.Component {
             sestoMsgTA: '',
             settimoMsgTA: '',
             tiroDoppio: 0,
-            contrattiInizialiAssegnati: false
+            contrattiInizialiAssegnati: false,
+            pagamentoImprevisto2: false
         };
-      }
+    }
+
+    cambiaPagamentoImprevisto = () => {
+        this.setState({
+            pagamentoImprevisto2: true,
+        }, () => {console.log("Callback " + this.state.pagamentoImprevisto2);
+        });
+    }
+
 
     spostaSegnalino (sommaDadi) {
         let numSegnalino = this.props.turnoGiocatore;
@@ -84,6 +93,7 @@ class ComponentController extends React.Component {
 
         if (this.props.caselle[attualeCasella].tipo ==='imprevisti') {
             // alert('imprevisti');
+            console.log("Carta pagamento imprevisto: " + this.props.pagamentoImprevisto);
             carta1.estraiCarta(  false, 
                                  this.props.turnoGiocatore, 
                                  this.props.giocatori, 
@@ -96,11 +106,15 @@ class ComponentController extends React.Component {
                                  this.props.setTavolaGioco,
                                  this.props.societàStazioni,
                                  this.props.setSocietàStazioni,
-                                 this.pagaAffitto);
+                                 this.props.pagamentoImprevisto,
+                                 this.pagaAffitto,
+                                 this.props.setPagamentoImprevisto,
+                                 this.cambiaPagamentoImprevisto);
  
         };
         if (this.props.caselle[attualeCasella].tipo ==='probabilita') {
             //alert('probabilita');
+            console.log("Carta pagamento imprevisto: " + this.props.pagamentoImprevisto);
             carta1.estraiCarta( true, 
                                 this.props.turnoGiocatore, 
                                 this.props.giocatori, 
@@ -113,11 +127,14 @@ class ComponentController extends React.Component {
                                 this.props.setTavolaGioco,
                                 this.props.societàStazioni,
                                 this.props.setSocietàStazioni,
-                                this.pagaAffitto);
+                                this.props.pagamentoImprevisto,
+                                this.pagaAffitto,
+                                this.props.setPagamentoImprevisto,
+                                this.cambiaPagamentoImprevisto);
         };
 
         this.props.muoviPedine();
-        this.pagaAffitto(1);
+        this.pagaAffitto();
         this.pagaTasse(); 
 
     }       
@@ -127,8 +144,8 @@ class ComponentController extends React.Component {
     tiraDadi = () => {
         
         if (!dadiTirati){
-            dado1 = Math.floor(Math.random()*6) + 1;
-            dado2 = Math.floor(Math.random()*6) + 1;
+            dado1 = 4//Math.floor(Math.random()*6) + 1;
+            dado2 = 3//Math.floor(Math.random()*6) + 1;
             sommaDadi = dado1 + dado2;
             numeroTiriDadi = numeroTiriDadi + 1;
             punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
@@ -344,9 +361,21 @@ class ComponentController extends React.Component {
         }
     }
 
+    // cambiaPagamentoImprevisto = (imprevisto) => {
+    //     this.setState({
+    //         pagamentoImprevisto: imprevisto
+    //     })
+    // }
+
     //Questa funzione si occupa di verificare se la casella su cui mi trovo richiede il pagamento di un affitto
     //e modifica l'array giocatori di conseguenza
-    pagaAffitto = (moltiplicatore)=>{
+    pagaAffitto = ()=>{
+
+        this.setState({
+            pagamentoImprevisto2: true,
+        }, () => {console.log("Callback2 " + this.state.pagamentoImprevisto2);
+        });
+
         var attualeCasella = this.props.segnalini[this.props.turnoGiocatore].attualeCasella;
         var casella = this.props.caselle[attualeCasella];
         var affitto;
@@ -395,7 +424,8 @@ class ComponentController extends React.Component {
             if(stazione.proprietario === this.props.turnoGiocatore){
                 return;
             }
-            affitto = (50 + this.props.numeroDifficoltà) * moltiplicatore;
+            affitto = (200 + this.props.numeroDifficoltà);
+            console.log("Affitto: " + affitto);            
             
             nuoviGiocatori = this.props.giocatori;
             nuoviGiocatori[this.props.turnoGiocatore].capitale =  nuoviGiocatori[this.props.turnoGiocatore].capitale - affitto;
@@ -417,14 +447,16 @@ class ComponentController extends React.Component {
             if(società.proprietario === this.props.turnoGiocatore){
                 return;
             }
-            affitto = 50 + this.props.numeroDifficoltà;            
-
+            affitto = 150 + this.props.numeroDifficoltà;
+        
             nuoviGiocatori = this.props.giocatori;
             nuoviGiocatori[this.props.turnoGiocatore].capitale =  nuoviGiocatori[this.props.turnoGiocatore].capitale - affitto;
             nuoviGiocatori[società.proprietario].capitale = nuoviGiocatori[società.proprietario].capitale + affitto;
             this.props.setGiocatori(nuoviGiocatori);
             console.log(this.props.giocatori);
         }
+
+        console.log("Pagamento imprevisto: " + this.props.pagamentoImprevisto);
         return;
     }
 

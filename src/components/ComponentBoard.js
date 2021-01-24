@@ -228,6 +228,8 @@ class ComponentBoard extends React.Component {
                     setTempo={this.props.setTempo}
                     decrementaTempo={this.props.decrementaTempo}
                     numeroDifficoltà={this.props.numeroDifficoltà}
+                    pagamentoImprevisto={this.props.pagamentoImprevisto}
+                    setPagamentoImprevisto={this.props.setPagamentoImprevisto}
                 />
             </div>
         )
