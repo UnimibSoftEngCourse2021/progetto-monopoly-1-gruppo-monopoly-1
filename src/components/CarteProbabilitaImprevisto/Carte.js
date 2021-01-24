@@ -4,42 +4,42 @@ class Carte extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            //carta = [Numero carta, Descrizione, Somma di denaro, Somma per ogni casa, Somma per ogni albergo, Somma per ogni giocatore]
+            //carta = [Numero casella, Descrizione, Somma di denaro, Somma per ogni casa, Somma per ogni albergo, Somma per ogni giocatore]
             carte: [
                 //Probabilità
-                [0, 'Serata della Grande Opera: incassa $50 da ogni giocatore', 0, 0, 0, 50], //fatto
-                [1, 'Errore della banca: incassa $200', 200, 0, 0, 0], //fatto
-                [2, 'Parcella del medico: paga $50', -50, 0, 0, 0], //fatto
-                [3, 'Rimborso della imposta sul reddito: incassa $20', 20, 0, 0, 0], //fatto
-                [4, 'Rendimento assicurazione sulla vita: incassa $100', 100, 0, 0, 0], //fatto
-                [5, 'Paga le spese mediche ospedaliere: paga $50', -50, 0, 0, 0], //fatto
-                [6, 'Paga le tasse scolastiche: paga $50', -50, 0, 0, 0], //fatto
-                [7, 'Commisione consulenza: incassa $25', 25, 0, 0, 0], //fatto
-                [8, 'Hai vinto il secondo posto in una gara di bellezza: incassa $10', 10, 0, 0, 0], //fatto
-                [9, 'Eredità: incassa $100', 100, 0, 0, 0], //fatto
-                [10, 'Vendita di azioni: incassa $100', 100, 0, 0, 0], //fatto
-                [11, 'Rendimento fondo vacanze: incassa $100', 100, 0, 0, 0], //fatto
-                [12, 'Esci di Prigione', 0, 0, 0, 0], //fatto
-                [13, 'Vai in Prigione senza passare dal Via', 0, 0, 0, 0], //fatto
-                [14, 'Vai al Via', 0, 0, 0, 0], //fatto
+                [40, 'Serata della Grande Opera: incassa $50 da ogni giocatore', 0, 0, 0, 50], //idCarta == 0
+                [40, 'Errore della banca: incassa $200', 200, 0, 0, 0], //idCarta == 1
+                [40, 'Parcella del medico: paga $50', -50, 0, 0, 0], //idCarta == 2
+                [40, 'Rimborso della imposta sul reddito: incassa $20', 20, 0, 0, 0], //idCarta == 3
+                [40, 'Rendimento assicurazione sulla vita: incassa $100', 100, 0, 0, 0], //idCarta == 4
+                [40, 'Paga le spese mediche ospedaliere: paga $50', -50, 0, 0, 0], //idCarta == 5
+                [40, 'Paga le tasse scolastiche: paga $50', -50, 0, 0, 0], //idCarta == 6
+                [40, 'Commisione consulenza: incassa $25', 25, 0, 0, 0], //idCarta == 7
+                [40, 'Hai vinto il secondo posto in una gara di bellezza: incassa $10', 10, 0, 0, 0], //idCarta == 8
+                [40, 'Eredità: incassa $100', 100, 0, 0, 0], //idCarta == 9
+                [40, 'Vendita di azioni: incassa $100', 100, 0, 0, 0], //idCarta == 10
+                [40, 'Rendimento fondo vacanze: incassa $100', 100, 0, 0, 0], //idCarta == 11
+                [40, 'Esci di Prigione', 0, 0, 0, 0], //idCarta == 12
+                [10, 'Vai in Prigione senza passare dal Via', 0, 0, 0, 0], //idCarta == 13
+                [0, 'Vai al Via', 0, 0, 0, 0], //idCarta == 14
 
                 //Imprevisti
-                [15, 'Esci di Prigione', 0, 0, 0, 0], //fatto
-                [16, 'Vai al Via', 0, 0, 0, 0], //fatto
-                [17, 'Vai a Illinois Avenue', 0, 0, 0, 0], //ATTENZIONE LA CARTA DOVREBBE DARE 200$ IN CASO SI PASSI DAL VIA, DA FARE DOPO SVILUPPO DELLA CASELLA VIA  //fatto
-                [18, 'Vai a St. Charles Place', 0, 0, 0, 0], //ATTENZIONE LA CARTA DOVREBBE DARE 200$ IN CASO SI PASSI DAL VIA, DA FARE DOPO SVILUPPO DELLA CASELLA VIA //fatto
-                [19, 'La Banca paga un dividendo: incassi $50', 50, 0, 0, 0], //fatto
-                [20, 'Vai indietro di 3 caselle', 0, 0, 0, 0], //fatto
-                [21, 'Vai in Prigione senza passare dal Via', 0, 0, 0, 0], //fatto
-                [22, 'Riparazioni generali a tutte le tue proprietà: paga $25 per casa e $100 per hotel', 0, -25, -100, 0], //fatto
-                [23, 'Paga tasse scadute: paga $10', -10, 0, 0, 0], //fatto
-                [24, 'Vai a Reading Railroad', 0, 0, 0, 0], //fatto
-                [25, 'Vai a Boardwalk', 0, 0, 0, 0], //fatto
-                [26, 'Sei eletto chairman della tavola da gioco: paga $50 da ogni giocaotore', 0, 0, 0, -50], //fatto
-                [27, 'Rendimento prestito immobiliare: incassa $150', 150, 0, 0, 0], //fatto
-                [28, 'Muovi la pedina al prossimo Utility, se non ha proprietario puoi comprarlo, se lo ha tira i dadi e paga 10 volte il risultato del lancio', 0, 0, 0, 0], //fatto
-                [29, 'Muovi la pedina alla prossima Stazione, se non ha proprietario puoi comprarla, se lo ha paga il doppio del noleggio', 0, 0, 0, 0], //fatto
-                [30, 'Hai vinto una competizione di cruciverba: incassa $100', 100, 0, 0, 0], //fatto
+                [40, 'Esci di Prigione', 0, 0, 0, 0], //idCarta == 15
+                [0, 'Vai al Via', 0, 0, 0, 0], //idCarta == 16
+                [24, 'Vai a Illinois Avenue', 0, 0, 0, 0], //idCarta == 17
+                [11, 'Vai a St. Charles Place', 0, 0, 0, 0], //idCarta == 18
+                [40, 'La Banca paga un dividendo: incassi $50', 50, 0, 0, 0], //idCarta == 19
+                [40, 'Vai indietro di 3 caselle', 0, 0, 0, 0], //idCarta == 20
+                [10, 'Vai in Prigione senza passare dal Via', 0, 0, 0, 0], //idCarta == 21
+                [40, 'Riparazioni generali a tutte le tue proprietà: paga $25 per casa e $100 per hotel', 0, -25, -100, 0], //idCarta == 22
+                [40, 'Paga tasse scadute: paga $10', -10, 0, 0, 0], //idCarta == 23
+                [5, 'Vai a Reading Railroad', 0, 0, 0, 0], //idCarta == 24
+                [39, 'Vai a Boardwalk', 0, 0, 0, 0], //idCarta == 25
+                [40, 'Sei eletto chairman della tavola da gioco: paga $50 da ogni giocaotore', 0, 0, 0, -50], //idCarta == 26
+                [40, 'Rendimento prestito immobiliare: incassa $150', 150, 0, 0, 0], //idCarta == 27
+                [40, 'Muovi la pedina al prossimo Utility, se non ha proprietario puoi comprarlo, se lo ha tira i dadi e paga 10 volte il risultato del lancio', 0, 0, 0, 0], //idCarta == 28
+                [40, 'Muovi la pedina alla prossima Stazione, se non ha proprietario puoi comprarla, se lo ha paga il doppio del noleggio', 0, 0, 0, 0], //idCarta == 29
+                [40, 'Hai vinto una competizione di cruciverba: incassa $100', 100, 0, 0, 0], //idCarta == 30
             ]
         }
     }
@@ -61,9 +61,9 @@ class Carte extends Component {
         //probabilità==true, imprevisto==false
         let idCarta;
         if (probabilitaOImprevisto){
-            idCarta =13; //Math.floor(Math.random()*(14));
+            idCarta = Math.floor(Math.random()*(14));
         }else{
-            idCarta =28;//Math.floor(Math.random()*(30-15)+15);
+            idCarta = Math.floor(Math.random()*(30-15)+15);
         };
         alert('Giocatore ' + (turnoGiocatore + 1) + ': \nLa carta è: ' + this.state.carte[idCarta][1]);
         this.attivaCarta(   idCarta, 
@@ -131,30 +131,15 @@ class Carte extends Component {
             }
         }
 
-        //Modifica spostamentoPerCarta in modo che la pedina vada in prigione senza passare dal Via
-        if(idCarta===13 || idCarta===21){
-            if(segnalini[turnoGiocatore].attualeCasella > 10){
-                //segnalini[numSegnalino].attualeCasella
-                nuoviGiocatori[turnoGiocatore].capitale -= 200;
-            }
-            nuoviSegnalini[turnoGiocatore].attualeCasella=10;
-            nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[10][1];
-            nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[10][2];
-            nuoviGiocatori[turnoGiocatore].inPrigione = true;
-        }
-
-        //Modifica spostamentoPerCarta in modo che la pedina vada indietro di 3 caselle
+        //Sposta la pedina indietro di 3 caselle
         if(idCarta===20){
-            
-            //spostamentoPerCarta = 37;
+            let indietroDiTreCaselle = nuoviSegnalini[turnoGiocatore].attualeCasella + 37;
             if(nuoviSegnalini[turnoGiocatore].attualeCasella>3){
                 nuoviGiocatori[turnoGiocatore].capitale -= 200;
             }
-        }
-
-        //Modifica spostamentoPerCarta in modo che la pedina vada al Via
-        if(idCarta===14 || idCarta===16){
-            //spostamentoPerCarta = 40 - attualeCasella;
+            nuoviSegnalini[turnoGiocatore].attualeCasella += indietroDiTreCaselle;
+            nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[indietroDiTreCaselle][1];
+            nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[indietroDiTreCaselle][2];
         }
 
         // Se il giocatore pesca una carta di uscita dalla prigione, incrementa il contatore
@@ -163,51 +148,31 @@ class Carte extends Component {
             nuoviGiocatori[turnoGiocatore].carteUscitaPrigione += 1;
         }
 
-        // Sposta la pedina a Reading Railroad. Se passa dal Via il giocatore riceve € 500.
-        if (idCarta === 24) {
-            if(segnalini[turnoGiocatore].attualeCasella > 5){
+        // Sposta la pedina a... in base a idCarta la pedina va in diverse destinazioni tra cui Via e Prigione
+        // la casella numero 40 non esiste sulla tabella di gioco, il valore è usato per determinare se deve essere
+        // effettuato uno spostamento dalla pedina in una casella fissata
+        if (this.state.carte[idCarta][0] != 40) {
+            if((segnalini[turnoGiocatore].attualeCasella > this.state.carte[idCarta][0]) &&
+             idCarta === 24 || idCarta === 25 || idCarta === 17 || idCarta === 18){
                 nuoviGiocatori[turnoGiocatore].capitale += 500;
                 alert('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
             }
-            nuoviSegnalini[turnoGiocatore].attualeCasella=5;
-            nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[5][1];
-            nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[5][2];
-        }
-
-        // Sposta la pedina a Boardwalk. Se passa dal Via il giocatore riceve € 500.
-        if (idCarta === 25) {
-            if(segnalini[turnoGiocatore].attualeCasella > 39){
-                nuoviGiocatori[turnoGiocatore].capitale += 500;
-                alert('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
+            if(idCarta===13 || idCarta===21){
+                if(segnalini[turnoGiocatore].attualeCasella > this.state.carte[idCarta][0]){
+                    nuoviGiocatori[turnoGiocatore].capitale -= 200;
+                }
+                nuoviGiocatori[turnoGiocatore].inPrigione = true;
             }
-            nuoviSegnalini[turnoGiocatore].attualeCasella=39;
-            nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[39][1];
-            nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[39][2];
-        }
-
-        // Sposta la pedina a Illinois Avenue. Se passa dal Via il giocatore riceve € 500.
-        if (idCarta === 17) {
-            if(segnalini[turnoGiocatore].attualeCasella > 24){
+            if(idCarta===14 || idCarta===16){
                 nuoviGiocatori[turnoGiocatore].capitale += 500;
-                alert('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
             }
-            nuoviSegnalini[turnoGiocatore].attualeCasella=24;
-            nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[24][1];
-            nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[24][2];
+            nuoviSegnalini[turnoGiocatore].attualeCasella = this.state.carte[idCarta][0];
+            nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[this.state.carte[idCarta][0]][1];
+            nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[this.state.carte[idCarta][0]][2];
         }
 
-        // Sposta la pedina a St. Charles Place. Se passa dal Via il giocatore riceve € 500.
-        if (idCarta === 18) {
-            if(segnalini[turnoGiocatore].attualeCasella > 11){
-                nuoviGiocatori[turnoGiocatore].capitale += 500;
-                alert('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
-            }
-            nuoviSegnalini[turnoGiocatore].attualeCasella=11;
-            nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[11][1];
-            nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[11][2];
-        }
-
-        // Sposta il giocatore alla stazione più vicina. Se la stazione appartiene a un avversario, il giocatore paga il doppio del noleggio.
+        // Sposta il giocatore alla stazione più vicina. Se la stazione appartiene a un avversario,
+        //il giocatore paga il doppio del noleggio.
         if (idCarta === 29) {
             if (segnalini[turnoGiocatore].attualeCasella >= 36 || segnalini[turnoGiocatore].attualeCasella <= 4) {
                 if (segnalini[turnoGiocatore].attualeCasella >= 36) {
@@ -307,7 +272,6 @@ class Carte extends Component {
         }
         setGiocatori(nuoviGiocatori);
         setSegnalini(nuoviSegnalini);
-        //return spostamentoPerCarta;
     }
 
     render () {
