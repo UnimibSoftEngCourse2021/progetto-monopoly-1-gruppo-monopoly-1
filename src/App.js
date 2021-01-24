@@ -5,8 +5,6 @@ import TabellaTerreni from './components/Tabelle/TabellaTerreni';
 import TabellaSocietàStazioni from './components/Tabelle/TabellaSocietàStazioni';
 import Banca from './components/Banca';
 
-
-
 function App(props) {
 
   // Countdown
@@ -495,7 +493,6 @@ function App(props) {
     ]
   );
  
-  
   const [turnoGiocatore, setTurnoGiocatore] = React.useState(IniziaPerPrimo());
 
   function IniziaPerPrimo() {
@@ -527,12 +524,6 @@ function App(props) {
     }
   }
 
-  const [pagamentoImprevisto, setPagamentoImprevisto] = React.useState(false);
-
-  // React.useEffect(() => {
-  //   setPagamentoImprevisto(false);
-  // })
-
   return (
     <div className="App">
       <table className="tabella1">
@@ -540,7 +531,6 @@ function App(props) {
           <td className="colonna1">
             <TabellaSocietàStazioni societàStazioni={societàStazioni}  />
           </td>
-
           <td className="colonnaBoard" rowspan="2">
             <ComponentBoard
               turnoGiocatore={turnoGiocatore} 
@@ -561,23 +551,15 @@ function App(props) {
               counter={counter}
               setCounter={setCounter}
               numeroDifficoltà={numeroDifficoltà}
-              pagamentoImprevisto={pagamentoImprevisto}
-              setPagamentoImprevisto={setPagamentoImprevisto}
             />
           </td>
           <td className="colonna1" >
             <TabellaGiocatori giocatori={props.giocatori} turnoGiocatore={turnoGiocatore}/>
           </td>
-
         </tr>
-        
       </table>
-      
-      
       <TabellaTerreni terreni={terreni} />
-      
     </div>
-
   );
 }
 

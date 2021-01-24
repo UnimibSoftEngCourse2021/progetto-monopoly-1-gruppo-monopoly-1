@@ -10,7 +10,6 @@ class Banca extends Component {
         }
     }
 
-
     // Passa i parametri a TabellaGiocatori (attualmente non funziona)
     creaTabellaGiocatori = () => {
         for(let i=1; i<=6; i++){
@@ -36,7 +35,6 @@ class Banca extends Component {
         alert('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');  
     }
 
-    
     partitaCountdown = (giocatori)=> {
         
             var vincitore = giocatori[0];
@@ -68,10 +66,8 @@ class Banca extends Component {
                 //concludere la partita
                 return;
             }
-
     }
-
-
     getSaldoGiocatore
 }
+
 export default Banca;

@@ -37,10 +37,9 @@ class Carte extends Component {
                 [25, 'Vai a Boardwalk', 0, 0, 0, 0], //fatto
                 [26, 'Sei eletto chairman della tavola da gioco: paga $50 da ogni giocaotore', 0, 0, 0, -50], //fatto
                 [27, 'Rendimento prestito immobiliare: incassa $150', 150, 0, 0, 0], //fatto
-                [28, 'Muovi la pedina al prossimo Utility, se non ha proprietario puoi comprarlo, se lo ha tira i dadi e paga 10 volte il risultato del lancio', 0, 0, 0, 0],
+                [28, 'Muovi la pedina al prossimo Utility, se non ha proprietario puoi comprarlo, se lo ha tira i dadi e paga 10 volte il risultato del lancio', 0, 0, 0, 0], //fatto
                 [29, 'Muovi la pedina alla prossima Stazione, se non ha proprietario puoi comprarla, se lo ha paga il doppio del noleggio', 0, 0, 0, 0], //fatto
                 [30, 'Hai vinto una competizione di cruciverba: incassa $100', 100, 0, 0, 0], //fatto
-
             ]
         }
     }
@@ -58,10 +57,7 @@ class Carte extends Component {
                     setTavolaGioco, 
                     societàStazioni, 
                     setSocietàStazioni,
-                    pagamentoImprevisto, 
-                    pagaAffitto,
-                    setPagamentoImprevisto,
-                    cambiaPagamentoImprevisto) => {
+                    pagaAffitto) => {
         //probabilità==true, imprevisto==false
         let idCarta;
         if (probabilitaOImprevisto){
@@ -82,10 +78,7 @@ class Carte extends Component {
                             setTavolaGioco, 
                             societàStazioni, 
                             setSocietàStazioni,
-                            pagamentoImprevisto, 
-                            pagaAffitto,
-                            setPagamentoImprevisto,
-                            cambiaPagamentoImprevisto);
+                            pagaAffitto);
     }
 
     //Metodo che attiva l'effetto della carta estratta
@@ -101,10 +94,7 @@ class Carte extends Component {
                     setTavolaGioco, 
                     societàStazioni, 
                     setSocietàStazioni,
-                    pagamentoImprevisto, 
-                    pagaAffitto,
-                    setPagamentoImprevisto,
-                    cambiaPagamentoImprevisto) => {
+                    pagaAffitto) => {
         let nuoviGiocatori = giocatori;
         let nuoviSegnalini = segnalini;
 
@@ -240,9 +230,7 @@ class Carte extends Component {
                 setGiocatori(nuoviGiocatori);
                 setSegnalini(nuoviSegnalini);
                 if (societàStazioni[1].proprietario !== -1) {
-                    console.log("Entrato");
                     pagaAffitto();
-                    console.log("Uscito");
                 }
             }
             if (segnalini[turnoGiocatore].attualeCasella >= 16 && segnalini[turnoGiocatore].attualeCasella <= 24) {
@@ -281,12 +269,6 @@ class Carte extends Component {
                 setGiocatori(nuoviGiocatori);
                 setSegnalini(nuoviSegnalini);
                 if (societàStazioni[4].proprietario !== -1 && societàStazioni[4].proprietario !== turnoGiocatore) {
-                    console.log("Pagamento imprevisto1: " + pagamentoImprevisto);
-                    var nuovoPagamento = true;
-                    cambiaPagamentoImprevisto();
-                    setPagamentoImprevisto(nuovoPagamento);
-                    setPagamentoImprevisto(pagamentoImprevisto => pagamentoImprevisto || true);
-                    console.log("Pagamento imprevisto2: " + pagamentoImprevisto);
                     let dado1 = Math.floor(Math.random()*6) + 1;
                     let dado2 = Math.floor(Math.random()*6) + 1;
                     let affitto = (dado1 + dado2) * 10;
@@ -308,21 +290,21 @@ class Carte extends Component {
                 setGiocatori(nuoviGiocatori);
                 setSegnalini(nuoviSegnalini);
                 if (societàStazioni[5].proprietario !== -1 && societàStazioni[5].proprietario !== turnoGiocatore) {
-                    console.log("Pagamento imprevisto1: " + pagamentoImprevisto);
-                    cambiaPagamentoImprevisto();
-                    setPagamentoImprevisto(true);
-                    setPagamentoImprevisto(pagamentoImprevisto => pagamentoImprevisto || true);
-                    console.log("Pagamento imprevisto2: " + pagamentoImprevisto);
                     let dado1 = Math.floor(Math.random()*6) + 1;
                     let dado2 = Math.floor(Math.random()*6) + 1;
                     let affitto = (dado1 + dado2) * 10;
                     nuoviGiocatori[turnoGiocatore].capitale -= affitto;
+                    // Devo aggiungere l'affitto pagato sulla casella per evitare che questa somma
+                    // venga sottratta al giocatore visto che si trova sulla casella dell'avversario
+                    // alla fine del turno.
+                    nuoviGiocatori[turnoGiocatore].capitale += 150;
                     nuoviGiocatori[societàStazioni[5].proprietario].capitale += affitto;
+                    // Per lo stesso motivo devo sottrarre l'affitto dall'avversario.
+                    nuoviGiocatori[societàStazioni[4].proprietario].capitale -= 150;
                     alert('Giocatore ' + (turnoGiocatore + 1) + ': paga ' + affitto);
                 }
             }
         }
-
         setGiocatori(nuoviGiocatori);
         setSegnalini(nuoviSegnalini);
         //return spostamentoPerCarta;

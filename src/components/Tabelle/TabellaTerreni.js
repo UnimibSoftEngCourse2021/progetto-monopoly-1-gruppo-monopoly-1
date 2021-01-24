@@ -3,11 +3,8 @@ import { Box, TableCell, TableRow, TableBody, TableContainer, Table, TableHead, 
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 
-
 function TabellaTerreni (props) {
 
-    //
-    
     function createData(nome, coloreSfondo, proprietario, casa, alberghi, valore, ipotecato) {
         return { nome, coloreSfondo, proprietario, casa, alberghi, valore, ipotecato };
       }
@@ -37,10 +34,8 @@ function TabellaTerreni (props) {
         createData(props.terreni[21].nome, props.terreni[21].coloreSfondo, props.terreni[21].proprietario, props.terreni[21].case, props.terreni[21].alberghi, props.terreni[21].valore, props.terreni[21].ipotecato),
        ];
     
-       
         return (
             <div>
-               
                 <h3 align='center'>
                     Tabella dei terreni
                 </h3>
@@ -78,7 +73,6 @@ function TabellaTerreni (props) {
                 </Box>
             </div>
         )
-    
 }
 
 export default TabellaTerreni;

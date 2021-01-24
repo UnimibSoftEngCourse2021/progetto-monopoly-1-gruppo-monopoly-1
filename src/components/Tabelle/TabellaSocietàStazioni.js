@@ -3,13 +3,8 @@ import { Box, TableCell, TableRow, TableBody, TableContainer, Table, TableHead} 
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 
-
-
-
 function TabellaSocietàStazioni(props) {
 
-
-    
     function createData(nome, proprietario, valore, ipotecato ) {
         return { nome, proprietario, valore, ipotecato };
       }
@@ -23,10 +18,8 @@ function TabellaSocietàStazioni(props) {
         createData(props.societàStazioni[5].nome, props.societàStazioni[5].proprietario, props.societàStazioni[5].valore, props.societàStazioni[5].ipotecato),
        ];
     
-       
         return (
             <div>
-               
                 <h3 align='center'>
                     Tabella delle società e delle stazioni
                 </h3>
@@ -38,8 +31,7 @@ function TabellaSocietàStazioni(props) {
                                 <TableCell>Nome</TableCell>
                                 <TableCell align="right">Proprietario</TableCell>
                                 <TableCell align="right">Valore</TableCell>
-                                <TableCell align="right">Ipotecato</TableCell>
-                                
+                                <TableCell align="right">Ipotecato</TableCell> 
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -57,7 +49,6 @@ function TabellaSocietàStazioni(props) {
                 </Box>
             </div>
         )
-    
 }
 
 export default TabellaSocietàStazioni;
