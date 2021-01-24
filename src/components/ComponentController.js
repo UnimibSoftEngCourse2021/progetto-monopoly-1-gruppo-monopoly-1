@@ -42,17 +42,8 @@ class ComponentController extends React.Component {
             settimoMsgTA: '',
             tiroDoppio: 0,
             contrattiInizialiAssegnati: false,
-            pagamentoImprevisto2: false
         };
     }
-
-    cambiaPagamentoImprevisto = () => {
-        this.setState({
-            pagamentoImprevisto2: true,
-        }, () => {console.log("Callback " + this.state.pagamentoImprevisto2);
-        });
-    }
-
 
     spostaSegnalino (sommaDadi) {
         let numSegnalino = this.props.turnoGiocatore;
@@ -93,7 +84,6 @@ class ComponentController extends React.Component {
 
         if (this.props.caselle[attualeCasella].tipo ==='imprevisti') {
             // alert('imprevisti');
-            console.log("Carta pagamento imprevisto: " + this.props.pagamentoImprevisto);
             carta1.estraiCarta(  false, 
                                  this.props.turnoGiocatore, 
                                  this.props.giocatori, 
@@ -106,15 +96,11 @@ class ComponentController extends React.Component {
                                  this.props.setTavolaGioco,
                                  this.props.societàStazioni,
                                  this.props.setSocietàStazioni,
-                                 this.props.pagamentoImprevisto,
-                                 this.pagaAffitto,
-                                 this.props.setPagamentoImprevisto,
-                                 this.cambiaPagamentoImprevisto);
+                                 this.pagaAffitto);
  
         };
         if (this.props.caselle[attualeCasella].tipo ==='probabilita') {
             //alert('probabilita');
-            console.log("Carta pagamento imprevisto: " + this.props.pagamentoImprevisto);
             carta1.estraiCarta( true, 
                                 this.props.turnoGiocatore, 
                                 this.props.giocatori, 
@@ -127,16 +113,12 @@ class ComponentController extends React.Component {
                                 this.props.setTavolaGioco,
                                 this.props.societàStazioni,
                                 this.props.setSocietàStazioni,
-                                this.props.pagamentoImprevisto,
-                                this.pagaAffitto,
-                                this.props.setPagamentoImprevisto,
-                                this.cambiaPagamentoImprevisto);
+                                this.pagaAffitto);
         };
 
         this.props.muoviPedine();
         this.pagaAffitto();
         this.pagaTasse(); 
-
     }       
 
     dadiTirati = false;
@@ -144,8 +126,8 @@ class ComponentController extends React.Component {
     tiraDadi = () => {
         
         if (!dadiTirati){
-            dado1 = 4//Math.floor(Math.random()*6) + 1;
-            dado2 = 3//Math.floor(Math.random()*6) + 1;
+            dado1 = Math.floor(Math.random()*6) + 1;
+            dado2 = Math.floor(Math.random()*6) + 1;
             sommaDadi = dado1 + dado2;
             numeroTiriDadi = numeroTiriDadi + 1;
             punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
@@ -154,7 +136,7 @@ class ComponentController extends React.Component {
                 this.props.giocatori[this.props.turnoGiocatore].inPrigione = false;
             }
 
-            if ((dado1 !== dado2) || (dado1 === dado2) && (numeroTiriDadi === 3)) {
+            if ((dado1 !== dado2) || ((dado1 === dado2) && (numeroTiriDadi === 3))) {
                 dadiTirati = true;
                 numeroTiriDadi = 0;
             }
@@ -194,18 +176,6 @@ class ComponentController extends React.Component {
             } else {
                 msg1='Giocatore ' + (this.props.turnoGiocatore + 1) + ': il punteggio dei dadi è: '+dado1+' + '+dado2
             }
-
-            // if (punteggioDoppio) {                
-            //     lanciDoppi +=1;
-            //     msg1='Giocatore:'+(this.props.turnoGiocatore+1)+' il punteggio dei dadi è doppio: '+dado1+' + '+dado2+' Ripetuto:'+lanciDoppi
-            //     if (lanciDoppi==3) {
-            //         // Vai in prigione
-            //     }
-            // }
-            // else {
-            //     lanciDoppi=0;
-            //     msg1='Giocatore:'+(this.props.turnoGiocatore+1)+' il punteggio dei dadi è: '+dado1+' + '+dado2
-            // }
 
             this.setState({
                 primoMsgTA: msg1,
@@ -260,8 +230,7 @@ class ComponentController extends React.Component {
                             i++;
                         }
                     }
-                }
-                
+                }      
             }
 
             dadiTirati = false;
@@ -340,9 +309,6 @@ class ComponentController extends React.Component {
                 n++;
             }
             
-           
-            
-            
             if(pareggio<2){
                 alert('Il tempo è finito: Giocatore: '+ vincitore.numero +' hai vinto');
                 //concludere la partita
@@ -353,29 +319,15 @@ class ComponentController extends React.Component {
                 //concludere la partita
                 return;
             }
-
-
         }
         else{
             //continua la partita
         }
     }
 
-    // cambiaPagamentoImprevisto = (imprevisto) => {
-    //     this.setState({
-    //         pagamentoImprevisto: imprevisto
-    //     })
-    // }
-
     //Questa funzione si occupa di verificare se la casella su cui mi trovo richiede il pagamento di un affitto
     //e modifica l'array giocatori di conseguenza
     pagaAffitto = ()=>{
-
-        this.setState({
-            pagamentoImprevisto2: true,
-        }, () => {console.log("Callback2 " + this.state.pagamentoImprevisto2);
-        });
-
         var attualeCasella = this.props.segnalini[this.props.turnoGiocatore].attualeCasella;
         var casella = this.props.caselle[attualeCasella];
         var affitto;
@@ -407,7 +359,6 @@ class ComponentController extends React.Component {
             nuoviGiocatori[this.props.turnoGiocatore].capitale =  nuoviGiocatori[this.props.turnoGiocatore].capitale - affitto;
             nuoviGiocatori[terreno.proprietario].capitale = nuoviGiocatori[terreno.proprietario].capitale + affitto;
             this.props.setGiocatori(nuoviGiocatori);
-            console.log(this.props.giocatori);
         }
 
         if(casella.tipo === 'stazione'){
@@ -424,9 +375,7 @@ class ComponentController extends React.Component {
             if(stazione.proprietario === this.props.turnoGiocatore){
                 return;
             }
-            affitto = (200 + this.props.numeroDifficoltà);
-            console.log("Affitto: " + affitto);            
-            
+            affitto = (200 + this.props.numeroDifficoltà);          
             nuoviGiocatori = this.props.giocatori;
             nuoviGiocatori[this.props.turnoGiocatore].capitale =  nuoviGiocatori[this.props.turnoGiocatore].capitale - affitto;
             nuoviGiocatori[stazione.proprietario].capitale = nuoviGiocatori[stazione.proprietario].capitale + affitto;
@@ -448,15 +397,12 @@ class ComponentController extends React.Component {
                 return;
             }
             affitto = 150 + this.props.numeroDifficoltà;
-        
             nuoviGiocatori = this.props.giocatori;
             nuoviGiocatori[this.props.turnoGiocatore].capitale =  nuoviGiocatori[this.props.turnoGiocatore].capitale - affitto;
             nuoviGiocatori[società.proprietario].capitale = nuoviGiocatori[società.proprietario].capitale + affitto;
             this.props.setGiocatori(nuoviGiocatori);
             console.log(this.props.giocatori);
         }
-
-        console.log("Pagamento imprevisto: " + this.props.pagamentoImprevisto);
         return;
     }
 
@@ -496,35 +442,34 @@ class ComponentController extends React.Component {
                         random = Math.floor(Math.random() * 22);
                         if (terreni[random].proprietario === -1) {
                             var nuoviTerreni = terreni;
-                            var nuoviGiocatori = giocatori;
+                            var nuoviGiocatoriPerTerreni = giocatori;
                             nuoviTerreni[random].proprietario = giocatori[i].numero - 1;
-                            nuoviGiocatori[i].capitale -= terreni[random].valore;
+                            nuoviGiocatoriPerTerreni[i].capitale -= terreni[random].valore;
                             setTerreni(nuoviTerreni);
-                            setGiocatori(nuoviGiocatori);
+                            setGiocatori(nuoviGiocatoriPerTerreni);
                             j += 1;
                         }
                     } else {
                         random = Math.floor(Math.random() * 6);
                         if (societàStazioni[random].proprietario === -1) {
                             var nuoveSocietàStazioni = societàStazioni;
-                            var nuoviGiocatori = giocatori;
+                            var nuoviGiocatoriPerSocietàStazioni = giocatori;
                             nuoveSocietàStazioni[random].proprietario = giocatori[i].numero - 1;
-                            nuoviGiocatori[i].capitale -= societàStazioni[random].valore;
+                            nuoviGiocatoriPerSocietàStazioni[i].capitale -= societàStazioni[random].valore;
                             setSocietàStazioni(nuoveSocietàStazioni);
-                            setGiocatori(nuoviGiocatori);
+                            setGiocatori(nuoviGiocatoriPerSocietàStazioni);
                             j += 1;
                         }  
                     } 
                 }
             }
-            this.state.contrattiInizialiAssegnati = true;
+            this.setState({
+                contrattiInizialiAssegnati: true
+            })
         } else {    
             alert("I contratti iniziali sono già stati assegnati.");
         }
-        
     }
-
-    
 
     render () {
         if(!contratti){
@@ -584,7 +529,6 @@ class ComponentController extends React.Component {
                         <Autori />                         
                         </td>
                     </tr>
-
                     <tr>
                         <td className="tdController" colspan="1" >
                             <VendiEdificio 
@@ -622,9 +566,7 @@ class ComponentController extends React.Component {
                                 setSocietàStazioni={this.props.setSocietàStazioni}
                             />
                         </td>
-                        
                     </tr>
-                    
                     <tr className="trController">
                         <td className="tdController">
                             <Button type="button" size="small" onClick={() => this.tiraDadi()}>
@@ -676,14 +618,10 @@ class ComponentController extends React.Component {
     }
 }
 
-
 class AreaTesto extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        // messaggioUno: primoMsgTA,
-        // messaggioDue: secondoMsgTA,
-        // messaggioTre: terzoMsgTA
       };
     }
   
@@ -697,13 +635,10 @@ class AreaTesto extends React.Component {
                 <div>{this.props.messaggioCinque}</div>
                 <div>{this.props.messaggioSei}</div>
                 <div>{this.props.messaggioSette}</div>
-            {/* {this.props.primoMsgTA+"\n"+this.props.secondoMsgTA+"\n"+this.props.terzoMsgTA}  */}
         </div>
       );
     }
-
 }
-
 
 export default ComponentController;
 
