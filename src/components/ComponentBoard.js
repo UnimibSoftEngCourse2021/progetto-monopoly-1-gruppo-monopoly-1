@@ -1,5 +1,5 @@
 import React from 'react';
-import Pedina from './Pedina';
+//import Pedina from './Pedina';
 import ComponentController from './ComponentController';
 import hat from '../img/hat.png';
 import iron from '../img/iron.png';
@@ -55,6 +55,11 @@ const tavolaGioco = [
     [38, 940, 480, "GO"],
     [39, 940, 530, "GO"]
 ];
+
+function Pedina(props) {
+    return ( <img className="pedina" src={props.figura} alt=""  style={props.stile}  /> )
+}
+
 
 class ComponentBoard extends React.Component {
 

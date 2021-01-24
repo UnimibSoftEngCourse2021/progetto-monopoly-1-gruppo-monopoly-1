@@ -27,9 +27,9 @@ const handleChangeVenditore = (event) => {
 };
 
 //Stato del gicatore che vuole comprare, eventualmente la banca
-const [aquirente, setAquirente] = React.useState('');
-const handleChangeAquirente = (event) => {
-  setAquirente(event.target.value);
+const [acquirente, setAcquirente] = React.useState('');
+const handleChangeAcquirente = (event) => {
+  setAcquirente(event.target.value);
 };
 
 //Stato del prezzo a cui viene venduta la proprietà
@@ -128,14 +128,14 @@ function VendiTerreno(){
  
   
   //verifico che l'aquirente esista
-  var x = EsisteGiocatore(aquirente);
-  var aquirente2;
+  var x = EsisteGiocatore(acquirente);
+  var acquirente2;
   if(x === -1){
     alert("Controlla che il nome dell'aquirente sia scritto in modo corretto");
     return;
   }
-  aquirente2 = props.giocatori[x];
-  if(aquirente2.inGioco === false){
+  acquirente2 = props.giocatori[x];
+  if(acquirente2.inGioco === false){
     alert('Hai inserito un aquirente che non è più in gioco');
     return;
   }
@@ -145,7 +145,7 @@ function VendiTerreno(){
     return;
   }
   //Verifico che venditore e aquirente non siano lo stesso giocatore
-  if(venditore2 === aquirente2){
+  if(venditore2 === acquirente2){
     alert('Non puoi vendere a te stesso');
     return;
   }
@@ -157,11 +157,11 @@ function VendiTerreno(){
   }
   //sposto i soldi dall'aquirente2 al venditore2
   if(prezzo > 0){
-    aquirente2.capitale = aquirente2.capitale - parseInt(prezzo);
+    acquirente2.capitale = acquirente2.capitale - parseInt(prezzo);
     venditore2.capitale = venditore2.capitale + parseInt(prezzo);
   }
   //aquirente diventa il nuovo proprietario della proprietà
-  proprietà.proprietario = aquirente2.nome;
+  proprietà.proprietario = acquirente2.nome;
   
   //aggiorno le variabili di stato che contengono l'elenco dei terreni e dei giocatori
   var nuoviTerreni = props.terreni;
@@ -169,7 +169,7 @@ function VendiTerreno(){
   props.setTerreni(nuoviTerreni);  
   
   var nuoviGiocatori = props.giocatori;
-  nuoviGiocatori[x] = aquirente2;
+  nuoviGiocatori[x] = acquirente2;
   nuoviGiocatori[y] = venditore2;
   props.setGiocatori(nuoviGiocatori);
 
@@ -208,20 +208,20 @@ function VendiStazioneSocietà(){
  
   
   //verifico che l'aquirente esista
-  var x = EsisteGiocatore(aquirente);
-  var aquirente2;
+  var x = EsisteGiocatore(acquirente);
+  var acquirente2;
   if(x === -1){
     alert("Controlla che il nome dell'aquirente sia scritto in modo corretto");
     return;
   }
-  aquirente2 = props.giocatori[x];
-  if(aquirente2.inGioco === false){
+  acquirente2 = props.giocatori[x];
+  if(acquirente2.inGioco === false){
     alert('Hai inserito un aquirente che non è più in gioco');
     return;
   }
   
   //Verifico che venditore e aquirente non siano lo stesso giocatore
-  if(venditore2 === aquirente2){
+  if(venditore2 === acquirente2){
     alert('Non puoi vendere a te stesso');
     return;
   }
@@ -233,11 +233,11 @@ function VendiStazioneSocietà(){
   }
   //sposto i soldi dall'aquirente2 al venditore2
   if(prezzo > 0){
-    aquirente2.capitale = aquirente2.capitale - parseInt(prezzo);
+    acquirente2.capitale = acquirente2.capitale - parseInt(prezzo);
     venditore2.capitale = venditore2.capitale + parseInt(prezzo);
   }
   //aquirente diventa il nuovo proprietario della proprietà
-  proprietà.proprietario = aquirente2.nome;
+  proprietà.proprietario = acquirente2.nome;
   
   //aggiorno le variabili di stato che contengono l'elenco delle società, delle stazioni e dei giocatori
   var nuoveSocietàStazioni = props.societàStazioni;
@@ -245,7 +245,7 @@ function VendiStazioneSocietà(){
   props.setSocietàStazioni(nuoveSocietàStazioni);  
   
   var nuoviGiocatori = props.giocatori;
-  nuoviGiocatori[x] = aquirente2;
+  nuoviGiocatori[x] = acquirente2;
   nuoviGiocatori[y] = venditore2;
   props.setGiocatori(nuoviGiocatori);
 
@@ -292,7 +292,7 @@ const body = (
       </Grid>
       <Grid container directio="row" alignItems="center">
         <h3 style={{margin:'16px'}}>Nome dell'aquirente</h3>
-        <TextField variant="outlined" style={{margin:'16px', marginLeft:'259px', width:'350px'}} onChange={handleChangeAquirente}/>
+        <TextField variant="outlined" style={{margin:'16px', marginLeft:'259px', width:'350px'}} onChange={handleChangeAcquirente}/>
       </Grid>
       <Grid container directio="row" alignItems="center">
         <h3 style={{margin:'16px'}}>Quanto dovrà pagare?</h3>

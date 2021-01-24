@@ -431,7 +431,12 @@ class ComponentController extends React.Component {
 
     }
 
-    assegnaContrattiIniziali(numeroGiocatori, giocatori, setGiocatori, terreni, setTerreni, societàStazioni, setSocietàStazioni) {
+    assegnaContrattiIniziali() {
+        var numeroGiocatori = this.props.numeroGiocatori;
+        var giocatori = this.props.giocatori;
+        var terreni = this.props.terreni;
+        var societàStazioni = this.props.societàStazioni;
+
         if (!this.state.contrattiInizialiAssegnati) {
             let random = 0;
             for (let i = 0; i < numeroGiocatori; i++) {
@@ -445,8 +450,8 @@ class ComponentController extends React.Component {
                             var nuoviGiocatoriPerTerreni = giocatori;
                             nuoviTerreni[random].proprietario = giocatori[i].numero - 1;
                             nuoviGiocatoriPerTerreni[i].capitale -= terreni[random].valore;
-                            setTerreni(nuoviTerreni);
-                            setGiocatori(nuoviGiocatoriPerTerreni);
+                            this.props.setTerreni(nuoviTerreni);
+                            this.props.setGiocatori(nuoviGiocatoriPerTerreni);
                             j += 1;
                         }
                     } else {
@@ -456,8 +461,8 @@ class ComponentController extends React.Component {
                             var nuoviGiocatoriPerSocietàStazioni = giocatori;
                             nuoveSocietàStazioni[random].proprietario = giocatori[i].numero - 1;
                             nuoviGiocatoriPerSocietàStazioni[i].capitale -= societàStazioni[random].valore;
-                            setSocietàStazioni(nuoveSocietàStazioni);
-                            setGiocatori(nuoviGiocatoriPerSocietàStazioni);
+                            this.props.setSocietàStazioni(nuoveSocietàStazioni);
+                            this.props.setGiocatori(nuoviGiocatoriPerSocietàStazioni);
                             j += 1;
                         }  
                     } 
@@ -473,15 +478,7 @@ class ComponentController extends React.Component {
 
     render () {
         if(!contratti){
-            this.assegnaContrattiIniziali(
-                this.props.numeroGiocatori, 
-                this.props.giocatori, 
-                this.props.setGiocatori, 
-                this.props.terreni, 
-                this.props.setTerreni,
-                this.props.societàStazioni,
-                this.props.setSocietàStazioni                   
-            );
+            this.assegnaContrattiIniziali();
             contratti = true;
         }
 
