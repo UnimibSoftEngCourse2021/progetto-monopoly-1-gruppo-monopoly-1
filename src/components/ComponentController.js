@@ -10,6 +10,7 @@ import Carte from './CarteProbabilitaImprevisto/Carte';
 import Banca from './Banca';
 import UscitaPrigione from './AzioniConBottone/UscitaPrigione';
 import Autori from './AzioniConBottone/Autori';
+import CryptoRandom from './CryptoRandom';
 
 let dado1;
 let dado2;
@@ -129,8 +130,10 @@ class ComponentController extends React.Component {
     tiraDadi = () => {
         
         if (!dadiTirati){
-            dado1 = Math.floor(Math.random()*6) + 1;
-            dado2 = Math.floor(Math.random()*6) + 1;
+            //dado1 = Math.floor(Math.random()*6) + 1;
+            dado1 = CryptoRandom(1,6); //Il max è incluso e il min è incluso
+            //dado2 = Math.floor(Math.random()*6) + 1;
+            dado2 =CryptoRandom(1,6); //Il max è incluso e il min è incluso
             sommaDadi = dado1 + dado2;
             numeroTiriDadi = numeroTiriDadi + 1;
             punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
