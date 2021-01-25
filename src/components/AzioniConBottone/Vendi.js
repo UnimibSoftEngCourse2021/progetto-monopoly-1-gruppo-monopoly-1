@@ -1,8 +1,12 @@
 import React from 'react';
-import {Paper, Modal, Button, Grid, TextField, Radio, RadioGroup, FormControlLabel} from '@material-ui/core';
+import {Paper, Modal, Button, Grid, TextField, Radio, RadioGroup, FormControlLabel, Snackbar} from '@material-ui/core';
 
 
 function Vendi(props){
+
+  const [open, setOpen] = React.useState(false);
+  const handleCloseSnackbar = () => {setOpen(false)};
+  const [testo, setTesto] = React.useState('');
 
     
   
@@ -105,24 +109,28 @@ function VendiTerreno(){
   var n = EsisteTerreno();
   
   if(n === -1){
-    alert('Controlla che il nome del terreno sia scritto in modo corretto');
+    setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
+    setOpen(true);
     return;
   }
   var proprietà = props.terreni[n];
   
   if((proprietà.proprietario != venditore)){
-    alert('Non puoi vendere qualcosa che non ti appartiene');
+    setTesto('Non puoi vendere qualcosa che non ti appartiene');
+    setOpen(true); 
     return;
   }
   //verifico che il venditore esista e che non sia la banca
   var y = EsisteGiocatore(venditore);
   if(y === -1){
-    alert('Controlla che il nome del venditore sia scritto in modo corretto');
+    setTesto('Controlla che il nome del venditore sia scritto in modo corretto');
+    setOpen(true);
     return;
   }
   var venditore2 = props.giocatori[y];
   if(venditore2.inGioco === false){
-    alert('Hai inserito un venditore che non è più in gioco');
+    setTesto('Hai inserito un venditore che non è più in gioco');
+    setOpen(true); 
     return;
   }
  
@@ -131,28 +139,33 @@ function VendiTerreno(){
   var x = EsisteGiocatore(acquirente);
   var acquirente2;
   if(x === -1){
-    alert("Controlla che il nome dell'aquirente sia scritto in modo corretto");
+    setTesto("Controlla che il nome dell'aquirente sia scritto in modo corretto");
+    setOpen(true); 
     return;
   }
   acquirente2 = props.giocatori[x];
   if(acquirente2.inGioco === false){
-    alert('Hai inserito un aquirente che non è più in gioco');
+    setTesto('Hai inserito un aquirente che non è più in gioco');
+    setOpen(true); 
     return;
   }
   //verifico che sul terreno non ci siano ne case ne alberghi
   if(proprietà.case > 0 || proprietà.alberghi > 0){
-    alert('Non puoi vendere un terreno con case o alberghi');
+    setTesto('Non puoi vendere un terreno con case o alberghi');
+    setOpen(true);
     return;
   }
   //Verifico che venditore e aquirente non siano lo stesso giocatore
   if(venditore2 === acquirente2){
-    alert('Non puoi vendere a te stesso');
+    setTesto('Non puoi vendere a te stesso');
+    setOpen(true);
     return;
   }
   
   //verifico che il prezzo sia > 0
   if(prezzo <= 0){
-    alert('Controlla di aver inserito un prezzo maggiore di zero');
+    setTesto('Controlla di aver inserito un prezzo maggiore di zero');
+    setOpen(true); 
     return;
   }
   //sposto i soldi dall'aquirente2 al venditore2
@@ -176,7 +189,8 @@ function VendiTerreno(){
   console.log(props.giocatori);
   console.log(props.terreni);
 
-  alert('La vendita è andata a buon fine');
+  setTesto('La vendita è andata a buon fine');
+  setOpen(true); 
 }
 
 function VendiStazioneSocietà(){
@@ -185,24 +199,28 @@ function VendiStazioneSocietà(){
   var n = EsisteSocietàStazione();
   
   if(n === -1){
-    alert('Controlla che il nome della società o della stazione sia scritto in modo corretto');
+    setTesto('Controlla che il nome della società o della stazione sia scritto in modo corretto');
+    setOpen(true);
     return;
   }
   var proprietà = props.societàStazioni[n];
   
   if((proprietà.proprietario != venditore)){
-    alert('Non puoi vendere qualcosa che non ti appartiene');
+    setTesto('Non puoi vendere qualcosa che non ti appartiene');
+    setOpen(true); 
     return;
   }
   //verifico che il venditore esista 
   var y = EsisteGiocatore(venditore);
   if(y === -1){
-    alert('Controlla che il nome del venditore sia scritto in modo corretto');
+    setTesto('Controlla che il nome del venditore sia scritto in modo corretto');
+    setOpen(true); 
     return;
   }
   var venditore2 = props.giocatori[y];
   if(venditore2.inGioco === false){
-    alert('Hai inserito un venditore che non è più in gioco');
+    setTesto('Controlla che il nome del venditore sia scritto in modo corretto');
+    setOpen(true);
     return;
   }
  
@@ -211,24 +229,28 @@ function VendiStazioneSocietà(){
   var x = EsisteGiocatore(acquirente);
   var acquirente2;
   if(x === -1){
-    alert("Controlla che il nome dell'aquirente sia scritto in modo corretto");
+    setTesto("Controlla che il nome dell'aquirente sia scritto in modo corretto");
+    setOpen(true);
     return;
   }
   acquirente2 = props.giocatori[x];
   if(acquirente2.inGioco === false){
-    alert('Hai inserito un aquirente che non è più in gioco');
+    setTesto('Hai inserito un aquirente che non è più in gioco');
+    setOpen(true); 
     return;
   }
   
   //Verifico che venditore e aquirente non siano lo stesso giocatore
   if(venditore2 === acquirente2){
-    alert('Non puoi vendere a te stesso');
+    setTesto('Non puoi vendere a te stesso');
+    setOpen(true); 
     return;
   }
   
   //verifico che il prezzo sia > 0
   if(prezzo <= 0){
-    alert('Controlla di aver inserito un prezzo maggiore di zero');
+    setTesto('Controlla di aver inserito un prezzo maggiore di zero');
+    setOpen(true); 
     return;
   }
   //sposto i soldi dall'aquirente2 al venditore2
@@ -252,7 +274,8 @@ function VendiStazioneSocietà(){
   console.log(props.giocatori);
   console.log(props.societàStazioni);
 
-  alert('La vendita è andata a buon fine');
+  setTesto('La vendita è andata a buon fine');
+  setOpen(true); 
 }
 
 
@@ -318,6 +341,18 @@ return(
   <Modal open={openModal} onClose={handleClose}>
     {body}
   </Modal>
+  <Snackbar
+    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+    open={open}
+    autoHideDuration={6000}
+    onClose={handleCloseSnackbar}
+    message={testo}
+    action={
+      <React.Fragment>
+        <Button color="secondary" size="small" onClick={handleCloseSnackbar}> UNDO </Button>
+      </React.Fragment>
+    }
+  />
 </div>
 );
 }

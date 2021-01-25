@@ -1,12 +1,13 @@
 import React from 'react';
-import {Paper, Modal, Button, Radio, RadioGroup, FormControlLabel, TextField, Grid} from '@material-ui/core';
+import {Paper, Modal, Button, Radio, RadioGroup, FormControlLabel, TextField, Grid, Snackbar} from '@material-ui/core';
 
 
 function Costruisci(props){
 
-    
-
-    
+  const [open, setOpen] = React.useState(false);
+  const handleOpenSnackbar = () => {setOpen(true)};
+  const handleCloseSnackbar = (event, reason) => {setOpen(false)};
+  const [testo, setTesto] = React.useState('');    
 
 //Stato del Modale utilizato per costruire un edificio
 const [openModal, setOpenModal] = React.useState(false);
@@ -62,34 +63,40 @@ function CostruisciCasa(){
   //verifico che il terreno esista e salvo il risultato in proprietà
   var n = EsisteTerreno();
   if(n === -1){
-    alert('Controlla che il nome del terreno sia scritto in modo corretto');
+    setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
+    setOpen(true);
     return;
   }
   var proprietà = props.terreni[n];
   //verifico che la proprietà non sia ipotecata
   if(proprietà.ipotecato === true){
-    alert('Non puoi costruire su un terreno ipotecato');
+    setTesto('Non puoi costruire su un terreno ipotecato');
+    setOpen(true);
     return;
   }
   //verifico che il turnoGiocatore sia proprietario di proprietà
   if((proprietà.proprietario != props.turnoGiocatore)){
-    alert('Non puoi costruire su un terreno che non è tuo');
+    setTesto('Non puoi costruire su un terreno che non è tuo');
+    setOpen(true);
     return;
   }
   //Per poter costruire su proprietà devi avere tutti i terreni dello stesso colore
   var verifica = VerificaColore(proprietà.colore, proprietà.proprietario);
   if(!verifica){
-    alert('Per costruire devi prima possedere tutte le caselle dello stesso colore');
+    setTesto('Per costruire devi prima possedere tutte le caselle dello stesso colore');
+    setOpen(true);
     return;
   }
   //Su un terreno si possono costruire massimo 4 case
   if(proprietà.case >= 4){
-    alert('Su un terreno si possono costruire massimo quattro case');
+    setTesto('Su un terreno si possono costruire massimo quattro case');
+    setOpen(true);
     return;
   }
   //Se sul terreno c'è un albergo non posso costruirvi delle case
   if(proprietà.alberghi > 0){
-    alert("Se su un terreno c'e' un albergo non puoi costruirvi una casa");
+    setTesto("Se su un terreno c'e' un albergo non puoi costruirvi una casa");
+    setOpen(true);
     return;
   }
   //modifico l'array terreni e l'array giocatori
@@ -106,7 +113,8 @@ function CostruisciCasa(){
   props.setGiocatori(nuoviGiocatori);
   console.log(props.giocatori);
 
-  alert('La costruzione della casa è andata a buon fine');
+  setTesto('La costruzione della casa è andata a buon fine');
+  setOpen(true);
 
 }
 
@@ -114,29 +122,34 @@ function CostruisciAlbergo(){
   //verifico che il terreno esista e salvo il risultato in proprietà
   var n = EsisteTerreno();
   if(n === -1){
-    alert('Controlla che il nome del terreno sia scritto in modo corretto');
+    setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
+    setOpen(true);
     return;
   }
   var proprietà = props.terreni[n];
   //verifico che la proprietà non sia ipotecata
   if(proprietà.ipotecato === true){
-    alert('Non puoi costruire su un terreno ipotecato');
+    setTesto('Non puoi costruire su un terreno ipotecato');
+    setOpen(true);
     return;
   }
   //verifico che il turnoGiocatore sia proprietario di proprietà
   if((proprietà.proprietario != props.turnoGiocatore)){
-    alert('Non puoi costruire su un terreno che non è tuo');
+    setTesto('Non puoi costruire su un terreno che non è tuo');
+    setOpen(true);
     return;
   }
   //Su un terreno si può costruire massimo un albergo
   if(proprietà.alberghi > 0){
-    alert('Su un terreno si può costruire massimo un albergo');
+    setTesto('Su un terreno si può costruire massimo un albergo');
+    setOpen(true);
     return;
   }
   
   //Per poter costruire un albergo devi avere quattro case su proprietà 
   if(proprietà.case < 4){
-    alert('Per costruire un albergo su questo terreno devi prima possedere quattro case');
+    setTesto('Per costruire un albergo su questo terreno devi prima possedere quattro case');
+    setOpen(true);
     return;
   }
   
@@ -155,7 +168,8 @@ function CostruisciAlbergo(){
   props.setGiocatori(nuoviGiocatori);
   console.log(props.giocatori);
 
-  alert("La costruzione dell'albergo è andata a buon fine");
+  setTesto("La costruzione dell'albergo è andata a buon fine");
+  setOpen(true);
 
 }
 
@@ -205,6 +219,18 @@ return(
   <Modal open={openModal} onClose={handleClose}>
     {body}
   </Modal>
+  <Snackbar
+    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+    open={open}
+    autoHideDuration={6000}
+    onClose={handleCloseSnackbar}
+    message={testo}
+    action={
+      <React.Fragment>
+        <Button color="secondary" size="small" onClick={handleCloseSnackbar}> UNDO </Button>
+      </React.Fragment>
+    }
+  />
 </div>
 );
 }

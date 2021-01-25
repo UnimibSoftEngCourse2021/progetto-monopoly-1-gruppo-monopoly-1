@@ -1,4 +1,5 @@
 import React from 'react'
+import {Snackbar, Button } from '@material-ui/core';
 import TabellaGiocatori from './components/Tabelle/TabellaGiocatori';
 import ComponentBoard from './components/ComponentBoard';
 import TabellaTerreni from './components/Tabelle/TabellaTerreni';
@@ -7,6 +8,10 @@ import Banca from './components/Banca';
 import CryptoRandom from './components/CryptoRandom';
 
 function App(props) {
+
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => {setOpen(false)};
+  const [testo, setTesto] = React.useState('');
 
   // Countdown
   var tempoSecondi;
@@ -18,8 +23,12 @@ function App(props) {
   React.useEffect(() => {
     counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
     if (counter==0) {
-      alert('tempo finito');  
-      banca1.partitaCountdown(props.giocatori);
+      setTesto('tempo finito');
+      setOpen(true);
+      var t = banca1.partitaCountdown(props.giocatori);
+      setTesto(t);
+      setOpen(true);   
+       
     }
   }, [counter]);
 
@@ -562,6 +571,18 @@ function App(props) {
         </tr>
       </table>
       <TabellaTerreni terreni={terreni} />
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message={testo}
+        action={
+                <React.Fragment>
+                  <Button color="secondary" size="small" onClick={handleClose}> UNDO </Button>
+                </React.Fragment>
+              }
+      />
     </div>
   );
 }

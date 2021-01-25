@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TabellaGiocatori from './Tabelle/TabellaGiocatori';
+import { Button, Snackbar } from '@material-ui/core';
 
 class Banca extends Component {
     constructor(props) {
@@ -7,8 +7,13 @@ class Banca extends Component {
         this.state = {
             saldoContoGiocatori: [0,0,0,0,0,0],
             contrattiGiocatori: [0,0,0,0,0,0],
+            open: false,
+            testo: '',
         }
     }
+
+    handleOpen = () => {this.setState({open: true})};
+    handleClose = () => {this.setState({open: false})};
 
     //Modifica il saldo al giocatore (giocatore identificato tramite un numero int)
     modificaSaldo = (sommaDiDenaro, giocatore) => {
@@ -24,7 +29,7 @@ class Banca extends Component {
         var nuoviGiocatori = giocatori;
         nuoviGiocatori[turnoGiocatore].capitale=giocatori[turnoGiocatore].capitale+500;
         setGiocatori(nuoviGiocatori);
-        alert('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');  
+        //alert('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');  
     }
 
     partitaCountdown = (giocatori)=> {
@@ -49,14 +54,10 @@ class Banca extends Component {
             }
                         
             if(pareggio<2){
-                alert('Il tempo è finito: Giocatore: '+ vincitore.numero +' hai vinto');
-                //concludere la partita
-                return;
+                return('Il tempo è finito: Giocatore: '+ vincitore.numero +' hai vinto');
             }
             else{
-                alert("Il tempo è finito: C'é stato un pareggio");
-                //concludere la partita
-                return;
+                return("Il tempo è finito: C'é stato un pareggio");
             }
     }
     getSaldoGiocatore

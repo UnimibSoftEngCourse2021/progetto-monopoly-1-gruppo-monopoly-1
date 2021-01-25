@@ -1,10 +1,12 @@
 import React from 'react';
-import {Paper, Modal, Button, Radio, RadioGroup, FormControlLabel, TextField, Grid} from '@material-ui/core';
+import {Paper, Modal, Button, Radio, RadioGroup, FormControlLabel, TextField, Grid, Snackbar} from '@material-ui/core';
 
 
 function VendiEdificio(props){
 
-    
+const [open, setOpen] = React.useState(false);
+const handleCloseSnackbar = () => {setOpen(false)};
+const [testo, setTesto] = React.useState('');
 
     
 
@@ -52,19 +54,22 @@ function VendiCasa(){
   //verifico che il terreno esista e salvo il risultato in proprietà
   var n = EsisteTerreno();
   if(n === -1){
-    alert('Controlla che il nome del terreno sia scritto in modo corretto');
+    setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
+    setOpen(true); 
     return;
   }
   var proprietà = props.terreni[n];
   //verifico che il turnoGiocatore sia proprietario di proprietà
   if((proprietà.proprietario != props.turnoGiocatore)){
-    alert('Non puoi vendere gli edifici se il terreno che non è tuo');
+    setTesto('Non puoi vendere gli edifici se il terreno che non è tuo');
+    setOpen(true); 
     return;
   }
   
   //Se sul terreno non ci sono case non ho nulla da vendere
   if(proprietà.case === 0){
-    alert("Su questo terreno non ci sono case");
+    setTesto("Su questo terreno non ci sono case");
+    setOpen(true); 
     return;
   }
   //modifico l'array terreni e l'array giocatori
@@ -81,7 +86,8 @@ function VendiCasa(){
   props.setGiocatori(nuoviGiocatori);
   console.log(props.giocatori);
 
-  alert('La vendita della casa è andata a buon fine');
+  setTesto('La vendita della casa è andata a buon fine');
+  setOpen(true); 
 
 }
 
@@ -89,18 +95,21 @@ function VendiAlbergo(){
   //verifico che il terreno esista e salvo il risultato in proprietà
   var n = EsisteTerreno();
   if(n === -1){
-    alert('Controlla che il nome del terreno sia scritto in modo corretto');
+    setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
+    setOpen(true); 
     return;
   }
   var proprietà = props.terreni[n];
   //verifico che il turnoGiocatore sia proprietario di proprietà
   if((proprietà.proprietario != props.turnoGiocatore)){
-    alert('Non puoi vendere gli edifici che non sono su un tuo terreno');
+    setTesto('Non puoi vendere gli edifici che non sono su un tuo terreno');
+    setOpen(true); 
     return;
   }
   //Verifico ceh sul terreno ci sia un albergo
   if((proprietà.alberghi !== 1)){
-    alert("Su questo terreno non c'è un albergo");
+    setTesto("Su questo terreno non c'è un albergo");
+    setOpen(true); 
     return;
   }
   
@@ -121,7 +130,8 @@ function VendiAlbergo(){
   props.setGiocatori(nuoviGiocatori);
   console.log(props.giocatori);
 
-  alert("La vendita dell'albergo è andata a buon fine");
+  setTesto("La vendita dell'albergo è andata a buon fine");
+  setOpen(true); 
 
 }
 
@@ -171,6 +181,18 @@ return(
   <Modal open={openModal} onClose={handleClose}>
     {body}
   </Modal>
+  <Snackbar
+    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+    open={open}
+    autoHideDuration={6000}
+    onClose={handleCloseSnackbar}
+    message={testo}
+    action={
+      <React.Fragment>
+        <Button color="secondary" size="small" onClick={handleCloseSnackbar}> UNDO </Button>
+      </React.Fragment>
+    }
+  />
 </div>
 );
 }

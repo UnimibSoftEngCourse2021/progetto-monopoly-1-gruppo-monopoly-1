@@ -147,7 +147,8 @@ function SceltaPedina(props){
     const [tempo, setTempo] = React.useState(null);
     const handleChangeTempo = (event) => {
         if(event.target.value % 1 !== 0){
-            alert('Controlla di aver inserito un numero di turni corretto')
+            setTesto('Controlla di aver inserito un numero di turni corretto');
+            setOpen(true);
         }
         else{
             setTempo(event.target.value);
@@ -158,7 +159,8 @@ function SceltaPedina(props){
     const [tempoMinuti, setTempoMinuti] = React.useState(null);
     const handleChangeTempo1 = (event) => {
         if(event.target.value % 1 !== 0){
-            alert('Controlla di aver inserito un numero di minuti corretto')
+            setTesto('Controlla di aver inserito un numero di minuti corretto');
+            setOpen(true);
         }
         else{
             setTempoMinuti(event.target.value);
@@ -167,14 +169,15 @@ function SceltaPedina(props){
     };
 
     const [open, setOpen] = React.useState(false);
-    const handleClick = () => {setOpen(true)};
-    const handleClose = (event, reason) => {setOpen(false)};
+    const handleClose = () => {setOpen(false)};
+    const [testo, setTesto] = React.useState('');
     
  
     // Questa funzione associa ad ogni giocatore una pedina.
     function associaGiocatorePedina(pedina){
         // Se una pedina è già stata scelta da un giocatore, non può più essere scelta dagli altri.
         if (giocatori.find(giocatore => giocatore.pedina === pedina)) {
+            setTesto("Non puoi scegliere una pedina già selezionata!");
             setOpen(true);
         }
         // Se la pedina è disponibile, associa la pedina al giocatore e imposta i valori iniziali degli altri attributi
@@ -401,7 +404,7 @@ function SceltaPedina(props){
                 open={open}
                 autoHideDuration={6000}
                 onClose={handleClose}
-                message="Non puoi scegliere una pedina già selezionata!"
+                message={testo}
                 action={
                     <React.Fragment>
                         <Button color="secondary" size="small" onClick={handleClose}> UNDO </Button>

@@ -1,5 +1,4 @@
 import React from 'react';
-//import Pedina from './Pedina';
 import ComponentController from './ComponentController';
 import hat from '../img/hat.png';
 import iron from '../img/iron.png';

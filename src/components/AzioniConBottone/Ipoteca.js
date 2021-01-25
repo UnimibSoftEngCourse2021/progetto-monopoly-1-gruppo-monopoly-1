@@ -1,10 +1,13 @@
 import React from 'react';
-import {Paper, Modal, Button, Grid, TextField, Radio, RadioGroup, FormControlLabel} from '@material-ui/core';
+import {Paper, Modal, Button, Grid, TextField, Radio, RadioGroup, FormControlLabel, Snackbar} from '@material-ui/core';
 
 
 function Ipoteca(props){
 
-    
+  const [open, setOpen] = React.useState(false);
+  const handleOpenSnackbar = () => {setOpen(true)};
+  const handleCloseSnackbar = (event, reason) => {setOpen(false)};
+  const [testo, setTesto] = React.useState('');
   
     
 
@@ -85,7 +88,8 @@ function IpotecaTerreno(){
   var n = EsisteTerreno();
   
   if(n === -1){
-    alert('Controlla che il nome del terreno sia scritto in modo corretto');
+    setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
+    setOpen(true); 
     return;
   }
   var proprietà = props.terreni[n];
@@ -93,12 +97,14 @@ function IpotecaTerreno(){
  
   //verifico che sul terreno non ci siano ne case ne alberghi
   if(proprietà.case > 0 || proprietà.alberghi > 0){
-    alert('Non puoi ipotecare un terreno con case o alberghi');
+    setTesto('Non puoi ipotecare un terreno con case o alberghi');
+    setOpen(true); 
     return;
   }
   //verifico che il turnoGiocatore sia proprietario di proprietà
   if((proprietà.proprietario != props.turnoGiocatore)){
-    alert('Non puoi ipotecare una proprietà che non ti appartiene');
+    setTesto('Non puoi ipotecare una proprietà che non ti appartiene');
+    setOpen(true);
     return;
   }
   
@@ -116,7 +122,8 @@ function IpotecaTerreno(){
   props.setGiocatori(nuoviGiocatori);
   console.log(props.giocatori);
 
-  alert('Questa proprietà è stata ipotecata');
+  setTesto('Questa proprietà è stata ipotecata');
+  setOpen(true); 
 }
 
 function IpotecaStazioneSocietà(){
@@ -125,14 +132,16 @@ function IpotecaStazioneSocietà(){
   var n = EsisteSocietàStazione();
   
   if(n === -1){
-    alert('Controlla che il nome della società o della stazione sia scritto in modo corretto');
+    setTesto('Controlla che il nome della società o della stazione sia scritto in modo corretto');
+    setOpen(true); 
     return;
   }
   var proprietà = props.societàStazioni[n];
   
   //verifico che il turnoGiocatore sia proprietario di proprietà
   if((proprietà.proprietario != props.turnoGiocatore)){
-    alert('Non puoi Ipotecare una proprietà che non ti appartiene');
+    setTesto('Non puoi Ipotecare una proprietà che non ti appartiene');
+    setOpen(true);
     return;
   }
    
@@ -150,7 +159,8 @@ function IpotecaStazioneSocietà(){
   props.setGiocatori(nuoviGiocatori);
   console.log(props.giocatori);
 
-  alert('Questa proprietà è stata ipotecata');
+  setTesto('Questa proprietà è stata ipotecata');
+  setOpen(true); 
 
  
 }
@@ -174,7 +184,8 @@ function RiscattaTerreno(){
     var n = EsisteTerreno();
     
     if(n === -1){
-      alert('Controlla che il nome del terreno sia scritto in modo corretto');
+      setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
+      setOpen(true); 
       return;
     }
     var proprietà = props.terreni[n];
@@ -182,12 +193,14 @@ function RiscattaTerreno(){
    
     //verifico  il terreno sia ipotecato
     if(proprietà.ipotecato === false){
-      alert('Non puoi riscattare un terreno che non è ipotecato');
+      setTesto('Non puoi riscattare un terreno che non è ipotecato');
+      setOpen(true); 
       return;
     }
     //verifico che il turnoGiocatore sia proprietario di proprietà
     if((proprietà.proprietario != props.turnoGiocatore)){
-      alert('Non puoi Ipotecare una proprietà che non ti appartiene');
+      setTesto('Non puoi Ipotecare una proprietà che non ti appartiene');
+      setOpen(true); 
       return;
     }
     
@@ -205,7 +218,8 @@ function RiscattaTerreno(){
     props.setGiocatori(nuoviGiocatori);
     console.log(props.giocatori);
   
-    alert("L'ipoteca su questa proprietà è stata riscattata con successo");
+    setTesto("L'ipoteca su questa proprietà è stata riscattata con successo");
+    setOpen(true); 
   }
   
   function RiscattaStazioneSocietà(){
@@ -214,21 +228,24 @@ function RiscattaTerreno(){
     var n = EsisteSocietàStazione();
     
     if(n === -1){
-      alert('Controlla che il nome della società o della stazione sia scritto in modo corretto');
+      setTesto('Controlla che il nome della società o della stazione sia scritto in modo corretto');
+      setOpen(true); 
       return;
     }
     var proprietà = props.societàStazioni[n];
     
     //verifico che il turnoGiocatore sia proprietario di proprietà
     if((proprietà.proprietario != props.turnoGiocatore)){
-      alert('Non puoi Ipotecare una proprietà che non ti appartiene');
+      setTesto('Non puoi Ipotecare una proprietà che non ti appartiene');
+      setOpen(true); 
       return;
     }
     //verifico  la società/stazione sia ipotecata
     if(proprietà.ipotecato === false){
-        alert('Non puoi riscattare una società o una stazione che non è ipotecata');
-        return;
-      }
+      setTesto('Non puoi riscattare una società o una stazione che non è ipotecata');
+      setOpen(true); 
+      return;
+    }
      
     //modifico l'array terreni e l'array giocatori
     proprietà.ipotecato = false;
@@ -244,7 +261,8 @@ function RiscattaTerreno(){
     props.setGiocatori(nuoviGiocatori);
     console.log(props.giocatori);
   
-    alert("L'ipoteca su questa proprietà è stata riscattata con successo");
+    setTesto("L'ipoteca su questa proprietà è stata riscattata con successo");
+    setOpen(true); 
   
    
   }
@@ -311,6 +329,18 @@ return(
   <Modal open={openModal} onClose={handleClose}>
     {body}
   </Modal>
+  <Snackbar
+    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+    open={open}
+    autoHideDuration={6000}
+    onClose={handleCloseSnackbar}
+    message={testo}
+    action={
+      <React.Fragment>
+        <Button color="secondary" size="small" onClick={handleCloseSnackbar}> UNDO </Button>
+      </React.Fragment>
+    }
+  />
 </div>
 );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Paper, Modal, Button, Radio, RadioGroup, FormControlLabel} from '@material-ui/core';
+import {Paper, Modal, Button, Radio, RadioGroup, FormControlLabel, Snackbar} from '@material-ui/core';
 
 function UscitaPrigione(props) {
 
@@ -7,6 +7,10 @@ function UscitaPrigione(props) {
 const [openModal, setOpenModal] = React.useState(false);
 const handleOpen = () => { setOpenModal(true) };
 const handleClose = () => { setOpenModal(false) };
+
+const [open, setOpen] = React.useState(false);
+const handleCloseSnackbar = () => {setOpen(false)};
+const [testo, setTesto] = React.useState('');
 
 //Stato del RadioGrup casaAlbergo usato per scegliere la tipologia di uscita dalla prigione
 const [uscita, setUscita] = React.useState('cauzione');
@@ -19,12 +23,15 @@ function PagaCauzione() {
             nuoviGiocatori[props.turnoGiocatore].capitale -= 125;
             nuoviGiocatori[props.turnoGiocatore].inPrigione = false;
             props.setGiocatori(nuoviGiocatori);
-            alert("Giocatore " + (props.turnoGiocatore + 1) + " uscito dalla prigione."); 
+            setTesto("Giocatore " + (props.turnoGiocatore + 1) + " uscito dalla prigione.");
+            setOpen(true);alert(); 
     } else if (props.giocatori[props.turnoGiocatore].inPrigione === true 
         && props.giocatori[props.turnoGiocatore].capitale <= 125) {
-            alert("Non hai abbastanza soldi per pagare la cauzione!");
+            setTesto("Non hai abbastanza soldi per pagare la cauzione!");
+            setOpen(true);
     } else {
-            alert("Non puoi pagare la cauzione se non sei in prigione!");
+        setTesto("Non puoi pagare la cauzione se non sei in prigione!");
+        setOpen(true); 
     }
     return;
 }
@@ -36,12 +43,15 @@ function UsaCarta() {
             nuoviGiocatori[props.turnoGiocatore].carteUscitaPrigione -= 1;
             nuoviGiocatori[props.turnoGiocatore].inPrigione = false;
             props.setGiocatori(nuoviGiocatori);
-            alert("Giocatore " + (props.turnoGiocatore + 1) + " uscito dalla prigione.");   
+            setTesto("Giocatore " + (props.turnoGiocatore + 1) + " uscito dalla prigione.");
+            setOpen(true);
     } else if (props.giocatori[props.turnoGiocatore].inPrigione === true 
         && props.giocatori[props.turnoGiocatore].carteUscitaPrigione <= 0) {
-            alert("Non hai carte da usare per uscire dalla prigione!");
+            setTesto("Non hai carte da usare per uscire dalla prigione!");
+            setOpen(true);
     } else {
-            alert("Non puoi usare carte per uscire dalla prigione se non sei in prigione!");
+        setTesto("Non puoi usare carte per uscire dalla prigione se non sei in prigione!");
+        setOpen(true);
     }
     return;
 }
@@ -75,6 +85,18 @@ return (
         <Modal open={openModal} onClose={handleClose}>
             {body}
         </Modal>
+        <Snackbar
+            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            open={open}
+            autoHideDuration={6000}
+            onClose={handleCloseSnackbar}
+            message={testo}
+            action={
+              <React.Fragment>
+                <Button color="secondary" size="small" onClick={handleCloseSnackbar}> UNDO </Button>
+              </React.Fragment>
+            }
+        />
     </div>
 );
 }

@@ -1,9 +1,13 @@
 import React from 'react';
-import {Paper, Modal, Button} from '@material-ui/core';
+import {Paper, Modal, Button, Snackbar} from '@material-ui/core';
 import Asta from './Asta';
 
 
 function Acquista(props){
+
+  const [open, setOpen] = React.useState(false);
+  const handleCloseSnackbar = () => {setOpen(false)};
+  const [testo, setTesto] = React.useState('');
 
 const [openModal, setOpenModal] = React.useState(false);
 const handleOpen = () => { setOpenModal(true) };
@@ -41,9 +45,11 @@ const acquistaTerreno = () => {
       nuoviGiocatori[props.turnoGiocatore].capitale=nuovoCapitale;
       props.setGiocatori(nuoviGiocatori);
       
-      alert('Il terreno è stato acquistato con successo'); 
+      setTesto('Il terreno è stato acquistato con successo');
+      setOpen(true); 
      } else {
-      alert('Non hai abbastanza soldi'); 
+      setTesto('Non hai abbastanza soldi');
+      setOpen(true);
      }
     }
   }
@@ -61,7 +67,8 @@ const acquistaSocietaStazione = () => {
   props.setSocietàStazioni(nuoveSocietaStazioni);
   props.setGiocatori(nuoviGiocatori);
 
-  alert('La società o la stazione è stata acquistata con successo');
+  setTesto('La società o la stazione è stata acquistata con successo');
+  setOpen(true);
 }
 
 
@@ -154,6 +161,18 @@ const body = (
           <Modal open={openModal} onClose={handleClose}>
             {body}
           </Modal>
+          <Snackbar
+            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            open={open}
+            autoHideDuration={6000}
+            onClose={handleCloseSnackbar}
+            message={testo}
+            action={
+              <React.Fragment>
+                <Button color="secondary" size="small" onClick={handleCloseSnackbar}> UNDO </Button>
+              </React.Fragment>
+            }
+          />
         </div>
         );
         }

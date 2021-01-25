@@ -1,5 +1,5 @@
 import React from 'react';
-import {Paper, Modal, Button, TextField, Grid} from '@material-ui/core';
+import {Paper, Modal, Button, TextField, Grid, Snackbar} from '@material-ui/core';
 
 
 function Asta(props){
@@ -8,6 +8,10 @@ const [openModal, setOpenModal] = React.useState(false);
 const handleOpen = () => { setOpenModal(true) };
 const handleClose = () => { setOpenModal(false) };
 
+const [open, setOpen] = React.useState(false);
+const handleOpenSnackbar = () => {setOpen(true)};
+const handleCloseSnackbar = (event, reason) => {setOpen(false)};
+const [testo, setTesto] = React.useState('');
 
 
 var c = props.caselle[props.attualeCasella];
@@ -22,6 +26,8 @@ var c = props.caselle[props.attualeCasella];
 
 
 function AcquistaCasella(){
+
+  
 
     const [vincitore, setVincitore] = React.useState('');
     const handleChangeVincitore = (event) => { setVincitore(event.target.value) };
@@ -42,11 +48,13 @@ function AcquistaCasella(){
       var nuoviTerreni = props.terreni;
       var nuoviGiocatori = props.giocatori;
       if((v >= nuoviGiocatori.length) || (v<0)){
-          alert('Controlla di aver inserito correttamente il vincitore');
-          return;
+        setTesto('Controlla di aver inserito correttamente il vincitore');
+        setOpen(true);
+        return;
       }
       if(costo < 1){
-        alert('Controlla di aver inserito correttamente il costo');
+        setTesto('Controlla di aver inserito correttamente il costo');
+        setOpen(true);
         return;
       }
       
@@ -70,10 +78,11 @@ function AcquistaCasella(){
           nuovoCapitale = vecchioCapitale - costo;
           nuoviGiocatori[v].capitale=nuovoCapitale;
           props.setGiocatori(nuoviGiocatori);
-          
-          alert('Il terreno è stato acquistato con successo'); 
+          setTesto('Il terreno è stato acquistato con successo');
+          setOpen(true);
          } else {
-          alert('Non hai abbastanza soldi'); 
+          setTesto('Non hai abbastanza soldi');
+          setOpen(true);
          }
         }
       }
@@ -88,11 +97,13 @@ function AcquistaCasella(){
       var nuoveSocietaStazioni = props.societàStazioni;
       var nuoviGiocatori = props.giocatori;
       if((v >= nuoviGiocatori.length) || (v<0)){
-        alert('Controlla di aver inserito correttamente il vincitore');
+        setTesto('Controlla di aver inserito correttamente il vincitore');
+        setOpen(true);
         return;
       }
       if(costo < 1){
-        alert('Controlla di aver inserito correttamente il costo');
+        setTesto('Controlla di aver inserito correttamente il costo');
+        setOpen(true);
         return;
       }
     
@@ -102,8 +113,8 @@ function AcquistaCasella(){
     
       props.setSocietàStazioni(nuoveSocietaStazioni);
       props.setGiocatori(nuoviGiocatori);
-    
-      alert('La società o la stazione è stata acquistata con successo');
+      setTesto('La società o la stazione è stata acquistata con successo');
+      setOpen(true);
     }
     
   
@@ -129,13 +140,7 @@ function AcquistaCasella(){
 
 const body = (
     <Paper style={{marginTop:'16px', marginLeft:'200px', marginRight:'200px'}}>
-        
-      
-     
       <AcquistaCasella />
-
-      
-      
     </Paper>
   );
 
@@ -157,7 +162,18 @@ const body = (
                 </Modal>
               </div>
             }
-            
+            <Snackbar
+              anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+              open={open}
+              autoHideDuration={6000}
+              onClose={handleCloseSnackbar}
+              message={testo}
+              action={
+                <React.Fragment>
+                  <Button color="secondary" size="small" onClick={handleCloseSnackbar}> UNDO </Button>
+                </React.Fragment>
+              }
+            />
           
           
         </div>

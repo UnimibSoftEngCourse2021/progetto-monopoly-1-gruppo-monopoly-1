@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core';
+import { Button, Snackbar } from '@material-ui/core';
 import React from 'react';
 import Acquista from './AzioniConBottone/Acquista';
 import Costruisci from './AzioniConBottone/Costruisci';
@@ -21,14 +21,11 @@ let dadiTirati = false; // Questo booleano permette di tirare i dadi solo una vo
 let numeroTiriDadi = 0;
 let contratti = false;
 
+
+
+
+
 function verificaPunteggioDoppio(Primodado, Secondodado){
-    /*
-    if(dado1 === dado2){
-        return true;
-    }else{
-        return false;
-    }
-    */
     return Primodado === Secondodado;
 }
 
@@ -46,8 +43,13 @@ class ComponentController extends React.Component {
             settimoMsgTA: '',
             tiroDoppio: 0,
             contrattiInizialiAssegnati: false,
+            open: false,
+            testo: '',
         };
     }
+
+    handleOpen = () => {this.setState({open: true})};
+    handleClose = () => {this.setState({open: false})};
 
     spostaSegnalino (sommaDadiParam) {
         let numSegnalino = this.props.turnoGiocatore;
@@ -78,7 +80,7 @@ class ComponentController extends React.Component {
         // Se il giocatore finisce sulla casella "Vai in Prigione", allora la sua pedina
         // viene spostata in Prigione.
         if (this.props.segnalini[numSegnalino].attualeCasella === 30) {
-            alert("Vai in Prigione.");
+            this.setState({open: true, testo:"Vai in Prigione."});
             this.props.segnalini[numSegnalino].ascissa = this.props.tavolaGioco[10][1];
             this.props.segnalini[numSegnalino].ordinata = this.props.tavolaGioco[10][2];
             this.props.segnalini[numSegnalino].attualeCasella = 10;
@@ -157,12 +159,12 @@ class ComponentController extends React.Component {
 
             if (this.props.giocatori[this.props.turnoGiocatore].inPrigione && this.props.giocatori[this.props.turnoGiocatore].numeroTurniPrigione === 3) {
                 var nuoviGiocatori = this.props.giocatori;
-                    nuoviGiocatori[this.props.turnoGiocatore].capitale -= 125;
-                    nuoviGiocatori[this.props.turnoGiocatore].inPrigione = false;
-                    this.props.giocatori[this.props.turnoGiocatore].numeroTurniPrigione = 0;
-                    this.props.setGiocatori(nuoviGiocatori);
-                    alert("Il Giocatore " + (this.props.turnoGiocatore+1) + " paga la cauzione obbligatoria di € 125 per uscire di prigione essendo rimasto" +
-                    " in prigione per 3 turni consecutivi.");
+                nuoviGiocatori[this.props.turnoGiocatore].capitale -= 125;
+                nuoviGiocatori[this.props.turnoGiocatore].inPrigione = false;
+                this.props.giocatori[this.props.turnoGiocatore].numeroTurniPrigione = 0;
+                this.props.setGiocatori(nuoviGiocatori);
+                this.setState({open: true, testo: "Il Giocatore " + (this.props.turnoGiocatore+1) + " paga la cauzione obbligatoria di € 125 per uscire di prigione essendo rimasto" +
+                " in prigione per 3 turni consecutivi."});
             }
 
             var lanciDoppi = this.state.tiroDoppio;
@@ -196,7 +198,7 @@ class ComponentController extends React.Component {
             
         }
         else {
-            alert('Non puoi tirare nuovamente i dadi.');
+            this.setState({open: true, testo:'Non puoi tirare nuovamente i dadi.'});
         }
 
     }
@@ -204,9 +206,9 @@ class ComponentController extends React.Component {
     // Funzione che permette di concludere il turno e che passa il comando al giocatore successivo.
     finisciTurno = () => {
         if (dadiTirati === false && punteggioDoppio) {
-            alert("Avendo ottenuto un punteggio doppio devi tirare nuovamente i dadi.")
+            this.setState({open: true, testo:"Avendo ottenuto un punteggio doppio devi tirare nuovamente i dadi."});
         } else if (dadiTirati === false) {
-            alert("Non puoi terminare il turno senza aver tirato i dadi.")
+            this.setState({open: true, testo:"Non puoi terminare il turno senza aver tirato i dadi."});
         } else {
             const giocatore = this.props.turnoGiocatore;
             var giocatore2;
@@ -269,13 +271,12 @@ class ComponentController extends React.Component {
                     vincitore = this.props.giocatori[i].numero;
                 }
             }
-            alert('Giocatore: '+ vincitore +' hai vinto');
-            //concludere la partita
+            this.setState({open: true, testo:'Giocatore: '+ vincitore +' hai vinto'});
             return;
         }
 
         if(this.props.giocatori[this.props.turnoGiocatore].capitale <= 0){
-           alert('Giocatore: ' + this.props.giocatori[this.props.turnoGiocatore].numero  + ' \n Non hai più soldi hai perso ');
+           this.setState({open: true, testo:'Giocatore: ' + this.props.giocatori[this.props.turnoGiocatore].numero  + ' \n Non hai più soldi hai perso '});
            var nuoviGiocatori = this.props.giocatori;
            nuoviGiocatori[this.props.turnoGiocatore].inGioco = false;
            this.props.setGiocatori(nuoviGiocatori);
@@ -316,13 +317,11 @@ class ComponentController extends React.Component {
             }
             
             if(pareggio<2){
-                alert('Il tempo è finito: Giocatore: '+ vincitore.numero +' hai vinto');
-                //concludere la partita
+                this.setState({open: true, testo:'Il tempo è finito: Giocatore: '+ vincitore.numero +' hai vinto'});
                 return;
             }
             else{
-                alert("Il tempo è finito: C'é stato un pareggio");
-                //concludere la partita
+                this.setState({open: true, testo:"Il tempo è finito: C'é stato un pareggio"});
                 return;
             }
         }
@@ -479,7 +478,7 @@ class ComponentController extends React.Component {
             }
             this.setState({ contrattiInizialiAssegnati: true })
         } else {    
-            alert("I contratti iniziali sono già stati assegnati.");
+            this.setState({open: true, testo: "I contratti iniziali sono già stati assegnati."});
         }
     }
 
@@ -604,7 +603,19 @@ class ComponentController extends React.Component {
                             />  
                         </td>  
                     </tr>
-                </table> 
+                </table>
+                <Snackbar
+                  anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                  open={this.state.open}
+                  autoHideDuration={6000}
+                  onClose={this.handleClose}
+                  message={this.state.testo}
+                  action={
+                    <React.Fragment>
+                        <Button color="secondary" size="small" onClick={this.handleClose}> UNDO </Button>
+                    </React.Fragment>
+                }
+            />
             </div>         
         )
     }
