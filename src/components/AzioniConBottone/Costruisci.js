@@ -48,7 +48,7 @@ function EsisteTerreno(){
 function VerificaColore(colore, giocatore){
   var i = 0;
   while(i < props.terreni.length){
-    if((props.terreni[i].colore === colore) && !(props.terreni[i].proprietario === giocatore)){
+    if((props.terreni[i].colore === colore) && (props.terreni[i].proprietario !== giocatore)){
       return(false);
     }
     i++
@@ -72,7 +72,7 @@ function CostruisciCasa(){
     return;
   }
   //verifico che il turnoGiocatore sia proprietario di proprietà
-  if(!(proprietà.proprietario == props.turnoGiocatore)){
+  if((proprietà.proprietario != props.turnoGiocatore)){
     alert('Non puoi costruire su un terreno che non è tuo');
     return;
   }
@@ -124,7 +124,7 @@ function CostruisciAlbergo(){
     return;
   }
   //verifico che il turnoGiocatore sia proprietario di proprietà
-  if(!(proprietà.proprietario == props.turnoGiocatore)){
+  if((proprietà.proprietario != props.turnoGiocatore)){
     alert('Non puoi costruire su un terreno che non è tuo');
     return;
   }

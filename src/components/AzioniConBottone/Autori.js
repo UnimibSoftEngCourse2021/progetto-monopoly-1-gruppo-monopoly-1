@@ -1,8 +1,8 @@
 import React from 'react';
-import {Paper, Modal, Button, Radio, RadioGroup, FormControlLabel, TextField, Grid} from '@material-ui/core';
+import {Paper, Modal, Button, Grid} from '@material-ui/core';
 
 
-function Costruisci(props){
+function Autori(props){
 
 
 //Stato del Modale utilizato per costruire un edificio
@@ -43,4 +43,4 @@ return(
 </div>
 );
 }
-export default Costruisci;
+export default Autori;
