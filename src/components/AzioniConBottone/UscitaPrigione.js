@@ -1,5 +1,5 @@
 import React from 'react';
-import {Paper, Modal, Button, Radio, RadioGroup, FormControlLabel, TextField, Grid} from '@material-ui/core';
+import {Paper, Modal, Button, Radio, RadioGroup, FormControlLabel} from '@material-ui/core';
 
 function UscitaPrigione(props) {
 
