@@ -167,7 +167,6 @@ function SceltaPedina(props){
     };
     
  
-
     // Questa funzione associa ad ogni giocatore una pedina.
     function associaGiocatorePedina(pedina){
         // Se una pedina è già stata scelta da un giocatore, non può più essere scelta dagli altri.
