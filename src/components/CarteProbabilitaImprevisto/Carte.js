@@ -64,7 +64,8 @@ class Carte extends Component {
             idCarta = Math.floor(Math.random()*(14));
         }else{
             idCarta = Math.floor(Math.random()*(30-15)+15);
-        };
+        }
+        
         alert('Giocatore ' + (turnoGiocatore + 1) + ': \nLa carta è: ' + this.state.carte[idCarta][1]);
         this.attivaCarta(   idCarta, 
                             turnoGiocatore, 
