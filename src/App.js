@@ -544,7 +544,8 @@ function App(props) {
               setSegnalini={props.setSegnalini}
               societàStazioni={societàStazioni}
               setSocietàStazioni={setSocietàStazioni}
-              caselle={caselle} setCaselle={setCaselle}
+              caselle={caselle} 
+              setCaselle={setCaselle}
               tempo={tempo}
               setTempo={setTempo}
               decrementaTempo={decrementaTempo}

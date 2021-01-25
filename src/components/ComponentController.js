@@ -468,9 +468,7 @@ class ComponentController extends React.Component {
                     } 
                 }
             }
-            this.setState({
-                contrattiInizialiAssegnati: true
-            })
+            this.setState({ contrattiInizialiAssegnati: true })
         } else {    
             alert("I contratti iniziali sono già stati assegnati.");
         }
@@ -497,31 +495,10 @@ class ComponentController extends React.Component {
                             />
                         </td>
                         <td className="tdController">
-                            <Acquista 
-                              attualeCasella={this.props.segnalini[this.props.turnoGiocatore].attualeCasella}
-                              caselle={this.props.caselle} 
-                              setCaselle={this.props.setCaselle}
-                              turnoGiocatore={this.props.turnoGiocatore}
-                              terreni={this.props.terreni}
-                              setTerreni={this.props.setTerreni}
-                              giocatori={this.props.giocatori}
-                              setGiocatori={this.props.setGiocatori}
-                              societàStazioni={this.props.societàStazioni}
-                              setSocietàStazioni={this.props.setSocietàStazioni}
-                            />
+                            
                         </td>   
                         <td className="tdController">
-                            <Button type="button" size="small" onClick={() => this.assegnaContrattiIniziali(
-                                                                                                            this.props.numeroGiocatori, 
-                                                                                                            this.props.giocatori, 
-                                                                                                            this.props.setGiocatori, 
-                                                                                                            this.props.terreni, 
-                                                                                                            this.props.setTerreni,
-                                                                                                            this.props.societàStazioni,
-                                                                                                            this.props.setSocietàStazioni,                  
-                                                                                                            )}>
-                                Assegna contratti iniziali
-                            </Button>
+                        
                         </td>
                         <td className="tdController">
                         <Autori />                         
@@ -538,9 +515,18 @@ class ComponentController extends React.Component {
                             />
                         </td>
                         <td className="tdController">
-                            <Button type="button" size="small" >
-                                Ancora Libero
-                            </Button>                            
+                        <Acquista 
+                              attualeCasella={this.props.segnalini[this.props.turnoGiocatore].attualeCasella}
+                              caselle={this.props.caselle} 
+                              setCaselle={this.props.setCaselle}
+                              turnoGiocatore={this.props.turnoGiocatore}
+                              terreni={this.props.terreni}
+                              setTerreni={this.props.setTerreni}
+                              giocatori={this.props.giocatori}
+                              setGiocatori={this.props.setGiocatori}
+                              societàStazioni={this.props.societàStazioni}
+                              setSocietàStazioni={this.props.setSocietàStazioni}
+                            />                           
                         </td>
                         <td className="tdController">
                             <Ipoteca
@@ -567,7 +553,7 @@ class ComponentController extends React.Component {
                     </tr>
                     <tr className="trController">
                         <td className="tdController">
-                            <Button type="button" size="small" onClick={() => this.tiraDadi()}>
+                            <Button  style={{marginLeft:'25px'}} onClick={() => this.tiraDadi()} >
                                 Tira dadi
                             </Button>
                         </td>
@@ -619,8 +605,7 @@ class ComponentController extends React.Component {
 class AreaTesto extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {
-      };
+      this.state = {};
     }
   
     render() {
@@ -637,6 +622,4 @@ class AreaTesto extends React.Component {
       );
     }
 }
-
 export default ComponentController;
-

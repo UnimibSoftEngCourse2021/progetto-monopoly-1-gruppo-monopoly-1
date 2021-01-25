@@ -305,7 +305,7 @@ const body = (
 
 return(
 <div>
-  <Button onClick={handleOpen} variant="outlined" size="small" >
+  <Button onClick={handleOpen}  width='20px' >
     Ipoteca
   </Button>
   <Modal open={openModal} onClose={handleClose}>

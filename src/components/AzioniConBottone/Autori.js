@@ -34,7 +34,7 @@ const body = (
 
 return(
 <div>
-  <Button onClick={handleOpen} variant="outlined" size="small" >
+  <Button onClick={handleOpen}  size="small" style={{marginLeft:'25px'}} >
     Autori
   </Button>
   <Modal open={openModal} onClose={handleClose}>

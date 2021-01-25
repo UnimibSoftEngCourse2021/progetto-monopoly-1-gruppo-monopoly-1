@@ -312,7 +312,7 @@ const body = (
 
 return(
 <div>
-  <Button onClick={handleOpen} variant="outlined" size="small" >
+  <Button  width='20px' style={{marginLeft:'8px'}} onClick={handleOpen}>
     Vendi
   </Button>
   <Modal open={openModal} onClose={handleClose}>

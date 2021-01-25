@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import ComponentMenuDx from './components/ComponentMenuDx';
+import ReactDOM from 'react-dom';
 import MonopolyLogoMenu from '../src/img/monopoly_logo_menu.png';
 import SceltaNumeroGiocatori from './components/SceltaNumeroGiocatori';
 import SceltaDifficolta from './components/SceltaDifficolta'
-import { iniziaPartita } from './components/iniziaPartita'
+import SceltaPedina from './components/SceltaPedina'
+
 
 class Menu extends Component {
     constructor(props) {
@@ -26,6 +27,19 @@ class Menu extends Component {
       })
     }
 
+    iniziaPartita = (numero, diff) => {
+
+      let numeroGiocatori = numero;
+      let difficolta = diff;
+  
+      ReactDOM.render(
+          <React.StrictMode>
+              <SceltaPedina numeroGiocatori={numeroGiocatori} difficolta={difficolta}/>
+          </React.StrictMode>,
+          document.getElementById('root')
+      );
+    }
+
     render() {
       
       return (
@@ -37,7 +51,7 @@ class Menu extends Component {
               </td>
               <td className="logoMonopoly">
                 <img className="logo" src={MonopolyLogoMenu} class="Profile-image" alt="Profile image" width="500"/>
-                <button className = "bottone-inizia-partita" onClick={() => iniziaPartita(this.state.numeroGiocatori, this.state.difficolta)}>
+                <button className = "bottone-inizia-partita" onClick={() => this.iniziaPartita(this.state.numeroGiocatori, this.state.difficolta)}>
                   Inizia la partita
                 </button>
               </td>
@@ -53,3 +67,4 @@ class Menu extends Component {
   }
 
   export default Menu;
+

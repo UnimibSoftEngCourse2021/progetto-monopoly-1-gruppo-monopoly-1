@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, TextField } from '@material-ui/core';
+import { Grid, TextField, Snackbar, Button } from '@material-ui/core';
 import ReactDOM from 'react-dom'
 import App from '../App'
 import hat from '../img/hat.png'
@@ -164,6 +164,10 @@ function SceltaPedina(props){
         }
         
     };
+
+    const [open, setOpen] = React.useState(false);
+    const handleClick = () => {setOpen(true)};
+    const handleClose = (event, reason) => {setOpen(false)};
     
  
 
@@ -171,7 +175,7 @@ function SceltaPedina(props){
     function associaGiocatorePedina(pedina){
         // Se una pedina è già stata scelta da un giocatore, non può più essere scelta dagli altri.
         if (giocatori.find(giocatore => giocatore.pedina === pedina)) {
-            alert('Non puoi scegliere una pedina già selezionata!');
+            setOpen(true);
         }
         // Se la pedina è disponibile, associa la pedina al giocatore e imposta i valori iniziali degli altri attributi
         // del giocatore.
@@ -386,11 +390,23 @@ function SceltaPedina(props){
             }
 
             <Grid container  direction="column" alignItems="center" style={{marginTop:'100px'}}>
-            <h2>Se vuoi svolgere una partita a tempo inserisci qui il numero di turni</h2>
+                <h2>Se vuoi svolgere una partita a tempo inserisci qui il numero di turni</h2>
                 <TextField variant="outlined" style={{margin:'16px', marginLeft:'32px', width:'350px'}} onChange={handleChangeTempo} />            
                 <h2>Oppure i minuti del countdown</h2>
                 <TextField variant="outlined" style={{margin:'16px', marginLeft:'32px', width:'350px'}} onChange={handleChangeTempo1} />
             </Grid>
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                open={open}
+                autoHideDuration={6000}
+                onClose={handleClose}
+                message="Non puoi scegliere una pedina già selezionata!"
+                action={
+                    <React.Fragment>
+                        <Button color="secondary" size="small" onClick={handleClose}> UNDO </Button>
+                    </React.Fragment>
+                }
+            />
               
         </div>
     );
