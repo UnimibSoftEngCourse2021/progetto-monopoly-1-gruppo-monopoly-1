@@ -48,14 +48,14 @@ class ComponentController extends React.Component {
         };
     }
 
-    spostaSegnalino (sommaDadi) {
+    spostaSegnalino (sommaDadiParam) {
         let numSegnalino = this.props.turnoGiocatore;
         let ascissa = this.props.segnalini[numSegnalino].ascissa;
         let ordinata = this.props.segnalini[numSegnalino].ordinata;
         let attualeCasella = this.props.segnalini[numSegnalino].attualeCasella;
         
         var i;
-        for (i = 1; i < sommaDadi+1; i++) {
+        for (i = 1; i < sommaDadiParam+1; i++) {
             if (attualeCasella === 39) {
                 attualeCasella=0;
                 let banca = new Banca();
