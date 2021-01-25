@@ -125,7 +125,7 @@ function VendiAlbergo(){
 
 }
 
-function VendiEdificio(){
+function VendiEdificio2(){
   if(edificio === 'casa'){
     VendiCasa();
   }
@@ -148,7 +148,7 @@ const body = (
     <Grid container direction="column">
       <TextField variant="outlined" style={{margin:'16px', width:'350px'}} onChange={handleChangeTerreno}/>
     
-      <Button variant="contained" style={{margin:'16px', width:'350px'}} onClick={() => VendiEdificio()}>
+      <Button variant="contained" style={{margin:'16px', width:'350px'}} onClick={() => VendiEdificio2()}>
         vendi questo edificio
       </Button>
    
