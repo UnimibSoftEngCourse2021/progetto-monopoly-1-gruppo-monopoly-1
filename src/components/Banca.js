@@ -23,12 +23,13 @@ class Banca extends Component {
         }
     }
 
-    giocatorePassaDalVia = (giocatori,turnoGiocatore,setGiocatori) => {
+    giocatorePassaDalVia = (giocatori,turnoGiocatore,setGiocatori, handleOpen, cambiaTesto) => {
         // Incrementa il capitale del giocatore di turno di 500 quando passa dal VIA              
         var nuoviGiocatori = giocatori;
         nuoviGiocatori[turnoGiocatore].capitale=giocatori[turnoGiocatore].capitale+500;
         setGiocatori(nuoviGiocatori);
-        //alert('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');  
+        cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
+        handleOpen(); 
     }
 
     partitaCountdown = (giocatori)=> {

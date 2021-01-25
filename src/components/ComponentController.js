@@ -64,7 +64,7 @@ class ComponentController extends React.Component {
             if (attualeCasella === 39) {
                 attualeCasella=0;
                 let banca = new Banca();
-                banca.giocatorePassaDalVia(this.props.giocatori,this.props.turnoGiocatore,this.props.setGiocatori);
+                banca.giocatorePassaDalVia(this.props.giocatori,this.props.turnoGiocatore,this.props.setGiocatori, this.handleOpen, this.cambiaTesto);
             } else {
                 attualeCasella = attualeCasella + 1
             }        
