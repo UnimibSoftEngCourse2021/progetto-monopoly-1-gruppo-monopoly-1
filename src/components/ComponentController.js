@@ -16,13 +16,10 @@ let dado1;
 let dado2;
 let sommaDadi;
 let punteggioDoppio;
-let carta1 = new Carte();
+var carta = Carte.getInstance();
 let dadiTirati = false; // Questo booleano permette di tirare i dadi solo una volta per turno, salvo il caso di punteggio doppio
 let numeroTiriDadi = 0;
 let contratti = false;
-
-
-
 
 
 function verificaPunteggioDoppio(Primodado, Secondodado){
@@ -50,6 +47,11 @@ class ComponentController extends React.Component {
 
     handleOpen = () => {this.setState({open: true})};
     handleClose = () => {this.setState({open: false})};
+    cambiaTesto = (testoRicevuto) => {
+        this.setState({
+            testo: testoRicevuto
+        })
+    }
 
     spostaSegnalino (sommaDadiParam) {
         let numSegnalino = this.props.turnoGiocatore;
@@ -90,7 +92,7 @@ class ComponentController extends React.Component {
 
         if (this.props.caselle[attualeCasella].tipo ==='imprevisti') {
             // alert('imprevisti');
-            carta1.estraiCarta(  false, 
+            carta.estraiCarta(  false, 
                                  this.props.turnoGiocatore, 
                                  this.props.giocatori, 
                                  this.props.setGiocatori, 
@@ -102,12 +104,16 @@ class ComponentController extends React.Component {
                                  this.props.setTavolaGioco,
                                  this.props.societàStazioni,
                                  this.props.setSocietàStazioni,
-                                 this.pagaAffitto);
+                                 this.pagaAffitto,
+                                 this.state.testo,
+                                 this.cambiaTesto,
+                                 this.handleOpen,
+                                 this.handleClose);
  
         }
         if (this.props.caselle[attualeCasella].tipo ==='probabilita') {
             //alert('probabilita');
-            carta1.estraiCarta( true, 
+            carta.estraiCarta( true, 
                                 this.props.turnoGiocatore, 
                                 this.props.giocatori, 
                                 this.props.setGiocatori, 
@@ -119,7 +125,11 @@ class ComponentController extends React.Component {
                                 this.props.setTavolaGioco,
                                 this.props.societàStazioni,
                                 this.props.setSocietàStazioni,
-                                this.pagaAffitto);
+                                this.pagaAffitto,
+                                this.state.testo,
+                                this.cambiaTesto,
+                                this.handleOpen,
+                                this.handleClose);
         }
 
         this.props.muoviPedine();

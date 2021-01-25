@@ -44,13 +44,21 @@ class Carte extends Component {
                 [40, 'Muovi la pedina alla prossima Stazione, se non ha proprietario puoi comprarla, se lo ha paga il doppio del noleggio', 0, 0, 0, 0], //idCarta == 29
                 [40, 'Hai vinto una competizione di cruciverba: incassa $100', 100, 0, 0, 0], //idCarta == 30
             ],
-            open: false,
-            testo: '',
         }
     }
 
-    handleOpen = () => {this.setState({open: true})};
-    handleClose = () => {this.setState({open: false})};
+    static instance = null;
+    static createInstance() {
+        var object = new Carte();
+        return object;
+    }
+  
+    static getInstance () {
+        if (!Carte.instance) {
+            Carte.instance = Carte.createInstance();
+        }
+        return Carte.instance;
+    }
 
     //Metodo che estrae casualmente una carta Probabilità o Imprevisto
     estraiCarta = ( probabilitaOImprevisto, 
@@ -65,7 +73,11 @@ class Carte extends Component {
                     setTavolaGioco, 
                     societàStazioni, 
                     setSocietàStazioni,
-                    pagaAffitto) => {
+                    pagaAffitto,
+                    testo,
+                    cambiaTesto,
+                    handleOpen,
+                    handleClose) => {
         //probabilità==true, imprevisto==false
         let idCarta;
         if (probabilitaOImprevisto){
@@ -76,7 +88,8 @@ class Carte extends Component {
             idCarta = CryptoRandom(15,30); //Il max è incluso e il min è incluso
         }
 
-        this.setState({open: true, testo:'Giocatore ' + (turnoGiocatore + 1) + ': \nLa carta è: ' + this.state.carte[idCarta][1]});
+        cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ': \nLa carta è: ' + this.state.carte[idCarta][1]);
+        handleOpen();
         this.attivaCarta(   idCarta, 
                             turnoGiocatore, 
                             giocatori, 
@@ -89,7 +102,11 @@ class Carte extends Component {
                             setTavolaGioco, 
                             societàStazioni, 
                             setSocietàStazioni,
-                            pagaAffitto);
+                            pagaAffitto,
+                            testo,
+                            cambiaTesto,
+                            handleOpen,
+                            handleClose);
     }
 
     //Metodo che attiva l'effetto della carta estratta
@@ -105,7 +122,11 @@ class Carte extends Component {
                     setTavolaGioco, 
                     societàStazioni, 
                     setSocietàStazioni,
-                    pagaAffitto) => {
+                    pagaAffitto,
+                    testo,
+                    cambiaTesto,
+                    handleOpen,
+                    handleClose) => {
         let nuoviGiocatori = giocatori;
         let nuoviSegnalini = segnalini;
 
@@ -166,7 +187,8 @@ class Carte extends Component {
             if((segnalini[turnoGiocatore].attualeCasella > this.state.carte[idCarta][0]) &&
              idCarta === 24 || idCarta === 25 || idCarta === 17 || idCarta === 18){
                 nuoviGiocatori[turnoGiocatore].capitale += 500;
-                this.setState({open: true, testo:'Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via'});
+                cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
+                handleOpen();
             }
             if(idCarta===13 || idCarta===21){
                 if(segnalini[turnoGiocatore].attualeCasella > this.state.carte[idCarta][0]){
@@ -188,7 +210,8 @@ class Carte extends Component {
             if (segnalini[turnoGiocatore].attualeCasella >= 36 || segnalini[turnoGiocatore].attualeCasella <= 4) {
                 if (segnalini[turnoGiocatore].attualeCasella >= 36) {
                     nuoviGiocatori[turnoGiocatore].capitale += 500;
-                    this.setState({open: true, testo:'Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via'});
+                    cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
+                    handleOpen();
                 }
                 nuoviSegnalini[turnoGiocatore].attualeCasella=5;
                 nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[5][1];
@@ -237,7 +260,8 @@ class Carte extends Component {
             if (segnalini[turnoGiocatore].attualeCasella >= 29 || segnalini[turnoGiocatore].attualeCasella <= 11) {
                 if (segnalini[turnoGiocatore].attualeCasella >= 29) {
                     nuoviGiocatori[turnoGiocatore].capitale += 500;
-                    //alert('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
+                    cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
+                    handleOpen();
                 }
                 nuoviSegnalini[turnoGiocatore].attualeCasella=12;
                 nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[12][1];
@@ -258,7 +282,8 @@ class Carte extends Component {
                     nuoviGiocatori[societàStazioni[4].proprietario].capitale += affitto;
                     // Per lo stesso motivo devo sottrarre l'affitto dall'avversario.
                     nuoviGiocatori[societàStazioni[4].proprietario].capitale -= 150;
-                    this.setState({open: true, testo:'Giocatore ' + (turnoGiocatore + 1) + ': paga ' + affitto});
+                    cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ': paga ' + affitto);
+                    handleOpen();
                 } 
             }
             if (segnalini[turnoGiocatore].attualeCasella >= 13 && segnalini[turnoGiocatore].attualeCasella <= 27) {
@@ -281,7 +306,8 @@ class Carte extends Component {
                     nuoviGiocatori[societàStazioni[5].proprietario].capitale += affitto;
                     // Per lo stesso motivo devo sottrarre l'affitto dall'avversario.
                     nuoviGiocatori[societàStazioni[4].proprietario].capitale -= 150;
-                    this.setState({open: true, testo:'Giocatore ' + (turnoGiocatore + 1) + ': paga ' + affitto});
+                    cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ': paga ' + affitto);
+                    handleOpen();
                 }
             }
         }
@@ -293,18 +319,6 @@ class Carte extends Component {
         
         return (
             <div>
-                <Snackbar
-                  anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                  open={this.state.open}
-                  autoHideDuration={6000}
-                  onClose={this.handleClose}
-                  message={this.state.testo}
-                  action={
-                    <React.Fragment>
-                        <Button color="secondary" size="small" onClick={this.handleClose}> UNDO </Button>
-                    </React.Fragment>
-                }
-            />
             </div>
         )
     }
