@@ -97,7 +97,7 @@ function IpotecaTerreno(){
     return;
   }
   //verifico che il turnoGiocatore sia proprietario di proprietà
-  if(!(proprietà.proprietario == props.turnoGiocatore)){
+  if((proprietà.proprietario != props.turnoGiocatore)){
     alert('Non puoi ipotecare una proprietà che non ti appartiene');
     return;
   }
@@ -131,7 +131,7 @@ function IpotecaStazioneSocietà(){
   var proprietà = props.societàStazioni[n];
   
   //verifico che il turnoGiocatore sia proprietario di proprietà
-  if(!(proprietà.proprietario == props.turnoGiocatore)){
+  if((proprietà.proprietario != props.turnoGiocatore)){
     alert('Non puoi Ipotecare una proprietà che non ti appartiene');
     return;
   }
@@ -186,7 +186,7 @@ function RiscattaTerreno(){
       return;
     }
     //verifico che il turnoGiocatore sia proprietario di proprietà
-    if(!(proprietà.proprietario == props.turnoGiocatore)){
+    if((proprietà.proprietario != props.turnoGiocatore)){
       alert('Non puoi Ipotecare una proprietà che non ti appartiene');
       return;
     }
@@ -220,7 +220,7 @@ function RiscattaTerreno(){
     var proprietà = props.societàStazioni[n];
     
     //verifico che il turnoGiocatore sia proprietario di proprietà
-    if(!(proprietà.proprietario == props.turnoGiocatore)){
+    if((proprietà.proprietario != props.turnoGiocatore)){
       alert('Non puoi Ipotecare una proprietà che non ti appartiene');
       return;
     }
