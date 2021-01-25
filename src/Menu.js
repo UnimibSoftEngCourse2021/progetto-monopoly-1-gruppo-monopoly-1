@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ComponentMenuDx from './components/ComponentMenuDx';
 import MonopolyLogoMenu from '../src/img/monopoly_logo_menu.png';
 import SceltaNumeroGiocatori from './components/SceltaNumeroGiocatori';
 import SceltaDifficolta from './components/SceltaDifficolta'
