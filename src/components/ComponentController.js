@@ -477,6 +477,7 @@ class ComponentController extends React.Component {
     }
 
     render () {
+        
         if(!contratti){
             this.assegnaContrattiIniziali();
             contratti = true;
