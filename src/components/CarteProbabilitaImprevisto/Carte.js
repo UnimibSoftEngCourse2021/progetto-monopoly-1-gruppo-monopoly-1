@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import CryptoRandom from '../CryptoRandom';
-import { Button, Snackbar } from '@material-ui/core';
-
 
 class Carte extends Component {
     constructor(props) {

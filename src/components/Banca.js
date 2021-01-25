@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button, Snackbar } from '@material-ui/core';
 
 class Banca extends Component {
     constructor(props) {

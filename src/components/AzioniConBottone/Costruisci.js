@@ -5,7 +5,6 @@ import {Paper, Modal, Button, Radio, RadioGroup, FormControlLabel, TextField, Gr
 function Costruisci(props){
 
   const [open, setOpen] = React.useState(false);
-  const handleOpenSnackbar = () => {setOpen(true)};
   const handleCloseSnackbar = (event, reason) => {setOpen(false)};
   const [testo, setTesto] = React.useState('');    
 
