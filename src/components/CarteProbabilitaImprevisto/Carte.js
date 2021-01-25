@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CryptoRandom from '../CryptoRandom';
 
 class Carte extends Component {
     constructor(props) {
@@ -61,11 +62,13 @@ class Carte extends Component {
         //probabilità==true, imprevisto==false
         let idCarta;
         if (probabilitaOImprevisto){
-            idCarta = Math.floor(Math.random()*(14));
+            //idCarta = Math.floor(Math.random()*(14));
+            idCarta = CryptoRandom(0,14); //Il max è incluso e il min è incluso
         }else{
-            idCarta = Math.floor(Math.random()*(30-15)+15);
+            //idCarta = Math.floor(Math.random()*(30-15)+15);
+            idCarta = CryptoRandom(15,30); //Il max è incluso e il min è incluso
         }
-        
+
         alert('Giocatore ' + (turnoGiocatore + 1) + ': \nLa carta è: ' + this.state.carte[idCarta][1]);
         this.attivaCarta(   idCarta, 
                             turnoGiocatore, 
@@ -235,8 +238,10 @@ class Carte extends Component {
                 setGiocatori(nuoviGiocatori);
                 setSegnalini(nuoviSegnalini);
                 if (societàStazioni[4].proprietario !== -1 && societàStazioni[4].proprietario !== turnoGiocatore) {
-                    let dado1 = Math.floor(Math.random()*6) + 1;
-                    let dado2 = Math.floor(Math.random()*6) + 1;
+                    //let dado1 = Math.floor(Math.random()*6) + 1;
+                    let dado1 = CryptoRandom(1,6); //Il max è incluso e il min è incluso
+                    //let dado2 = Math.floor(Math.random()*6) + 1;
+                    let dado2 = CryptoRandom(1,6); //Il max è incluso e il min è incluso
                     let affitto = (dado1 + dado2) * 10;
                     nuoviGiocatori[turnoGiocatore].capitale -= affitto;
                     // Devo aggiungere l'affitto pagato sulla casella per evitare che questa somma
@@ -256,8 +261,10 @@ class Carte extends Component {
                 setGiocatori(nuoviGiocatori);
                 setSegnalini(nuoviSegnalini);
                 if (societàStazioni[5].proprietario !== -1 && societàStazioni[5].proprietario !== turnoGiocatore) {
-                    let dado1 = Math.floor(Math.random()*6) + 1;
-                    let dado2 = Math.floor(Math.random()*6) + 1;
+                    //let dado1 = Math.floor(Math.random()*6) + 1;
+                    let dado1 = CryptoRandom(1,6); //Il max è incluso e il min è incluso
+                    //let dado2 = Math.floor(Math.random()*6) + 1;
+                    let dado2 = CryptoRandom(1,6); //Il max è incluso e il min è incluso
                     let affitto = (dado1 + dado2) * 10;
                     nuoviGiocatori[turnoGiocatore].capitale -= affitto;
                     // Devo aggiungere l'affitto pagato sulla casella per evitare che questa somma
