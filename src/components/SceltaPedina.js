@@ -10,6 +10,7 @@ import doggo from '../img/doggo.png'
 import shoe from '../img/shoe.png'
 import thimble from '../img/thimble.png'
 import wheelbarrow from '../img/wheelbarrow.png'
+import CryptoRandom from './CryptoRandom';
 
 function SceltaPedina(props){
 
@@ -170,7 +171,6 @@ function SceltaPedina(props){
     const handleClose = (event, reason) => {setOpen(false)};
     
  
-
     // Questa funzione associa ad ogni giocatore una pedina.
     function associaGiocatorePedina(pedina){
         // Se una pedina è già stata scelta da un giocatore, non può più essere scelta dagli altri.
@@ -250,9 +250,10 @@ function SceltaPedina(props){
             //Se la difficoltà e normale o difficile le posizioni dei segnalini saranno scelte in modo casuale.
             var nuovaListaSegnalini = segnalini;
             if(props.difficolta === 'normale' || props.difficolta === 'difficile'){
-                var min = Math.ceil(0);
-                var max = Math.floor(40);
-                var num = Math.floor(Math.random() * (max - min)) + min; //Il max è escluso e il min è incluso
+                //var min = Math.ceil(0);
+                //var max = Math.floor(40);
+                //var num = Math.floor(Math.random() * (max - min)) + min; //Il max è escluso e il min è incluso
+                var num = CryptoRandom(0,39);
                 console.log(num);
                 nuovaListaSegnalini[n-1] =  {
                     nome: pedina,
@@ -411,5 +412,5 @@ function SceltaPedina(props){
         </div>
     );
 }
-
+// {CryptoRandom(1,6)}
 export default SceltaPedina;

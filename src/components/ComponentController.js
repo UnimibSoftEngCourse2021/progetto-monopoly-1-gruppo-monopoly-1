@@ -10,6 +10,7 @@ import Carte from './CarteProbabilitaImprevisto/Carte';
 import Banca from './Banca';
 import UscitaPrigione from './AzioniConBottone/UscitaPrigione';
 import Autori from './AzioniConBottone/Autori';
+import CryptoRandom from './CryptoRandom';
 
 let dado1;
 let dado2;
@@ -20,12 +21,15 @@ let dadiTirati = false; // Questo booleano permette di tirare i dadi solo una vo
 let numeroTiriDadi = 0;
 let contratti = false;
 
-function verificaPunteggioDoppio(dado1, dado2){
+function verificaPunteggioDoppio(Primodado, Secondodado){
+    /*
     if(dado1 === dado2){
         return true;
     }else{
         return false;
     }
+    */
+    return Primodado === Secondodado;
 }
 
 class ComponentController extends React.Component {
@@ -45,14 +49,14 @@ class ComponentController extends React.Component {
         };
     }
 
-    spostaSegnalino (sommaDadi) {
+    spostaSegnalino (sommaDadiParam) {
         let numSegnalino = this.props.turnoGiocatore;
         let ascissa = this.props.segnalini[numSegnalino].ascissa;
         let ordinata = this.props.segnalini[numSegnalino].ordinata;
         let attualeCasella = this.props.segnalini[numSegnalino].attualeCasella;
         
         var i;
-        for (i = 1; i < sommaDadi+1; i++) {
+        for (i = 1; i < sommaDadiParam+1; i++) {
             if (attualeCasella === 39) {
                 attualeCasella=0;
                 let banca = new Banca();
@@ -98,7 +102,7 @@ class ComponentController extends React.Component {
                                  this.props.setSocietàStazioni,
                                  this.pagaAffitto);
  
-        };
+        }
         if (this.props.caselle[attualeCasella].tipo ==='probabilita') {
             //alert('probabilita');
             carta1.estraiCarta( true, 
@@ -114,7 +118,7 @@ class ComponentController extends React.Component {
                                 this.props.societàStazioni,
                                 this.props.setSocietàStazioni,
                                 this.pagaAffitto);
-        };
+        }
 
         this.props.muoviPedine();
         this.pagaAffitto();
@@ -126,8 +130,10 @@ class ComponentController extends React.Component {
     tiraDadi = () => {
         
         if (!dadiTirati){
-            dado1 = Math.floor(Math.random()*6) + 1;
-            dado2 = Math.floor(Math.random()*6) + 1;
+            //dado1 = Math.floor(Math.random()*6) + 1;
+            dado1 = CryptoRandom(1,6); //Il max è incluso e il min è incluso
+            //dado2 = Math.floor(Math.random()*6) + 1;
+            dado2 =CryptoRandom(1,6); //Il max è incluso e il min è incluso
             sommaDadi = dado1 + dado2;
             numeroTiriDadi = numeroTiriDadi + 1;
             punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
@@ -442,9 +448,11 @@ class ComponentController extends React.Component {
             for (let i = 0; i < numeroGiocatori; i++) {
                 let j = 0;
                 while (j < giocatori[i].numeroContrattiIniziali) {
-                    random = Math.floor(Math.random() * 2)
+                    //random = Math.floor(Math.random() * 2)
+                    random = CryptoRandom(0,1); //Il max è incluso e il min è incluso
                     if (random === 0) {
-                        random = Math.floor(Math.random() * 22);
+                        //random = Math.floor(Math.random() * 22);
+                        random = CryptoRandom(0,21); //Il max è incluso e il min è incluso
                         if (terreni[random].proprietario === -1) {
                             var nuoviTerreni = terreni;
                             var nuoviGiocatoriPerTerreni = giocatori;
@@ -455,7 +463,8 @@ class ComponentController extends React.Component {
                             j += 1;
                         }
                     } else {
-                        random = Math.floor(Math.random() * 6);
+                        //random = Math.floor(Math.random() * 6);
+                        random = CryptoRandom(0,5); //Il max è incluso e il min è incluso
                         if (societàStazioni[random].proprietario === -1) {
                             var nuoveSocietàStazioni = societàStazioni;
                             var nuoviGiocatoriPerSocietàStazioni = giocatori;
@@ -475,7 +484,6 @@ class ComponentController extends React.Component {
     }
 
     render () {
-        
         if(!contratti){
             this.assegnaContrattiIniziali();
             contratti = true;

@@ -156,7 +156,7 @@ function IpotecaStazioneSocietà(){
 }
 
 
-function Ipoteca(){
+function Ipoteca2(){
   
     if(tipoVendita === 'Terreno'){
       IpotecaTerreno();
@@ -286,7 +286,7 @@ const body = (
       
       
       {azione==='Ipotecare'?
-      <Button variant="contained" style={{margin:'16px', width:'100px'}} onClick={() => Ipoteca()} >
+      <Button variant="contained" style={{margin:'16px', width:'100px'}} onClick={() => Ipoteca2()} >
         ipoteca
       </Button>
       :

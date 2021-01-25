@@ -57,7 +57,7 @@ function VendiCasa(){
   }
   var proprietà = props.terreni[n];
   //verifico che il turnoGiocatore sia proprietario di proprietà
-  if(!(proprietà.proprietario == props.turnoGiocatore)){
+  if((proprietà.proprietario != props.turnoGiocatore)){
     alert('Non puoi vendere gli edifici se il terreno che non è tuo');
     return;
   }
@@ -94,12 +94,12 @@ function VendiAlbergo(){
   }
   var proprietà = props.terreni[n];
   //verifico che il turnoGiocatore sia proprietario di proprietà
-  if(!(proprietà.proprietario == props.turnoGiocatore)){
+  if((proprietà.proprietario != props.turnoGiocatore)){
     alert('Non puoi vendere gli edifici che non sono su un tuo terreno');
     return;
   }
   //Verifico ceh sul terreno ci sia un albergo
-  if(!(proprietà.alberghi === 1)){
+  if((proprietà.alberghi !== 1)){
     alert("Su questo terreno non c'è un albergo");
     return;
   }
@@ -125,7 +125,7 @@ function VendiAlbergo(){
 
 }
 
-function VendiEdificio(){
+function VendiEdificio2(){
   if(edificio === 'casa'){
     VendiCasa();
   }
@@ -148,7 +148,7 @@ const body = (
     <Grid container direction="column">
       <TextField variant="outlined" style={{margin:'16px', width:'350px'}} onChange={handleChangeTerreno}/>
     
-      <Button variant="contained" style={{margin:'16px', width:'350px'}} onClick={() => VendiEdificio()}>
+      <Button variant="contained" style={{margin:'16px', width:'350px'}} onClick={() => VendiEdificio2()}>
         vendi questo edificio
       </Button>
    

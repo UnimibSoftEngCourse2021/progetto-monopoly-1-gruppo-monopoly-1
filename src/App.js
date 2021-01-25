@@ -4,6 +4,7 @@ import ComponentBoard from './components/ComponentBoard';
 import TabellaTerreni from './components/Tabelle/TabellaTerreni';
 import TabellaSocietàStazioni from './components/Tabelle/TabellaSocietàStazioni';
 import Banca from './components/Banca';
+import CryptoRandom from './components/CryptoRandom';
 
 function App(props) {
 
@@ -496,9 +497,10 @@ function App(props) {
   const [turnoGiocatore, setTurnoGiocatore] = React.useState(IniziaPerPrimo());
 
   function IniziaPerPrimo() {
-    var min = Math.ceil(0);
-    var max = Math.floor(props.numeroGiocatori);
-    return Math.floor(Math.random() * (max - min)) + min; //Il max è escluso e il min è incluso
+    //var min = Math.ceil(0);
+    //var max = Math.floor(props.numeroGiocatori);
+    //return Math.floor(Math.random() * (max - min)) + min; //Il max è escluso e il min è incluso
+    return CryptoRandom(0,props.numeroGiocatori-1); //Il max è incluso e il min è incluso
   }
 
   //Variabile di stato utilizzata per gestire le partite a tempo

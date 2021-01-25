@@ -2,7 +2,7 @@ import React from 'react';
 import {Paper, Modal, Button, TextField, Grid} from '@material-ui/core';
 
 
-function Acquista(props){
+function Asta(props){
 
 const [openModal, setOpenModal] = React.useState(false);
 const handleOpen = () => { setOpenModal(true) };
@@ -164,4 +164,4 @@ const body = (
         );
         }
 
-export default Acquista;
+export default Asta;
