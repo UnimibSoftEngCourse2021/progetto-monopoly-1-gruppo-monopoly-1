@@ -34,4 +34,4 @@ export function iniziaPartita(numero, diff) {
     }
 }
 
-export default iniziaPartita()
+export default iniziaPartita;
