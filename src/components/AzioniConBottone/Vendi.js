@@ -110,7 +110,7 @@ function VendiTerreno(){
   }
   var proprietà = props.terreni[n];
   
-  if(!(proprietà.proprietario == venditore)){
+  if((proprietà.proprietario != venditore)){
     alert('Non puoi vendere qualcosa che non ti appartiene');
     return;
   }
@@ -190,7 +190,7 @@ function VendiStazioneSocietà(){
   }
   var proprietà = props.societàStazioni[n];
   
-  if(!(proprietà.proprietario == venditore)){
+  if((proprietà.proprietario != venditore)){
     alert('Non puoi vendere qualcosa che non ti appartiene');
     return;
   }
