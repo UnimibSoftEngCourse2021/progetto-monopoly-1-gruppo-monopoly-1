@@ -20,7 +20,7 @@ let dadiTirati = false; // Questo booleano permette di tirare i dadi solo una vo
 let numeroTiriDadi = 0;
 let contratti = false;
 
-function verificaPunteggioDoppio(dado1, dado2){
+function verificaPunteggioDoppio(Primodado, Secondodado){
     /*
     if(dado1 === dado2){
         return true;
@@ -28,7 +28,7 @@ function verificaPunteggioDoppio(dado1, dado2){
         return false;
     }
     */
-    return dado1 === dado2;
+    return Primodado === Secondodado;
 }
 
 class ComponentController extends React.Component {
