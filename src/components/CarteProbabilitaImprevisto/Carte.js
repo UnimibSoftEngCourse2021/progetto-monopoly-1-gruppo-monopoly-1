@@ -80,10 +80,10 @@ class Carte extends Component {
         let idCarta;
         if (probabilitaOImprevisto){
             //idCarta = Math.floor(Math.random()*(14));
-            idCarta = CryptoRandom(0,14); //Il max è incluso e il min è incluso
+            idCarta =20; //CryptoRandom(0,14); //Il max è incluso e il min è incluso
         }else{
             //idCarta = Math.floor(Math.random()*(30-15)+15);
-            idCarta = CryptoRandom(15,30); //Il max è incluso e il min è incluso
+            idCarta =20;// CryptoRandom(15,30); //Il max è incluso e il min è incluso
         }
 
         cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ': \nLa carta è: ' + this.state.carte[idCarta][1]);
@@ -164,8 +164,11 @@ class Carte extends Component {
         //Sposta la pedina indietro di 3 caselle
         if(idCarta===20){
             let indietroDiTreCaselle = nuoviSegnalini[turnoGiocatore].attualeCasella + 37;
-            if(nuoviSegnalini[turnoGiocatore].attualeCasella>3){
-                nuoviGiocatori[turnoGiocatore].capitale -= 200;
+            if(nuoviSegnalini[turnoGiocatore].attualeCasella >= 3){
+                indietroDiTreCaselle = nuoviSegnalini[turnoGiocatore].attualeCasella - 3;
+                if(indietroDiTreCaselle === 0){
+                    nuoviGiocatori[turnoGiocatore].capitale += 500;
+                }
             }
             nuoviSegnalini[turnoGiocatore].attualeCasella += indietroDiTreCaselle;
             nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[indietroDiTreCaselle][1];
@@ -189,9 +192,6 @@ class Carte extends Component {
                 handleOpen();
             }
             if(idCarta===13 || idCarta===21){
-                if(segnalini[turnoGiocatore].attualeCasella > this.state.carte[idCarta][0]){
-                    nuoviGiocatori[turnoGiocatore].capitale -= 200;
-                }
                 nuoviGiocatori[turnoGiocatore].inPrigione = true;
             }
             if(idCarta===14 || idCarta===16){
