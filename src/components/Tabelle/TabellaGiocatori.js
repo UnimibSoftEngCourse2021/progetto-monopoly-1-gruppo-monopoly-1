@@ -13,7 +13,7 @@ function TabellaGiocatori (props) {
         if(numero === t){
             return(<Typography align='center' style={{background:'#cddc39'}}>{numero}</Typography>);
         }
-        var i;
+        //var i;
         for(i=0; i<props.giocatori.length; i++){
             if(props.giocatori[i].numero===numero && props.giocatori[i].inGioco===true){
                 return (<Typography align='center'>{numero}</Typography>);
