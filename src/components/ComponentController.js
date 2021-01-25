@@ -448,9 +448,11 @@ class ComponentController extends React.Component {
             for (let i = 0; i < numeroGiocatori; i++) {
                 let j = 0;
                 while (j < giocatori[i].numeroContrattiIniziali) {
-                    random = Math.floor(Math.random() * 2)
+                    //random = Math.floor(Math.random() * 2)
+                    random = CryptoRandom(0,1); //Il max è incluso e il min è incluso
                     if (random === 0) {
-                        random = Math.floor(Math.random() * 22);
+                        //random = Math.floor(Math.random() * 22);
+                        random = CryptoRandom(0,21); //Il max è incluso e il min è incluso
                         if (terreni[random].proprietario === -1) {
                             var nuoviTerreni = terreni;
                             var nuoviGiocatoriPerTerreni = giocatori;
@@ -461,7 +463,8 @@ class ComponentController extends React.Component {
                             j += 1;
                         }
                     } else {
-                        random = Math.floor(Math.random() * 6);
+                        //random = Math.floor(Math.random() * 6);
+                        random = CryptoRandom(0,5); //Il max è incluso e il min è incluso
                         if (societàStazioni[random].proprietario === -1) {
                             var nuoveSocietàStazioni = societàStazioni;
                             var nuoviGiocatoriPerSocietàStazioni = giocatori;
