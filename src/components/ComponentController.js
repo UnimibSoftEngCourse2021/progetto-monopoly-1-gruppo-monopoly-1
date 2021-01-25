@@ -21,11 +21,14 @@ let numeroTiriDadi = 0;
 let contratti = false;
 
 function verificaPunteggioDoppio(dado1, dado2){
+    /*
     if(dado1 === dado2){
         return true;
     }else{
         return false;
     }
+    */
+    return dado1 === dado2;
 }
 
 class ComponentController extends React.Component {
@@ -98,7 +101,7 @@ class ComponentController extends React.Component {
                                  this.props.setSocietàStazioni,
                                  this.pagaAffitto);
  
-        };
+        }
         if (this.props.caselle[attualeCasella].tipo ==='probabilita') {
             //alert('probabilita');
             carta1.estraiCarta( true, 
@@ -114,7 +117,7 @@ class ComponentController extends React.Component {
                                 this.props.societàStazioni,
                                 this.props.setSocietàStazioni,
                                 this.pagaAffitto);
-        };
+        }
 
         this.props.muoviPedine();
         this.pagaAffitto();
@@ -477,7 +480,6 @@ class ComponentController extends React.Component {
     }
 
     render () {
-        
         if(!contratti){
             this.assegnaContrattiIniziali();
             contratti = true;
