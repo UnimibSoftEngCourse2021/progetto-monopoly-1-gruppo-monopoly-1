@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '../index.css';
-import Banca from './Banca'
 import SceltaPedina from './SceltaPedina'
 
 export function iniziaPartita(numero, diff) {
