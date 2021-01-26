@@ -28,15 +28,13 @@ class Banca extends Component {
         var nuoviGiocatori = giocatori;
         nuoviGiocatori[turnoGiocatore].capitale=giocatori[turnoGiocatore].capitale+500;
         if (difficolta === "facile") {
-            console.log("Entrato");
             nuoviGiocatori[turnoGiocatore].carteBonus += 1;
             setGiocatori(nuoviGiocatori);
-            console.log("Carte bonus: " + nuoviGiocatori[turnoGiocatore].carteBonus); 
-            console.log("Carte bonus: " + giocatori[turnoGiocatore].carteBonus); 
+            cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via ritirando una carta bonus');
         } else {
             setGiocatori(nuoviGiocatori);
+            cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via');
         }
-        cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
         handleOpen(); 
     }
 

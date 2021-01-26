@@ -75,7 +75,8 @@ class Carte extends Component {
                     testo,
                     cambiaTesto,
                     handleOpen,
-                    handleClose) => {
+                    handleClose,
+                    difficolta) => {
         //probabilità==true, imprevisto==false
         let idCarta;
         if (probabilitaOImprevisto){
@@ -104,7 +105,8 @@ class Carte extends Component {
                             testo,
                             cambiaTesto,
                             handleOpen,
-                            handleClose);
+                            handleClose,
+                            difficolta);
     }
 
     //Metodo che attiva l'effetto della carta estratta
@@ -124,7 +126,8 @@ class Carte extends Component {
                     testo,
                     cambiaTesto,
                     handleOpen,
-                    handleClose) => {
+                    handleClose,
+                    difficolta) => {
         let nuoviGiocatori = giocatori;
         let nuoviSegnalini = segnalini;
 
@@ -196,7 +199,8 @@ class Carte extends Component {
                                     testo,
                                     cambiaTesto,
                                     handleOpen,
-                                    handleClose)
+                                    handleClose,
+                                    difficolta)
             
             } else {
                 nuoviSegnalini[turnoGiocatore].attualeCasella -= 3;
@@ -218,14 +222,28 @@ class Carte extends Component {
             if((segnalini[turnoGiocatore].attualeCasella > this.state.carte[idCarta][0]) &&
              (idCarta === 24 || idCarta === 25 || idCarta === 17 || idCarta === 18)){
                 nuoviGiocatori[turnoGiocatore].capitale += 500;
-                cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
+                if (difficolta === "facile") {
+                    nuoviGiocatori[turnoGiocatore].carteBonus += 1;
+                    cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via ritirando una carta bonus');
+                } else {
+                    cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via');
+                }
                 handleOpen();
             }
             if(idCarta===13 || idCarta===21){
                 nuoviGiocatori[turnoGiocatore].inPrigione = true;
+                cambiaTesto('Vai in Prigione.');
+                handleOpen();
             }
             if(idCarta===14 || idCarta===16){
                 nuoviGiocatori[turnoGiocatore].capitale += 500;
+                if (difficolta === "facile") {
+                    nuoviGiocatori[turnoGiocatore].carteBonus += 1;
+                    cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via ritirando una carta bonus');
+                } else {
+                    cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via');
+                }
+                handleOpen();
             }
             nuoviSegnalini[turnoGiocatore].attualeCasella = this.state.carte[idCarta][0];
             nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[this.state.carte[idCarta][0]][1];
