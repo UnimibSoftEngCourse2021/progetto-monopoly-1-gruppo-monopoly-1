@@ -76,7 +76,8 @@ class Carte extends Component {
                     cambiaTesto,
                     handleOpen,
                     handleClose,
-                    difficolta) => {
+                    difficolta,
+                    nuovoTesto) => {
         //probabilità==true, imprevisto==false
         let idCarta;
         if (probabilitaOImprevisto){
@@ -86,9 +87,8 @@ class Carte extends Component {
             //idCarta = Math.floor(Math.random()*(30-15)+15);
             idCarta = CryptoRandom(15,30); //Il max è incluso e il min è incluso
         }
-
-        cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ': \nLa carta è: ' + this.state.carte[idCarta][1]);
-        handleOpen();
+        nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ' pesca la carta: ' + this.state.carte[idCarta][1] + '. ';
+        console.log(nuovoTesto);
         this.attivaCarta(   idCarta, 
                             turnoGiocatore, 
                             giocatori, 
@@ -106,7 +106,8 @@ class Carte extends Component {
                             cambiaTesto,
                             handleOpen,
                             handleClose,
-                            difficolta);
+                            difficolta,
+                            nuovoTesto);
     }
 
     //Metodo che attiva l'effetto della carta estratta
@@ -127,7 +128,8 @@ class Carte extends Component {
                     cambiaTesto,
                     handleOpen,
                     handleClose,
-                    difficolta) => {
+                    difficolta,
+                    nuovoTesto) => {
         let nuoviGiocatori = giocatori;
         let nuoviSegnalini = segnalini;
 
@@ -173,7 +175,9 @@ class Carte extends Component {
                 nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[39][1];
                 nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[39][2];
             } else if (nuoviSegnalini[turnoGiocatore].attualeCasella === 33) {
-                cambiaTesto('Vai in Prigione');
+                nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ' va in Prigione. ';
+                console.log(nuovoTesto);
+                cambiaTesto(nuovoTesto);
                 handleOpen();
                 nuoviSegnalini[turnoGiocatore].attualeCasella=10;
                 nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[10][1];
@@ -200,7 +204,8 @@ class Carte extends Component {
                                     cambiaTesto,
                                     handleOpen,
                                     handleClose,
-                                    difficolta)
+                                    difficolta,
+                                    nuovoTesto)
             
             } else {
                 nuoviSegnalini[turnoGiocatore].attualeCasella -= 3;
@@ -224,26 +229,38 @@ class Carte extends Component {
                 nuoviGiocatori[turnoGiocatore].capitale += 500;
                 if (difficolta === "facile") {
                     nuoviGiocatori[turnoGiocatore].carteBonus += 1;
-                    cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via ritirando una carta bonus');
+                    nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via ritirando una carta bonus. ';
+                    console.log(nuovoTesto);
+                    cambiaTesto(nuovoTesto);
+                    handleOpen();
                 } else {
-                    cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via');
+                    nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via. ';
+                    console.log(nuovoTesto);
+                    cambiaTesto(nuovoTesto);
+                    handleOpen();
                 }
-                handleOpen();
             }
             if(idCarta===13 || idCarta===21){
                 nuoviGiocatori[turnoGiocatore].inPrigione = true;
-                cambiaTesto('Vai in Prigione.');
+                nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ' va in Prigione. ';
+                console.log(nuovoTesto);
+                cambiaTesto(nuovoTesto);
                 handleOpen();
             }
             if(idCarta===14 || idCarta===16){
                 nuoviGiocatori[turnoGiocatore].capitale += 500;
                 if (difficolta === "facile") {
                     nuoviGiocatori[turnoGiocatore].carteBonus += 1;
-                    cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via ritirando una carta bonus');
+                    nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via ritirando una carta bonus. ';
+                    console.log(nuovoTesto);
+                    cambiaTesto(nuovoTesto);
+                    handleOpen();
                 } else {
-                    cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via');
+                    nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via. ';
+                    console.log(nuovoTesto);
+                    cambiaTesto(nuovoTesto);
+                    handleOpen();
                 }
-                handleOpen();
             }
             nuoviSegnalini[turnoGiocatore].attualeCasella = this.state.carte[idCarta][0];
             nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[this.state.carte[idCarta][0]][1];
@@ -256,7 +273,9 @@ class Carte extends Component {
             if (segnalini[turnoGiocatore].attualeCasella >= 36 || segnalini[turnoGiocatore].attualeCasella <= 4) {
                 if (segnalini[turnoGiocatore].attualeCasella >= 36) {
                     nuoviGiocatori[turnoGiocatore].capitale += 500;
-                    cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
+                    nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via. ';
+                    console.log(nuovoTesto);
+                    cambiaTesto(nuovoTesto);
                     handleOpen();
                 }
                 nuoviSegnalini[turnoGiocatore].attualeCasella = 5;
@@ -306,7 +325,9 @@ class Carte extends Component {
             if (segnalini[turnoGiocatore].attualeCasella >= 29 || segnalini[turnoGiocatore].attualeCasella <= 11) {
                 if (segnalini[turnoGiocatore].attualeCasella >= 29) {
                     nuoviGiocatori[turnoGiocatore].capitale += 500;
-                    cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
+                    nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via. ';
+                    console.log(nuovoTesto);
+                    cambiaTesto(nuovoTesto);
                     handleOpen();
                 }
                 nuoviSegnalini[turnoGiocatore].attualeCasella = 12;
@@ -328,7 +349,9 @@ class Carte extends Component {
                     nuoviGiocatori[societàStazioni[4].proprietario].capitale += affitto;
                     // Per lo stesso motivo devo sottrarre l'affitto dall'avversario.
                     nuoviGiocatori[societàStazioni[4].proprietario].capitale -= 150;
-                    cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ': paga ' + affitto);
+                    nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ': paga ' + affitto + '. ';
+                    console.log(nuovoTesto);
+                    cambiaTesto(nuovoTesto);
                     handleOpen();
                 } 
             }
@@ -352,11 +375,15 @@ class Carte extends Component {
                     nuoviGiocatori[societàStazioni[5].proprietario].capitale += affitto;
                     // Per lo stesso motivo devo sottrarre l'affitto dall'avversario.
                     nuoviGiocatori[societàStazioni[4].proprietario].capitale -= 150;
-                    cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ': paga ' + affitto);
+                    nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ': paga ' + affitto + '. ';
+                    console.log(nuovoTesto);
+                    cambiaTesto(nuovoTesto);
                     handleOpen();
                 }
             }
         }
+        cambiaTesto(nuovoTesto);
+        handleOpen();
         setGiocatori(nuoviGiocatori);
         setSegnalini(nuoviSegnalini);
     }

@@ -82,7 +82,7 @@ class ComponentController extends React.Component {
         // Se il giocatore finisce sulla casella "Vai in Prigione", allora la sua pedina
         // viene spostata in Prigione.
         if (this.props.segnalini[numSegnalino].attualeCasella === 30) {
-            this.setState({open: true, testo:"Vai in Prigione."});
+            this.setState({open: true, testo:"Giocatore " + (this.props.turnoGiocatore + 1) + " va in Prigione. "});
             this.props.segnalini[numSegnalino].ascissa = this.props.tavolaGioco[10][1];
             this.props.segnalini[numSegnalino].ordinata = this.props.tavolaGioco[10][2];
             this.props.segnalini[numSegnalino].attualeCasella = 10;
@@ -108,7 +108,8 @@ class ComponentController extends React.Component {
                                  this.cambiaTesto,
                                  this.handleOpen,
                                  this.handleClose,
-                                 this.props.difficolta);
+                                 this.props.difficolta,
+                                 '');
  
         }
         if (this.props.caselle[attualeCasella].tipo ==='probabilita') {
@@ -129,7 +130,8 @@ class ComponentController extends React.Component {
                                 this.cambiaTesto,
                                 this.handleOpen,
                                 this.handleClose,
-                                this.props.difficolta);
+                                this.props.difficolta,
+                                '');
         }
 
         this.props.muoviPedine();
@@ -142,8 +144,8 @@ class ComponentController extends React.Component {
     tiraDadi = () => {
         
         if (!dadiTirati){
-            dado1 = CryptoRandom(1,6); //Il max è incluso e il min è incluso
-            dado2 = CryptoRandom(1,6); //Il max è incluso e il min è incluso
+            dado1 = 35//CryptoRandom(1,6); //Il max è incluso e il min è incluso
+            dado2 = 1//CryptoRandom(1,6); //Il max è incluso e il min è incluso
             sommaDadi = dado1 + dado2;
             numeroTiriDadi = numeroTiriDadi + 1;
             punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
@@ -171,8 +173,8 @@ class ComponentController extends React.Component {
                 nuoviGiocatori[this.props.turnoGiocatore].inPrigione = false;
                 this.props.giocatori[this.props.turnoGiocatore].numeroTurniPrigione = 0;
                 this.props.setGiocatori(nuoviGiocatori);
-                this.setState({open: true, testo: "Il Giocatore " + (this.props.turnoGiocatore+1) + " paga la cauzione obbligatoria di € 125 per uscire di prigione essendo rimasto" +
-                " in prigione per 3 turni consecutivi."});
+                this.setState({open: true, testo: "Giocatore " + (this.props.turnoGiocatore+1) + " paga la cauzione obbligatoria di € 125 per uscire di prigione essendo rimasto" +
+                " in prigione per 3 turni consecutivi. "});
             }
 
             var lanciDoppi = this.state.tiroDoppio;
@@ -362,7 +364,7 @@ class ComponentController extends React.Component {
             nuoviGiocatori = this.props.giocatori;
             if (this.props.difficolta === 'facile' && nuoviGiocatori[this.props.turnoGiocatore].carteBonus > 0) {
                 nuoviGiocatori[this.props.turnoGiocatore].carteBonus -= 1;
-                this.setState({open: true, testo:"Giocatore " + (this.props.turnoGiocatore + 1) + " ha usato una carta bonus per non pagare l'affitto."});
+                this.setState({open: true, testo:"Giocatore " + (this.props.turnoGiocatore + 1) + " ha usato una carta bonus per non pagare l'affitto. "});
             } else {
                 affitto = (terreno.valore*5/100) + this.props.numeroDifficoltà;
                 if (terreno.case > 0) {
@@ -394,7 +396,7 @@ class ComponentController extends React.Component {
             nuoviGiocatori = this.props.giocatori;
             if (this.props.difficolta === 'facile' && nuoviGiocatori[this.props.turnoGiocatore].carteBonus > 0) {
                 nuoviGiocatori[this.props.turnoGiocatore].carteBonus -= 1;
-                this.setState({open: true, testo:"Giocatore " + (this.props.turnoGiocatore + 1) + " ha usato una carta bonus per non pagare l'affitto."});
+                this.setState({open: true, testo:"Giocatore " + (this.props.turnoGiocatore + 1) + " ha usato una carta bonus per non pagare l'affitto. "});
             } else { 
                 affitto = (200 + this.props.numeroDifficoltà);          
                 nuoviGiocatori[this.props.turnoGiocatore].capitale -= affitto;
@@ -420,7 +422,7 @@ class ComponentController extends React.Component {
             nuoviGiocatori = this.props.giocatori;
             if (this.props.difficolta === 'facile' && nuoviGiocatori[this.props.turnoGiocatore].carteBonus > 0) {
                 nuoviGiocatori[this.props.turnoGiocatore].carteBonus -= 1;
-                this.setState({open: true, testo:"Giocatore " + (this.props.turnoGiocatore + 1) + " ha usato una carta bonus per non pagare l'affitto."});
+                this.setState({open: true, testo:"Giocatore " + (this.props.turnoGiocatore + 1) + " ha usato una carta bonus per non pagare l'affitto. "});
             } else {
                 affitto = 150 + this.props.numeroDifficoltà;
                 nuoviGiocatori[this.props.turnoGiocatore].capitale -= affitto;
@@ -441,7 +443,7 @@ class ComponentController extends React.Component {
             var nuoviGiocatori = this.props.giocatori;
             if (this.props.difficolta === 'facile' && nuoviGiocatori[this.props.turnoGiocatore].carteBonus > 0) {
                 nuoviGiocatori[this.props.turnoGiocatore].carteBonus -= 1;
-                this.setState({open: true, testo:"Giocatore " + (this.props.turnoGiocatore + 1) + " ha usato una carta bonus per non pagare la tassa."});
+                this.setState({open: true, testo:"Giocatore " + (this.props.turnoGiocatore + 1) + " ha usato una carta bonus per non pagare la tassa. "});
             } else {
                 if (casella.nome === 'luxury tax') {
                     tassa = 100 + this.props.numeroDifficoltà;
@@ -625,6 +627,7 @@ class ComponentController extends React.Component {
                     </tr>
                 </table>
                 <Snackbar
+                  key={this.state.testo}
                   anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                   open={this.state.open}
                   autoHideDuration={6000}

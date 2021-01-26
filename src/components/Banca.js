@@ -30,10 +30,10 @@ class Banca extends Component {
         if (difficolta === "facile") {
             nuoviGiocatori[turnoGiocatore].carteBonus += 1;
             setGiocatori(nuoviGiocatori);
-            cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via ritirando una carta bonus');
+            cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via ritirando una carta bonus. ');
         } else {
             setGiocatori(nuoviGiocatori);
-            cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via');
+            cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via. ');
         }
         handleOpen(); 
     }
