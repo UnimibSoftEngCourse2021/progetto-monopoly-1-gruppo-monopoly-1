@@ -64,7 +64,7 @@ class ComponentController extends React.Component {
             if (attualeCasella === 39) {
                 attualeCasella=0;
                 let banca = new Banca();
-                banca.giocatorePassaDalVia(this.props.giocatori,this.props.turnoGiocatore,this.props.setGiocatori, this.handleOpen, this.cambiaTesto);
+                banca.giocatorePassaDalVia(this.props.giocatori,this.props.turnoGiocatore,this.props.setGiocatori, this.handleOpen, this.cambiaTesto, this.props.difficolta);
             } else {
                 attualeCasella = attualeCasella + 1
             }        
@@ -416,7 +416,33 @@ class ComponentController extends React.Component {
         return;
     }
 
-    //Questa funzione fa pagare le tasse al giocatore che finisce su una casella imposte
+    // //Questa funzione fa pagare le tasse al giocatore che finisce su una casella imposte
+    // pagaTasse =()=>{
+    //     var attualeCasella = this.props.segnalini[this.props.turnoGiocatore].attualeCasella;
+    //     var casella = this.props.caselle[attualeCasella];
+    //     var tassa;
+
+    //     if (this.props.difficolta === "facile" && this.props.giocatori[this.props.turnoGiocatore].carteBonus > 0) {
+    //         var nuoviGiocatori1 = this.props.giocatori;
+    //         nuoviGiocatori1[this.props.turnoGiocatore].carteBonus -= 1;
+    //         this.props.setGiocatori(nuoviGiocatori1);
+    //         return;
+    //     } else {
+    //         if (casella.tipo === 'tasse'){
+    //             if (casella.nome === 'luxury tax'){
+    //                 tassa = 100 + this.props.numeroDifficoltà;
+    //             } else {
+    //                 tassa = 200 + this.props.numeroDifficoltà;
+    //             }
+    //             var nuoviGiocatori2 = this.props.giocatori;
+    //             nuoviGiocatori2[this.props.turnoGiocatore].capitale -= tassa;
+    //             this.props.setGiocatori(nuoviGiocatori2);
+    //         } else { 
+    //             return;
+    //         }
+    //     }
+    // }
+
     pagaTasse =()=>{
         var attualeCasella = this.props.segnalini[this.props.turnoGiocatore].attualeCasella;
         var casella = this.props.caselle[attualeCasella];

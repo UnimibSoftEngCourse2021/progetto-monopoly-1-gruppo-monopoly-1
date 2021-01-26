@@ -80,10 +80,10 @@ class Carte extends Component {
         let idCarta;
         if (probabilitaOImprevisto){
             //idCarta = Math.floor(Math.random()*(14));
-            idCarta =20; //CryptoRandom(0,14); //Il max è incluso e il min è incluso
+            idCarta = CryptoRandom(0,14); //Il max è incluso e il min è incluso
         }else{
             //idCarta = Math.floor(Math.random()*(30-15)+15);
-            idCarta =20;// CryptoRandom(15,30); //Il max è incluso e il min è incluso
+            idCarta = CryptoRandom(15,30); //Il max è incluso e il min è incluso
         }
 
         cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ': \nLa carta è: ' + this.state.carte[idCarta][1]);
@@ -138,7 +138,7 @@ class Carte extends Component {
         let numeroAlberghi = 0;
         if (idCarta === 23){
             for (let i = 0; i < terreni.length; i++) {   
-                if(terreni[i].proprietario==turnoGiocatore){
+                if(terreni[i].proprietario === turnoGiocatore){
                     numeroCase += terreni[i].case;
                     numeroAlberghi += terreni[i].alberghi;
                 }
@@ -161,18 +161,48 @@ class Carte extends Component {
             }
         }
 
-        //Sposta la pedina indietro di 3 caselle
+        // Sposta la pedina indietro di 3 caselle.
+        // Se la pedina finisce sulla casella Vai in Prigione!, allora la pedina viene spostata in prigione.
+        // Se la pedina finisce sulla casella 33, allora il giocatore pesca una carta.
         if(idCarta===20){
-            let indietroDiTreCaselle = nuoviSegnalini[turnoGiocatore].attualeCasella + 37;
-            if(nuoviSegnalini[turnoGiocatore].attualeCasella >= 3){
-                indietroDiTreCaselle = nuoviSegnalini[turnoGiocatore].attualeCasella - 3;
-                if(indietroDiTreCaselle === 0){
-                    nuoviGiocatori[turnoGiocatore].capitale += 500;
-                }
+            if(nuoviSegnalini[turnoGiocatore].attualeCasella === 2){
+                nuoviSegnalini[turnoGiocatore].attualeCasella = 39;
+                nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[39][1];
+                nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[39][2];
+            } else if (nuoviSegnalini[turnoGiocatore].attualeCasella === 33) {
+                cambiaTesto('Vai in Prigione');
+                handleOpen();
+                nuoviSegnalini[turnoGiocatore].attualeCasella=10;
+                nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[10][1];
+                nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[10][2];
+                nuoviGiocatori[turnoGiocatore].inPrigione = true;
+            } else if (nuoviSegnalini[turnoGiocatore].attualeCasella === 36) {
+                nuoviSegnalini[turnoGiocatore].attualeCasella -= 3;
+                nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[nuoviSegnalini[turnoGiocatore].attualeCasella][1];
+                nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[nuoviSegnalini[turnoGiocatore].attualeCasella][2];
+                this.estraiCarta(   true, 
+                                    turnoGiocatore, 
+                                    giocatori, 
+                                    setGiocatori, 
+                                    segnalini, 
+                                    setSegnalini, 
+                                    terreni, 
+                                    setTerreni, 
+                                    tavolaGioco, 
+                                    setTavolaGioco, 
+                                    societàStazioni, 
+                                    setSocietàStazioni,
+                                    pagaAffitto,
+                                    testo,
+                                    cambiaTesto,
+                                    handleOpen,
+                                    handleClose)
+            
+            } else {
+                nuoviSegnalini[turnoGiocatore].attualeCasella -= 3;
+                nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[nuoviSegnalini[turnoGiocatore].attualeCasella][1];
+                nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[nuoviSegnalini[turnoGiocatore].attualeCasella][2];
             }
-            nuoviSegnalini[turnoGiocatore].attualeCasella += indietroDiTreCaselle;
-            nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[indietroDiTreCaselle][1];
-            nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[indietroDiTreCaselle][2];
         }
 
         // Se il giocatore pesca una carta di uscita dalla prigione, incrementa il contatore
@@ -181,12 +211,12 @@ class Carte extends Component {
             nuoviGiocatori[turnoGiocatore].carteUscitaPrigione += 1;
         }
 
-        // Sposta la pedina a... in base a idCarta la pedina va in diverse destinazioni tra cui Via e Prigione
-        // la casella numero 40 non esiste sulla tabella di gioco, il valore è usato per determinare se deve essere
-        // effettuato uno spostamento dalla pedina in una casella fissata
-        if (this.state.carte[idCarta][0] != 40) {
+        //Sposta la pedina a... in base a idCarta la pedina va in diverse destinazioni tra cui Via e Prigione
+        //la casella numero 40 non esiste sulla tabella di gioco, il valore è usato per determinare se deve essere
+        //effettuato uno spostamento dalla pedina in una casella fissata
+        if (this.state.carte[idCarta][0] !== 40) {
             if((segnalini[turnoGiocatore].attualeCasella > this.state.carte[idCarta][0]) &&
-             idCarta === 24 || idCarta === 25 || idCarta === 17 || idCarta === 18){
+             (idCarta === 24 || idCarta === 25 || idCarta === 17 || idCarta === 18)){
                 nuoviGiocatori[turnoGiocatore].capitale += 500;
                 cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
                 handleOpen();
@@ -211,7 +241,7 @@ class Carte extends Component {
                     cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
                     handleOpen();
                 }
-                nuoviSegnalini[turnoGiocatore].attualeCasella=5;
+                nuoviSegnalini[turnoGiocatore].attualeCasella = 5;
                 nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[5][1];
                 nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[5][2];
                 setGiocatori(nuoviGiocatori);
@@ -221,7 +251,7 @@ class Carte extends Component {
                 } 
             }
             if (segnalini[turnoGiocatore].attualeCasella >= 6 && segnalini[turnoGiocatore].attualeCasella <= 14) {
-                nuoviSegnalini[turnoGiocatore].attualeCasella=15;
+                nuoviSegnalini[turnoGiocatore].attualeCasella = 15;
                 nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[15][1];
                 nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[15][2];
                 setGiocatori(nuoviGiocatori);
@@ -231,7 +261,7 @@ class Carte extends Component {
                 }
             }
             if (segnalini[turnoGiocatore].attualeCasella >= 16 && segnalini[turnoGiocatore].attualeCasella <= 24) {
-                nuoviSegnalini[turnoGiocatore].attualeCasella=25;
+                nuoviSegnalini[turnoGiocatore].attualeCasella = 25;
                 nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[25][1];
                 nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[25][2];
                 setGiocatori(nuoviGiocatori);
@@ -241,7 +271,7 @@ class Carte extends Component {
                 }
             }
             if (segnalini[turnoGiocatore].attualeCasella >= 26 && segnalini[turnoGiocatore].attualeCasella <= 34) {
-                nuoviSegnalini[turnoGiocatore].attualeCasella=35;
+                nuoviSegnalini[turnoGiocatore].attualeCasella = 35;
                 nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[35][1];
                 nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[35][2];
                 setGiocatori(nuoviGiocatori);
@@ -261,7 +291,7 @@ class Carte extends Component {
                     cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
                     handleOpen();
                 }
-                nuoviSegnalini[turnoGiocatore].attualeCasella=12;
+                nuoviSegnalini[turnoGiocatore].attualeCasella = 12;
                 nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[12][1];
                 nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[12][2];
                 setGiocatori(nuoviGiocatori);
@@ -285,7 +315,7 @@ class Carte extends Component {
                 } 
             }
             if (segnalini[turnoGiocatore].attualeCasella >= 13 && segnalini[turnoGiocatore].attualeCasella <= 27) {
-                nuoviSegnalini[turnoGiocatore].attualeCasella=28;
+                nuoviSegnalini[turnoGiocatore].attualeCasella = 28;
                 nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[28][1];
                 nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[28][2];
                 setGiocatori(nuoviGiocatori);
