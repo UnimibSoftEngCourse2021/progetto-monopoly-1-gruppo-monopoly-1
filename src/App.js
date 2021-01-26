@@ -55,7 +55,7 @@ function App(props) {
         riferimento: 1,
       },
       {
-        tipo: 'servizio',
+        tipo: 'tasse',
         nome: 'income tax',
         riferimento: -1,
       },
@@ -563,6 +563,7 @@ function App(props) {
               counter={counter}
               setCounter={setCounter}
               numeroDifficoltà={numeroDifficoltà}
+              difficolta={props.difficolta}
             />
           </td>
           <td className="colonna1" >

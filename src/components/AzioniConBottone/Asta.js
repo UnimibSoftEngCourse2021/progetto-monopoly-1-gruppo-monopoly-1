@@ -9,7 +9,6 @@ const handleOpen = () => { setOpenModal(true) };
 const handleClose = () => { setOpenModal(false) };
 
 const [open, setOpen] = React.useState(false);
-const handleOpenSnackbar = () => {setOpen(true)};
 const handleCloseSnackbar = (event, reason) => {setOpen(false)};
 const [testo, setTesto] = React.useState('');
 

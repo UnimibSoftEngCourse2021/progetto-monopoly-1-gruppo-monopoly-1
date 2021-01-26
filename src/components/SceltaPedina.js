@@ -29,6 +29,7 @@ function SceltaPedina(props){
             numeroTurniPrigione: 0,
             carteUscitaPrigione: 0,
             inGioco: false,
+            carteBonus: 0
           },
           {
             numero: 2,
@@ -39,6 +40,7 @@ function SceltaPedina(props){
             numeroTurniPrigione: 0,
             carteUscitaPrigione: 0,
             inGioco: false,
+            carteBonus: 0
           },
           {
             numero: 3,
@@ -49,6 +51,7 @@ function SceltaPedina(props){
             numeroTurniPrigione: 0,
             carteUscitaPrigione: 0,
             inGioco: false,
+            carteBonus: 0
           },
           {
             numero: 4,
@@ -59,6 +62,7 @@ function SceltaPedina(props){
             numeroTurniPrigione: 0,
             carteUscitaPrigione: 0,
             inGioco: false,
+            carteBonus: 0
           },
           {
             numero: 5,
@@ -69,6 +73,7 @@ function SceltaPedina(props){
             numeroTurniPrigione: 0,
             carteUscitaPrigione: 0,
             inGioco: false,
+            carteBonus: 0
           },
           {
             numero: 6,
@@ -79,6 +84,7 @@ function SceltaPedina(props){
             numeroTurniPrigione: 0,
             carteUscitaPrigione: 0,
             inGioco: false,
+            carteBonus: 0
           },
         ]
     );
@@ -194,7 +200,8 @@ function SceltaPedina(props){
                                                 inPrigione: false,
                                                 numeroTurniPrigione: 0, 
                                                 carteUscitaPrigione: 0, 
-                                                inGioco: true 
+                                                inGioco: true,
+                                                carteBonus: 0 
                                             };
             }
             else if (numeroGiocatori === 3) {
@@ -206,7 +213,8 @@ function SceltaPedina(props){
                                                 inPrigione: false, 
                                                 numeroTurniPrigione: 0,
                                                 carteUscitaPrigione: 0, 
-                                                inGioco: true 
+                                                inGioco: true,
+                                                carteBonus: 0 
                                             };
             }
             else if (numeroGiocatori === 4) {
@@ -218,7 +226,8 @@ function SceltaPedina(props){
                                                 inPrigione: false, 
                                                 numeroTurniPrigione: 0,
                                                 carteUscitaPrigione: 0, 
-                                                inGioco: true 
+                                                inGioco: true,
+                                                carteBonus: 0 
                                             };
             }
             else if (numeroGiocatori === 5) {
@@ -230,7 +239,8 @@ function SceltaPedina(props){
                                                 inPrigione: false, 
                                                 numeroTurniPrigione: 0,
                                                 carteUscitaPrigione: 0, 
-                                                inGioco: true 
+                                                inGioco: true,
+                                                carteBonus: 0 
                                             };
             }
             else {
@@ -242,7 +252,8 @@ function SceltaPedina(props){
                                                 inPrigione: false, 
                                                 numeroTurniPrigione: 0,
                                                 carteUscitaPrigione: 0, 
-                                                inGioco: true 
+                                                inGioco: true,
+                                                carteBonus: 0 
                                             };
             }
             setGiocatori(nuovaListaGiocatori);

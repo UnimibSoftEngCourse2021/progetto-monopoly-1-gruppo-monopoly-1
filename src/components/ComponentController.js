@@ -16,17 +16,14 @@ let dado1;
 let dado2;
 let sommaDadi;
 let punteggioDoppio;
-let carta1 = new Carte();
+var carta = Carte.getInstance();
 let dadiTirati = false; // Questo booleano permette di tirare i dadi solo una volta per turno, salvo il caso di punteggio doppio
 let numeroTiriDadi = 0;
 let contratti = false;
 
 
-
-
-
-function verificaPunteggioDoppio(Primodado, Secondodado){
-    return Primodado === Secondodado;
+function verificaPunteggioDoppio(primoDado, secondoDado){
+    return primoDado === secondoDado;
 }
 
 class ComponentController extends React.Component {
@@ -50,6 +47,11 @@ class ComponentController extends React.Component {
 
     handleOpen = () => {this.setState({open: true})};
     handleClose = () => {this.setState({open: false})};
+    cambiaTesto = (testoRicevuto) => {
+        this.setState({
+            testo: testoRicevuto
+        })
+    }
 
     spostaSegnalino (sommaDadiParam) {
         let numSegnalino = this.props.turnoGiocatore;
@@ -62,7 +64,7 @@ class ComponentController extends React.Component {
             if (attualeCasella === 39) {
                 attualeCasella=0;
                 let banca = new Banca();
-                banca.giocatorePassaDalVia(this.props.giocatori,this.props.turnoGiocatore,this.props.setGiocatori);
+                banca.giocatorePassaDalVia(this.props.giocatori,this.props.turnoGiocatore,this.props.setGiocatori, this.handleOpen, this.cambiaTesto, this.props.difficolta);
             } else {
                 attualeCasella = attualeCasella + 1
             }        
@@ -89,8 +91,7 @@ class ComponentController extends React.Component {
         }
 
         if (this.props.caselle[attualeCasella].tipo ==='imprevisti') {
-            // alert('imprevisti');
-            carta1.estraiCarta(  false, 
+            carta.estraiCarta(  false, 
                                  this.props.turnoGiocatore, 
                                  this.props.giocatori, 
                                  this.props.setGiocatori, 
@@ -102,12 +103,15 @@ class ComponentController extends React.Component {
                                  this.props.setTavolaGioco,
                                  this.props.societàStazioni,
                                  this.props.setSocietàStazioni,
-                                 this.pagaAffitto);
+                                 this.pagaAffitto,
+                                 this.state.testo,
+                                 this.cambiaTesto,
+                                 this.handleOpen,
+                                 this.handleClose);
  
         }
         if (this.props.caselle[attualeCasella].tipo ==='probabilita') {
-            //alert('probabilita');
-            carta1.estraiCarta( true, 
+            carta.estraiCarta( true, 
                                 this.props.turnoGiocatore, 
                                 this.props.giocatori, 
                                 this.props.setGiocatori, 
@@ -119,7 +123,11 @@ class ComponentController extends React.Component {
                                 this.props.setTavolaGioco,
                                 this.props.societàStazioni,
                                 this.props.setSocietàStazioni,
-                                this.pagaAffitto);
+                                this.pagaAffitto,
+                                this.state.testo,
+                                this.cambiaTesto,
+                                this.handleOpen,
+                                this.handleClose);
         }
 
         this.props.muoviPedine();
@@ -132,10 +140,8 @@ class ComponentController extends React.Component {
     tiraDadi = () => {
         
         if (!dadiTirati){
-            //dado1 = Math.floor(Math.random()*6) + 1;
             dado1 = CryptoRandom(1,6); //Il max è incluso e il min è incluso
-            //dado2 = Math.floor(Math.random()*6) + 1;
-            dado2 =CryptoRandom(1,6); //Il max è incluso e il min è incluso
+            dado2 = CryptoRandom(1,6); //Il max è incluso e il min è incluso
             sommaDadi = dado1 + dado2;
             numeroTiriDadi = numeroTiriDadi + 1;
             punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
@@ -410,7 +416,33 @@ class ComponentController extends React.Component {
         return;
     }
 
-    //Questa funzione fa pagare le tasse al giocatore che finisce su una casella imposte
+    // //Questa funzione fa pagare le tasse al giocatore che finisce su una casella imposte
+    // pagaTasse =()=>{
+    //     var attualeCasella = this.props.segnalini[this.props.turnoGiocatore].attualeCasella;
+    //     var casella = this.props.caselle[attualeCasella];
+    //     var tassa;
+
+    //     if (this.props.difficolta === "facile" && this.props.giocatori[this.props.turnoGiocatore].carteBonus > 0) {
+    //         var nuoviGiocatori1 = this.props.giocatori;
+    //         nuoviGiocatori1[this.props.turnoGiocatore].carteBonus -= 1;
+    //         this.props.setGiocatori(nuoviGiocatori1);
+    //         return;
+    //     } else {
+    //         if (casella.tipo === 'tasse'){
+    //             if (casella.nome === 'luxury tax'){
+    //                 tassa = 100 + this.props.numeroDifficoltà;
+    //             } else {
+    //                 tassa = 200 + this.props.numeroDifficoltà;
+    //             }
+    //             var nuoviGiocatori2 = this.props.giocatori;
+    //             nuoviGiocatori2[this.props.turnoGiocatore].capitale -= tassa;
+    //             this.props.setGiocatori(nuoviGiocatori2);
+    //         } else { 
+    //             return;
+    //         }
+    //     }
+    // }
+
     pagaTasse =()=>{
         var attualeCasella = this.props.segnalini[this.props.turnoGiocatore].attualeCasella;
         var casella = this.props.caselle[attualeCasella];

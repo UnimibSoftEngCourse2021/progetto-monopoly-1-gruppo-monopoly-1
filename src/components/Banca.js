@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class Banca extends Component {
     constructor(props) {
         super(props);
@@ -19,12 +18,21 @@ class Banca extends Component {
         }
     }
 
-    giocatorePassaDalVia = (giocatori,turnoGiocatore,setGiocatori) => {
+    giocatorePassaDalVia = (giocatori,turnoGiocatore,setGiocatori, handleOpen, cambiaTesto, difficolta) => {
         // Incrementa il capitale del giocatore di turno di 500 quando passa dal VIA              
         var nuoviGiocatori = giocatori;
         nuoviGiocatori[turnoGiocatore].capitale=giocatori[turnoGiocatore].capitale+500;
-        setGiocatori(nuoviGiocatori);
-        //alert('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');  
+        if (difficolta === "facile") {
+            console.log("Entrato");
+            nuoviGiocatori[turnoGiocatore].carteBonus += 1;
+            setGiocatori(nuoviGiocatori);
+            console.log("Carte bonus: " + nuoviGiocatori[turnoGiocatore].carteBonus); 
+            console.log("Carte bonus: " + giocatori[turnoGiocatore].carteBonus); 
+        } else {
+            setGiocatori(nuoviGiocatori);
+        }
+        cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
+        handleOpen(); 
     }
 
     partitaCountdown = (giocatori)=> {

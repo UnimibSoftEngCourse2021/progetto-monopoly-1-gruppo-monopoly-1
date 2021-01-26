@@ -5,11 +5,9 @@ import {Paper, Modal, Button, Grid, TextField, Radio, RadioGroup, FormControlLab
 function Ipoteca(props){
 
   const [open, setOpen] = React.useState(false);
-  const handleOpenSnackbar = () => {setOpen(true)};
   const handleCloseSnackbar = (event, reason) => {setOpen(false)};
   const [testo, setTesto] = React.useState('');
   
-    
 
 //Stato del Modale utilizato per costruire un edificio
 const [openModal, setOpenModal] = React.useState(false);

@@ -24,7 +24,7 @@ function PagaCauzione() {
             nuoviGiocatori[props.turnoGiocatore].inPrigione = false;
             props.setGiocatori(nuoviGiocatori);
             setTesto("Giocatore " + (props.turnoGiocatore + 1) + " uscito dalla prigione.");
-            setOpen(true);alert(); 
+            setOpen(true);
     } else if (props.giocatori[props.turnoGiocatore].inPrigione === true 
         && props.giocatori[props.turnoGiocatore].capitale <= 125) {
             setTesto("Non hai abbastanza soldi per pagare la cauzione!");
