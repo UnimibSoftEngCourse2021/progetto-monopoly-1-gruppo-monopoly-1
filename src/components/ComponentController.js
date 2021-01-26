@@ -250,7 +250,6 @@ class ComponentController extends React.Component {
                 this.partitaATempo();
             }
         }
-        //alert('Ora tocca ad un altro giocatore'); 
     }
 
     //Questa funzione verifica se il giocatore che ha concluso il turno non ha più soldi
@@ -502,10 +501,29 @@ class ComponentController extends React.Component {
                             />
                         </td>
                         <td className="tdController">
-                            
+                            <Acquista 
+                              attualeCasella={this.props.segnalini[this.props.turnoGiocatore].attualeCasella}
+                              caselle={this.props.caselle} 
+                              setCaselle={this.props.setCaselle}
+                              turnoGiocatore={this.props.turnoGiocatore}
+                              terreni={this.props.terreni}
+                              setTerreni={this.props.setTerreni}
+                              giocatori={this.props.giocatori}
+                              setGiocatori={this.props.setGiocatori}
+                              societàStazioni={this.props.societàStazioni}
+                              setSocietàStazioni={this.props.setSocietàStazioni}
+                            />     
                         </td>   
                         <td className="tdController">
-                        
+                            <Ipoteca
+                                terreni={this.props.terreni}
+                                setTerreni={this.props.setTerreni}
+                                giocatori={this.props.giocatori}
+                                setGiocatori={this.props.setGiocatori} 
+                                turnoGiocatore={this.props.turnoGiocatore}
+                                societàStazioni={this.props.societàStazioni}
+                                setSocietàStazioni={this.props.setSocietàStazioni}
+                            />
                         </td>
                         <td className="tdController">
                         <Autori />                         
@@ -522,29 +540,10 @@ class ComponentController extends React.Component {
                             />
                         </td>
                         <td className="tdController">
-                        <Acquista 
-                              attualeCasella={this.props.segnalini[this.props.turnoGiocatore].attualeCasella}
-                              caselle={this.props.caselle} 
-                              setCaselle={this.props.setCaselle}
-                              turnoGiocatore={this.props.turnoGiocatore}
-                              terreni={this.props.terreni}
-                              setTerreni={this.props.setTerreni}
-                              giocatori={this.props.giocatori}
-                              setGiocatori={this.props.setGiocatori}
-                              societàStazioni={this.props.societàStazioni}
-                              setSocietàStazioni={this.props.setSocietàStazioni}
-                            />                           
+                                              
                         </td>
                         <td className="tdController">
-                            <Ipoteca
-                                terreni={this.props.terreni}
-                                setTerreni={this.props.setTerreni}
-                                giocatori={this.props.giocatori}
-                                setGiocatori={this.props.setGiocatori} 
-                                turnoGiocatore={this.props.turnoGiocatore}
-                                societàStazioni={this.props.societàStazioni}
-                                setSocietàStazioni={this.props.setSocietàStazioni}
-                            />
+                            
                         </td>   
                         <td className="tdController">
                             <Abbandona 

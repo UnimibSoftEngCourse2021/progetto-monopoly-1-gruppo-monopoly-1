@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Snackbar } from '@material-ui/core';
+
 
 class Banca extends Component {
     constructor(props) {
@@ -7,13 +7,8 @@ class Banca extends Component {
         this.state = {
             saldoContoGiocatori: [0,0,0,0,0,0],
             contrattiGiocatori: [0,0,0,0,0,0],
-            open: false,
-            testo: '',
         }
     }
-
-    handleOpen = () => {this.setState({open: true})};
-    handleClose = () => {this.setState({open: false})};
 
     //Modifica il saldo al giocatore (giocatore identificato tramite un numero int)
     modificaSaldo = (sommaDiDenaro, giocatore) => {

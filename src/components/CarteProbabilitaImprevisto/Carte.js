@@ -119,7 +119,7 @@ class Carte extends Component {
         let numeroAlberghi = 0;
         if (idCarta === 23){
             for (let i = 0; i < terreni.length; i++) {   
-                if(terreni[i].proprietario==turnoGiocatore){
+                if(terreni[i].proprietario === turnoGiocatore){
                     numeroCase += terreni[i].case;
                     numeroAlberghi += terreni[i].alberghi;
                 }
@@ -162,7 +162,7 @@ class Carte extends Component {
         // Sposta la pedina a... in base a idCarta la pedina va in diverse destinazioni tra cui Via e Prigione
         // la casella numero 40 non esiste sulla tabella di gioco, il valore è usato per determinare se deve essere
         // effettuato uno spostamento dalla pedina in una casella fissata
-        if (this.state.carte[idCarta][0] != 40) {
+        if (this.state.carte[idCarta][0] !== 40) {
             if((segnalini[turnoGiocatore].attualeCasella > this.state.carte[idCarta][0]) &&
              idCarta === 24 || idCarta === 25 || idCarta === 17 || idCarta === 18){
                 nuoviGiocatori[turnoGiocatore].capitale += 500;
