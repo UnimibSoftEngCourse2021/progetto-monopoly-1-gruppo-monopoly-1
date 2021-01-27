@@ -503,9 +503,9 @@ function App(props) {
     ]
   );
  
-  const [turnoGiocatore, setTurnoGiocatore] = React.useState(IniziaPerPrimo());
+  const [turnoGiocatore, setTurnoGiocatore] = React.useState(iniziaPerPrimo());
 
-  function IniziaPerPrimo() {
+  function iniziaPerPrimo() {
     //var min = Math.ceil(0);
     //var max = Math.floor(props.numeroGiocatori);
     //return Math.floor(Math.random() * (max - min)) + min; //Il max è escluso e il min è incluso

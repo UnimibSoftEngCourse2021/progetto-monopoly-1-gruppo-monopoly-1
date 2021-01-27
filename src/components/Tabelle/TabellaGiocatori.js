@@ -1,13 +1,9 @@
 import React from 'react'
 import { Box, TableCell, TableRow, TableBody, TableContainer, Table, TableHead, Typography} from '@material-ui/core';
 
-
-
 function TabellaGiocatori (props) {
 
-    
-
-    function StampaNumero(numero){
+    function stampaNumero(numero){
         var t = props.turnoGiocatore +1;
         
         if(numero === t){
@@ -33,8 +29,6 @@ function TabellaGiocatori (props) {
         rows[i] = createData(props.giocatori[i].numero, props.giocatori[i].pedina, props.giocatori[i].capitale)
       }
      
-      
-      
         return (
             <div>
                 <h3 align='center'>
@@ -55,9 +49,7 @@ function TabellaGiocatori (props) {
                             {rows.map((row) => (
                                 <TableRow key={row.numero}>
                                     <TableCell component="th" scope="row">
-                                    { StampaNumero(row.numero) }
-                                            
-                                        
+                                    { stampaNumero(row.numero) } 
                                     </TableCell>
                                     <TableCell align="right"><img alt="" src={row.pedina} style={{width:'35px'}}/></TableCell>
                                     <TableCell align="right">{row.capitale}</TableCell>
@@ -69,7 +61,6 @@ function TabellaGiocatori (props) {
                 </Box>
             </div>
         )
-    
 }
 
 export default TabellaGiocatori;

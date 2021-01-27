@@ -163,7 +163,7 @@ function SceltaPedina(props){
     };
     //Partita a tempo countdown
     const [tempoMinuti, setTempoMinuti] = React.useState(null);
-    const handleChangeTempo1 = (event) => {
+    const handleChangeTempoMinuti = (event) => {
         if(event.target.value % 1 !== 0){
             setTesto('Controlla di aver inserito un numero di minuti corretto');
             setOpen(true);
@@ -408,7 +408,7 @@ function SceltaPedina(props){
                 <h2>Se vuoi svolgere una partita a tempo inserisci qui il numero di turni</h2>
                 <TextField variant="outlined" style={{margin:'16px', marginLeft:'32px', width:'350px'}} onChange={handleChangeTempo} />            
                 <h2>Oppure i minuti del countdown</h2>
-                <TextField variant="outlined" style={{margin:'16px', marginLeft:'32px', width:'350px'}} onChange={handleChangeTempo1} />
+                <TextField variant="outlined" style={{margin:'16px', marginLeft:'32px', width:'350px'}} onChange={handleChangeTempoMinuti} />
             </Grid>
             <Snackbar
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}

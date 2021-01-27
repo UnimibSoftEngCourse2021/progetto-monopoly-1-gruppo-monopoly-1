@@ -5,7 +5,6 @@ import SceltaNumeroGiocatori from './components/SceltaNumeroGiocatori';
 import SceltaDifficolta from './components/SceltaDifficolta'
 import SceltaPedina from './components/SceltaPedina'
 
-
 class Menu extends Component {
     constructor(props) {
       super(props);

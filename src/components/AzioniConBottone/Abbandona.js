@@ -4,16 +4,12 @@ import {Paper, Modal, Button} from '@material-ui/core';
 
 function Abbandona(props){
 
-    
-
-    
-
 //Stato del Modale utilizato per costruire un edificio
 const [openModal, setOpenModal] = React.useState(false);
 const handleOpen = () => { setOpenModal(true) };
 const handleClose = () => { setOpenModal(false) };
 
-function AbbandonaPartita(){
+function abbandonaPartita(){
     var nuoviGiocatori = props.giocatori;
     nuoviGiocatori[props.turnoGiocatore].inGioco = false;
     nuoviGiocatori[props.turnoGiocatore].capitale = 0;
@@ -43,10 +39,6 @@ function AbbandonaPartita(){
     props.setTerreni(nuoviTerreni);
 }
 
-
-
-
-
 const body = (
   <Paper style={{marginTop:'16px', marginLeft:'200px', marginRight:'200px', height:'250px'}}>
 
@@ -57,23 +49,15 @@ const body = (
         Sei sicuro di voler abbandonare la partita?
     </h3>
           
-    <Button variant="contained" style={{margin:'16px', width:'350px'}} onClick={() => AbbandonaPartita()} >
+    <Button variant="contained" style={{margin:'16px', width:'350px'}} onClick={() => abbandonaPartita()} >
         Si, voglio lasciare la partita 
     </Button>
     <Button variant="contained" style={{margin:'16px', width:'350px'}} onClick={handleClose} >
         No, continuo a giocare
     </Button>
    
-    
-    
-    
-    
   </Paper>
 );
-
-
-
-
 
 return(
 <div>
@@ -86,4 +70,5 @@ return(
 </div>
 );
 }
+
 export default Abbandona;
