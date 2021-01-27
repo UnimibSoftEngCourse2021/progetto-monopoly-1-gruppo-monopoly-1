@@ -8,8 +8,6 @@ const [open, setOpen] = React.useState(false);
 const handleCloseSnackbar = () => {setOpen(false)};
 const [testo, setTesto] = React.useState('');
 
-    
-
 //Stato del Modale utilizato per costruire un edificio
 const [openModal, setOpenModal] = React.useState(false);
 const handleOpen = () => { setOpenModal(true) };
@@ -25,7 +23,7 @@ const handleChangeTerreno = (event) => {
   setTerreno(event.target.value);
 };
 
-function EsisteTerreno(){
+function esisteTerreno(){
   var i = 0;
   var esiste = false;
   var n;
@@ -47,12 +45,9 @@ function EsisteTerreno(){
   }
 }
 
-
-
-
-function VendiCasa(){
+function vendiCasa(){
   //verifico che il terreno esista e salvo il risultato in proprietà
-  var n = EsisteTerreno();
+  var n = esisteTerreno();
   if(n === -1){
     setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
     setOpen(true); 
@@ -91,9 +86,9 @@ function VendiCasa(){
 
 }
 
-function VendiAlbergo(){
+function vendiAlbergo(){
   //verifico che il terreno esista e salvo il risultato in proprietà
-  var n = EsisteTerreno();
+  var n = esisteTerreno();
   if(n === -1){
     setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
     setOpen(true); 
@@ -135,12 +130,12 @@ function VendiAlbergo(){
 
 }
 
-function VendiEdificio2(){
+function vendiEdificio2(){
   if(edificio === 'casa'){
-    VendiCasa();
+    vendiCasa();
   }
   else{
-    VendiAlbergo();
+    vendiAlbergo();
   }
   
 }
@@ -158,20 +153,13 @@ const body = (
     <Grid container direction="column">
       <TextField variant="outlined" style={{margin:'16px', width:'350px'}} onChange={handleChangeTerreno}/>
     
-      <Button variant="contained" style={{margin:'16px', width:'350px'}} onClick={() => VendiEdificio2()}>
+      <Button variant="contained" style={{margin:'16px', width:'350px'}} onClick={() => vendiEdificio2()}>
         vendi questo edificio
       </Button>
    
     </Grid>
-    
-    
-    
   </Paper>
 );
-
-
-
-
 
 return(
 <div>
@@ -196,4 +184,5 @@ return(
 </div>
 );
 }
+
 export default VendiEdificio;

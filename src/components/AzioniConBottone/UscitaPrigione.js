@@ -16,7 +16,7 @@ const [testo, setTesto] = React.useState('');
 const [uscita, setUscita] = React.useState('cauzione');
 const handleChangeTipoDiUscita = (event) => { setUscita(event.target.value) };
 
-function PagaCauzione() {
+function pagaCauzione() {
     if (props.giocatori[props.turnoGiocatore].inPrigione === true 
         && props.giocatori[props.turnoGiocatore].capitale > 125) {
             var nuoviGiocatori = props.giocatori;
@@ -36,7 +36,7 @@ function PagaCauzione() {
     return;
 }
 
-function UsaCarta() {
+function usaCarta() {
     if (props.giocatori[props.turnoGiocatore].inPrigione === true 
         && props.giocatori[props.turnoGiocatore].carteUscitaPrigione > 0) {
             var nuoviGiocatori = props.giocatori;
@@ -56,11 +56,11 @@ function UsaCarta() {
     return;
 }
 
-function EsciDallaPrigione(){
+function esciDallaPrigione(){
     if(uscita === 'cauzione'){
-        PagaCauzione();
+        pagaCauzione();
     } else {
-        UsaCarta();
+        usaCarta();
     } 
 }
 
@@ -71,7 +71,7 @@ const body = (
             <FormControlLabel value="cauzione" control={<Radio />} label="Cauzione" />
             <FormControlLabel value="carta" control={<Radio />} label="Carta" />
         </RadioGroup>
-        <Button variant="contained" style={{margin:'16px', width:'350px'}} onClick={() => EsciDallaPrigione()}>
+        <Button variant="contained" style={{margin:'16px', width:'350px'}} onClick={() => esciDallaPrigione()}>
             Conferma la scelta
         </Button>
     </Paper>
