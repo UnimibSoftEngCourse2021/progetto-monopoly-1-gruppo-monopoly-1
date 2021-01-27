@@ -82,7 +82,7 @@ class ComponentController extends React.Component {
         // Se il giocatore finisce sulla casella "Vai in Prigione", allora la sua pedina
         // viene spostata in Prigione.
         if (this.props.segnalini[numSegnalino].attualeCasella === 30) {
-            this.setState({open: true, testo:"Vai in Prigione."});
+            this.setState({open: true, testo:"Giocatore " + (this.props.turnoGiocatore + 1) + " va in Prigione. "});
             this.props.segnalini[numSegnalino].ascissa = this.props.tavolaGioco[10][1];
             this.props.segnalini[numSegnalino].ordinata = this.props.tavolaGioco[10][2];
             this.props.segnalini[numSegnalino].attualeCasella = 10;
@@ -107,7 +107,9 @@ class ComponentController extends React.Component {
                                  this.state.testo,
                                  this.cambiaTesto,
                                  this.handleOpen,
-                                 this.handleClose);
+                                 this.handleClose,
+                                 this.props.difficolta,
+                                 '');
  
         }
         if (this.props.caselle[attualeCasella].tipo ==='probabilita') {
@@ -127,7 +129,9 @@ class ComponentController extends React.Component {
                                 this.state.testo,
                                 this.cambiaTesto,
                                 this.handleOpen,
-                                this.handleClose);
+                                this.handleClose,
+                                this.props.difficolta,
+                                '');
         }
 
         this.props.muoviPedine();
@@ -169,8 +173,8 @@ class ComponentController extends React.Component {
                 nuoviGiocatori[this.props.turnoGiocatore].inPrigione = false;
                 this.props.giocatori[this.props.turnoGiocatore].numeroTurniPrigione = 0;
                 this.props.setGiocatori(nuoviGiocatori);
-                this.setState({open: true, testo: "Il Giocatore " + (this.props.turnoGiocatore+1) + " paga la cauzione obbligatoria di € 125 per uscire di prigione essendo rimasto" +
-                " in prigione per 3 turni consecutivi."});
+                this.setState({open: true, testo: "Giocatore " + (this.props.turnoGiocatore+1) + " paga la cauzione obbligatoria di € 125 per uscire di prigione essendo rimasto" +
+                " in prigione per 3 turni consecutivi. "});
             }
 
             var lanciDoppi = this.state.tiroDoppio;
@@ -357,17 +361,21 @@ class ComponentController extends React.Component {
             if(terreno.proprietario === this.props.turnoGiocatore){
                 return;
             }
-            affitto = (terreno.valore*5/100) + this.props.numeroDifficoltà;
-            if(terreno.case > 0){
-                affitto = affitto + ((terreno.valore*5/100)*terreno.case);
-            }
-            if(terreno.alberghi > 0){
-                affitto = affitto*4;
-            }
-
             nuoviGiocatori = this.props.giocatori;
-            nuoviGiocatori[this.props.turnoGiocatore].capitale =  nuoviGiocatori[this.props.turnoGiocatore].capitale - affitto;
-            nuoviGiocatori[terreno.proprietario].capitale = nuoviGiocatori[terreno.proprietario].capitale + affitto;
+            if (this.props.difficolta === 'facile' && nuoviGiocatori[this.props.turnoGiocatore].carteBonus > 0) {
+                nuoviGiocatori[this.props.turnoGiocatore].carteBonus -= 1;
+                this.setState({open: true, testo:"Giocatore " + (this.props.turnoGiocatore + 1) + " ha usato una carta bonus per non pagare l'affitto. "});
+            } else {
+                affitto = (terreno.valore*5/100) + this.props.numeroDifficoltà;
+                if (terreno.case > 0) {
+                    affitto = affitto + ((terreno.valore*5/100)*terreno.case);
+                }
+                if (terreno.alberghi > 0) {
+                    affitto = affitto*4;
+                }
+                nuoviGiocatori[this.props.turnoGiocatore].capitale -= affitto;
+                nuoviGiocatori[terreno.proprietario].capitale += affitto;
+            }
             this.props.setGiocatori(nuoviGiocatori);
         }
 
@@ -385,10 +393,15 @@ class ComponentController extends React.Component {
             if(stazione.proprietario === this.props.turnoGiocatore){
                 return;
             }
-            affitto = (200 + this.props.numeroDifficoltà);          
             nuoviGiocatori = this.props.giocatori;
-            nuoviGiocatori[this.props.turnoGiocatore].capitale =  nuoviGiocatori[this.props.turnoGiocatore].capitale - affitto;
-            nuoviGiocatori[stazione.proprietario].capitale = nuoviGiocatori[stazione.proprietario].capitale + affitto;
+            if (this.props.difficolta === 'facile' && nuoviGiocatori[this.props.turnoGiocatore].carteBonus > 0) {
+                nuoviGiocatori[this.props.turnoGiocatore].carteBonus -= 1;
+                this.setState({open: true, testo:"Giocatore " + (this.props.turnoGiocatore + 1) + " ha usato una carta bonus per non pagare l'affitto. "});
+            } else { 
+                affitto = (200 + this.props.numeroDifficoltà);          
+                nuoviGiocatori[this.props.turnoGiocatore].capitale -= affitto;
+                nuoviGiocatori[stazione.proprietario].capitale += affitto;
+            }
             this.props.setGiocatori(nuoviGiocatori);
         }
 
@@ -406,65 +419,43 @@ class ComponentController extends React.Component {
             if(società.proprietario === this.props.turnoGiocatore){
                 return;
             }
-            affitto = 150 + this.props.numeroDifficoltà;
             nuoviGiocatori = this.props.giocatori;
-            nuoviGiocatori[this.props.turnoGiocatore].capitale =  nuoviGiocatori[this.props.turnoGiocatore].capitale - affitto;
-            nuoviGiocatori[società.proprietario].capitale = nuoviGiocatori[società.proprietario].capitale + affitto;
+            if (this.props.difficolta === 'facile' && nuoviGiocatori[this.props.turnoGiocatore].carteBonus > 0) {
+                nuoviGiocatori[this.props.turnoGiocatore].carteBonus -= 1;
+                this.setState({open: true, testo:"Giocatore " + (this.props.turnoGiocatore + 1) + " ha usato una carta bonus per non pagare l'affitto. "});
+            } else {
+                affitto = 150 + this.props.numeroDifficoltà;
+                nuoviGiocatori[this.props.turnoGiocatore].capitale -= affitto;
+                nuoviGiocatori[società.proprietario].capitale += affitto;
+            }
             this.props.setGiocatori(nuoviGiocatori);
             console.log(this.props.giocatori);
         }
         return;
     }
 
-    // //Questa funzione fa pagare le tasse al giocatore che finisce su una casella imposte
-    // pagaTasse =()=>{
-    //     var attualeCasella = this.props.segnalini[this.props.turnoGiocatore].attualeCasella;
-    //     var casella = this.props.caselle[attualeCasella];
-    //     var tassa;
-
-    //     if (this.props.difficolta === "facile" && this.props.giocatori[this.props.turnoGiocatore].carteBonus > 0) {
-    //         var nuoviGiocatori1 = this.props.giocatori;
-    //         nuoviGiocatori1[this.props.turnoGiocatore].carteBonus -= 1;
-    //         this.props.setGiocatori(nuoviGiocatori1);
-    //         return;
-    //     } else {
-    //         if (casella.tipo === 'tasse'){
-    //             if (casella.nome === 'luxury tax'){
-    //                 tassa = 100 + this.props.numeroDifficoltà;
-    //             } else {
-    //                 tassa = 200 + this.props.numeroDifficoltà;
-    //             }
-    //             var nuoviGiocatori2 = this.props.giocatori;
-    //             nuoviGiocatori2[this.props.turnoGiocatore].capitale -= tassa;
-    //             this.props.setGiocatori(nuoviGiocatori2);
-    //         } else { 
-    //             return;
-    //         }
-    //     }
-    // }
-
     pagaTasse =()=>{
         var attualeCasella = this.props.segnalini[this.props.turnoGiocatore].attualeCasella;
         var casella = this.props.caselle[attualeCasella];
         var tassa;
 
-        if(casella.tipo === 'tasse'){
-            if(casella.nome === 'luxury tax'){
-                tassa = 100 + this.props.numeroDifficoltà;
-            }
-            else{
-                tassa = 200 + this.props.numeroDifficoltà;
-            }
-
+        if (casella.tipo === 'tasse') {
             var nuoviGiocatori = this.props.giocatori;
-            nuoviGiocatori[this.props.turnoGiocatore].capitale =  nuoviGiocatori[this.props.turnoGiocatore].capitale - tassa;
+            if (this.props.difficolta === 'facile' && nuoviGiocatori[this.props.turnoGiocatore].carteBonus > 0) {
+                nuoviGiocatori[this.props.turnoGiocatore].carteBonus -= 1;
+                this.setState({open: true, testo:"Giocatore " + (this.props.turnoGiocatore + 1) + " ha usato una carta bonus per non pagare la tassa. "});
+            } else {
+                if (casella.nome === 'luxury tax') {
+                    tassa = 100 + this.props.numeroDifficoltà;
+                } else {
+                    tassa = 200 + this.props.numeroDifficoltà;
+                }
+                nuoviGiocatori[this.props.turnoGiocatore].capitale -= tassa;
+            }  
             this.props.setGiocatori(nuoviGiocatori);
-
-        }
-        else{
+        } else {
             return;
         }
-
     }
 
     assegnaContrattiIniziali() {

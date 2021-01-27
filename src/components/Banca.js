@@ -4,34 +4,26 @@ class Banca extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            saldoContoGiocatori: [0,0,0,0,0,0],
-            contrattiGiocatori: [0,0,0,0,0,0],
+            open: false,
+            testo: '',
         }
     }
 
-    //Modifica il saldo al giocatore (giocatore identificato tramite un numero int)
-    modificaSaldo = (sommaDiDenaro, giocatore) => {
-        if(this.state.saldoContoPedine[giocatore] + sommaDiDenaro >= 0){
-            this.state.saldoContoPedine[giocatore] += sommaDiDenaro;
-        }else{
-            console.log("Errore"); //TODO
-        }
-    }
+    handleOpen = () => {this.setState({open: true})};
+    handleClose = () => {this.setState({open: false})};
 
-    giocatorePassaDalVia = (giocatori,turnoGiocatore,setGiocatori, handleOpen, cambiaTesto, difficolta) => {
+    giocatorePassaDalVia = (giocatori, turnoGiocatore, setGiocatori, handleOpen, cambiaTesto, difficolta) => {
         // Incrementa il capitale del giocatore di turno di 500 quando passa dal VIA              
         var nuoviGiocatori = giocatori;
         nuoviGiocatori[turnoGiocatore].capitale=giocatori[turnoGiocatore].capitale+500;
         if (difficolta === "facile") {
-            console.log("Entrato");
             nuoviGiocatori[turnoGiocatore].carteBonus += 1;
             setGiocatori(nuoviGiocatori);
-            console.log("Carte bonus: " + nuoviGiocatori[turnoGiocatore].carteBonus); 
-            console.log("Carte bonus: " + giocatori[turnoGiocatore].carteBonus); 
+            cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via ritirando una carta bonus. ');
         } else {
             setGiocatori(nuoviGiocatori);
+            cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via. ');
         }
-        cambiaTesto('Giocatore ' + (turnoGiocatore + 1) + ' passa Dal Via');
         handleOpen(); 
     }
 

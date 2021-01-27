@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 
 class SceltaDifficolta extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-
+    
     render() {
         return(
             <div> Scegli la difficoltà:
