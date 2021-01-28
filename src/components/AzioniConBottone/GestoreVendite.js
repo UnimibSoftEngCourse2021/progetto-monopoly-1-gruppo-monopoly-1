@@ -78,7 +78,9 @@ function esisteGiocatore(nome){
 function vendiTerreno(){
 
   //verifico che il terreno esista e salvo il risultato in proprietà
-  var n = EsisteTerreno(props.terreni, props.terreno);
+  var n = EsisteTerreno(props.terreni, terreno);
+  console.log(props.terreni)
+  console.log(n);
   
   if(n === -1){
     setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
