@@ -4,13 +4,13 @@ import Asta from './Asta';
 
 function GestoreAcquisti(props){
 
-  const [open, setOpen] = React.useState(false);
-  const handleCloseSnackbar = () => {setOpen(false)};
-  const [testo, setTesto] = React.useState('');
+  const [openAcquisti, setOpenAcquisti] = React.useState(false);
+  const handleCloseSnackbarAcquisti = () => {setOpenAcquisti(false)};
+  const [testoAcquisti, setTestoAcquisti] = React.useState('');
 
-const [openModal, setOpenModal] = React.useState(false);
-const handleOpen = () => { setOpenModal(true) };
-const handleClose = () => { setOpenModal(false) };
+const [openModalAcquisti, setOpenModalAcquisti] = React.useState(false);
+const handleOpenAcquisti = () => { setOpenModalAcquisti(true) };
+const handleCloseAcquisti = () => { setOpenModalAcquisti(false) };
 
 var c = props.caselle[props.attualeCasella];
 
@@ -23,7 +23,6 @@ const acquistaTerreno = () => {
   var nuoviTerreni = props.terreni;
   var nuoviGiocatori = props.giocatori;
   
-
   var vecchioCapitale = nuoviGiocatori[props.turnoGiocatore].capitale;
   var nuovoCapitale;
 
@@ -44,15 +43,14 @@ const acquistaTerreno = () => {
       nuoviGiocatori[props.turnoGiocatore].capitale=nuovoCapitale;
       props.setGiocatori(nuoviGiocatori);
       
-      setTesto('Il terreno è stato acquistato con successo');
-      setOpen(true); 
+      setTestoAcquisti('Il terreno è stato acquistato con successo');
+      setOpenAcquisti(true); 
      } else {
-      setTesto('Non hai abbastanza soldi');
-      setOpen(true);
+      setTestoAcquisti('Non hai abbastanza soldi');
+      setOpenAcquisti(true);
      }
     }
   }
-  
 };
 
 const acquistaSocietaStazione = () => { 
@@ -66,8 +64,8 @@ const acquistaSocietaStazione = () => {
   props.setSocietàStazioni(nuoveSocietaStazioni);
   props.setGiocatori(nuoviGiocatori);
 
-  setTesto('La società o la stazione è stata acquistata con successo');
-  setOpen(true);
+  setTestoAcquisti('La società o la stazione è stata acquistata con successo');
+  setOpenAcquisti(true);
 }
 
 function MostraProprietario(){
@@ -144,21 +142,21 @@ const body = (
 
     return(
         <div>
-          <Button onClick={handleOpen}  size="small" style={{marginLeft:'8px'}}>
+          <Button onClick={handleOpenAcquisti}  size="small" style={{marginLeft:'8px'}}>
           Acquista
           </Button>
-          <Modal open={openModal} onClose={handleClose}>
+          <Modal open={openModalAcquisti} onClose={handleCloseAcquisti}>
             {body}
           </Modal>
           <Snackbar
             anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-            open={open}
+            open={openAcquisti}
             autoHideDuration={6000}
-            onClose={handleCloseSnackbar}
-            message={testo}
+            onClose={handleCloseSnackbarAcquisti}
+            message={testoAcquisti}
             action={
               <React.Fragment>
-                <Button color="secondary" size="small" onClick={handleCloseSnackbar}> UNDO </Button>
+                <Button color="secondary" size="small" onClick={handleCloseSnackbarAcquisti}> UNDO </Button>
               </React.Fragment>
             }
           />
