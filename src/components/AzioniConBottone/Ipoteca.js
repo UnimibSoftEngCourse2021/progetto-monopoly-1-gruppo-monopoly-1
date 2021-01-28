@@ -8,12 +8,10 @@ function Ipoteca(props){
   const handleCloseSnackbar = (event, reason) => {setOpen(false)};
   const [testo, setTesto] = React.useState('');
   
-
 //Stato del Modale utilizato per costruire un edificio
 const [openModal, setOpenModal] = React.useState(false);
 const handleOpen = () => { setOpenModal(true) };
 const handleClose = () => { setOpenModal(false) };
-
 
 //Stato del terreno da vendere
 const [terreno, setTerreno] = React.useState('');
@@ -26,16 +24,12 @@ const handleChangeTerreno = (event) => {
 const [tipoVendita, setTipoVendita] = React.useState('Terreno');
 const handleChangeTipoVendita = (event) => { setTipoVendita(event.target.value) };
 
-
 //Stato del RadioGrup per la gerstione dell'azione da svolgere
 //si può scegliere tra ipotecare o riscattare l'ipoteca
 const [azione, setAzione] = React.useState('Ipoteca');
 const handleChangeAzione = (event) => { setAzione(event.target.value) };
 
-
-
-
-function EsisteTerreno(){
+function esisteTerreno(){
   var i = 0;
   var esiste = false;
   var n;
@@ -57,7 +51,7 @@ function EsisteTerreno(){
   }
 }
 
-function EsisteSocietàStazione(){
+function esisteSocietàStazione(){
   var i = 0;
   var esiste = false;
   var n;
@@ -79,11 +73,10 @@ function EsisteSocietàStazione(){
   }
 }
 
-
-function IpotecaTerreno(){
+function ipotecaTerreno(){
 
   //verifico che il terreno esista e salvo il risultato in proprietà
-  var n = EsisteTerreno();
+  var n = esisteTerreno();
   
   if(n === -1){
     setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
@@ -124,10 +117,10 @@ function IpotecaTerreno(){
   setOpen(true); 
 }
 
-function IpotecaStazioneSocietà(){
+function ipotecaStazioneSocietà(){
 
   //verifico che la società / stazione esista e salvo il risultato in proprietà
-  var n = EsisteSocietàStazione();
+  var n = esisteSocietàStazione();
   
   if(n === -1){
     setTesto('Controlla che il nome della società o della stazione sia scritto in modo corretto');
@@ -163,23 +156,20 @@ function IpotecaStazioneSocietà(){
  
 }
 
-
-function Ipoteca2(){
+function ipoteca2(){
   
     if(tipoVendita === 'Terreno'){
-      IpotecaTerreno();
+      ipotecaTerreno();
     }
     else{
-      IpotecaStazioneSocietà();
+      ipotecaStazioneSocietà();
     }
   }
 
-
-  
-function RiscattaTerreno(){
+function riscattaTerreno(){
 
     //verifico che il terreno esista e salvo il risultato in proprietà
-    var n = EsisteTerreno();
+    var n = esisteTerreno();
     
     if(n === -1){
       setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
@@ -220,10 +210,10 @@ function RiscattaTerreno(){
     setOpen(true); 
   }
   
-  function RiscattaStazioneSocietà(){
+  function riscattaStazioneSocietà(){
   
     //verifico che la società / stazione esista e salvo il risultato in proprietà
-    var n = EsisteSocietàStazione();
+    var n = esisteSocietàStazione();
     
     if(n === -1){
       setTesto('Controlla che il nome della società o della stazione sia scritto in modo corretto');
@@ -266,13 +256,13 @@ function RiscattaTerreno(){
   }
   
   
-  function Riscatta(){
+  function riscatta(){
     
       if(tipoVendita === 'Terreno'){
-        RiscattaTerreno();
+        riscattaTerreno();
       }
       else{
-        RiscattaStazioneSocietà();
+        riscattaStazioneSocietà();
       }
     }
   
@@ -302,22 +292,17 @@ const body = (
       
       
       {azione==='Ipotecare'?
-      <Button variant="contained" style={{margin:'16px', width:'100px'}} onClick={() => Ipoteca2()} >
+      <Button variant="contained" style={{margin:'16px', width:'100px'}} onClick={() => ipoteca2()} >
         ipoteca
       </Button>
       :
-      <Button variant="contained" style={{margin:'16px', width:'200px'}} onClick={() => Riscatta()} >
+      <Button variant="contained" style={{margin:'16px', width:'200px'}} onClick={() => riscatta()} >
         Riscatta ipoteca
       </Button>
       }
-    </Grid>
-
-    
-       
+    </Grid>  
   </Paper>
 );
-
-
 
 return(
 <div>
@@ -342,4 +327,5 @@ return(
 </div>
 );
 }
+
 export default Ipoteca;

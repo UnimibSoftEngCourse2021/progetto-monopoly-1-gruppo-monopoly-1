@@ -12,21 +12,9 @@ const [open, setOpen] = React.useState(false);
 const handleCloseSnackbar = (event, reason) => {setOpen(false)};
 const [testo, setTesto] = React.useState('');
 
-
 var c = props.caselle[props.attualeCasella];
 
-
-
-
-
-
-
-
-
-
 function AcquistaCasella(){
-
-  
 
     const [vincitore, setVincitore] = React.useState('');
     const handleChangeVincitore = (event) => { setVincitore(event.target.value) };

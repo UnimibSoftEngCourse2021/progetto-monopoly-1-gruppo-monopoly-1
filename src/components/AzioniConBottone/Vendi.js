@@ -8,10 +8,6 @@ function Vendi(props){
   const handleCloseSnackbar = () => {setOpen(false)};
   const [testo, setTesto] = React.useState('');
 
-    
-  
-    
-
 //Stato del Modale utilizato per costruire un edificio
 const [openModal, setOpenModal] = React.useState(false);
 const handleOpen = () => { setOpenModal(true) };
@@ -42,9 +38,7 @@ const handleChangePrezzo = (event) => {
   setPrezzo(event.target.value);
 };
 
-
-
-function EsisteTerreno(){
+function esisteTerreno(){
   var i = 0;
   var esiste = false;
   var n;
@@ -66,7 +60,7 @@ function EsisteTerreno(){
   }
 }
 
-function EsisteSocietàStazione(){
+function esisteSocietàStazione(){
   var i = 0;
   var esiste = false;
   var n;
@@ -88,7 +82,7 @@ function EsisteSocietàStazione(){
   }
 }
 
-function EsisteGiocatore(nome){
+function esisteGiocatore(nome){
   
   var i = 0;
   while(i < props.giocatori.length){
@@ -103,10 +97,10 @@ function EsisteGiocatore(nome){
 
 }
 
-function VendiTerreno(){
+function vendiTerreno(){
 
   //verifico che il terreno esista e salvo il risultato in proprietà
-  var n = EsisteTerreno();
+  var n = esisteTerreno();
   
   if(n === -1){
     setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
@@ -121,7 +115,7 @@ function VendiTerreno(){
     return;
   }
   //verifico che il venditore esista e che non sia la banca
-  var y = EsisteGiocatore(venditore);
+  var y = esisteGiocatore(venditore);
   if(y === -1){
     setTesto('Controlla che il nome del venditore sia scritto in modo corretto');
     setOpen(true);
@@ -136,7 +130,7 @@ function VendiTerreno(){
  
   
   //verifico che l'aquirente esista
-  var x = EsisteGiocatore(acquirente);
+  var x = esisteGiocatore(acquirente);
   var acquirente2;
   if(x === -1){
     setTesto("Controlla che il nome dell'aquirente sia scritto in modo corretto");
@@ -193,10 +187,10 @@ function VendiTerreno(){
   setOpen(true); 
 }
 
-function VendiStazioneSocietà(){
+function vendiStazioneSocietà(){
 
   //verifico che la società / stazione esista e salvo il risultato in proprietà
-  var n = EsisteSocietàStazione();
+  var n = esisteSocietàStazione();
   
   if(n === -1){
     setTesto('Controlla che il nome della società o della stazione sia scritto in modo corretto');
@@ -211,7 +205,7 @@ function VendiStazioneSocietà(){
     return;
   }
   //verifico che il venditore esista 
-  var y = EsisteGiocatore(venditore);
+  var y = esisteGiocatore(venditore);
   if(y === -1){
     setTesto('Controlla che il nome del venditore sia scritto in modo corretto');
     setOpen(true); 
@@ -226,7 +220,7 @@ function VendiStazioneSocietà(){
  
   
   //verifico che l'aquirente esista
-  var x = EsisteGiocatore(acquirente);
+  var x = esisteGiocatore(acquirente);
   var acquirente2;
   if(x === -1){
     setTesto("Controlla che il nome dell'aquirente sia scritto in modo corretto");
@@ -285,13 +279,13 @@ function VendiStazioneSocietà(){
 const [tipoVendita, setTipoVendita] = React.useState('Terreno');
 const handleChangeTipoVendita = (event) => { setTipoVendita(event.target.value) };
 
-function Vendita(){
+function vendita(){
   
   if(tipoVendita === 'Terreno'){
-    VendiTerreno();
+    vendiTerreno();
   }
   else{
-    VendiStazioneSocietà();
+    vendiStazioneSocietà();
   }
 }
 
@@ -321,17 +315,12 @@ const body = (
         <h3 style={{margin:'16px'}}>Quanto dovrà pagare?</h3>
         <TextField variant="outlined" style={{margin:'16px', marginLeft:'246px', width:'350px'}} onChange={handleChangePrezzo}/>
       </Grid>
-      <Button variant="contained" style={{margin:'16px', width:'100px'}} onClick={() => Vendita()} >
+      <Button variant="contained" style={{margin:'16px', width:'100px'}} onClick={() => vendita()} >
         Vendi
       </Button>
-    </Grid>
-
-    
-       
+    </Grid>   
   </Paper>
 );
-
-
 
 return(
 <div>
@@ -356,4 +345,5 @@ return(
 </div>
 );
 }
+
 export default Vendi;

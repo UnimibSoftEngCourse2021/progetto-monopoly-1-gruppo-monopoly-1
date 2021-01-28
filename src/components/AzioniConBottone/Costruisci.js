@@ -23,7 +23,7 @@ const handleChangeTerreno = (event) => {
   setTerreno(event.target.value);
 };
 
-function EsisteTerreno(){
+function esisteTerreno(){
   var i = 0;
   var esiste = false;
   var n;
@@ -45,7 +45,7 @@ function EsisteTerreno(){
   }
 }
 
-function VerificaColore(colore, giocatore){
+function verificaColore(colore, giocatore){
   var i = 0;
   while(i < props.terreni.length){
     if((props.terreni[i].colore === colore) && (props.terreni[i].proprietario !== giocatore)){
@@ -58,9 +58,9 @@ function VerificaColore(colore, giocatore){
 }
 
 
-function CostruisciCasa(){
+function costruisciCasa(){
   //verifico che il terreno esista e salvo il risultato in proprietà
-  var n = EsisteTerreno();
+  var n = esisteTerreno();
   if(n === -1){
     setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
     setOpen(true);
@@ -80,7 +80,7 @@ function CostruisciCasa(){
     return;
   }
   //Per poter costruire su proprietà devi avere tutti i terreni dello stesso colore
-  var verifica = VerificaColore(proprietà.colore, proprietà.proprietario);
+  var verifica = verificaColore(proprietà.colore, proprietà.proprietario);
   if(!verifica){
     setTesto('Per costruire devi prima possedere tutte le caselle dello stesso colore');
     setOpen(true);
@@ -117,9 +117,9 @@ function CostruisciCasa(){
 
 }
 
-function CostruisciAlbergo(){
+function costruisciAlbergo(){
   //verifico che il terreno esista e salvo il risultato in proprietà
-  var n = EsisteTerreno();
+  var n = esisteTerreno();
   if(n === -1){
     setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
     setOpen(true);
@@ -172,14 +172,13 @@ function CostruisciAlbergo(){
 
 }
 
-function CostruisciEdificio(){
+function costruisciEdificio(){
   if(edificio === 'casa'){
-    CostruisciCasa();
+    costruisciCasa();
   }
   else{
-    CostruisciAlbergo();
+    costruisciAlbergo();
   }
-  
 }
 
 const body = (
@@ -195,20 +194,13 @@ const body = (
     <Grid container direction="column">
       <TextField variant="outlined" style={{margin:'16px', width:'350px'}} onChange={handleChangeTerreno}/>
     
-      <Button variant="contained" style={{margin:'16px', width:'350px'}} onClick={() => CostruisciEdificio()}>
+      <Button variant="contained" style={{margin:'16px', width:'350px'}} onClick={() => costruisciEdificio()}>
         Costruisci questo edificio
       </Button>
    
-    </Grid>
-    
-    
-    
+    </Grid> 
   </Paper>
 );
-
-
-
-
 
 return(
 <div>
@@ -233,4 +225,5 @@ return(
 </div>
 );
 }
+
 export default Costruisci;

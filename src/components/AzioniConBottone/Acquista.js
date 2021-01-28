@@ -71,12 +71,6 @@ const acquistaSocietaStazione = () => {
   setOpen(true);
 }
 
-
-
-
-
-
-
 function MostraProprietario(){
   if(c.tipo==='terreno'){
     if(props.terreni[c.riferimento].proprietario === -1){
