@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import AttivaCartaStrategy from './AttivaCartaStrategy';
 
-class StrategyModificaSaldo extends AttivaCartaStrategy {
+class StrategyModificaSaldo extends Component {
     constructor(props) {
         super(props);
         this.state = {

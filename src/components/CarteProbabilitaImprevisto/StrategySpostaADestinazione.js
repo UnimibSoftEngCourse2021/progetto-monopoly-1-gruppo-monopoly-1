@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import AttivaCartaStrategy from './AttivaCartaStrategy';
 import CryptoRandom from '../CryptoRandom';
 
-class StrategySpostaADestinazione extends AttivaCartaStrategy {
+class StrategySpostaADestinazione extends Component {
     constructor(props) {
         super(props);
         this.state = {

@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import AttivaCartaStrategy from './AttivaCartaStrategy';
 import Carte from './Carte';
 import CryptoRandom from '../CryptoRandom';
 import StrategyModificaSaldo from './StrategyModificaSaldo';
 import StrategySpostaADestinazione from './StrategySpostaADestinazione';
 import StrategyUscitaPrigione from './StrategyUscitaPrigione';
 
-class StrategyCaselleIndietro extends AttivaCartaStrategy {
+class StrategyCaselleIndietro extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -87,29 +86,6 @@ class StrategyCaselleIndietro extends AttivaCartaStrategy {
                                         difficolta,
                                         nuovoTesto,
                                         carte);  
-
-                // let carta = new Carte();
-                // console.log("Entrato1");
-                // carta.estraiCarta(  true, 
-                //                     turnoGiocatore, 
-                //                     giocatori, 
-                //                     setGiocatori, 
-                //                     segnalini, 
-                //                     setSegnalini, 
-                //                     terreni, 
-                //                     setTerreni, 
-                //                     tavolaGioco, 
-                //                     setTavolaGioco, 
-                //                     societàStazioni, 
-                //                     setSocietàStazioni,
-                //                     pagaAffitto,
-                //                     testo,
-                //                     cambiaTesto,
-                //                     handleOpen,
-                //                     handleClose,
-                //                     difficolta,
-                //                     nuovoTesto,
-                //                     carte)
             } else {
                 nuoviSegnalini[turnoGiocatore].attualeCasella -= 3;
                 nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[nuoviSegnalini[turnoGiocatore].attualeCasella][1];
