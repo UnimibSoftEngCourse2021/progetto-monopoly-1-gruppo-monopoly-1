@@ -20,6 +20,7 @@ var carta = new GestoreCarte();
 let dadiTirati = false; // Questo booleano permette di tirare i dadi solo una volta per turno, salvo il caso di punteggio doppio
 let numeroTiriDadi = 0;
 let contratti = false;
+let entrataPrigione = false;
 
 
 function verificaPunteggioDoppio(primoDado, secondoDado){
@@ -144,14 +145,26 @@ class Partita extends React.Component {
     tiraDadi = () => {
         
         if (!dadiTirati){
-            dado1 = CryptoRandom(1,6); //Il max è incluso e il min è incluso
-            dado2 = CryptoRandom(1,6); //Il max è incluso e il min è incluso
+            dado1 = 29//CryptoRandom(1,6); //Il max è incluso e il min è incluso
+            dado2 = 1//CryptoRandom(1,6); //Il max è incluso e il min è incluso
             sommaDadi = dado1 + dado2;
             numeroTiriDadi = numeroTiriDadi + 1;
             punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
             
             if (this.props.giocatori[this.props.turnoGiocatore].inPrigione && punteggioDoppio) {
                 this.props.giocatori[this.props.turnoGiocatore].inPrigione = false;
+            }
+
+            if (!this.props.giocatori[this.props.turnoGiocatore].inPrigione && punteggioDoppio && numeroTiriDadi === 3) {
+                console.log("Entrato");
+                this.setState({open: true, testo: "Tre lanci doppi consecutivi. Giocatore " + (this.props.turnoGiocatore + 1) + " va in Prigione. "});
+                this.props.segnalini[this.props.turnoGiocatore].ascissa = this.props.tavolaGioco[10][1];
+                this.props.segnalini[this.props.turnoGiocatore].ordinata = this.props.tavolaGioco[10][2];
+                this.props.segnalini[this.props.turnoGiocatore].attualeCasella = 10;
+                this.props.giocatori[this.props.turnoGiocatore].inPrigione = true;
+                entrataPrigione = true;
+                numeroTiriDadi = 0;
+                dadiTirati = true;
             }
 
             if ((dado1 !== dado2) || ((dado1 === dado2) && (numeroTiriDadi === 3))) {
@@ -163,7 +176,7 @@ class Partita extends React.Component {
                 this.props.giocatori[this.props.turnoGiocatore].numeroTurniPrigione += 1; 
             }
 
-            if (!this.props.giocatori[this.props.turnoGiocatore].inPrigione || (this.props.giocatori[this.props.turnoGiocatore].inPrigione && dado1 === dado2)) {
+            if (!this.props.giocatori[this.props.turnoGiocatore].inPrigione || (this.props.giocatori[this.props.turnoGiocatore].inPrigione && dado1 === dado2 && !entrataPrigione)) {
                 this.spostaSegnalino(sommaDadi);
             }
 
@@ -204,7 +217,9 @@ class Partita extends React.Component {
                 sestoMsgTA: msg6,
                 settimoMsgTA: msg7,
                 tiroDoppio: lanciDoppi,
-            })  
+            }) 
+            
+            entrataPrigione = false;
             
         }
         else {

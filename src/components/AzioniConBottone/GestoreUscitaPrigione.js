@@ -4,13 +4,13 @@ import {Paper, Modal, Button, Radio, RadioGroup, FormControlLabel, Snackbar} fro
 function GestoreUscitaPrigione(props) {
 
 //Stato del Modale utilizato per uscire dalla prigione
-const [openModal, setOpenModal] = React.useState(false);
-const handleOpen = () => { setOpenModal(true) };
-const handleClose = () => { setOpenModal(false) };
+const [openModalPrigione, setOpenModalPrigione] = React.useState(false);
+const handleOpenPrigione = () => { setOpenModalPrigione(true) };
+const handleClosePrigione = () => { setOpenModalPrigione(false) };
 
-const [open, setOpen] = React.useState(false);
-const handleCloseSnackbar = () => {setOpen(false)};
-const [testo, setTesto] = React.useState('');
+const [openPrigione, setOpenPrigione] = React.useState(false);
+const handleCloseSnackbarPrigione = () => {setOpenPrigione(false)};
+const [testoPrigione, setTestoPrigione] = React.useState('');
 
 //Stato del RadioGrup casaAlbergo usato per scegliere la tipologia di uscita dalla prigione
 const [uscita, setUscita] = React.useState('cauzione');
@@ -23,15 +23,15 @@ function pagaCauzione() {
             nuoviGiocatori[props.turnoGiocatore].capitale -= 125;
             nuoviGiocatori[props.turnoGiocatore].inPrigione = false;
             props.setGiocatori(nuoviGiocatori);
-            setTesto("Giocatore " + (props.turnoGiocatore + 1) + " uscito dalla prigione.");
-            setOpen(true);
+            setTestoPrigione("Giocatore " + (props.turnoGiocatore + 1) + " paga la cauzione di € 125. Giocatore " + (props.turnoGiocatore + 1) + " uscito dalla prigione. ");
+            setOpenPrigione(true);
     } else if (props.giocatori[props.turnoGiocatore].inPrigione === true 
         && props.giocatori[props.turnoGiocatore].capitale <= 125) {
-            setTesto("Non hai abbastanza soldi per pagare la cauzione!");
-            setOpen(true);
+            setTestoPrigione("Non hai abbastanza soldi per pagare la cauzione!");
+            setOpenPrigione(true);
     } else {
-        setTesto("Non puoi pagare la cauzione se non sei in prigione!");
-        setOpen(true); 
+        setTestoPrigione("Non puoi pagare la cauzione se non sei in prigione!");
+        setOpenPrigione(true); 
     }
     return;
 }
@@ -43,15 +43,16 @@ function usaCarta() {
             nuoviGiocatori[props.turnoGiocatore].carteUscitaPrigione -= 1;
             nuoviGiocatori[props.turnoGiocatore].inPrigione = false;
             props.setGiocatori(nuoviGiocatori);
-            setTesto("Giocatore " + (props.turnoGiocatore + 1) + " uscito dalla prigione.");
-            setOpen(true);
+            setTestoPrigione("Giocatore " + (props.turnoGiocatore + 1) + " usa una carta per uscire dalla prigione. Giocatore " 
+                            + (props.turnoGiocatore + 1) + " uscito dalla prigione. ");
+            setOpenPrigione(true);
     } else if (props.giocatori[props.turnoGiocatore].inPrigione === true 
         && props.giocatori[props.turnoGiocatore].carteUscitaPrigione <= 0) {
-            setTesto("Non hai carte da usare per uscire dalla prigione!");
-            setOpen(true);
+            setTestoPrigione("Non hai carte da usare per uscire dalla prigione!");
+            setOpenPrigione(true);
     } else {
-        setTesto("Non puoi usare carte per uscire dalla prigione se non sei in prigione!");
-        setOpen(true);
+        setTestoPrigione("Non puoi usare carte per uscire dalla prigione se non sei in prigione!");
+        setOpenPrigione(true);
     }
     return;
 }
@@ -79,21 +80,21 @@ const body = (
 
 return (
     <div>
-        <Button onClick={handleOpen} variant="outlined" size="small" >
+        <Button onClick={handleOpenPrigione} variant="outlined" size="small" >
             Esci dalla prigione
         </Button>
-        <Modal open={openModal} onClose={handleClose}>
+        <Modal open={openModalPrigione} onClose={handleClosePrigione}>
             {body}
         </Modal>
         <Snackbar
             anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-            open={open}
+            open={openPrigione}
             autoHideDuration={6000}
-            onClose={handleCloseSnackbar}
-            message={testo}
+            onClose={handleCloseSnackbarPrigione}
+            message={testoPrigione}
             action={
               <React.Fragment>
-                <Button color="secondary" size="small" onClick={handleCloseSnackbar}> UNDO </Button>
+                <Button color="secondary" size="small" onClick={handleCloseSnackbarPrigione}> UNDO </Button>
               </React.Fragment>
             }
         />
