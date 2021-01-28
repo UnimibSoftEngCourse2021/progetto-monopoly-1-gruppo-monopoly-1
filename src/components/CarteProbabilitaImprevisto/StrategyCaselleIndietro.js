@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import AttivaCartaStrategy from './AttivaCartaStrategy';
 import Carte from './Carte';
+import CryptoRandom from '../CryptoRandom';
+import StrategyModificaSaldo from './StrategyModificaSaldo';
+import StrategySpostaADestinazione from './StrategySpostaADestinazione';
+import StrategyUscitaPrigione from './StrategyUscitaPrigione';
 
 class StrategyCaselleIndietro extends AttivaCartaStrategy {
     constructor(props) {
@@ -51,28 +55,61 @@ class StrategyCaselleIndietro extends AttivaCartaStrategy {
                 nuoviSegnalini[turnoGiocatore].attualeCasella -= 3;
                 nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[nuoviSegnalini[turnoGiocatore].attualeCasella][1];
                 nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[nuoviSegnalini[turnoGiocatore].attualeCasella][2];
-                let carta = new Carte();
-                console.log("Entrato1");
-                carta.estraiCarta(  true, 
-                                    turnoGiocatore, 
-                                    giocatori, 
-                                    setGiocatori, 
-                                    segnalini, 
-                                    setSegnalini, 
-                                    terreni, 
-                                    setTerreni, 
-                                    tavolaGioco, 
-                                    setTavolaGioco, 
-                                    societàStazioni, 
-                                    setSocietàStazioni,
-                                    pagaAffitto,
-                                    testo,
-                                    cambiaTesto,
-                                    handleOpen,
-                                    handleClose,
-                                    difficolta,
-                                    nuovoTesto,
-                                    carte)
+                
+                let idNuovaCarta = CryptoRandom(0,14); 
+                nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ' pesca la carta: ' + carte[idNuovaCarta][1] + '. ';
+                
+                let strategy;
+                if ((carte[idNuovaCarta][2] !== 0) || (carte[idNuovaCarta][5] !== 0) ) {
+                    strategy = new StrategyModificaSaldo();
+                } else if (idNuovaCarta === 12 || idNuovaCarta === 15) {
+                    strategy = new StrategyUscitaPrigione();
+                } else if (carte[idNuovaCarta][0] !== 40) {
+                    strategy = new StrategySpostaADestinazione();
+                }
+                strategy.attivaCarta(   idNuovaCarta, 
+                                        turnoGiocatore, 
+                                        giocatori, 
+                                        setGiocatori, 
+                                        segnalini, 
+                                        setSegnalini, 
+                                        terreni, 
+                                        setTerreni, 
+                                        tavolaGioco, 
+                                        setTavolaGioco, 
+                                        societàStazioni, 
+                                        setSocietàStazioni,
+                                        pagaAffitto,
+                                        testo,
+                                        cambiaTesto,
+                                        handleOpen,
+                                        handleClose,
+                                        difficolta,
+                                        nuovoTesto,
+                                        carte);  
+
+                // let carta = new Carte();
+                // console.log("Entrato1");
+                // carta.estraiCarta(  true, 
+                //                     turnoGiocatore, 
+                //                     giocatori, 
+                //                     setGiocatori, 
+                //                     segnalini, 
+                //                     setSegnalini, 
+                //                     terreni, 
+                //                     setTerreni, 
+                //                     tavolaGioco, 
+                //                     setTavolaGioco, 
+                //                     societàStazioni, 
+                //                     setSocietàStazioni,
+                //                     pagaAffitto,
+                //                     testo,
+                //                     cambiaTesto,
+                //                     handleOpen,
+                //                     handleClose,
+                //                     difficolta,
+                //                     nuovoTesto,
+                //                     carte)
             } else {
                 nuoviSegnalini[turnoGiocatore].attualeCasella -= 3;
                 nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[nuoviSegnalini[turnoGiocatore].attualeCasella][1];

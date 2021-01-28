@@ -128,8 +128,6 @@ class Carte extends Component {
         );  
 
 
-
-
         // this.attivaCarta(   idCarta, 
         //                     turnoGiocatore, 
         //                     giocatori, 
