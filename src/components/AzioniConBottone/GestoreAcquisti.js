@@ -76,7 +76,7 @@ function MostraProprietario(){
       return(<h4 style={{margin:'16px'}}>Proprietario: nessuno</h4>);
     }
     else{
-      return(<h4 style={{margin:'16px'}}>Proprietario: {props.terreni[c.riferimento].proprietario}</h4>);
+      return(<h4 style={{margin:'16px'}}>Proprietario: {props.terreni[c.riferimento].proprietario+1}</h4>);
     }
   }
   else{
