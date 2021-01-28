@@ -52,6 +52,7 @@ class StrategyCaselleIndietro extends AttivaCartaStrategy {
                 nuoviSegnalini[turnoGiocatore].ascissa = tavolaGioco[nuoviSegnalini[turnoGiocatore].attualeCasella][1];
                 nuoviSegnalini[turnoGiocatore].ordinata = tavolaGioco[nuoviSegnalini[turnoGiocatore].attualeCasella][2];
                 let carta = new Carte();
+                console.log("Entrato1");
                 carta.estraiCarta(  true, 
                                     turnoGiocatore, 
                                     giocatori, 

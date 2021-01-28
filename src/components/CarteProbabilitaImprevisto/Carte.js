@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import CryptoRandom from '../CryptoRandom';
 import EsecutoreCarte from './EsecutoreCarte';
+import StrategyCaselleIndietro from './StrategyCaselleIndietro';
 import StrategyModificaSaldo from './StrategyModificaSaldo';
+import StrategySpostaADestinazione from './StrategySpostaADestinazione';
 import StrategyUscitaPrigione from './StrategyUscitaPrigione';
 
 class Carte extends Component {
@@ -84,48 +86,24 @@ class Carte extends Component {
         //probabilità==true, imprevisto==false
         let idCarta;
         if (probabilitaOImprevisto){
-            idCarta = 5//CryptoRandom(0,14); //Il max è incluso e il min è incluso
+            idCarta = CryptoRandom(0,14); //Il max è incluso e il min è incluso
         }else{
-            idCarta = 5//CryptoRandom(15,30); //Il max è incluso e il min è incluso
+            idCarta = CryptoRandom(15,30); //Il max è incluso e il min è incluso
         }
+        
         nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ' pesca la carta: ' + this.state.carte[idCarta][1] + '. ';
-
-        // let esecutoreCarte = new EsecutoreCarte(idCarta, 
-        //                                         turnoGiocatore, 
-        //                                         giocatori, 
-        //                                         setGiocatori, 
-        //                                         segnalini, 
-        //                                         setSegnalini, 
-        //                                         terreni, 
-        //                                         setTerreni, 
-        //                                         tavolaGioco, 
-        //                                         setTavolaGioco, 
-        //                                         societàStazioni, 
-        //                                         setSocietàStazioni,
-        //                                         pagaAffitto,
-        //                                         testo,
-        //                                         cambiaTesto,
-        //                                         handleOpen,
-        //                                         handleClose,
-        //                                         difficolta,
-        //                                         nuovoTesto,
-        //                                         this.state.carte);
+        console.log(nuovoTesto);
 
         let strategy;
+        console.log(strategy);
         if ((idCarta === 22) || (this.state.carte[idCarta][2] !== 0) || (this.state.carte[idCarta][5] !== 0) ) {
             strategy = new StrategyModificaSaldo();
-            // console.log("Entrato primo");
-            // esecutoreCarte.setStrategia(new StrategyModificaSaldo());
-            // console.log(esecutoreCarte);
-            // esecutoreCarte.attivaStrategiaCarte();
         } else if (idCarta === 12 || idCarta === 15) {
             strategy = new StrategyUscitaPrigione();
-            // console.log("Entrato primo");
-            // let strategyUscitaPrigione = new StrategyUscitaPrigione();
-            // console.log(esecutoreCarte);
-            // esecutoreCarte.setStrategia(strategyUscitaPrigione);
-            // console.log(esecutoreCarte);
-            // esecutoreCarte.attivaStrategiaCarte();
+        } else if ((this.state.carte[idCarta][0] !== 40) || (idCarta === 28) || (idCarta === 29)) {
+            strategy = new StrategySpostaADestinazione();
+        } else if (idCarta === 20) {
+            strategy = new StrategyCaselleIndietro();
         }
         strategy.attivaCarta(   idCarta, 
                                 turnoGiocatore, 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import AttivaCartaStrategy from './AttivaCartaStrategy';
+import CryptoRandom from '../CryptoRandom';
 
 class StrategySpostaADestinazione extends AttivaCartaStrategy {
     constructor(props) {
@@ -35,7 +36,7 @@ class StrategySpostaADestinazione extends AttivaCartaStrategy {
         //la casella numero 40 non esiste sulla tabella di gioco, il valore è usato per determinare se deve essere
         //effettuato uno spostamento dalla pedina in una casella fissata
         if (carte[idCarta][0] !== 40) {
-            if ((segnalini[turnoGiocatore].attualeCasella > this.state.carte[idCarta][0]) &&
+            if ((segnalini[turnoGiocatore].attualeCasella > carte[idCarta][0]) &&
              (idCarta === 24 || idCarta === 25 || idCarta === 17 || idCarta === 18)){
                 nuoviGiocatori[turnoGiocatore].capitale += 500;
                 if (difficolta === "facile") {
