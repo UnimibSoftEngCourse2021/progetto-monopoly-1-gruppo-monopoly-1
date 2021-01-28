@@ -2,8 +2,7 @@ import React from 'react';
 import {Paper, Modal, Button, Snackbar} from '@material-ui/core';
 import Asta from './Asta';
 
-
-function Acquista(props){
+function GestoreAcquisti(props){
 
   const [open, setOpen] = React.useState(false);
   const handleCloseSnackbar = () => {setOpen(false)};
@@ -110,16 +109,12 @@ function AcquistaCasella(){
     }
   }
   
-  
-  
   return(
     <Button variant="contained" style={{margin:'16px'}} onClick={() => acquistaProprieta()}>
       Acquista
     </Button>
   );
 }
-
-
 
 const body = (
     <Paper style={{marginTop:'16px', marginLeft:'200px', marginRight:'200px'}}>
@@ -171,4 +166,4 @@ const body = (
         );
         }
 
-export default Acquista;
+export default GestoreAcquisti;

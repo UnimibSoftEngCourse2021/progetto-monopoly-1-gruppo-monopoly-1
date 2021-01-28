@@ -1,7 +1,7 @@
 import React from 'react';
 import {Paper, Modal, Button, Radio, RadioGroup, FormControlLabel, Snackbar} from '@material-ui/core';
 
-function UscitaPrigione(props) {
+function GestoreUscitaPrigione(props) {
 
 //Stato del Modale utilizato per uscire dalla prigione
 const [openModal, setOpenModal] = React.useState(false);
@@ -101,4 +101,4 @@ return (
 );
 }
 
-export default UscitaPrigione;
+export default GestoreUscitaPrigione;

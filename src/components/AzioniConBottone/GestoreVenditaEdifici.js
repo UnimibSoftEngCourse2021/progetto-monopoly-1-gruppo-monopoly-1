@@ -2,11 +2,11 @@ import React from 'react';
 import {Paper, Modal, Button, Radio, RadioGroup, FormControlLabel, TextField, Grid, Snackbar} from '@material-ui/core';
 
 
-function Costruisci(props){
+function GestoreVenditaEdifici(props){
 
-  const [open, setOpen] = React.useState(false);
-  const handleCloseSnackbar = (event, reason) => {setOpen(false)};
-  const [testo, setTesto] = React.useState('');    
+const [open, setOpen] = React.useState(false);
+const handleCloseSnackbar = () => {setOpen(false)};
+const [testo, setTesto] = React.useState('');
 
 //Stato del Modale utilizato per costruire un edificio
 const [openModal, setOpenModal] = React.useState(false);
@@ -45,61 +45,30 @@ function esisteTerreno(){
   }
 }
 
-function verificaColore(colore, giocatore){
-  var i = 0;
-  while(i < props.terreni.length){
-    if((props.terreni[i].colore === colore) && (props.terreni[i].proprietario !== giocatore)){
-      return(false);
-    }
-    i++
-  }
-  
-  return(true);
-}
-
-
-function costruisciCasa(){
+function vendiCasa(){
   //verifico che il terreno esista e salvo il risultato in proprietà
   var n = esisteTerreno();
   if(n === -1){
     setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
-    setOpen(true);
+    setOpen(true); 
     return;
   }
   var proprietà = props.terreni[n];
-  //verifico che la proprietà non sia ipotecata
-  if(proprietà.ipotecato === true){
-    setTesto('Non puoi costruire su un terreno ipotecato');
-    setOpen(true);
-    return;
-  }
   //verifico che il turnoGiocatore sia proprietario di proprietà
   if((proprietà.proprietario != props.turnoGiocatore)){
-    setTesto('Non puoi costruire su un terreno che non è tuo');
-    setOpen(true);
+    setTesto('Non puoi vendere gli edifici se il terreno che non è tuo');
+    setOpen(true); 
     return;
   }
-  //Per poter costruire su proprietà devi avere tutti i terreni dello stesso colore
-  var verifica = verificaColore(proprietà.colore, proprietà.proprietario);
-  if(!verifica){
-    setTesto('Per costruire devi prima possedere tutte le caselle dello stesso colore');
-    setOpen(true);
-    return;
-  }
-  //Su un terreno si possono costruire massimo 4 case
-  if(proprietà.case >= 4){
-    setTesto('Su un terreno si possono costruire massimo quattro case');
-    setOpen(true);
-    return;
-  }
-  //Se sul terreno c'è un albergo non posso costruirvi delle case
-  if(proprietà.alberghi > 0){
-    setTesto("Se su un terreno c'e' un albergo non puoi costruirvi una casa");
-    setOpen(true);
+  
+  //Se sul terreno non ci sono case non ho nulla da vendere
+  if(proprietà.case === 0){
+    setTesto("Su questo terreno non ci sono case");
+    setOpen(true); 
     return;
   }
   //modifico l'array terreni e l'array giocatori
-  proprietà.case = proprietà.case + 1;
+  proprietà.case = proprietà.case - 1;
   console.log(proprietà);
   var nuoviTerreni = props.terreni;
   nuoviTerreni[n] = proprietà;
@@ -107,54 +76,43 @@ function costruisciCasa(){
   console.log(props.terreni);
 
   var nuoviGiocatori = props.giocatori;
-  var costoCostruzione = proprietà.valore*3/4;
-  nuoviGiocatori[props.turnoGiocatore].capitale = nuoviGiocatori[props.turnoGiocatore].capitale - costoCostruzione;
+  var guadagno = proprietà.valore*3/8;
+  nuoviGiocatori[props.turnoGiocatore].capitale = nuoviGiocatori[props.turnoGiocatore].capitale + guadagno;
   props.setGiocatori(nuoviGiocatori);
   console.log(props.giocatori);
 
-  setTesto('La costruzione della casa è andata a buon fine');
-  setOpen(true);
+  setTesto('La vendita della casa è andata a buon fine');
+  setOpen(true); 
 
 }
 
-function costruisciAlbergo(){
+function vendiAlbergo(){
   //verifico che il terreno esista e salvo il risultato in proprietà
   var n = esisteTerreno();
   if(n === -1){
     setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
-    setOpen(true);
+    setOpen(true); 
     return;
   }
   var proprietà = props.terreni[n];
-  //verifico che la proprietà non sia ipotecata
-  if(proprietà.ipotecato === true){
-    setTesto('Non puoi costruire su un terreno ipotecato');
-    setOpen(true);
-    return;
-  }
   //verifico che il turnoGiocatore sia proprietario di proprietà
   if((proprietà.proprietario != props.turnoGiocatore)){
-    setTesto('Non puoi costruire su un terreno che non è tuo');
-    setOpen(true);
+    setTesto('Non puoi vendere gli edifici che non sono su un tuo terreno');
+    setOpen(true); 
     return;
   }
-  //Su un terreno si può costruire massimo un albergo
-  if(proprietà.alberghi > 0){
-    setTesto('Su un terreno si può costruire massimo un albergo');
-    setOpen(true);
+  //Verifico ceh sul terreno ci sia un albergo
+  if((proprietà.alberghi !== 1)){
+    setTesto("Su questo terreno non c'è un albergo");
+    setOpen(true); 
     return;
   }
   
-  //Per poter costruire un albergo devi avere quattro case su proprietà 
-  if(proprietà.case < 4){
-    setTesto('Per costruire un albergo su questo terreno devi prima possedere quattro case');
-    setOpen(true);
-    return;
-  }
   
   //modifico l'array terreni e l'array giocatori
-  proprietà.alberghi = proprietà.alberghi + 1;
-  proprietà.case = 0;
+  //quando vendo un albergo alla banca ricevo in cambio metà del prezzo d'aquisto e 4 case
+  proprietà.alberghi = 0;
+  proprietà.case = 4;
   console.log(proprietà);
   var nuoviTerreni = props.terreni;
   nuoviTerreni[n] = proprietà;
@@ -162,50 +120,51 @@ function costruisciAlbergo(){
   console.log(props.terreni);
 
   var nuoviGiocatori = props.giocatori;
-  var costoCostruzione = proprietà.valore*3/4;
-  nuoviGiocatori[props.turnoGiocatore].capitale = nuoviGiocatori[props.turnoGiocatore].capitale - costoCostruzione;
+  var guadagno = proprietà.valore*3/8;
+  nuoviGiocatori[props.turnoGiocatore].capitale = nuoviGiocatori[props.turnoGiocatore].capitale + guadagno;
   props.setGiocatori(nuoviGiocatori);
   console.log(props.giocatori);
 
-  setTesto("La costruzione dell'albergo è andata a buon fine");
-  setOpen(true);
+  setTesto("La vendita dell'albergo è andata a buon fine");
+  setOpen(true); 
 
 }
 
-function costruisciEdificio(){
+function vendiEdificio2(){
   if(edificio === 'casa'){
-    costruisciCasa();
+    vendiCasa();
   }
   else{
-    costruisciAlbergo();
+    vendiAlbergo();
   }
+  
 }
 
 const body = (
   <Paper style={{marginTop:'16px', marginLeft:'200px', marginRight:'200px'}}>
       
-    <h2 style={{margin:'16px'}}>Cosa vuoi costruire?</h2>
+    <h2 style={{margin:'16px'}}>Cosa vuoi vendere?</h2>
     <RadioGroup value={edificio} onChange={handleChangeTipoDiEdificio} style={{margin:'16px'}}>
         <FormControlLabel value="casa" control={<Radio />} label="Casa" />
         <FormControlLabel value="albergo" control={<Radio />} label="Albergo" />
     </RadioGroup>
 
-    <h2 style={{margin:'16px'}}>Dove vuoi costruire?</h2>
+    <h2 style={{margin:'16px'}}>Dove si trova questo edificio?</h2>
     <Grid container direction="column">
       <TextField variant="outlined" style={{margin:'16px', width:'350px'}} onChange={handleChangeTerreno}/>
     
-      <Button variant="contained" style={{margin:'16px', width:'350px'}} onClick={() => costruisciEdificio()}>
-        Costruisci questo edificio
+      <Button variant="contained" style={{margin:'16px', width:'350px'}} onClick={() => vendiEdificio2()}>
+        vendi questo edificio
       </Button>
    
-    </Grid> 
+    </Grid>
   </Paper>
 );
 
 return(
 <div>
-  <Button onClick={handleOpen}  size="small" >
-    Costruisci
+  <Button onClick={handleOpen} size="small" style={{marginLeft:'10px'}} >
+    Vendi edificio
   </Button>
   <Modal open={openModal} onClose={handleClose}>
     {body}
@@ -226,4 +185,4 @@ return(
 );
 }
 
-export default Costruisci;
+export default GestoreVenditaEdifici;

@@ -1,8 +1,7 @@
 import React from 'react';
 import {Paper, Modal, Button, Grid, TextField, Radio, RadioGroup, FormControlLabel, Snackbar} from '@material-ui/core';
 
-
-function Ipoteca(props){
+function GestoreIpoteche(props){
 
   const [open, setOpen] = React.useState(false);
   const handleCloseSnackbar = (event, reason) => {setOpen(false)};
@@ -328,4 +327,4 @@ return(
 );
 }
 
-export default Ipoteca;
+export default GestoreIpoteche;

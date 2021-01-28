@@ -123,8 +123,6 @@ function AcquistaCasella(){
   );
 }
 
-
-
 const body = (
     <Paper style={{marginTop:'16px', marginLeft:'200px', marginRight:'200px'}}>
       <AcquistaCasella />
@@ -161,8 +159,6 @@ const body = (
                 </React.Fragment>
               }
             />
-          
-          
         </div>
         );
         }

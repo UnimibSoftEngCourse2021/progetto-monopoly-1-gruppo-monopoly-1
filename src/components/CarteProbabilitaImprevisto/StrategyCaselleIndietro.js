@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Carte from './Carte';
+import GestoreCarte from './GestoreCarte';
 import CryptoRandom from '../CryptoRandom';
 import StrategyModificaSaldo from './StrategyModificaSaldo';
 import StrategySpostaADestinazione from './StrategySpostaADestinazione';

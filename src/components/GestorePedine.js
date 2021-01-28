@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, TextField, Snackbar, Button } from '@material-ui/core';
 import ReactDOM from 'react-dom'
-import App from '../App'
+import Tavola from '../Tavola'
 import hat from '../img/hat.png'
 import iron from '../img/iron.png'
 import car from '../img/car.png'
@@ -12,7 +12,7 @@ import thimble from '../img/thimble.png'
 import wheelbarrow from '../img/wheelbarrow.png'
 import CryptoRandom from './CryptoRandom';
 
-function SceltaPedina(props){
+function GestorePedine(props){
 
     const pedine = [boat, car, doggo, hat, iron, shoe, thimble, wheelbarrow];
     const [giocatoreAttuale, setGiocatoreAttuale] = React.useState(1);
@@ -161,6 +161,7 @@ function SceltaPedina(props){
         }
         
     };
+
     //Partita a tempo countdown
     const [tempoMinuti, setTempoMinuti] = React.useState(null);
     const handleChangeTempoMinuti = (event) => {
@@ -373,7 +374,7 @@ function SceltaPedina(props){
                 iniziaPartita ?
                 ReactDOM.render(
                     <React.StrictMode>
-                        <App 
+                        <Tavola 
                             numeroGiocatori={numeroGiocatori} 
                             difficolta={props.difficolta} 
                             giocatori={giocatori}
@@ -426,5 +427,5 @@ function SceltaPedina(props){
         </div>
     );
 }
-// {CryptoRandom(1,6)}
-export default SceltaPedina;
+
+export default GestorePedine;

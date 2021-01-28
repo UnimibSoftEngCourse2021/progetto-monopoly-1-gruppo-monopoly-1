@@ -1,14 +1,14 @@
 import { Button, Snackbar } from '@material-ui/core';
 import React from 'react';
-import Acquista from './AzioniConBottone/Acquista';
-import Costruisci from './AzioniConBottone/Costruisci';
-import Vendi from './AzioniConBottone/Vendi';
-import VendiEdificio from './AzioniConBottone/VendiEdificio';
-import Ipoteca from './AzioniConBottone/Ipoteca';
-import Abbandona from './AzioniConBottone/Abbandona';
-import Carte from './CarteProbabilitaImprevisto/Carte';
+import GestoreAcquisti from './AzioniConBottone/GestoreAcquisti';
+import GestoreCostruzioni from './AzioniConBottone/GestoreCostruzioni';
+import GestoreVendite from './AzioniConBottone/GestoreVendite';
+import GestoreVenditaEdifici from './AzioniConBottone/GestoreVenditaEdifici';
+import GestoreIpoteche from './AzioniConBottone/GestoreIpoteche';
+import GestoreAbbandono from './AzioniConBottone/GestoreAbbandono';
+import GestoreCarte from './CarteProbabilitaImprevisto/GestoreCarte';
 import Banca from './Banca';
-import UscitaPrigione from './AzioniConBottone/UscitaPrigione';
+import GestoreUscitaPrigione from './AzioniConBottone/GestoreUscitaPrigione';
 import Autori from './AzioniConBottone/Autori';
 import CryptoRandom from './CryptoRandom';
 
@@ -16,7 +16,7 @@ let dado1;
 let dado2;
 let sommaDadi;
 let punteggioDoppio;
-var carta = Carte.getInstance();
+var carta = new GestoreCarte();
 let dadiTirati = false; // Questo booleano permette di tirare i dadi solo una volta per turno, salvo il caso di punteggio doppio
 let numeroTiriDadi = 0;
 let contratti = false;
@@ -26,7 +26,7 @@ function verificaPunteggioDoppio(primoDado, secondoDado){
     return primoDado === secondoDado;
 }
 
-class ComponentController extends React.Component {
+class Partita extends React.Component {
 
 	constructor(props) {
         super(props);
@@ -63,7 +63,7 @@ class ComponentController extends React.Component {
         for (i = 1; i < sommaDadiParam+1; i++) {
             if (attualeCasella === 39) {
                 attualeCasella=0;
-                let banca = new Banca();
+                let banca = Banca.getInstance();
                 banca.giocatorePassaDalVia(this.props.giocatori,this.props.turnoGiocatore,this.props.setGiocatori, this.handleOpen, this.cambiaTesto, this.props.difficolta);
             } else {
                 attualeCasella = attualeCasella + 1
@@ -516,7 +516,7 @@ class ComponentController extends React.Component {
                 <table className="tableController">
                     <tr>
                         <td className="tdController">
-                            <UscitaPrigione 
+                            <GestoreUscitaPrigione
                                 giocatori={this.props.giocatori}
                                 setGiocatori={this.props.setGiocatori} 
                                 turnoGiocatore={this.props.turnoGiocatore}
@@ -535,7 +535,7 @@ class ComponentController extends React.Component {
                     </tr>
                     <tr>
                         <td className="tdController" colspan="1" >
-                            <VendiEdificio 
+                            <GestoreVenditaEdifici 
                                 terreni={this.props.terreni}
                                 giocatori={this.props.giocatori}
                                 setTerreni={this.props.setTerreni}
@@ -544,7 +544,7 @@ class ComponentController extends React.Component {
                             />
                         </td>
                         <td className="tdController">
-                        <Acquista 
+                        <GestoreAcquisti
                               attualeCasella={this.props.segnalini[this.props.turnoGiocatore].attualeCasella}
                               caselle={this.props.caselle} 
                               setCaselle={this.props.setCaselle}
@@ -558,7 +558,7 @@ class ComponentController extends React.Component {
                             />                           
                         </td>
                         <td className="tdController">
-                            <Ipoteca
+                            <GestoreIpoteche
                                 terreni={this.props.terreni}
                                 setTerreni={this.props.setTerreni}
                                 giocatori={this.props.giocatori}
@@ -569,7 +569,7 @@ class ComponentController extends React.Component {
                             />
                         </td>   
                         <td className="tdController">
-                            <Abbandona 
+                            <GestoreAbbandono 
                                 turnoGiocatore={this.props.turnoGiocatore}
                                 giocatori={this.props.giocatori}
                                 setGiocatori={this.props.setGiocatori}
@@ -587,7 +587,7 @@ class ComponentController extends React.Component {
                             </Button>
                         </td>
                         <td className="tdController">
-                            <Costruisci 
+                            <GestoreCostruzioni 
                                 terreni={this.props.terreni}
                                 giocatori={this.props.giocatori}
                                 setTerreni={this.props.setTerreni}
@@ -596,7 +596,7 @@ class ComponentController extends React.Component {
                             />
                         </td>
                         <td className="tdController">
-                            <Vendi 
+                            <GestoreVendite
                                 terreni={this.props.terreni}
                                 setTerreni={this.props.setTerreni}
                                 giocatori={this.props.giocatori}
@@ -663,4 +663,4 @@ class AreaTesto extends React.Component {
       );
     }
 }
-export default ComponentController;
+export default Partita;

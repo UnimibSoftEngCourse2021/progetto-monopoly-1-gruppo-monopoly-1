@@ -1,5 +1,5 @@
 import React from 'react';
-import ComponentController from './ComponentController';
+import Partita from './Partita';
 import hat from '../img/hat.png';
 import iron from '../img/iron.png';
 import car from '../img/car.png';
@@ -59,8 +59,7 @@ function Pedina(props) {
     return ( <img className="pedina" src={props.figura} alt=""  style={props.stile}  /> )
 }
 
-
-class ComponentBoard extends React.Component {
+class ControllerPartita extends React.Component {
 
 	constructor(props) {
         super(props);
@@ -153,7 +152,7 @@ class ComponentBoard extends React.Component {
                         {(this.props.counter!=null)?<div>Countdown: {this.props.counter}</div>
                                 : <div>Countdown: non attivo</div>}
                     </div>
-                <ComponentController 
+                <Partita
                     muoviPedine={this.muoviPedine} 
                     tavolaGioco={tavolaGioco} 
                     turnoGiocatore={this.props.turnoGiocatore} 
@@ -180,5 +179,5 @@ class ComponentBoard extends React.Component {
     }
 }
 
-export default ComponentBoard;
+export default ControllerPartita;
 

@@ -1,13 +1,13 @@
 import React from 'react'
 import {Snackbar, Button } from '@material-ui/core';
 import TabellaGiocatori from './components/Tabelle/TabellaGiocatori';
-import ComponentBoard from './components/ComponentBoard';
+import ControllerPartita from './components/ControllerPartita';
 import TabellaTerreni from './components/Tabelle/TabellaTerreni';
 import TabellaSocietàStazioni from './components/Tabelle/TabellaSocietàStazioni';
 import Banca from './components/Banca';
 import CryptoRandom from './components/CryptoRandom';
 
-function App(props) {
+function Tavola(props) {
 
   const [open, setOpen] = React.useState(false);
   const handleClose = () => {setOpen(false)};
@@ -543,7 +543,7 @@ function App(props) {
             <TabellaSocietàStazioni societàStazioni={societàStazioni}  />
           </td>
           <td className="colonnaBoard" rowspan="2">
-            <ComponentBoard
+            <ControllerPartita
               turnoGiocatore={turnoGiocatore} 
               setTurnoGiocatore={setTurnoGiocatore}
               numeroGiocatori={props.numeroGiocatori}
@@ -588,4 +588,4 @@ function App(props) {
   );
 }
 
-export default App;
+export default Tavola;

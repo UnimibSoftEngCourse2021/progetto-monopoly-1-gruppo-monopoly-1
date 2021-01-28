@@ -1,8 +1,7 @@
 import React from 'react';
 import {Paper, Modal, Button, Grid, TextField, Radio, RadioGroup, FormControlLabel, Snackbar} from '@material-ui/core';
 
-
-function Vendi(props){
+function GestoreVendite(props){
 
   const [open, setOpen] = React.useState(false);
   const handleCloseSnackbar = () => {setOpen(false)};
@@ -346,4 +345,4 @@ return(
 );
 }
 
-export default Vendi;
+export default GestoreVendite;

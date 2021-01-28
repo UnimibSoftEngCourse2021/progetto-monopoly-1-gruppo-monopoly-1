@@ -5,7 +5,7 @@ import StrategyModificaSaldo from './StrategyModificaSaldo';
 import StrategySpostaADestinazione from './StrategySpostaADestinazione';
 import StrategyUscitaPrigione from './StrategyUscitaPrigione';
 
-class Carte extends Component {
+class GestoreCarte extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -47,19 +47,6 @@ class Carte extends Component {
                 [40, 'Hai vinto una competizione di cruciverba: incassa $100', 100, 0, 0, 0], //idCarta == 30
             ],
         }
-    }
-
-    static instance = null;
-    static createInstance() {
-        var object = new Carte();
-        return object;
-    }
-  
-    static getInstance () {
-        if (!Carte.instance) {
-            Carte.instance = Carte.createInstance();
-        }
-        return Carte.instance;
     }
 
     //Metodo che estrae casualmente una carta Probabilità o Imprevisto
@@ -135,4 +122,4 @@ class Carte extends Component {
         )
     }
 }
-export default Carte;
+export default GestoreCarte;

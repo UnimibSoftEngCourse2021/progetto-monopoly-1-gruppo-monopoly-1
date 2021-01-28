@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class SceltaDifficolta extends Component {
+class GestoreDifficolta extends Component {
     
     render() {
         return(
@@ -36,4 +36,4 @@ class SceltaDifficolta extends Component {
     }
 }
 
-export default SceltaDifficolta;
+export default GestoreDifficolta;

@@ -2,7 +2,7 @@ import React from 'react';
 import {Paper, Modal, Button} from '@material-ui/core';
 
 
-function Abbandona(props){
+function GestoreAbbandono(props){
 
 //Stato del Modale utilizato per costruire un edificio
 const [openModal, setOpenModal] = React.useState(false);
@@ -71,4 +71,4 @@ return(
 );
 }
 
-export default Abbandona;
+export default GestoreAbbandono;

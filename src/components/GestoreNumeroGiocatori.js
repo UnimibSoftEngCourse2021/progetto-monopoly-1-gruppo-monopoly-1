@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class SceltaNumeroGiocatori extends Component {
+class GestoreNumeroGiocatori extends Component {
     
     render() {
         return(
@@ -52,4 +52,4 @@ class SceltaNumeroGiocatori extends Component {
     }
 }
 
-export default SceltaNumeroGiocatori
+export default GestoreNumeroGiocatori

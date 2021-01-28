@@ -9,6 +9,19 @@ class Banca extends Component {
         }
     }
 
+    static instance = null;
+    static createInstance() {
+        var object = new Banca();
+        return object;
+    }
+  
+    static getInstance () {
+        if (!Banca.instance) {
+            Banca.instance = Banca.createInstance();
+        }
+        return Banca.instance;
+    }
+
     handleOpen = () => {this.setState({open: true})};
     handleClose = () => {this.setState({open: false})};
 
