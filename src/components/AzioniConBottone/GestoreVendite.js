@@ -118,7 +118,7 @@ function vendiTerreno(){
     venditore2.capitale = venditore2.capitale + parseInt(prezzo);
   }
   //aquirente diventa il nuovo proprietario della proprietà
-  proprietà.proprietario = acquirente2.numero;
+  proprietà.proprietario = acquirente2.numero - 1;
   
   //aggiorno le variabili di stato che contengono l'elenco dei terreni e dei giocatori
   var nuoviTerreni = props.terreni;
@@ -203,7 +203,7 @@ function vendiStazioneSocietà(){
     venditore2.capitale = venditore2.capitale + parseInt(prezzo);
   }
   //aquirente diventa il nuovo proprietario della proprietà
-  proprietà.proprietario = acquirente2.numero;
+  proprietà.proprietario = acquirente2.numero - 1;
   
   //aggiorno le variabili di stato che contengono l'elenco delle società, delle stazioni e dei giocatori
   var nuoveSocietàStazioni = props.societàStazioni;
