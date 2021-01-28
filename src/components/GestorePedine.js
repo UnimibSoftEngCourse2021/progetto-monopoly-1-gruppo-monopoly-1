@@ -200,7 +200,7 @@ function GestorePedine(props){
                                                 numeroContrattiIniziali: 7, 
                                                 inPrigione: false,
                                                 numeroTurniPrigione: 0, 
-                                                carteUscitaPrigione: 1, 
+                                                carteUscitaPrigione: 0, 
                                                 inGioco: true,
                                                 carteBonus: 0 
                                             };
