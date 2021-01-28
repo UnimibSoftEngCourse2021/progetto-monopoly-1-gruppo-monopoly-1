@@ -1,6 +1,7 @@
 import React from 'react';
 import {Paper, Modal, Button, Grid, TextField, Radio, RadioGroup, FormControlLabel, Snackbar} from '@material-ui/core';
 import EsisteTerreno from '../EsisteTerreno';
+import EsisteSocietàStazione from '../EsisteSocietàStazione';
 
 function GestoreVendite(props){
 
@@ -37,28 +38,6 @@ const [prezzo, setPrezzo] = React.useState('');
 const handleChangePrezzo = (event) => {
   setPrezzo(event.target.value);
 };
-
-function esisteSocietàStazione(){
-  var i = 0;
-  var esiste = false;
-  var n;
-  while(i < props.societàStazioni.length){
-    if(terreno === props.societàStazioni[i].nome){
-      esiste = true;
-      n = i;
-      i = 100;
-    }
-    else{
-      i++;
-    }
-  }
-  if(esiste){
-    return(n);
-  }
-  else{
-    return(-1);
-  }
-}
 
 function esisteGiocatore(numero){
   if (numero >= 0 && numero <= 5) {
@@ -139,7 +118,7 @@ function vendiTerreno(){
     venditore2.capitale = venditore2.capitale + parseInt(prezzo);
   }
   //aquirente diventa il nuovo proprietario della proprietà
-  proprietà.proprietario = acquirente2.nome;
+  proprietà.proprietario = acquirente2.numero;
   
   //aggiorno le variabili di stato che contengono l'elenco dei terreni e dei giocatori
   var nuoviTerreni = props.terreni;
@@ -161,7 +140,7 @@ function vendiTerreno(){
 function vendiStazioneSocietà(){
 
   //verifico che la società / stazione esista e salvo il risultato in proprietà
-  var n = esisteSocietàStazione();
+  var n = EsisteSocietàStazione(props.societàStazioni, terreno);
   
   if(n === -1){
     setTesto('Controlla che il nome della società o della stazione sia scritto in modo corretto');
@@ -224,7 +203,7 @@ function vendiStazioneSocietà(){
     venditore2.capitale = venditore2.capitale + parseInt(prezzo);
   }
   //aquirente diventa il nuovo proprietario della proprietà
-  proprietà.proprietario = acquirente2.nome;
+  proprietà.proprietario = acquirente2.numero;
   
   //aggiorno le variabili di stato che contengono l'elenco delle società, delle stazioni e dei giocatori
   var nuoveSocietàStazioni = props.societàStazioni;

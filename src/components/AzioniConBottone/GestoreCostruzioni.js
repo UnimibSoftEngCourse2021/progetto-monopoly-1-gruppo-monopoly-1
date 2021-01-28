@@ -100,7 +100,7 @@ function costruisciCasa(){
 
 function costruisciAlbergo(){
   //verifico che il terreno esista e salvo il risultato in proprietà
-  var n = EsisteTerreno(props.terreni, props.terreno);
+  var n = EsisteTerreno(props.terreni, terreno);
   if(n === -1){
     setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
     setOpen(true);

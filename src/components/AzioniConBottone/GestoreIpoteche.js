@@ -1,6 +1,7 @@
 import React from 'react';
 import {Paper, Modal, Button, Grid, TextField, Radio, RadioGroup, FormControlLabel, Snackbar} from '@material-ui/core';
 import EsisteTerreno from '../EsisteTerreno';
+import EsisteSocietàStazione from '../EsisteSocietàStazione';
 
 function GestoreIpoteche(props){
 
@@ -29,32 +30,32 @@ const handleChangeTipoVendita = (event) => { setTipoVendita(event.target.value) 
 const [azione, setAzione] = React.useState('Ipoteca');
 const handleChangeAzione = (event) => { setAzione(event.target.value) };
 
-function esisteSocietàStazione(){
-  var i = 0;
-  var esiste = false;
-  var n;
-  while(i < props.societàStazioni.length){
-    if(terreno === props.societàStazioni[i].nome){
-      esiste = true;
-      n = i;
-      i = 100;
-    }
-    else{
-      i++;
-    }
-  }
-  if(esiste){
-    return(n);
-  }
-  else{
-    return(-1);
-  }
-}
+// function esisteSocietàStazione(){
+//   var i = 0;
+//   var esiste = false;
+//   var n;
+//   while(i < props.societàStazioni.length){
+//     if(terreno === props.societàStazioni[i].nome){
+//       esiste = true;
+//       n = i;
+//       i = 100;
+//     }
+//     else{
+//       i++;
+//     }
+//   }
+//   if(esiste){
+//     return(n);
+//   }
+//   else{
+//     return(-1);
+//   }
+// }
 
 function ipotecaTerreno(){
 
   //verifico che il terreno esista e salvo il risultato in proprietà
-  var n = EsisteTerreno(props.terreni, props.terreno);
+  var n = EsisteTerreno(props.terreni, terreno);
   
   if(n === -1){
     setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
@@ -98,7 +99,7 @@ function ipotecaTerreno(){
 function ipotecaStazioneSocietà(){
 
   //verifico che la società / stazione esista e salvo il risultato in proprietà
-  var n = esisteSocietàStazione();
+  var n = EsisteSocietàStazione(props.societàStazioni, terreno);
   
   if(n === -1){
     setTesto('Controlla che il nome della società o della stazione sia scritto in modo corretto');
@@ -147,7 +148,7 @@ function ipoteca2(){
 function riscattaTerreno(){
 
     //verifico che il terreno esista e salvo il risultato in proprietà
-    var n = EsisteTerreno(props.terreni, props.terreno);
+    var n = EsisteTerreno(props.terreni, terreno);
     
     if(n === -1){
       setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
@@ -191,7 +192,7 @@ function riscattaTerreno(){
   function riscattaStazioneSocietà(){
   
     //verifico che la società / stazione esista e salvo il risultato in proprietà
-    var n = esisteSocietàStazione();
+    var n = EsisteSocietàStazione(props.societàStazioni, terreno);
     
     if(n === -1){
       setTesto('Controlla che il nome della società o della stazione sia scritto in modo corretto');
