@@ -253,7 +253,7 @@ function Tavola(props) {
         nome: 'Baltic avenue',
         coloreSfondo: '#7E3C09',
         proprietario: -1,
-        case: 4,
+        case: 0,
         alberghi: 0,
         valore: 60,
         colore: 'marrone',
