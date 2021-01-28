@@ -51,17 +51,23 @@ class StrategyModificaSaldo extends AttivaCartaStrategy {
                 
         //Modifica il saldo ricevendo o distribuendo agli altri giocatori una somma di denaro 
         if (carte[idCarta][5] !== 0) {
-            nuoviGiocatori[turnoGiocatore].capitale += (nuoviGiocatori.length * carte[idCarta][5]);
             if (carte[idCarta][5] > 0) {
-                for (let i = 0; i < nuoviGiocatori.length; i++) {   
-                    nuoviGiocatori[i].capitale -= carte[idCarta][5];
+                for (let i = 0; i < nuoviGiocatori.length; i++) {
+                    if ((nuoviGiocatori[i].inGioco === true) && (i !== turnoGiocatore)) {
+                        nuoviGiocatori[i].capitale -= carte[idCarta][5];
+                        nuoviGiocatori[turnoGiocatore].capitale += carte[idCarta][5];
+                    }     
                 }
             } else {
-                for (let i = 0; i < nuoviGiocatori.length; i++) {   
-                    nuoviGiocatori[i].capitale += carte[idCarta][5];
+                for (let i = 0; i < nuoviGiocatori.length; i++) {
+                    if ((nuoviGiocatori[i].inGioco === true) && (i !== turnoGiocatore)) {
+                        nuoviGiocatori[turnoGiocatore].capitale += carte[idCarta][5];
+                        nuoviGiocatori[i].capitale -= carte[idCarta][5];   
+                    }
                 }
             }
         }
+
         cambiaTesto(nuovoTesto);
         handleOpen();
         setGiocatori(nuoviGiocatori);

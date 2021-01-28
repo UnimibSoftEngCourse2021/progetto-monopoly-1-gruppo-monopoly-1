@@ -10,12 +10,17 @@ class EsecutoreCarte extends Component {
     }
 
     setStrategia(strategia) {
+        console.log("Entrato set strategia");
         this.setState = ({
             attivaCarta: strategia
-        })
+            
+        }, console.log(this.state.attivaCarta)
+        )
     }
 
     attivaStrategiaCarte = () => {
+        console.log("Entrato attiva carta");
+        console.log(this.state.attivaCarta);
         this.state.attivaCarta.attivaCarta( this.props.idCarta, 
                                             this.props.turnoGiocatore, 
                                             this.props.giocatori, 

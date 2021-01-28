@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CryptoRandom from '../CryptoRandom';
 import EsecutoreCarte from './EsecutoreCarte';
+import StrategyModificaSaldo from './StrategyModificaSaldo';
 import StrategyUscitaPrigione from './StrategyUscitaPrigione';
 
 class Carte extends Component {
@@ -38,7 +39,7 @@ class Carte extends Component {
                 [40, 'Paga tasse scadute: paga $10', -10, 0, 0, 0], //idCarta == 23
                 [5, 'Vai a Reading Railroad', 0, 0, 0, 0], //idCarta == 24
                 [39, 'Vai a Boardwalk', 0, 0, 0, 0], //idCarta == 25
-                [40, 'Sei eletto chairman della tavola da gioco: paga $50 da ogni giocaotore', 0, 0, 0, -50], //idCarta == 26
+                [40, 'Sei eletto chairman della tavola da gioco: paga $50 a ogni giocaotore', 0, 0, 0, -50], //idCarta == 26
                 [40, 'Rendimento prestito immobiliare: incassa $150', 150, 0, 0, 0], //idCarta == 27
                 [40, 'Muovi la pedina al prossimo Utility, se non ha proprietario puoi comprarlo, se lo ha tira i dadi e paga 10 volte il risultato del lancio', 0, 0, 0, 0], //idCarta == 28
                 [40, 'Muovi la pedina alla prossima Stazione, se non ha proprietario puoi comprarla, se lo ha paga il doppio del noleggio', 0, 0, 0, 0], //idCarta == 29
@@ -83,56 +84,93 @@ class Carte extends Component {
         //probabilità==true, imprevisto==false
         let idCarta;
         if (probabilitaOImprevisto){
-            idCarta = 12//CryptoRandom(0,14); //Il max è incluso e il min è incluso
+            idCarta = 5//CryptoRandom(0,14); //Il max è incluso e il min è incluso
         }else{
-            idCarta = 12//CryptoRandom(15,30); //Il max è incluso e il min è incluso
+            idCarta = 5//CryptoRandom(15,30); //Il max è incluso e il min è incluso
         }
         nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ' pesca la carta: ' + this.state.carte[idCarta][1] + '. ';
 
-        let esecutoreCarte = new EsecutoreCarte(idCarta, 
-                                                turnoGiocatore, 
-                                                giocatori, 
-                                                setGiocatori, 
-                                                segnalini, 
-                                                setSegnalini, 
-                                                terreni, 
-                                                setTerreni, 
-                                                tavolaGioco, 
-                                                setTavolaGioco, 
-                                                societàStazioni, 
-                                                setSocietàStazioni,
-                                                pagaAffitto,
-                                                testo,
-                                                cambiaTesto,
-                                                handleOpen,
-                                                handleClose,
-                                                difficolta,
-                                                nuovoTesto,
-                                                this.state.carte);
-        if (idCarta === 12 || idCarta === 15) {
-            esecutoreCarte.setStrategia(new StrategyUscitaPrigione());
-            esecutoreCarte.attivaStrategiaCarte();
-        }
+        // let esecutoreCarte = new EsecutoreCarte(idCarta, 
+        //                                         turnoGiocatore, 
+        //                                         giocatori, 
+        //                                         setGiocatori, 
+        //                                         segnalini, 
+        //                                         setSegnalini, 
+        //                                         terreni, 
+        //                                         setTerreni, 
+        //                                         tavolaGioco, 
+        //                                         setTavolaGioco, 
+        //                                         societàStazioni, 
+        //                                         setSocietàStazioni,
+        //                                         pagaAffitto,
+        //                                         testo,
+        //                                         cambiaTesto,
+        //                                         handleOpen,
+        //                                         handleClose,
+        //                                         difficolta,
+        //                                         nuovoTesto,
+        //                                         this.state.carte);
 
-        this.attivaCarta(   idCarta, 
-                            turnoGiocatore, 
-                            giocatori, 
-                            setGiocatori, 
-                            segnalini, 
-                            setSegnalini, 
-                            terreni, 
-                            setTerreni, 
-                            tavolaGioco, 
-                            setTavolaGioco, 
-                            societàStazioni, 
-                            setSocietàStazioni,
-                            pagaAffitto,
-                            testo,
-                            cambiaTesto,
-                            handleOpen,
-                            handleClose,
-                            difficolta,
-                            nuovoTesto);
+        let strategy;
+        if ((idCarta === 22) || (this.state.carte[idCarta][2] !== 0) || (this.state.carte[idCarta][5] !== 0) ) {
+            strategy = new StrategyModificaSaldo();
+            // console.log("Entrato primo");
+            // esecutoreCarte.setStrategia(new StrategyModificaSaldo());
+            // console.log(esecutoreCarte);
+            // esecutoreCarte.attivaStrategiaCarte();
+        } else if (idCarta === 12 || idCarta === 15) {
+            strategy = new StrategyUscitaPrigione();
+            // console.log("Entrato primo");
+            // let strategyUscitaPrigione = new StrategyUscitaPrigione();
+            // console.log(esecutoreCarte);
+            // esecutoreCarte.setStrategia(strategyUscitaPrigione);
+            // console.log(esecutoreCarte);
+            // esecutoreCarte.attivaStrategiaCarte();
+        }
+        strategy.attivaCarta(   idCarta, 
+                                turnoGiocatore, 
+                                giocatori, 
+                                setGiocatori, 
+                                segnalini, 
+                                setSegnalini, 
+                                terreni, 
+                                setTerreni, 
+                                tavolaGioco, 
+                                setTavolaGioco, 
+                                societàStazioni, 
+                                setSocietàStazioni,
+                                pagaAffitto,
+                                testo,
+                                cambiaTesto,
+                                handleOpen,
+                                handleClose,
+                                difficolta,
+                                nuovoTesto,
+                                this.state.carte 
+        );  
+
+
+
+
+        // this.attivaCarta(   idCarta, 
+        //                     turnoGiocatore, 
+        //                     giocatori, 
+        //                     setGiocatori, 
+        //                     segnalini, 
+        //                     setSegnalini, 
+        //                     terreni, 
+        //                     setTerreni, 
+        //                     tavolaGioco, 
+        //                     setTavolaGioco, 
+        //                     societàStazioni, 
+        //                     setSocietàStazioni,
+        //                     pagaAffitto,
+        //                     testo,
+        //                     cambiaTesto,
+        //                     handleOpen,
+        //                     handleClose,
+        //                     difficolta,
+        //                     nuovoTesto);
     }
 
     //Metodo che attiva l'effetto della carta estratta
