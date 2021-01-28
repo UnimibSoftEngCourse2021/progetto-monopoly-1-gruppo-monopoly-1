@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import CryptoRandom from '../CryptoRandom';
+import EsecutoreCarte from './EsecutoreCarte';
+import StrategyUscitaPrigione from './StrategyUscitaPrigione';
 
 class Carte extends Component {
     constructor(props) {
@@ -81,14 +83,37 @@ class Carte extends Component {
         //probabilità==true, imprevisto==false
         let idCarta;
         if (probabilitaOImprevisto){
-            //idCarta = Math.floor(Math.random()*(14));
-            idCarta = CryptoRandom(0,14); //Il max è incluso e il min è incluso
+            idCarta = 12//CryptoRandom(0,14); //Il max è incluso e il min è incluso
         }else{
-            //idCarta = Math.floor(Math.random()*(30-15)+15);
-            idCarta = CryptoRandom(15,30); //Il max è incluso e il min è incluso
+            idCarta = 12//CryptoRandom(15,30); //Il max è incluso e il min è incluso
         }
         nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ' pesca la carta: ' + this.state.carte[idCarta][1] + '. ';
-        console.log(nuovoTesto);
+
+        let esecutoreCarte = new EsecutoreCarte(idCarta, 
+                                                turnoGiocatore, 
+                                                giocatori, 
+                                                setGiocatori, 
+                                                segnalini, 
+                                                setSegnalini, 
+                                                terreni, 
+                                                setTerreni, 
+                                                tavolaGioco, 
+                                                setTavolaGioco, 
+                                                societàStazioni, 
+                                                setSocietàStazioni,
+                                                pagaAffitto,
+                                                testo,
+                                                cambiaTesto,
+                                                handleOpen,
+                                                handleClose,
+                                                difficolta,
+                                                nuovoTesto,
+                                                this.state.carte);
+        if (idCarta === 12 || idCarta === 15) {
+            esecutoreCarte.setStrategia(new StrategyUscitaPrigione());
+            esecutoreCarte.attivaStrategiaCarte();
+        }
+
         this.attivaCarta(   idCarta, 
                             turnoGiocatore, 
                             giocatori, 

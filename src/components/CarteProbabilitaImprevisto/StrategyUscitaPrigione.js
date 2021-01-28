@@ -30,7 +30,9 @@ class StrategyUscitaPrigione extends AttivaCartaStrategy {
                     carte) => {
         let nuoviGiocatori = giocatori;                
         nuoviGiocatori[turnoGiocatore].carteUscitaPrigione += 1;
-        setGiocatori(nuoviGiocatori);                
+        cambiaTesto(nuovoTesto);
+        handleOpen();
+        setGiocatori(nuoviGiocatori);               
     }
 
     render () {

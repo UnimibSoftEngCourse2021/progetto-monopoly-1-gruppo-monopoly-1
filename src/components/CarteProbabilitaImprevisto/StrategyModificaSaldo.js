@@ -62,6 +62,8 @@ class StrategyModificaSaldo extends AttivaCartaStrategy {
                 }
             }
         }
+        cambiaTesto(nuovoTesto);
+        handleOpen();
         setGiocatori(nuoviGiocatori);
     }
 

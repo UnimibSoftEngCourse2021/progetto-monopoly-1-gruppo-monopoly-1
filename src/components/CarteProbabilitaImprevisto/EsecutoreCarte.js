@@ -16,26 +16,26 @@ class EsecutoreCarte extends Component {
     }
 
     attivaStrategiaCarte = () => {
-        attivaCarta.attivaCarta(    this.props.idCarta, 
-                                    this.props.turnoGiocatore, 
-                                    this.props.giocatori, 
-                                    this.props.setGiocatori, 
-                                    this.props.segnalini, 
-                                    this.props.setSegnalini, 
-                                    this.props.terreni, 
-                                    this.props.setTerreni, 
-                                    this.props.tavolaGioco, 
-                                    this.props.setTavolaGioco, 
-                                    this.props.societàStazioni, 
-                                    this.props.setSocietàStazioni,
-                                    this.props.pagaAffitto,
-                                    this.props.testo,
-                                    this.props.cambiaTesto,
-                                    this.props.handleOpen,
-                                    this.props.handleClose,
-                                    this.props.difficolta,
-                                    this.props.nuovoTesto,
-                                    this.props.carte
+        this.state.attivaCarta.attivaCarta( this.props.idCarta, 
+                                            this.props.turnoGiocatore, 
+                                            this.props.giocatori, 
+                                            this.props.setGiocatori, 
+                                            this.props.segnalini, 
+                                            this.props.setSegnalini, 
+                                            this.props.terreni, 
+                                            this.props.setTerreni, 
+                                            this.props.tavolaGioco, 
+                                            this.props.setTavolaGioco, 
+                                            this.props.societàStazioni, 
+                                            this.props.setSocietàStazioni,
+                                            this.props.pagaAffitto,
+                                            this.props.testo,
+                                            this.props.cambiaTesto,
+                                            this.props.handleOpen,
+                                            this.props.handleClose,
+                                            this.props.difficolta,
+                                            this.props.nuovoTesto,
+                                            this.props.carte
         );
     }
 

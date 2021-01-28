@@ -144,8 +144,8 @@ class ComponentController extends React.Component {
     tiraDadi = () => {
         
         if (!dadiTirati){
-            dado1 = CryptoRandom(1,6); //Il max è incluso e il min è incluso
-            dado2 = CryptoRandom(1,6); //Il max è incluso e il min è incluso
+            dado1 = 35//CryptoRandom(1,6); //Il max è incluso e il min è incluso
+            dado2 = 1//CryptoRandom(1,6); //Il max è incluso e il min è incluso
             sommaDadi = dado1 + dado2;
             numeroTiriDadi = numeroTiriDadi + 1;
             punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
