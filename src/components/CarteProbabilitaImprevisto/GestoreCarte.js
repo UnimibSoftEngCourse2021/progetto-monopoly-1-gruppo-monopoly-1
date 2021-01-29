@@ -4,6 +4,7 @@ import StrategyCaselleIndietro from './StrategyCaselleIndietro';
 import StrategyModificaSaldo from './StrategyModificaSaldo';
 import StrategySpostaADestinazione from './StrategySpostaADestinazione';
 import StrategyUscitaPrigione from './StrategyUscitaPrigione';
+import EsecutoreCarte from './EsecutoreCarte';
 
 class GestoreCarte extends Component {
     constructor(props) {
@@ -40,7 +41,7 @@ class GestoreCarte extends Component {
                 [40, 'Paga tasse scadute: paga $10', -10, 0, 0, 0], //idCarta == 23
                 [5, 'Vai a Reading Railroad', 0, 0, 0, 0], //idCarta == 24
                 [39, 'Vai a Boardwalk', 0, 0, 0, 0], //idCarta == 25
-                [40, 'Sei eletto chairman della tavola da gioco: paga $50 a ogni giocaotore', 0, 0, 0, -50], //idCarta == 26
+                [40, 'Sei eletto chairman della tavola da gioco: paga $50 a ogni giocatore', 0, 0, 0, -50], //idCarta == 26
                 [40, 'Rendimento prestito immobiliare: incassa $150', 150, 0, 0, 0], //idCarta == 27
                 [40, 'Muovi la pedina al prossimo Utility, se non ha proprietario puoi comprarlo, se lo ha tira i dadi e paga 10 volte il risultato del lancio', 0, 0, 0, 0], //idCarta == 28
                 [40, 'Muovi la pedina alla prossima Stazione, se non ha proprietario puoi comprarla, se lo ha paga il doppio del noleggio', 0, 0, 0, 0], //idCarta == 29
@@ -80,8 +81,8 @@ class GestoreCarte extends Component {
         nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ' pesca la carta: ' + this.state.carte[idCarta][1] + '. ';
         console.log(nuovoTesto);
 
+        let esecutoreCarte = new EsecutoreCarte();
         let strategy = '';
-        console.log(strategy);
         if ((idCarta === 22) || (this.state.carte[idCarta][2] !== 0) || (this.state.carte[idCarta][5] !== 0) ) {
             strategy = new StrategyModificaSaldo();
         } else if (idCarta === 12 || idCarta === 15) {
@@ -91,29 +92,29 @@ class GestoreCarte extends Component {
         } else if (idCarta === 20) {
             strategy = new StrategyCaselleIndietro();
         }
-        strategy.attivaCarta(   idCarta, 
-                                turnoGiocatore, 
-                                giocatori, 
-                                setGiocatori, 
-                                segnalini, 
-                                setSegnalini, 
-                                terreni, 
-                                setTerreni, 
-                                tavolaGioco, 
-                                setTavolaGioco, 
-                                societàStazioni, 
-                                setSocietàStazioni,
-                                pagaAffitto,
-                                testo,
-                                cambiaTesto,
-                                handleOpen,
-                                handleClose,
-                                difficolta,
-                                nuovoTesto,
-                                this.state.carte 
-        );  
-    }
-
+        esecutoreCarte.setStrategia(strategy);
+        esecutoreCarte.attivaStrategiaCarte(idCarta, 
+                                            turnoGiocatore, 
+                                            giocatori, 
+                                            setGiocatori, 
+                                            segnalini, 
+                                            setSegnalini, 
+                                            terreni, 
+                                            setTerreni, 
+                                            tavolaGioco, 
+                                            setTavolaGioco, 
+                                            societàStazioni, 
+                                            setSocietàStazioni,
+                                            pagaAffitto,
+                                            testo,
+                                            cambiaTesto,
+                                            handleOpen,
+                                            handleClose,
+                                            difficolta,
+                                            nuovoTesto,
+                                            this.state.carte);                                         
+    }        
+        
     render () {
         
         return (
