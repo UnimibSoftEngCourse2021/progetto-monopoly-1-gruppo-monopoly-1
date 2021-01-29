@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import CryptoRandom from '../CryptoRandom';
+import AttivaCartaStrategy from './AttivaCartaStrategy';
 import StrategyModificaSaldo from './StrategyModificaSaldo';
 import StrategySpostaADestinazione from './StrategySpostaADestinazione';
 import StrategyUscitaPrigione from './StrategyUscitaPrigione';
 
-class StrategyCaselleIndietro extends Component {
+class StrategyCaselleIndietro extends AttivaCartaStrategy {
     constructor(props) {
         super(props);
         this.state = {
