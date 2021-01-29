@@ -49,7 +49,7 @@ function esisteGiocatore(numero){
 
 function verificaVenditore(proprietà, y) {
   let esito = true;
-  if((proprietà.proprietario != venditore)){
+  if((proprietà.proprietario !== venditore)){
     setTestoVendite('Non puoi vendere qualcosa che non ti appartiene');
     setOpenVendite(true);
     esito = false; 

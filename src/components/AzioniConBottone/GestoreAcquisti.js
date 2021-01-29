@@ -15,8 +15,8 @@ const handleCloseAcquisti = () => { setOpenModalAcquisti(false) };
 var c = props.caselle[props.attualeCasella];
 
 const acquistaProprieta = () => {
-  if (c.tipo=='terreno') { acquistaTerreno(); }
-  if (c.tipo=='societa' || c.tipo=='stazione') { acquistaSocietaStazione(); }
+  if (c.tipo === 'terreno') { acquistaTerreno(); }
+  if (c.tipo === 'societa' || c.tipo ==='stazione') { acquistaSocietaStazione(); }
 }
 
 const acquistaTerreno = () => { 
@@ -33,7 +33,7 @@ const acquistaTerreno = () => {
     // Se il giocatore ha abbastanza soldi procede con l'acquisto
     // Se il nome della casella di tipo terreno corrisponde al nome nell'array terreni
     // allora aggiorno il proprietario Sia in array Terreni sia in array Caselle    
-    if (props.terreni[i].nome==props.caselle[props.attualeCasella].nome) {
+    if (props.terreni[i].nome === props.caselle[props.attualeCasella].nome) {
       if (props.terreni[i].valore<=vecchioCapitale) {
       // Aggiorno array terreni
       nuoviTerreni[i].proprietario=props.turnoGiocatore;

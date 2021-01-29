@@ -5,14 +5,14 @@ import EsisteTerreno from '../EsisteTerreno';
 
 function GestoreCostruzioni(props){
 
-  const [open, setOpen] = React.useState(false);
-  const handleCloseSnackbar = (event, reason) => {setOpen(false)};
-  const [testo, setTesto] = React.useState('');    
+  const [openCostruzioni, setOpenCostruzioni] = React.useState(false);
+  const handleCloseSnackbarCostruzioni = (event, reason) => {setOpenCostruzioni(false)};
+  const [testoCostruzioni, setTestoCostruzioni] = React.useState('');    
 
 //Stato del Modale utilizato per costruire un edificio
-const [openModal, setOpenModal] = React.useState(false);
-const handleOpen = () => { setOpenModal(true) };
-const handleClose = () => { setOpenModal(false) };
+const [openModalCostruzioni, setOpenModalCostruzioni] = React.useState(false);
+const handleOpenCostruzioni = () => { setOpenModalCostruzioni(true) };
+const handleCloseCostruzioni = () => { setOpenModalCostruzioni(false) };
 
 //Stato del RadioGrup casaAlbergo usato per scegliere la tipologia di edificio da costruire
 const [edificio, setEdificio] = React.useState('casa');
@@ -32,69 +32,62 @@ function verificaColore(colore, giocatore){
     }
     i++
   }
-  
   return(true);
 }
 
-
 function costruisciCasa(){
   //verifico che il terreno esista e salvo il risultato in proprietà
-  console.log(terreno);
-  var n = EsisteTerreno(props.terreni, props.terreno);
-  console.log(n);
+  var n = EsisteTerreno(props.terreni, terreno);
   if(n === -1){
-    setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
-    setOpen(true);
+    setTestoCostruzioni('Controlla che il nome del terreno sia scritto in modo corretto');
+    setOpenCostruzioni(true);
     return;
   }
   var proprietà = props.terreni[n];
   //verifico che la proprietà non sia ipotecata
   if(proprietà.ipotecato === true){
-    setTesto('Non puoi costruire su un terreno ipotecato');
-    setOpen(true);
+    setTestoCostruzioni('Non puoi costruire su un terreno ipotecato');
+    setOpenCostruzioni(true);
     return;
   }
   //verifico che il turnoGiocatore sia proprietario di proprietà
-  if((proprietà.proprietario != props.turnoGiocatore)){
-    setTesto('Non puoi costruire su un terreno che non è tuo');
-    setOpen(true);
+  if((proprietà.proprietario !== props.turnoGiocatore)){
+    setTestoCostruzioni('Non puoi costruire su un terreno che non è tuo');
+    setOpenCostruzioni(true);
     return;
   }
   //Per poter costruire su proprietà devi avere tutti i terreni dello stesso colore
   var verifica = verificaColore(proprietà.colore, proprietà.proprietario);
   if(!verifica){
-    setTesto('Per costruire devi prima possedere tutte le caselle dello stesso colore');
-    setOpen(true);
+    setTestoCostruzioni('Per costruire devi prima possedere tutte le caselle dello stesso colore');
+    setOpenCostruzioni(true);
     return;
   }
   //Su un terreno si possono costruire massimo 4 case
   if(proprietà.case >= 4){
-    setTesto('Su un terreno si possono costruire massimo quattro case');
-    setOpen(true);
+    setTestoCostruzioni('Su un terreno si possono costruire massimo quattro case');
+    setOpenCostruzioni(true);
     return;
   }
   //Se sul terreno c'è un albergo non posso costruirvi delle case
   if(proprietà.alberghi > 0){
-    setTesto("Se su un terreno c'e' un albergo non puoi costruirvi una casa");
-    setOpen(true);
+    setTestoCostruzioni("Se su un terreno c'e' un albergo non puoi costruirvi una casa");
+    setOpenCostruzioni(true);
     return;
   }
   //modifico l'array terreni e l'array giocatori
   proprietà.case = proprietà.case + 1;
-  console.log(proprietà);
   var nuoviTerreni = props.terreni;
   nuoviTerreni[n] = proprietà;
   props.setTerreni(nuoviTerreni);
-  console.log(props.terreni);
 
   var nuoviGiocatori = props.giocatori;
   var costoCostruzione = proprietà.valore*3/4;
   nuoviGiocatori[props.turnoGiocatore].capitale = nuoviGiocatori[props.turnoGiocatore].capitale - costoCostruzione;
   props.setGiocatori(nuoviGiocatori);
-  console.log(props.giocatori);
 
-  setTesto('La costruzione della casa è andata a buon fine');
-  setOpen(true);
+  setTestoCostruzioni('La costruzione della casa è andata a buon fine');
+  setOpenCostruzioni(true);
 
 }
 
@@ -102,54 +95,51 @@ function costruisciAlbergo(){
   //verifico che il terreno esista e salvo il risultato in proprietà
   var n = EsisteTerreno(props.terreni, terreno);
   if(n === -1){
-    setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
-    setOpen(true);
+    setTestoCostruzioni('Controlla che il nome del terreno sia scritto in modo corretto');
+    setOpenCostruzioni(true);
     return;
   }
   var proprietà = props.terreni[n];
   //verifico che la proprietà non sia ipotecata
   if(proprietà.ipotecato === true){
-    setTesto('Non puoi costruire su un terreno ipotecato');
-    setOpen(true);
+    setTestoCostruzioni('Non puoi costruire su un terreno ipotecato');
+    setOpenCostruzioni(true);
     return;
   }
   //verifico che il turnoGiocatore sia proprietario di proprietà
-  if((proprietà.proprietario != props.turnoGiocatore)){
-    setTesto('Non puoi costruire su un terreno che non è tuo');
-    setOpen(true);
+  if((proprietà.proprietario !== props.turnoGiocatore)){
+    setTestoCostruzioni('Non puoi costruire su un terreno che non è tuo');
+    setOpenCostruzioni(true);
     return;
   }
   //Su un terreno si può costruire massimo un albergo
   if(proprietà.alberghi > 0){
-    setTesto('Su un terreno si può costruire massimo un albergo');
-    setOpen(true);
+    setTestoCostruzioni('Su un terreno si può costruire massimo un albergo');
+    setOpenCostruzioni(true);
     return;
   }
   
   //Per poter costruire un albergo devi avere quattro case su proprietà 
   if(proprietà.case < 4){
-    setTesto('Per costruire un albergo su questo terreno devi prima possedere quattro case');
-    setOpen(true);
+    setTestoCostruzioni('Per costruire un albergo su questo terreno devi prima possedere quattro case');
+    setOpenCostruzioni(true);
     return;
   }
   
   //modifico l'array terreni e l'array giocatori
   proprietà.alberghi = proprietà.alberghi + 1;
   proprietà.case = 0;
-  console.log(proprietà);
   var nuoviTerreni = props.terreni;
   nuoviTerreni[n] = proprietà;
   props.setTerreni(nuoviTerreni);
-  console.log(props.terreni);
 
   var nuoviGiocatori = props.giocatori;
   var costoCostruzione = proprietà.valore*3/4;
   nuoviGiocatori[props.turnoGiocatore].capitale = nuoviGiocatori[props.turnoGiocatore].capitale - costoCostruzione;
   props.setGiocatori(nuoviGiocatori);
-  console.log(props.giocatori);
 
-  setTesto("La costruzione dell'albergo è andata a buon fine");
-  setOpen(true);
+  setTestoCostruzioni("La costruzione dell'albergo è andata a buon fine");
+  setOpenCostruzioni(true);
 
 }
 
@@ -185,21 +175,21 @@ const body = (
 
 return(
 <div>
-  <Button onClick={handleOpen}  size="small" >
+  <Button onClick={handleOpenCostruzioni}  size="small" >
     Costruisci
   </Button>
-  <Modal open={openModal} onClose={handleClose}>
+  <Modal open={openModalCostruzioni} onClose={handleCloseCostruzioni}>
     {body}
   </Modal>
   <Snackbar
     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-    open={open}
+    open={openCostruzioni}
     autoHideDuration={6000}
-    onClose={handleCloseSnackbar}
-    message={testo}
+    onClose={handleCloseSnackbarCostruzioni}
+    message={testoCostruzioni}
     action={
       <React.Fragment>
-        <Button color="secondary" size="small" onClick={handleCloseSnackbar}> UNDO </Button>
+        <Button color="secondary" size="small" onClick={handleCloseSnackbarCostruzioni}> UNDO </Button>
       </React.Fragment>
     }
   />

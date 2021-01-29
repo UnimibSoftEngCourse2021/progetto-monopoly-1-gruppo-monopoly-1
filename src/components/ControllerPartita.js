@@ -101,6 +101,8 @@ class ControllerPartita extends React.Component {
                     break;
                 case wheelbarrow: var mystyleWheelbarrow = segnalinoSet;
                     break;
+                default:
+                    break;
             }
         }
 
