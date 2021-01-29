@@ -584,7 +584,7 @@ class Partita extends React.Component {
                             />
                         </td>   
                         <td className="tdController">
-                        <GestoreAbbandono 
+                            <GestoreAbbandono 
                                 turnoGiocatore={this.props.turnoGiocatore}
                                 setTurnoGiocatore={this.props.setTurnoGiocatore}
                                 fallimentoVittoria={this.fallimentoVittoria}
@@ -594,7 +594,7 @@ class Partita extends React.Component {
                                 setTerreni={this.props.setTerreni}
                                 societàStazioni={this.props.societàStazioni}
                                 setSocietàStazioni={this.props.setSocietàStazioni}
-
+                                numeroGiocatori={this.props.numeroGiocatori}
                             />
                         </td>
                     </tr>
