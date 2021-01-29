@@ -155,7 +155,6 @@ function costruisciAlbergo(){
   nuoviGiocatori[props.turnoGiocatore].capitale = nuoviGiocatori[props.turnoGiocatore].capitale - costoCostruzione;
   props.setGiocatori(nuoviGiocatori);
 
-  var banca = Banca.getInstance();
   for (let i = 0; i < 4; i++) {
     banca.incrementaCase();
   }
