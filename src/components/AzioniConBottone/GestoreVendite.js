@@ -64,8 +64,8 @@ function esisteGiocatore(nome){
   
   var i = 0;
   while(i < props.giocatori.length){
-    if(nome === props.giocatori[i].nome){
-     return(i); 
+    if(nome+1 === props.giocatori[i].numero){
+     return(i++); 
     }
     else{
       i++;
