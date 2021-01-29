@@ -55,6 +55,13 @@ function ipotecaTerreno(){
     setOpenIpoteche(true);
     return;
   }
+
+  //verifico che il terreno non si già ipotecato
+  if (proprietà.ipotecato == true) {
+    setTestoIpoteche('Non puoi ipotecare una proprietà già ipotecata');
+    setOpenIpoteche(true);
+    return;
+  }
   
   //modifico l'array terreni e l'array giocatori
   proprietà.ipotecato = true;
@@ -70,7 +77,7 @@ function ipotecaTerreno(){
   props.setGiocatori(nuoviGiocatori);
   console.log(props.giocatori);
 
-  setTestoIpoteche('Questa proprietà è stata ipotecata');
+  setTestoIpoteche('Questa proprietà è stata ipotecata. Hai guadagnato:'+guadagno);
   setOpenIpoteche(true); 
 }
 
@@ -92,6 +99,13 @@ function ipotecaStazioneSocietà(){
     setOpenIpoteche(true);
     return;
   }
+
+    //verifico che la società non si già ipotecato
+    if (proprietà.ipotecato == true) {
+      setTestoIpoteche('Non puoi ipotecare una proprietà già ipotecata');
+      setOpenIpoteche(true);
+      return;
+    }
    
   //modifico l'array terreni e l'array giocatori
   proprietà.ipotecato = true;
@@ -107,7 +121,7 @@ function ipotecaStazioneSocietà(){
   props.setGiocatori(nuoviGiocatori);
   console.log(props.giocatori);
 
-  setTestoIpoteche('Questa proprietà è stata ipotecata');
+  setTestoIpoteche('Questa proprietà è stata ipotecata. Hai guadagnato:'+guadagno);
   setOpenIpoteche(true); 
 }
 
@@ -160,7 +174,7 @@ function riscattaTerreno(){
     props.setGiocatori(nuoviGiocatori);
     console.log(props.giocatori);
   
-    setTestoIpoteche("L'ipoteca su questa proprietà è stata riscattata con successo");
+    setTestoIpoteche("L'ipoteca su questa proprietà è stata riscattata con successo. Hai speso:"+spesa);
     setOpenIpoteche(true); 
   }
   
@@ -203,7 +217,7 @@ function riscattaTerreno(){
     props.setGiocatori(nuoviGiocatori);
     console.log(props.giocatori);
   
-    setTestoIpoteche("L'ipoteca su questa proprietà è stata riscattata con successo");
+    setTestoIpoteche("L'ipoteca su questa proprietà è stata riscattata con successo. Hai speso:"+spesa);
     setOpenIpoteche(true); 
   }
   
