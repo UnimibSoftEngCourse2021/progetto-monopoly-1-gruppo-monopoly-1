@@ -56,12 +56,12 @@ if(props.giocatori[giocatore2].inGioco===false){
     
     while(x){
         
-        if(this.props.giocatori[i].inGioco === true){
+        if(props.giocatori[i].inGioco === true){
             giocatore2 = i;
             x = false;
         }
         else{
-            if(i===this.props.numeroGiocatori-1){
+            if(i===props.numeroGiocatori-1){
                 i = 0;
             }
             else{
