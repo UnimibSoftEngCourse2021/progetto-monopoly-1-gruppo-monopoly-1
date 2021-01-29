@@ -3,8 +3,6 @@ function EsisteTerreno(terreni, terreno){
     var esiste = false;
     var n;
     while(i < terreni.length){
-        console.log(terreno === terreni[i].nome);
-        console.log(terreno === terreni[i].nome);
         if(terreno === terreni[i].nome){
             esiste = true;
             n = i;

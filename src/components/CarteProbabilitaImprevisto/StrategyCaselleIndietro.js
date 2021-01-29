@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import GestoreCarte from './GestoreCarte';
 import CryptoRandom from '../CryptoRandom';
 import StrategyModificaSaldo from './StrategyModificaSaldo';
 import StrategySpostaADestinazione from './StrategySpostaADestinazione';
@@ -58,7 +57,7 @@ class StrategyCaselleIndietro extends Component {
                 let idNuovaCarta = CryptoRandom(0,14); 
                 nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ' pesca la carta: ' + carte[idNuovaCarta][1] + '. ';
                 
-                let strategy;
+                let strategy = '';
                 if ((carte[idNuovaCarta][2] !== 0) || (carte[idNuovaCarta][5] !== 0) ) {
                     strategy = new StrategyModificaSaldo();
                 } else if (idNuovaCarta === 12 || idNuovaCarta === 15) {

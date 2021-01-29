@@ -18,11 +18,11 @@ function Tavola(props) {
   if (props.tempoMinuti!=null) {tempoSecondi=props.tempoMinuti*60}
   const [counter, setCounter] = React.useState(tempoSecondi);
 
-  var banca1 = new Banca;
+  var banca1 = new Banca();
 
   React.useEffect(() => {
     counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
-    if (counter==0) {
+    if (counter === 0) {
       setTesto('tempo finito');
       setOpen(true);
       var t = banca1.partitaCountdown(props.giocatori);
@@ -253,7 +253,7 @@ function Tavola(props) {
         nome: 'Baltic avenue',
         coloreSfondo: '#7E3C09',
         proprietario: -1,
-        case: 4,
+        case: 0,
         alberghi: 0,
         valore: 60,
         colore: 'marrone',

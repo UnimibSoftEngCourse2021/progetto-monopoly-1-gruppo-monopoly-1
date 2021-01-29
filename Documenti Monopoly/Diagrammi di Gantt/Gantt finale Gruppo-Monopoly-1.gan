@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2021-01-07" view-index="0" gantt-divider-location="457" resource-divider-location="300" version="2.8.11" locale="it">
+    <description/>
+    <view zooming-state="default:2" id="gantt-chart">
+        <field id="tpd3" name="Nome" width="220" order="0"/>
+        <field id="tpd4" name="Data d'inizio" width="95" order="1"/>
+        <field id="tpd5" name="Data di fine" width="123" order="2"/>
+        <option id="color.recent"><![CDATA[#ff9933 #00ffff #ff00ff #00cc00 #6666ff #f4f4f4 #ffff00 #ff0033]]></option>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nome" width="210" order="0"/>
+        <field id="1" name="Ruolo predefinito" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="179" name="Diagramma Gantt" color="#00ffff" meeting="false" start="2020-12-22" duration="27" complete="0" thirdDate="2020-12-22" thirdDate-constraint="0" expand="true">
+            <task id="180" name="Primo diagramma di Gantt" color="#00ffff" meeting="false" start="2020-12-22" duration="1" complete="0" thirdDate="2020-12-24" thirdDate-constraint="0" expand="true">
+                <depend id="182" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="182" name="Aggiornamento del diagramma di Gantt" color="#00ffff" meeting="false" start="2020-12-23" duration="26" complete="0" thirdDate="2020-12-24" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="152" name="Requisiti" color="#ff9933" meeting="false" start="2020-12-24" duration="2" complete="0" thirdDate="2020-12-22" thirdDate-constraint="0" expand="true">
+            <depend id="52" type="2" difference="0" hardness="Strong"/>
+            <task id="158" name="Lettura e comprensione del testo" color="#ff9933" meeting="false" start="2020-12-24" duration="1" complete="0" thirdDate="2020-12-22" thirdDate-constraint="0" expand="true">
+                <depend id="154" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="154" name="Analisi dei requisiti" color="#ff9933" meeting="false" start="2020-12-25" duration="1" complete="0" thirdDate="2020-12-28" thirdDate-constraint="0" expand="true"/>
+            <task id="199" name="Conclusione fase dei requisiti" color="#ff9933" meeting="true" start="2020-12-28" duration="0" complete="0" thirdDate="2020-12-22" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="52" name="Analisi" color="#ffff00" meeting="false" start="2020-12-28" duration="5" complete="0" thirdDate="2020-12-23" thirdDate-constraint="0" expand="true">
+            <depend id="71" type="2" difference="0" hardness="Strong"/>
+            <task id="57" name="Descrizione dei casi d'uso" color="#ffff00" meeting="false" start="2020-12-28" duration="2" complete="0" thirdDate="2020-12-28" thirdDate-constraint="0" expand="true">
+                <depend id="58" type="2" difference="0" hardness="Strong"/>
+                <depend id="60" type="2" difference="0" hardness="Strong"/>
+                <depend id="103" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="58" name="Diagramma dei casi d'uso" color="#ffff00" meeting="false" start="2020-12-30" duration="1" complete="0" thirdDate="2020-12-28" thirdDate-constraint="0" expand="true"/>
+            <task id="60" name="Diagramma di sequenza di sistema" color="#ffff00" meeting="false" start="2020-12-30" duration="1" complete="0" thirdDate="2020-12-23" thirdDate-constraint="0" expand="true"/>
+            <task id="103" name="Modello di dominio" color="#ffff00" meeting="false" start="2020-12-30" duration="3" complete="0" thirdDate="2020-12-28" thirdDate-constraint="0" expand="true">
+                <depend id="91" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="110" name="Conclusione fase di analisi" color="#ffff00" meeting="true" start="2021-01-04" duration="0" complete="0" thirdDate="2020-12-24" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[La fase di analisi termina quando sono terminate le attività di descrizione dei casi d'uso, di modellazione del diagramma di sequenza di sistema e di rappresentazione del modello di dominio.]]></notes>
+            </task>
+        </task>
+        <task id="71" name="Progettazione" color="#6666ff" meeting="false" start="2021-01-04" duration="4" complete="0" thirdDate="2020-12-23" thirdDate-constraint="0" expand="true">
+            <task id="91" name="Diagramma delle classi di progettazione" color="#6666ff" meeting="false" start="2021-01-04" duration="3" complete="0" thirdDate="2020-12-23" thirdDate-constraint="0" expand="true">
+                <depend id="87" type="2" difference="0" hardness="Strong"/>
+                <depend id="88" type="2" difference="0" hardness="Strong"/>
+                <depend id="90" type="2" difference="0" hardness="Strong"/>
+                <depend id="146" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="146" name="Diagramma architettura software" color="#6666ff" meeting="false" start="2021-01-07" duration="1" complete="0" thirdDate="2020-12-24" thirdDate-constraint="0" expand="true"/>
+            <task id="87" name="Diagrammi di sequenza" color="#6666ff" meeting="false" start="2021-01-07" duration="1" complete="0" thirdDate="2020-12-28" thirdDate-constraint="0" expand="true"/>
+            <task id="88" name="Diagrammi degli stati" color="#6666ff" meeting="false" start="2021-01-07" duration="1" complete="0" thirdDate="2020-12-28" thirdDate-constraint="0" expand="true"/>
+            <task id="90" name="Diagrammi delle attività" color="#6666ff" meeting="false" start="2021-01-07" duration="1" complete="0" thirdDate="2020-12-28" thirdDate-constraint="0" expand="true">
+                <depend id="106" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="106" name="Conclusione fase di progettazione" color="#6666ff" meeting="true" start="2021-01-08" duration="0" complete="0" thirdDate="2021-01-05" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Quando le fasi di analisi e di progettazione sono concluse si può passare alla fase di implementazione.]]></notes>
+            </task>
+        </task>
+        <task id="164" name="Implementazione" color="#00cc00" meeting="false" start="2021-01-06" duration="17" complete="0" thirdDate="2020-12-22" thirdDate-constraint="0" expand="true">
+            <depend id="196" type="2" difference="0" hardness="Strong"/>
+            <task id="166" name="Implementazione" color="#00cc00" meeting="false" start="2021-01-06" duration="13" complete="0" thirdDate="2021-01-11" thirdDate-constraint="0" expand="true">
+                <depend id="167" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="167" name="Scrittura della documentazione per la parte di implementazione" color="#00cc00" meeting="false" start="2021-01-25" duration="4" complete="0" thirdDate="2021-01-22" thirdDate-constraint="0" expand="true">
+                <depend id="176" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="176" name="Conclusione fase di implementazione" color="#00cc00" meeting="true" start="2021-01-29" duration="0" complete="0" thirdDate="2021-01-25" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[L'implementazione segue la fase di progettazione. La fase di implementazione termina con la redazione della relativa documentazione.]]></notes>
+            </task>
+        </task>
+        <task id="171" name="Testing" color="#ff00ff" meeting="false" start="2021-01-25" duration="4" complete="0" thirdDate="2021-01-08" thirdDate-constraint="0" expand="true">
+            <depend id="196" type="2" difference="0" hardness="Strong"/>
+            <task id="172" name="Testing" color="#ff00ff" meeting="false" start="2021-01-25" duration="4" complete="0" thirdDate="2020-12-24" thirdDate-constraint="0" expand="true"/>
+            <task id="174" name="Conclusione fase di testing" color="#ff00ff" meeting="true" start="2021-01-29" duration="0" complete="0" thirdDate="2020-12-24" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[La fase di testing procede parallelamente alla fase di implementazione e coerentemenete termina con quest'ultima.]]></notes>
+            </task>
+        </task>
+        <task id="196" name="Revisione finale" color="#8cb6ce" meeting="false" start="2021-01-29" duration="1" complete="0" thirdDate="2020-12-22" thirdDate-constraint="0" expand="true">
+            <task id="198" name="Revisione finale" color="#8cb6ce" meeting="false" start="2021-01-29" duration="1" complete="0" thirdDate="2020-12-22" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="8" name="Consegna" color="#ff0033" meeting="true" start="2021-02-01" duration="0" complete="0" thirdDate="2021-01-28" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Quando il progetto sarà stato completato e verificato si procederà con la consegna.]]></notes>
+        </task>
+    </tasks>
+    <resources>
+        <resource id="0" name="Raffaele Cerizza" function="Default:0" contacts="" phone=""/>
+        <resource id="1" name="Ernesto Gallucci" function="Default:0" contacts="" phone=""/>
+        <resource id="2" name="Giulio Riggio" function="Default:0" contacts="" phone=""/>
+        <resource id="3" name="Alessandro Rosa" function="Default:0" contacts="" phone=""/>
+        <resource id="4" name="Tutti" function="Default:0" contacts="" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="103" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="87" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="91" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="60" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="88" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="58" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="146" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="57" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="90" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="180" resource-id="4" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="182" resource-id="4" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="158" resource-id="4" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="154" resource-id="4" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="166" resource-id="4" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="167" resource-id="4" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="172" resource-id="4" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="198" resource-id="4" function="Default:0" responsible="false" load="100.0"/>
+    </allocations>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+</project>

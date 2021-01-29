@@ -80,7 +80,7 @@ class GestoreCarte extends Component {
         nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ' pesca la carta: ' + this.state.carte[idCarta][1] + '. ';
         console.log(nuovoTesto);
 
-        let strategy;
+        let strategy = '';
         console.log(strategy);
         if ((idCarta === 22) || (this.state.carte[idCarta][2] !== 0) || (this.state.carte[idCarta][5] !== 0) ) {
             strategy = new StrategyModificaSaldo();
