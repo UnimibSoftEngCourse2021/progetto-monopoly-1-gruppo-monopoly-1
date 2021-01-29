@@ -5,14 +5,14 @@ import EsisteSocietàStazione from '../EsisteSocietàStazione';
 
 function GestoreVendite(props){
 
-  const [open, setOpen] = React.useState(false);
-  const handleCloseSnackbar = () => {setOpen(false)};
-  const [testo, setTesto] = React.useState('');
+  const [openVendite, setOpenVendite] = React.useState(false);
+  const handleCloseSnackbarVendite = () => {setOpenVendite(false)};
+  const [testoVendite, setTestoVendite] = React.useState('');
 
 //Stato del Modale utilizato per costruire un edificio
-const [openModal, setOpenModal] = React.useState(false);
-const handleOpen = () => { setOpenModal(true) };
-const handleClose = () => { setOpenModal(false) };
+const [openModalVendite, setOpenModalVendite] = React.useState(false);
+const handleOpenVendite = () => { setOpenModalVendite(true) };
+const handleCloseVendite = () => { setOpenModalVendite(false) };
 
 
 //Stato del terreno da vendere
@@ -47,69 +47,94 @@ function esisteGiocatore(numero){
   }
 }
 
+function verificaVenditore(proprietà, y) {
+  let esito = true;
+  if((proprietà.proprietario != venditore)){
+    setTestoVendite('Non puoi vendere qualcosa che non ti appartiene');
+    setOpenVendite(true);
+    esito = false; 
+    return esito; 
+  }
+  //verifico che il venditore esista e che non sia la banca
+  if(y === -1){
+    setTestoVendite('Controlla che il nome del venditore sia scritto in modo corretto');
+    setOpenVendite(true);
+    esito = false; 
+    return esito;
+  }
+  var venditore2 = props.giocatori[y];
+  if(venditore2.inGioco === false){
+    setTestoVendite('Hai inserito un venditore che non è più in gioco');
+    setOpenVendite(true); 
+    esito = false; 
+    return esito;
+  }
+  return esito;
+}
+
+function verificaAcquirente(x) {
+  let esito = true;
+  //verifico che l'aquirente esista
+  if(x === -1){
+    setTestoVendite("Controlla che il nome dell'aquirente sia scritto in modo corretto");
+    setOpenVendite(true);
+    esito = false; 
+    return esito;
+  }
+  
+  var acquirente2 = props.giocatori[x];
+  if(acquirente2.inGioco === false){
+    setTestoVendite('Hai inserito un aquirente che non è più in gioco');
+    setOpenVendite(true); 
+    esito = false; 
+    return esito;
+  }
+  return esito;
+}
+
 function vendiTerreno(){
 
   //verifico che il terreno esista e salvo il risultato in proprietà
   var n = EsisteTerreno(props.terreni, terreno);
 
   if(n === -1){
-    setTesto('Controlla che il nome del terreno sia scritto in modo corretto');
-    setOpen(true);
+    setTestoVendite('Controlla che il nome del terreno sia scritto in modo corretto');
+    setOpenVendite(true);
     return;
   }
+
   var proprietà = props.terreni[n];
-  
-  if((proprietà.proprietario != venditore)){
-    setTesto('Non puoi vendere qualcosa che non ti appartiene');
-    setOpen(true); 
-    return;
-  }
-  //verifico che il venditore esista e che non sia la banca
   var y = esisteGiocatore(venditore);
-  if(y === -1){
-    setTesto('Controlla che il nome del venditore sia scritto in modo corretto');
-    setOpen(true);
+  var esitoVerificaVenditore = verificaVenditore(proprietà, y);
+  if (!esitoVerificaVenditore) {
     return;
   }
   var venditore2 = props.giocatori[y];
-  if(venditore2.inGioco === false){
-    setTesto('Hai inserito un venditore che non è più in gioco');
-    setOpen(true); 
-    return;
-  }
- 
   
-  //verifico che l'aquirente esista
   var x = esisteGiocatore(acquirente);
-  var acquirente2;
-  if(x === -1){
-    setTesto("Controlla che il nome dell'aquirente sia scritto in modo corretto");
-    setOpen(true); 
+  var esitoVerificaAcquirente = verificaAcquirente(x);
+  if (!esitoVerificaAcquirente) {
     return;
   }
-  acquirente2 = props.giocatori[x];
-  if(acquirente2.inGioco === false){
-    setTesto('Hai inserito un aquirente che non è più in gioco');
-    setOpen(true); 
-    return;
-  }
+  var acquirente2 = props.giocatori[x];
+  
   //verifico che sul terreno non ci siano ne case ne alberghi
   if(proprietà.case > 0 || proprietà.alberghi > 0){
-    setTesto('Non puoi vendere un terreno con case o alberghi');
-    setOpen(true);
+    setTestoVendite('Non puoi vendere un terreno con case o alberghi');
+    setOpenVendite(true);
     return;
   }
   //Verifico che venditore e aquirente non siano lo stesso giocatore
   if(venditore2 === acquirente2){
-    setTesto('Non puoi vendere a te stesso');
-    setOpen(true);
+    setTestoVendite('Non puoi vendere a te stesso');
+    setOpenVendite(true);
     return;
   }
   
   //verifico che il prezzo sia > 0
   if(prezzo <= 0){
-    setTesto('Controlla di aver inserito un prezzo maggiore di zero');
-    setOpen(true); 
+    setTestoVendite('Controlla di aver inserito un prezzo maggiore di zero');
+    setOpenVendite(true); 
     return;
   }
   //sposto i soldi dall'aquirente2 al venditore2
@@ -133,8 +158,8 @@ function vendiTerreno(){
   console.log(props.giocatori);
   console.log(props.terreni);
 
-  setTesto('La vendita è andata a buon fine');
-  setOpen(true); 
+  setTestoVendite('La vendita è andata a buon fine');
+  setOpenVendite(true); 
 }
 
 function vendiStazioneSocietà(){
@@ -143,58 +168,37 @@ function vendiStazioneSocietà(){
   var n = EsisteSocietàStazione(props.societàStazioni, terreno);
   
   if(n === -1){
-    setTesto('Controlla che il nome della società o della stazione sia scritto in modo corretto');
-    setOpen(true);
+    setTestoVendite('Controlla che il nome della società o della stazione sia scritto in modo corretto');
+    setOpenVendite(true);
     return;
   }
+
   var proprietà = props.societàStazioni[n];
-  
-  if((proprietà.proprietario != venditore)){
-    setTesto('Non puoi vendere qualcosa che non ti appartiene');
-    setOpen(true); 
-    return;
-  }
-  //verifico che il venditore esista 
   var y = esisteGiocatore(venditore);
-  if(y === -1){
-    setTesto('Controlla che il nome del venditore sia scritto in modo corretto');
-    setOpen(true); 
+  var esitoVerificaVenditore = verificaVenditore(proprietà, y);
+  if (!esitoVerificaVenditore) {
     return;
   }
   var venditore2 = props.giocatori[y];
-  if(venditore2.inGioco === false){
-    setTesto('Controlla che il nome del venditore sia scritto in modo corretto');
-    setOpen(true);
-    return;
-  }
- 
-  
-  //verifico che l'aquirente esista
+
   var x = esisteGiocatore(acquirente);
-  var acquirente2;
-  if(x === -1){
-    setTesto("Controlla che il nome dell'aquirente sia scritto in modo corretto");
-    setOpen(true);
+  var esitoVerificaAcquirente = verificaAcquirente(x);
+  if (!esitoVerificaAcquirente) {
     return;
   }
-  acquirente2 = props.giocatori[x];
-  if(acquirente2.inGioco === false){
-    setTesto('Hai inserito un aquirente che non è più in gioco');
-    setOpen(true); 
-    return;
-  }
-  
+  var acquirente2 = props.giocatori[x];
+
   //Verifico che venditore e aquirente non siano lo stesso giocatore
   if(venditore2 === acquirente2){
-    setTesto('Non puoi vendere a te stesso');
-    setOpen(true); 
+    setTestoVendite('Non puoi vendere a te stesso');
+    setOpenVendite(true); 
     return;
   }
   
   //verifico che il prezzo sia > 0
   if(prezzo <= 0){
-    setTesto('Controlla di aver inserito un prezzo maggiore di zero');
-    setOpen(true); 
+    setTestoVendite('Controlla di aver inserito un prezzo maggiore di zero');
+    setOpenVendite(true); 
     return;
   }
   //sposto i soldi dall'aquirente2 al venditore2
@@ -218,11 +222,9 @@ function vendiStazioneSocietà(){
   console.log(props.giocatori);
   console.log(props.societàStazioni);
 
-  setTesto('La vendita è andata a buon fine');
-  setOpen(true); 
+  setTestoVendite('La vendita è andata a buon fine');
+  setOpenVendite(true); 
 }
-
-
 
 //Stato del RadioGrup per la gerstione del tipo di vendita
 //si può scegliere se vendere terreni o stazioni/società
@@ -274,21 +276,21 @@ const body = (
 
 return(
 <div>
-  <Button  width='20px' style={{marginLeft:'8px'}} onClick={handleOpen}>
+  <Button  width='20px' style={{marginLeft:'8px'}} onClick={handleOpenVendite}>
     Vendi
   </Button>
-  <Modal open={openModal} onClose={handleClose}>
+  <Modal open={openModalVendite} onClose={handleCloseVendite}>
     {body}
   </Modal>
   <Snackbar
     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-    open={open}
+    open={openVendite}
     autoHideDuration={6000}
-    onClose={handleCloseSnackbar}
-    message={testo}
+    onClose={handleCloseSnackbarVendite}
+    message={testoVendite}
     action={
       <React.Fragment>
-        <Button color="secondary" size="small" onClick={handleCloseSnackbar}> UNDO </Button>
+        <Button color="secondary" size="small" onClick={handleCloseSnackbarVendite}> UNDO </Button>
       </React.Fragment>
     }
   />
