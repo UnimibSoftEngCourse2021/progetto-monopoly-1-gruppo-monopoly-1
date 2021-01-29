@@ -1,6 +1,7 @@
 import React from 'react';
 import {Paper, Modal, Button, Radio, RadioGroup, FormControlLabel, TextField, Grid, Snackbar} from '@material-ui/core';
 import EsisteTerreno from '../EsisteTerreno';
+import Banca from '../Banca';
 
 
 function GestoreCostruzioni(props){
@@ -75,6 +76,14 @@ function costruisciCasa(){
     setOpenCostruzioni(true);
     return;
   }
+
+  var banca = Banca.getInstance();
+  if (banca.caseDisponibili <= 0) {
+    setTestoCostruzioni("La banca al momento non dispone di case. Attendi che altri giocatori le vendano. ");
+    setOpenCostruzioni(true);
+    return;
+  }
+
   //modifico l'array terreni e l'array giocatori
   proprietà.case = proprietà.case + 1;
   var nuoviTerreni = props.terreni;
@@ -86,9 +95,10 @@ function costruisciCasa(){
   nuoviGiocatori[props.turnoGiocatore].capitale = nuoviGiocatori[props.turnoGiocatore].capitale - costoCostruzione;
   props.setGiocatori(nuoviGiocatori);
 
+  banca.decrementaCase();
+  
   setTestoCostruzioni('La costruzione della casa è andata a buon fine');
   setOpenCostruzioni(true);
-
 }
 
 function costruisciAlbergo(){
@@ -126,6 +136,13 @@ function costruisciAlbergo(){
     return;
   }
   
+  var banca = Banca.getInstance();
+  if (banca.alberghiDisponibili <= 0) {
+    setTestoCostruzioni("La banca al momento non dispone di alberghi. Attendi che altri giocatori li vendano. ");
+    setOpenCostruzioni(true);
+    return;
+  }
+
   //modifico l'array terreni e l'array giocatori
   proprietà.alberghi = proprietà.alberghi + 1;
   proprietà.case = 0;
@@ -137,6 +154,12 @@ function costruisciAlbergo(){
   var costoCostruzione = proprietà.valore*3/4;
   nuoviGiocatori[props.turnoGiocatore].capitale = nuoviGiocatori[props.turnoGiocatore].capitale - costoCostruzione;
   props.setGiocatori(nuoviGiocatori);
+
+  var banca = Banca.getInstance();
+  for (let i = 0; i < 4; i++) {
+    banca.incrementaCase();
+  }
+  banca.decrementaAlberghi();
 
   setTestoCostruzioni("La costruzione dell'albergo è andata a buon fine");
   setOpenCostruzioni(true);

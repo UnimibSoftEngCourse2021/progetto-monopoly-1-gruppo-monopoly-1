@@ -1,6 +1,7 @@
 import React from 'react';
 import {Paper, Modal, Button, Radio, RadioGroup, FormControlLabel, TextField, Grid, Snackbar} from '@material-ui/core';
 import EsisteTerreno from '../EsisteTerreno';
+import Banca from '../Banca';
 
 
 function GestoreVenditaEdifici(props){
@@ -57,6 +58,9 @@ function vendiCasa(){
   nuoviGiocatori[props.turnoGiocatore].capitale = nuoviGiocatori[props.turnoGiocatore].capitale + guadagno;
   props.setGiocatori(nuoviGiocatori);
 
+  var banca = Banca.getInstance();
+  banca.incrementaCase();
+
   setTestoVenditaEdifici('La vendita della casa è andata a buon fine');
   setOpenVenditaEdifici(true); 
 }
@@ -83,7 +87,6 @@ function vendiAlbergo(){
     return;
   }
   
-  
   //modifico l'array terreni e l'array giocatori
   //quando vendo un albergo alla banca ricevo in cambio metà del prezzo d'aquisto e 4 case
   proprietà.alberghi = 0;
@@ -97,9 +100,11 @@ function vendiAlbergo(){
   nuoviGiocatori[props.turnoGiocatore].capitale = nuoviGiocatori[props.turnoGiocatore].capitale + guadagno;
   props.setGiocatori(nuoviGiocatori);
 
+  var banca = Banca.getInstance();
+  banca.incrementaAlberghi();
+
   setTestoVenditaEdifici("La vendita dell'albergo è andata a buon fine");
   setOpenVenditaEdifici(true); 
-
 }
 
 function vendiEdificio2(){

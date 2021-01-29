@@ -7,7 +7,14 @@ class Banca extends Component {
             open: false,
             testo: '',
         }
+        this.decrementaCase = this.decrementaCase.bind(this);
+        this.incrementaCase = this.incrementaCase.bind(this);
+        this.decrementaAlberghi = this.decrementaAlberghi.bind(this);
+        this.incrementaAlberghi = this.incrementaAlberghi.bind(this);
     }
+
+    caseDisponibili = 32;
+    alberghiDisponibili = 12;
 
     static instance = null;
     static createInstance() {
@@ -15,13 +22,33 @@ class Banca extends Component {
         return object;
     }
   
-    static getInstance () {
+    static getInstance() {
         if (!Banca.instance) {
             Banca.instance = Banca.createInstance();
         }
         return Banca.instance;
     }
 
+    decrementaCase() {
+        this.caseDisponibili -= 1;
+        console.log("Numero case disponibili: " + this.caseDisponibili); 
+    }
+
+    incrementaCase() {
+        this.caseDisponibili += 1;
+        console.log("Numero case disponibili: " + this.caseDisponibili);  
+    }
+
+    decrementaAlberghi() {
+        this.alberghiDisponibili -= 1;
+        console.log("Numero alberghi disponibili: " + this.alberghiDisponibili);  
+    } 
+    
+    incrementaAlberghi() {
+        this.alberghiDisponibili += 1;
+        console.log("Numero alberghi disponibili: " + this.alberghiDisponibili); 
+    } 
+    
     handleOpen = () => {this.setState({open: true})};
     handleClose = () => {this.setState({open: false})};
 
