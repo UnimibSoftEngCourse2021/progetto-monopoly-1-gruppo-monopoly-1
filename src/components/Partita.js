@@ -586,6 +586,9 @@ class Partita extends React.Component {
                                 setTerreni={this.props.setTerreni}
                                 societàStazioni={this.props.societàStazioni}
                                 setSocietàStazioni={this.props.setSocietàStazioni}
+                                setTurnoGiocatore={this.props.setTurnoGiocatore}
+                                fallimentoVittoria={this.fallimentoVittoria}
+                                numeroGiocatori={this.props.numeroGiocatori}                                
                             />
                         </td>
                     </tr>

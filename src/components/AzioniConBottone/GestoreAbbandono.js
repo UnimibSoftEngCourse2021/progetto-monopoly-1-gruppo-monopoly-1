@@ -38,6 +38,45 @@ function GestoreAbbandono(props){
         }
       }
       props.setTerreni(nuoviTerreni);
+
+      const giocatore = props.turnoGiocatore;
+
+      var giocatore2;
+      if(giocatore === props.numeroGiocatori-1){
+          giocatore2 = 0;
+      }
+      else{
+          giocatore2 = giocatore + 1;
+      }
+      
+      if(props.giocatori[giocatore2].inGioco===false){
+          //cerco il primo giocatore in gioco
+          var i = giocatore2;
+          var x = true;
+      
+          while(x){
+      
+              if(props.giocatori[i].inGioco === true){
+                  giocatore2 = i;
+                  x = false;
+              }
+              else{
+                  if(i===props.numeroGiocatori-1){
+                      i = 0;
+                  }
+                  else{
+                      i++;
+                  }
+              }
+          }      
+      }
+      
+      props.setTurnoGiocatore(giocatore2);  
+      
+      props.fallimentoVittoria();
+      
+      handleClose();
+          
   }
 
   const body = (
