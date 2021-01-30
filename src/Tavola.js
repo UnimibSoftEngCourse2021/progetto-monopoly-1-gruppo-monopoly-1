@@ -520,7 +520,7 @@ function Tavola(props) {
     setTempo(tempo-1);
   }
 
-  const [numeroDifficoltà, setNumeroDifficoltà] = React.useState(assegnaDifficoltà());
+  const [numeroDifficoltà] = React.useState(assegnaDifficoltà());
   function assegnaDifficoltà(){
     if(props.difficolta === 'facile'){
       return(0);

@@ -57,7 +57,7 @@ function ipotecaTerreno(){
   }
 
   //verifico che il terreno non si già ipotecato
-  if (proprietà.ipotecato == true) {
+  if (proprietà.ipotecato === true) {
     setTestoIpoteche('Non puoi ipotecare una proprietà già ipotecata');
     setOpenIpoteche(true);
     return;
@@ -101,7 +101,7 @@ function ipotecaStazioneSocietà(){
   }
 
     //verifico che la società non si già ipotecato
-    if (proprietà.ipotecato == true) {
+    if (proprietà.ipotecato === true) {
       setTestoIpoteche('Non puoi ipotecare una proprietà già ipotecata');
       setOpenIpoteche(true);
       return;

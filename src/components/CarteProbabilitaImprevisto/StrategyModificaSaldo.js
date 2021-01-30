@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import AttivaCartaStrategy from './AttivaCartaStrategy';
 
 class StrategyModificaSaldo extends AttivaCartaStrategy {
