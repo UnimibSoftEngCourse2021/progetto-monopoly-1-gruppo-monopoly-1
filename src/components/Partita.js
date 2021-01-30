@@ -152,6 +152,7 @@ class Partita extends React.Component {
             punteggioDoppio = verificaPunteggioDoppio(dado1, dado2);
             
             if (this.props.giocatori[this.props.turnoGiocatore].inPrigione && punteggioDoppio) {
+                this.props.giocatori[this.props.turnoGiocatore].numeroTurniPrigione = 0;
                 this.props.giocatori[this.props.turnoGiocatore].inPrigione = false;
             }
 

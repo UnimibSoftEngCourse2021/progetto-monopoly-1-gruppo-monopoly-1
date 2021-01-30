@@ -22,6 +22,7 @@ function pagaCauzione() {
             var nuoviGiocatori = props.giocatori;
             nuoviGiocatori[props.turnoGiocatore].capitale -= 125;
             nuoviGiocatori[props.turnoGiocatore].inPrigione = false;
+            nuoviGiocatori[props.turnoGiocatore].numeroTurniPrigione = 0;
             props.setGiocatori(nuoviGiocatori);
             setTestoPrigione("Giocatore " + (props.turnoGiocatore + 1) + " paga la cauzione di € 125. Giocatore " + (props.turnoGiocatore + 1) + " uscito dalla prigione. ");
             setOpenPrigione(true);
@@ -42,6 +43,7 @@ function usaCarta() {
             var nuoviGiocatori = props.giocatori;
             nuoviGiocatori[props.turnoGiocatore].carteUscitaPrigione -= 1;
             nuoviGiocatori[props.turnoGiocatore].inPrigione = false;
+            nuoviGiocatori[props.turnoGiocatore].numeroTurniPrigione = 0;
             props.setGiocatori(nuoviGiocatori);
             setTestoPrigione("Giocatore " + (props.turnoGiocatore + 1) + " usa una carta per uscire dalla prigione. Giocatore " 
                             + (props.turnoGiocatore + 1) + " uscito dalla prigione. ");
