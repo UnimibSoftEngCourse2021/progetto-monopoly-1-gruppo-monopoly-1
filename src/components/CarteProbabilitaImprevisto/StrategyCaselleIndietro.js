@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import CryptoRandom from '../CryptoRandom';
 import AttivaCartaStrategy from './AttivaCartaStrategy';
 import StrategyModificaSaldo from './StrategyModificaSaldo';

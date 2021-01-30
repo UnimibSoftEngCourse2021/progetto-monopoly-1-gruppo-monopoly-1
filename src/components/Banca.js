@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Banca extends Component {
+class Banca extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,15 +16,15 @@ class Banca extends Component {
     caseDisponibili = 32;
     alberghiDisponibili = 12;
 
-    static istanza = null;
-    static creaIstanza() {
+    static instance = null;
+    static createInstance() {
         var object = new Banca();
         return object;
     }
   
-    static getIstanza() {
+    static getInstance() {
         if (!Banca.instance) {
-            Banca.instance = Banca.creaIstanza();
+            Banca.instance = Banca.createInstance();
         }
         return Banca.instance;
     }

@@ -64,7 +64,7 @@ class Partita extends React.Component {
         for (i = 1; i < sommaDadiParam+1; i++) {
             if (attualeCasella === 39) {
                 attualeCasella=0;
-                let banca = Banca.getIstanza();
+                let banca = Banca.getInstance();
                 banca.giocatorePassaDalVia(this.props.giocatori,this.props.turnoGiocatore,this.props.setGiocatori, this.handleOpen, this.cambiaTesto, this.props.difficolta);
             } else {
                 attualeCasella = attualeCasella + 1
@@ -586,15 +586,12 @@ class Partita extends React.Component {
                         <td className="tdController">
                             <GestoreAbbandono 
                                 turnoGiocatore={this.props.turnoGiocatore}
-                                setTurnoGiocatore={this.props.setTurnoGiocatore}
-                                fallimentoVittoria={this.fallimentoVittoria}
                                 giocatori={this.props.giocatori}
                                 setGiocatori={this.props.setGiocatori}
                                 terreni={this.props.terreni}
                                 setTerreni={this.props.setTerreni}
                                 societàStazioni={this.props.societàStazioni}
                                 setSocietàStazioni={this.props.setSocietàStazioni}
-                                numeroGiocatori={this.props.numeroGiocatori}
                             />
                         </td>
                     </tr>

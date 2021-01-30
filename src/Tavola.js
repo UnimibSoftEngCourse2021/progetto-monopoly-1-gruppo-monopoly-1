@@ -18,14 +18,14 @@ function Tavola(props) {
   if (props.tempoMinuti!=null) {tempoSecondi=props.tempoMinuti*60}
   const [counter, setCounter] = React.useState(tempoSecondi);
 
-  var banca = Banca.getIstanza();
+  var banca1 = new Banca();
 
   React.useEffect(() => {
     counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
     if (counter === 0) {
       setTesto('tempo finito');
       setOpen(true);
-      var t = banca.partitaCountdown(props.giocatori);
+      var t = banca1.partitaCountdown(props.giocatori);
       setTesto(t);
       setOpen(true);   
        
@@ -520,7 +520,7 @@ function Tavola(props) {
     setTempo(tempo-1);
   }
 
-  const [numeroDifficoltà, setNumeroDifficoltà] = React.useState(assegnaDifficoltà());
+  const [numeroDifficoltà] = React.useState(assegnaDifficoltà());
   function assegnaDifficoltà(){
     if(props.difficolta === 'facile'){
       return(0);
