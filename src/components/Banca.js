@@ -16,15 +16,15 @@ class Banca extends Component {
     caseDisponibili = 32;
     alberghiDisponibili = 12;
 
-    static instance = null;
-    static createInstance() {
+    static istanza = null;
+    static creaIstanza() {
         var object = new Banca();
         return object;
     }
   
-    static getInstance() {
+    static getIstanza() {
         if (!Banca.instance) {
-            Banca.instance = Banca.createInstance();
+            Banca.instance = Banca.creaIstanza();
         }
         return Banca.instance;
     }

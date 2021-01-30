@@ -5,6 +5,7 @@ import StrategyModificaSaldo from './StrategyModificaSaldo';
 import StrategySpostaADestinazione from './StrategySpostaADestinazione';
 import StrategyUscitaPrigione from './StrategyUscitaPrigione';
 import EsecutoreCarte from './EsecutoreCarte';
+import AttivaCartaStrategy from './AttivaCartaStrategy';
 
 class GestoreCarte extends Component {
     constructor(props) {
@@ -82,7 +83,7 @@ class GestoreCarte extends Component {
         console.log(nuovoTesto);
 
         let esecutoreCarte = new EsecutoreCarte();
-        let strategy = '';
+        let strategy = new AttivaCartaStrategy();
         if ((idCarta === 22) || (this.state.carte[idCarta][2] !== 0) || (this.state.carte[idCarta][5] !== 0) ) {
             strategy = new StrategyModificaSaldo();
         } else if (idCarta === 12 || idCarta === 15) {

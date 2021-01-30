@@ -77,7 +77,7 @@ function costruisciCasa(){
     return;
   }
 
-  var banca = Banca.getInstance();
+  var banca = Banca.getIstanza();
   if (banca.caseDisponibili <= 0) {
     setTestoCostruzioni("La banca al momento non dispone di case. Attendi che altri giocatori le vendano. ");
     setOpenCostruzioni(true);
@@ -136,7 +136,7 @@ function costruisciAlbergo(){
     return;
   }
   
-  var banca = Banca.getInstance();
+  var banca = Banca.getIstanza();
   if (banca.alberghiDisponibili <= 0) {
     setTestoCostruzioni("La banca al momento non dispone di alberghi. Attendi che altri giocatori li vendano. ");
     setOpenCostruzioni(true);

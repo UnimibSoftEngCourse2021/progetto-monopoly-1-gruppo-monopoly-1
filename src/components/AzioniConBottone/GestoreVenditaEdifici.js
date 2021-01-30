@@ -58,7 +58,7 @@ function vendiCasa(){
   nuoviGiocatori[props.turnoGiocatore].capitale = nuoviGiocatori[props.turnoGiocatore].capitale + guadagno;
   props.setGiocatori(nuoviGiocatori);
 
-  var banca = Banca.getInstance();
+  var banca = Banca.getIstanza();
   banca.incrementaCase();
 
   setTestoVenditaEdifici('La vendita della casa è andata a buon fine');
@@ -100,7 +100,7 @@ function vendiAlbergo(){
   nuoviGiocatori[props.turnoGiocatore].capitale = nuoviGiocatori[props.turnoGiocatore].capitale + guadagno;
   props.setGiocatori(nuoviGiocatori);
 
-  var banca = Banca.getInstance();
+  var banca = Banca.getIstanza();
   banca.incrementaAlberghi();
 
   setTestoVenditaEdifici("La vendita dell'albergo è andata a buon fine");

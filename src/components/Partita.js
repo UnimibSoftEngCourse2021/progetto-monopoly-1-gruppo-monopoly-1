@@ -64,7 +64,7 @@ class Partita extends React.Component {
         for (i = 1; i < sommaDadiParam+1; i++) {
             if (attualeCasella === 39) {
                 attualeCasella=0;
-                let banca = Banca.getInstance();
+                let banca = Banca.getIstanza();
                 banca.giocatorePassaDalVia(this.props.giocatori,this.props.turnoGiocatore,this.props.setGiocatori, this.handleOpen, this.cambiaTesto, this.props.difficolta);
             } else {
                 attualeCasella = attualeCasella + 1
