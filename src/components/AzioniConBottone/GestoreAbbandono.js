@@ -76,7 +76,6 @@ function GestoreAbbandono(props){
       props.fallimentoVittoria();
       
       handleClose();
-          
   }
 
   const body = (
