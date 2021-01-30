@@ -3,6 +3,7 @@ import { Box, TableCell, TableRow, TableBody, TableContainer, Table, TableHead} 
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 
+//Funzione che crea la tabella stazioni
 function TabellaSocietàStazioni(props) {
 
     function createData(nome, proprietario, valore, ipotecato ) {

@@ -157,7 +157,6 @@ class Partita extends React.Component {
             }
 
             if (!this.props.giocatori[this.props.turnoGiocatore].inPrigione && punteggioDoppio && numeroTiriDadi === 3) {
-                console.log("Entrato");
                 this.setState({open: true, testo: "Tre lanci doppi consecutivi. Giocatore " + (this.props.turnoGiocatore + 1) + " va in Prigione. "});
                 this.props.segnalini[this.props.turnoGiocatore].ascissa = this.props.tavolaGioco[10][1];
                 this.props.segnalini[this.props.turnoGiocatore].ordinata = this.props.tavolaGioco[10][2];
@@ -305,7 +304,6 @@ class Partita extends React.Component {
            var nuoviGiocatori = this.props.giocatori;
            nuoviGiocatori[this.props.turnoGiocatore].inGioco = false;
            this.props.setGiocatori(nuoviGiocatori);
-           console.log(this.props.giocatori);
            return;
            
         }
@@ -330,7 +328,6 @@ class Partita extends React.Component {
                     vincitore = this.props.giocatori[i];
                 }
             }
-            console.log(vincitore);
             //verifico che ci sia un pareggio
             var pareggio = 0;
             var n = 0;
@@ -445,7 +442,6 @@ class Partita extends React.Component {
                 nuoviGiocatori[società.proprietario].capitale += affitto;
             }
             this.props.setGiocatori(nuoviGiocatori);
-            console.log(this.props.giocatori);
         }
         return;
     }
@@ -485,10 +481,8 @@ class Partita extends React.Component {
             for (let i = 0; i < numeroGiocatori; i++) {
                 let j = 0;
                 while (j < giocatori[i].numeroContrattiIniziali) {
-                    //random = Math.floor(Math.random() * 2)
                     random = CryptoRandom(0,1); //Il max è incluso e il min è incluso
                     if (random === 0) {
-                        //random = Math.floor(Math.random() * 22);
                         random = CryptoRandom(0,21); //Il max è incluso e il min è incluso
                         if (terreni[random].proprietario === -1) {
                             var nuoviTerreni = terreni;
@@ -500,7 +494,6 @@ class Partita extends React.Component {
                             j += 1;
                         }
                     } else {
-                        //random = Math.floor(Math.random() * 6);
                         random = CryptoRandom(0,5); //Il max è incluso e il min è incluso
                         if (societàStazioni[random].proprietario === -1) {
                             var nuoveSocietàStazioni = societàStazioni;

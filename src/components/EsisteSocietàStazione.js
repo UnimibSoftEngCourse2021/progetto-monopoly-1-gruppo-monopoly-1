@@ -1,3 +1,4 @@
+//Funzione che controlla se l'input dato corrisponde ad una stazione
 function EsisteSocietàStazione(societàStazioni, societàStazione){
     var i = 0;
     var esiste = false;

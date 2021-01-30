@@ -1,6 +1,5 @@
-
-function CryptoRandom(min, max){
-    //To generate a random number in a [min..max] range
+//Funzione che genera un numero random in un intervallo tra min e max
+function CryptoRandom(min, max){s
     var randomBuffer = new Uint32Array(1);
     window.crypto.getRandomValues(randomBuffer);
     let randomNumber = randomBuffer[0] / (0xffffffff + 1);

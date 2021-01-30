@@ -132,7 +132,6 @@ class StrategySpostaADestinazione extends AttivaCartaStrategy {
                 if (segnalini[turnoGiocatore].attualeCasella >= 29) {
                     nuoviGiocatori[turnoGiocatore].capitale += 500;
                     nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ' passa dal Via. ';
-                    console.log(nuovoTesto);
                     cambiaTesto(nuovoTesto);
                     handleOpen();
                 }

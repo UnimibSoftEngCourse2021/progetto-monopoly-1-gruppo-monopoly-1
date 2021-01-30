@@ -31,22 +31,18 @@ class Banca extends React.Component {
 
     decrementaCase() {
         this.caseDisponibili -= 1;
-        console.log("Numero case disponibili: " + this.caseDisponibili); 
     }
 
     incrementaCase() {
-        this.caseDisponibili += 1;
-        console.log("Numero case disponibili: " + this.caseDisponibili);  
+        this.caseDisponibili += 1; 
     }
 
     decrementaAlberghi() {
         this.alberghiDisponibili -= 1;
-        console.log("Numero alberghi disponibili: " + this.alberghiDisponibili);  
     } 
     
     incrementaAlberghi() {
         this.alberghiDisponibili += 1;
-        console.log("Numero alberghi disponibili: " + this.alberghiDisponibili); 
     } 
     
     handleOpen = () => {this.setState({open: true})};
@@ -77,7 +73,6 @@ class Banca extends React.Component {
                     vincitore = giocatori[i];
                 }
             }
-            console.log(vincitore);
             //verifico che ci sia un pareggio
             var pareggio = 0;
             var n = 0;

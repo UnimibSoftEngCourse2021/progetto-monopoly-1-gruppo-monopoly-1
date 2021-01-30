@@ -3,6 +3,7 @@ import { Box, TableCell, TableRow, TableBody, TableContainer, Table, TableHead, 
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 
+//Funzione che crea la tabella dei terreni
 function TabellaTerreni (props) {
 
     function createData(nome, coloreSfondo, proprietario, casa, alberghi, valore, ipotecato) {
