@@ -506,12 +506,6 @@ function Tavola(props) {
   const [turnoGiocatore, setTurnoGiocatore] = React.useState(iniziaPerPrimo());
 
   function iniziaPerPrimo() {
-<<<<<<< HEAD
-    //var min = Math.ceil(0);
-    //var max = Math.floor(props.numeroGiocatori);
-    //return Math.floor(Math.random() * (max - min)) + min; //Il max è escluso e il min è incluso
-=======
->>>>>>> cards-development
     return CryptoRandom(0,props.numeroGiocatori-1); //Il max è incluso e il min è incluso
   }
 

@@ -5,10 +5,7 @@ import GestoreNumeroGiocatori from './components/GestoreNumeroGiocatori';
 import GestoreDifficolta from './components/GestoreDifficolta'
 import GestorePedina from './components/GestorePedine'
 
-<<<<<<< HEAD
-=======
 //Menu iniziale di gioco, selezione: numero giocatori, difficoltà, durata partita
->>>>>>> cards-development
 class Menu extends Component {
     constructor(props) {
       super(props);
