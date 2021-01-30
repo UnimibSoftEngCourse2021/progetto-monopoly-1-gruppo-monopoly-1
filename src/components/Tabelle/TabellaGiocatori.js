@@ -1,6 +1,7 @@
 import React from 'react'
 import { Box, TableCell, TableRow, TableBody, TableContainer, Table, TableHead, Typography} from '@material-ui/core';
 
+//Funzione che crea la tabella giocatori
 function TabellaGiocatori (props) {
 
     function stampaNumero(numero){

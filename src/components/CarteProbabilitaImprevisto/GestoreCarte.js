@@ -79,7 +79,6 @@ class GestoreCarte extends Component {
         }
         
         nuovoTesto += 'Giocatore ' + (turnoGiocatore + 1) + ' pesca la carta: ' + this.state.carte[idCarta][1] + '. ';
-        console.log(nuovoTesto);
 
         let esecutoreCarte = new EsecutoreCarte();
         let strategy = '';

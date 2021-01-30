@@ -1,3 +1,4 @@
+//Funzione che controlla se l'input dato corrisponde ad un terreno
 function EsisteTerreno(terreni, terreno){
     var i = 0;
     var esiste = false;
